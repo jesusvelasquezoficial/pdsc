@@ -10,8 +10,10 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :pdsc_server, PdscServerWeb.Endpoint,
-  url: [scheme: "https", host: "enigmatic-dawn-93193", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  url: [scheme: "https", host: "enigmatic-dawn-93193.herokuapp.com", port: 443],
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  check_origin: false # OJO CON ESTO
+  # force_ssl: [rewrite_on: [:x_forwarded_proto]],
   # cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
