@@ -34,9 +34,11 @@
   </f7-page>
 </template>
 <script>
+
 import Auth from '../../auth'
 import Producto from './producto.vue'
 import ProductoSlider from './productoSlider.vue'
+
 export default {
   components:{
         ProductoSlider,

@@ -221,7 +221,7 @@ export default {
         return this.fecha != '' && this.precio != '' ? true : false
       },
       cargarDatosProducto: function(id){
-        this.axios.get('http://'+Auth.URL+'/api/productos/'+id).then(res => {
+        this.axios.get('https://'+Auth.URL+'/api/productos/'+id).then(res => {
           console.log(res.data.data);
           this.producto = res.data.data
         })
@@ -233,7 +233,7 @@ export default {
             fecha: this.fecha,
             precio: parseInt(this.precio)
           }
-          this.axios.post('http://'+Auth.URL+'/api/precioproducto/', {precio_producto: datosProducto}).then(res => {
+          this.axios.post('https://'+Auth.URL+'/api/precioproducto/', {precio_producto: datosProducto}).then(res => {
             this.dataP.push(res.data.data)
           }).catch(error => {
             this.$f7.dialog.alert(error)
@@ -243,7 +243,7 @@ export default {
         }
       },
       cargarPrecioProducto(){
-        this.axios.post('http://'+Auth.URL+'/api/precioproductoforid/', {idproducto: 1}).then(res => {
+        this.axios.post('https://'+Auth.URL+'/api/precioproductoforid/', {idproducto: 1}).then(res => {
           console.log(res.data.data);
         })
       },
