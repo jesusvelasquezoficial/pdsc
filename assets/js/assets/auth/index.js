@@ -1,6 +1,7 @@
 const PROTOCOLO = 'https://'
-let IPs = ['localhost', '127.0.0.1', '10.0.1.48'] // 10.0.1.23
+let IPs = ['localhost', '127.0.0.1', '10.0.1.48', 'pdsc.ml'] // 10.0.1.23
 let PORTs = ['4000'] // 8081
+
 let HOST = 'www.pdsc.ml'
 
 IPs.forEach(IP => {
