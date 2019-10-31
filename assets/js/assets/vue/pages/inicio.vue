@@ -50,7 +50,7 @@ export default {
   },
   methods:{
     cargarDatosProductos: function(){
-      this.axios.get('http://'+Auth.URL+'/api/productos').then(res => {
+      this.axios.get('https://'+Auth.URL+'/api/productos').then(res => {
         console.log(res.data.data);
         this.dataProducto = res.data.data
       })

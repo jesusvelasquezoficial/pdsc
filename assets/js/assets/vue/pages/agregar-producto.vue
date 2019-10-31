@@ -130,7 +130,7 @@ export default {
       
 
 
-      this.axios.post('http://'+Auth.URL+'/api/productos', {producto: this.producto}).then(res => {
+      this.axios.post('https://'+Auth.URL+'/api/productos', {producto: this.producto}).then(res => {
         console.log(res.data.data);
         this.$f7router.navigate('/inicio/')
       })
