@@ -2,17 +2,21 @@ const PROTOCOLO = 'https://'
 let IPs = ['localhost', '127.0.0.1', '10.0.1.48'] // 10.0.1.23
 let PORTs = ['4000'] // 8081
 let HOST = 'www.pdsc.ml'
+
 IPs.forEach(IP => {
   if (location.hostname == IP) {
     HOST = IP
   }
 })
+
 let PORT =':443'
+
 PORTs.forEach(P => {
   if (location.port == P) {
     PORT = ':4000'
   }
 })
+
 const URL = HOST+PORT
 const LOGIN_URL = PROTOCOLO+URL+"/api/login"
 const SIGNIN_URL = PROTOCOLO+URL+"/api/signin"
