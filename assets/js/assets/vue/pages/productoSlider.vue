@@ -45,8 +45,7 @@ export default {
       // return 'https://cdn.framework7.io/placeholder/nature-1000x700-'+id+'.jpg'
       return './images/'+id+'.png'
     }
-  },
- 
+  }
 }
 </script>
 <style>

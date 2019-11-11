@@ -40,7 +40,10 @@ module.exports = (env, options) => ({
         options: {
           loaders: {
             js: {
-              loader: 'babel-loader'
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
             }
           }
         }
@@ -49,7 +52,10 @@ module.exports = (env, options) => ({
         test: /\.js$/,
         exclude: /node_modules(\/|\\)(?!(framework7|framework7-vue|template7|dom7)(\/|\\)).*/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       },
       {
