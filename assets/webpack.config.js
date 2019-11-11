@@ -44,6 +44,7 @@ module.exports = (env, options) => ({
               options: {
                 presets: ['@babel/preset-env']
               }
+              
             }
           }
         }
