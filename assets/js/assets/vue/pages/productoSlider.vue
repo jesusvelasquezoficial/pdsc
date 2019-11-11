@@ -7,7 +7,7 @@
         </f7-card-content>
         <div class="margin">
           <h3 class="no-margin">{{res.nombre}}</h3>
-          <p>{{res.descripcion.substring(0,30)}}</p>
+          <p>{{res.descripcion.substring(0,100)}}</p>
         </div>
       </f7-link>
     </f7-swiper-slide>
