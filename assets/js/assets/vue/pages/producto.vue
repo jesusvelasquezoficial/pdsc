@@ -7,7 +7,7 @@
       </f7-card-content>
       <div class="margin">
         <h3 class="no-margin">{{data.nombre}}</h3>
-        <p>{{data.descripcion.substring(0,100)}}</p>
+        <p>{{data.descripcion.substring(0,100)}}...</p>
       </div>
     </f7-card>
   </f7-link>
@@ -19,7 +19,7 @@ export default {
     return {
       url: '/mostrar-producto/'+this.data.id+"/", 
       // urlImage: 'https://cdn.framework7.io/placeholder/nature-1000x700-'+ this.data.id +'.jpg'
-      urlImage:'./images/'+this.data.id+'.png'
+      urlImage:'/images/'+this.data.id+'.png'
     }
   },
 }

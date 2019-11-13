@@ -11,22 +11,13 @@
         <f7-link icon="fas fa-user" panel-open="right"></f7-link>
       </f7-nav-right>
     </f7-navbar>
-    <f7-subnavbar :inner="false">
-      <f7-searchbar
-        search-container=".search-list"
-        search-in=".item-title"
-      ></f7-searchbar>
-    </f7-subnavbar>
-    <f7-list class="searchbar-not-found">
-      <f7-list-item title="Nothing found"></f7-list-item>
-    </f7-list>
     <!-- Body -->
     <f7-block-title>Productos</f7-block-title>
-    <f7-block class="search-list searchbar-found">
+    <f7-block>
       <producto-slider :data="dataProducto"></producto-slider>
     </f7-block>
     <f7-block-title>Productos incorporados al inventario</f7-block-title>
-    <f7-block class="search-list searchbar-found">
+    <f7-block>
       <f7-row>
         <producto v-for="data in dataProducto" :key="data.id" :data="data"></producto>
       </f7-row>
@@ -34,11 +25,9 @@
   </f7-page>
 </template>
 <script>
-
 import Auth from '../../auth'
 import Producto from './producto.vue'
 import ProductoSlider from './productoSlider.vue'
-
 export default {
   components:{
         ProductoSlider,
@@ -52,7 +41,7 @@ export default {
   },
   methods:{
     cargarDatosProductos: function(){
-      this.axios.get('https://'+Auth.URL+'/api/productos').then(res => {
+      this.axios.get(Auth.URL+'/api/productos').then(res => {
         console.log(res.data.data);
         this.dataProducto = res.data.data
       })

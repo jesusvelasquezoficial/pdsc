@@ -1,26 +1,41 @@
-const PROTOCOLO = 'https://'
+// const PROTOCOLO = ['http://', 'https://']
+// DIRECCION = ['localhost', '127.0.0.1', '10.0.1.48']
+// PUERTO = ['8081', '4000']
+
+// URL = PROTOCOLO + DIRECCION + PUERTO
+
+// Mode development and no SSL:
+// URL = http://localhost:8081
+// URL = http://127.0.0.1:8081
+// URL = http://10.0.1.48:8081
+
+//Mode Production and SSL:
+// URL = https://www.domain.com:4001
+
+
+let PROTOCOLO = 'https://'
 let IPs = ['localhost', '127.0.0.1', '10.0.1.48'] // 10.0.1.23
-let PORTs = ['4000'] // 8081
+let PORTs = ['8081','4000'] // 8081
 
 let HOST = 'www.pdsc.ml'
-
+// Buscamos en la lista de IPs si coincide con la IP actual
 IPs.forEach(IP => {
   if (location.hostname == IP) {
+    // Si coincide, asignamos esa IP o DOMINIO como HOST
     HOST = IP
   }
 })
-
 let PORT =':443'
-
 PORTs.forEach(P => {
   if (location.port == P) {
     PORT = ':4000'
+    PROTOCOLO = 'http://'
   }
 })
 
-const URL = HOST+PORT
-const LOGIN_URL = PROTOCOLO+URL+"/api/login"
-const SIGNIN_URL = PROTOCOLO+URL+"/api/signin"
+const URL = PROTOCOLO+HOST+PORT
+const LOGIN_URL = URL+"/api/login"
+const SIGNIN_URL = URL+"/api/signin"
 
 export default {
   URL,
