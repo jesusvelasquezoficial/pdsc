@@ -94,7 +94,7 @@ module.exports = (env, options) => ({
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-    new CopyWebpackPlugin([{ from: 'js/static/', to: '../images' }]),
+    new CopyWebpackPlugin([{ from: 'dist/assets/images/', to: '../images' }]),
     new CopyWebpackPlugin([{ from: 'static/favicon.ico', to: '../' }])
   ]
 });
