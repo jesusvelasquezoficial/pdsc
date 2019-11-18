@@ -4,36 +4,40 @@
     <f7-block>
       <img :src="foto.name" alt="" width="250px" height="250px" id="yourImgTag">
       <f7-list inset>
-        <f7-list-input 
-          accept="image/*capture=camera"
-          label="Foto"
-          type="file"
-          @input="foto = $event.target.files[0]"
-          placeholder="Foto"
-          @change="fotoValue = $event.target.value"
-          clear-button
-          required
-          validate
-          error-message="Debe cargar una imagen del producto"
-          autocomplete
-          @keyup.native.enter="agregarProducto"
-          multiple
-          class="col-6"
-        ></f7-list-input>
-        <f7-list-input
-          label="Nombre"
-          type="text"
-          :value="producto.nombre"
-          @input="producto.nombre = $event.target.value"
-          placeholder="Nombre"
-          clear-button
-          required
-          validate
-          error-message="Debe ingresar un nombre"
-          autocomplete
-          @keyup.native.enter="agregarProducto"
-          class="col-4"
-        ></f7-list-input>
+        <b-row>
+          <b-col md='6'>
+            <f7-list-input 
+              accept="image/*capture=camera"
+              label="Foto"
+              type="file"
+              @input="foto = $event.target.files[0]"
+              placeholder="Foto"
+              @change="fotoValue = $event.target.value"
+              clear-button
+              required
+              validate
+              error-message="Debe cargar una imagen del producto"
+              autocomplete
+              @keyup.native.enter="agregarProducto"
+              multiple
+            ></f7-list-input>
+          </b-col>
+          <b-col md='6'>
+            <f7-list-input
+              label="Nombre"
+              type="text"
+              :value="producto.nombre"
+              @input="producto.nombre = $event.target.value"
+              placeholder="Nombre"
+              clear-button
+              required
+              validate
+              error-message="Debe ingresar un nombre"
+              autocomplete
+              @keyup.native.enter="agregarProducto"
+            ></f7-list-input>
+          </b-col>
+        </b-row>
         <f7-list-input
           label="Marca"
           type="text"
@@ -141,13 +145,7 @@ export default {
   }
 }
 </script>
-<style scoped>
-  .col-6{
-    width: 60% !important;
-    display: block !important;
-  }
-  .col-4{
-    width: 40% !important;
-    display: block !important;
-  }
+
+<style>
+
 </style>

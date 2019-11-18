@@ -16,29 +16,13 @@
     <f7-block>
       <producto-slider :data="dataProducto"></producto-slider>
     </f7-block>
-    <f7-block>
-      <b-container class="bv-example-row">
-        <b-row>
-          <b-col>Column</b-col>
-          <b-col>Column</b-col>
-          <div class="w-100"></div>
-          <b-col>Column</b-col>
-          <b-col>Column</b-col>
-        </b-row>
-      </b-container>
-    </f7-block>
-    <b-container class="bv-example-row">
-      <b-row>
-        <b-col>Column</b-col>
-        <b-col>Column</b-col>
-        <div class="w-100"></div>
-        <b-col>Column</b-col>
-        <b-col>Column</b-col>
-      </b-row>
-    </b-container>
     <f7-block-title>Productos incorporados al inventario</f7-block-title>
     <f7-block>
-      <producto v-for="data in dataProducto" :key="data.id" :data="data"></producto>
+      <b-row>
+        <b-col v-for="data in dataProducto" :key="data.id" class="px-0" xs="12" sm="6" md="4" lg="3">
+          <producto :data="data"></producto>
+        </b-col>
+      </b-row>
     </f7-block>
   </f7-page>
 </template>
@@ -76,7 +60,5 @@ export default {
 };
 </script>
 <style scoped>
-  .row{
-    display: table;
-  }
+ 
 </style>

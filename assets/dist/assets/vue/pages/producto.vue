@@ -1,14 +1,16 @@
 <template>
-  <f7-link :href="url" :animate="false" :ignore-cache="true" style="display:block" color="black">
-    <f7-card class="carta">
-      <f7-card-content :padding="false">
+  <f7-link :href="url" :animate="false" :ignore-cache="true" color="black">
+    <f7-card>
+      <f7-card-header>
         <!-- <img :src="urlImage" width="100%"/> -->
-        <img :src="urlImage" width="100%"/>
+        <img :src="urlImage" width="100%" height="250px"/>
+      </f7-card-header>
+      <f7-card-content>
+        <h3 class="mt-0">{{data.nombre}}</h3>
+        <div style="min-height:60px">
+          <p>{{data.descripcion.substring(0,100)}}...</p>
+        </div>
       </f7-card-content>
-      <div class="margin">
-        <h3 class="no-margin">{{data.nombre}}</h3>
-        <p>{{data.descripcion.substring(0,100)}}...</p>
-      </div>
     </f7-card>
   </f7-link>
 </template>
@@ -25,23 +27,7 @@ export default {
 }
 </script>
 <style scoped>
-  .card{
-    float: left;
-    width: 24%;
-    margin: .5%;
-  }
-  /* Responsive columns */
-  @media screen and (max-width: 600px) {
-    .card {
-      width: 100%;
-      display: block;
-      margin: 0;  
-    }
-  }
-  @media screen and (min-width: 601px) and (max-width: 900px) {
-    .card {
-      width: 49%;
-      display: block;
-    }
-  }
+  /* .card-header:after {
+    content: none !important;
+  } */
 </style>
