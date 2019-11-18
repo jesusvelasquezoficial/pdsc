@@ -3,7 +3,7 @@
     <f7-swiper-slide v-for="res in data" :key="res.id">
       <f7-link :href="url(res.id)" :animate="false" :ignore-cache="true" style="display:block" color="black">
         <f7-card-content :padding="false">
-          <img :src="urlImage(res.id)" alt="" width="100%">
+          <img :src="urlImage(res.id)" alt="" width="100%" height="">
         </f7-card-content>
         <div class="margin">
           <h3 class="no-margin">{{res.nombre}}</h3>
@@ -49,6 +49,6 @@ export default {
  
 }
 </script>
-<style scope>
+<style>
     
 </style>

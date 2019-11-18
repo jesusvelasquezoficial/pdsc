@@ -16,9 +16,29 @@
     <f7-block>
       <producto-slider :data="dataProducto"></producto-slider>
     </f7-block>
+    <f7-block>
+      <b-container class="bv-example-row">
+        <b-row>
+          <b-col>Column</b-col>
+          <b-col>Column</b-col>
+          <div class="w-100"></div>
+          <b-col>Column</b-col>
+          <b-col>Column</b-col>
+        </b-row>
+      </b-container>
+    </f7-block>
+    <b-container class="bv-example-row">
+      <b-row>
+        <b-col>Column</b-col>
+        <b-col>Column</b-col>
+        <div class="w-100"></div>
+        <b-col>Column</b-col>
+        <b-col>Column</b-col>
+      </b-row>
+    </b-container>
     <f7-block-title>Productos incorporados al inventario</f7-block-title>
     <f7-block>
-        <producto v-for="data in dataProducto" :key="data.id" :data="data"></producto>
+      <producto v-for="data in dataProducto" :key="data.id" :data="data"></producto>
     </f7-block>
   </f7-page>
 </template>

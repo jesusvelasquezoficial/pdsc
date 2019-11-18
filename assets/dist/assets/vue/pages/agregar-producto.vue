@@ -1,8 +1,8 @@
 <template>
   <f7-page>
     <f7-navbar title="Agregar producto" back-link="Back"></f7-navbar>
-    <f7-block no-hairlines>
-      <img :src="foto.name" alt="" width="400px" height="400px" id="yourImgTag">
+    <f7-block>
+      <img :src="foto.name" alt="" width="250px" height="250px" id="yourImgTag">
       <f7-list inset>
         <f7-list-input 
           accept="image/*capture=camera"
@@ -18,6 +18,7 @@
           autocomplete
           @keyup.native.enter="agregarProducto"
           multiple
+          class="col-6"
         ></f7-list-input>
         <f7-list-input
           label="Nombre"
@@ -31,6 +32,7 @@
           error-message="Debe ingresar un nombre"
           autocomplete
           @keyup.native.enter="agregarProducto"
+          class="col-4"
         ></f7-list-input>
         <f7-list-input
           label="Marca"
@@ -139,7 +141,13 @@ export default {
   }
 }
 </script>
-
-<style>
-
+<style scoped>
+  .col-6{
+    width: 60% !important;
+    display: block !important;
+  }
+  .col-4{
+    width: 40% !important;
+    display: block !important;
+  }
 </style>
