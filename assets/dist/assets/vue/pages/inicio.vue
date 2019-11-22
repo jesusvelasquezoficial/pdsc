@@ -81,6 +81,12 @@ export default {
 };
 </script>
 <style>
+.swiper-container{
+  height: auto !important;
+}
+.swiper-container-android .swiper-slide, .swiper-wrapper{
+  height: auto !important;
+}
 .swiper-wrapper{
   height: auto !important;
 }
