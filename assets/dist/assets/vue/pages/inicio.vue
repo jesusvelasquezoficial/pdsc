@@ -6,7 +6,7 @@
         <f7-link panel-open="left" icon="fas fa-bars"></f7-link>
       </f7-nav-left>
       <f7-nav-title>Pagina de Inicio</f7-nav-title>
-      <f7-nav-right>
+      <f7-nav-right> 
         <small>{{ dfhora+' '+fullname}}</small>
         <f7-link icon="fas fa-user" panel-open="right"></f7-link>
       </f7-nav-right>

@@ -14,7 +14,7 @@
 
 
 let PROTOCOLO = 'https://'
-let IPs = ['localhost', '127.0.0.1', '10.0.1.48','192.168.1.13'] // 10.0.1.23
+let IPs = ['localhost', '127.0.0.1', '10.0.1.48','192.168.1.13', '161.117.228.169', 'pdsc.phoenixplus.net'] // 10.0.1.23
 let PORTs = ['8081','4000'] // 8081
 
 let HOST = 'www.pdsc.ml'
