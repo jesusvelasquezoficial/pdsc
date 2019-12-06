@@ -14,7 +14,7 @@
 
 
 let PROTOCOLO = 'https://'
-let IPs = ['localhost', '127.0.0.1', '10.0.1.48','192.168.1.6'] // 10.0.1.23
+let IPs = ['localhost', '127.0.0.1', '10.0.1.48','192.168.1.13'] // 10.0.1.23
 let PORTs = ['8081','4000'] // 8081
 
 let HOST = 'www.pdsc.ml'
@@ -39,6 +39,7 @@ const SIGNIN_URL = URL+"/api/signin"
 
 export default {
   URL,
+  HOST,
   // Datos de usuario local
   user:{
     id: Number.parseInt(localStorage.getItem('id_token')),

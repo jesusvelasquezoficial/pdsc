@@ -18,9 +18,6 @@ import MenuDiestro from './assets/vue/pages/menu-diestro.vue'
 import AgregarProducto from './assets/vue/pages/agregar-producto.vue'
 import MostrarProducto from './assets/vue/pages/mostrar-producto.vue'
 
-//BOT de Tasas
-import Tasas from './assets/vue/pages/tasas.vue'
-
 import Auth from './assets/auth'
 
 export default [
@@ -62,10 +59,6 @@ export default [
     path: '/mostrar-producto/:id',
     component: MostrarProducto,
     props: true
-  },
-  {
-    path: '/tasas/',
-    component: Tasas
   },
   {
     path: '/form/',
