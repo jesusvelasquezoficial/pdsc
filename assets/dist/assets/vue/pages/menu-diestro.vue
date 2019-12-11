@@ -6,7 +6,9 @@
     </f7-block>
     <f7-block-title>Opciones</f7-block-title>
     <f7-list>
-      <f7-list-item link="/Tasas/" title="Tasas" panel-close></f7-list-item>
+      <f7-list-item link="/Tasas/" title="Tasas del Mercado" panel-close></f7-list-item>
+      <f7-list-item link="/TasasBCV/" title="Tasas Mercado Oficial" panel-close></f7-list-item>
+      <f7-list-item link="/TasasDTD/" title="Tasas Mercado Paralelo" panel-close></f7-list-item>
       <f7-list-item link="/About/" title="Privacidad" panel-close></f7-list-item>
       <f7-list-item link="/form/" title="Notificaciones" panel-close></f7-list-item>
       <f7-list-item link="/inicio/" title="Configuraciones" panel-close></f7-list-item>

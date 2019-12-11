@@ -6,9 +6,18 @@
         <f7-link panel-open="left" icon="fas fa-bars"></f7-link>
       </f7-nav-left>
       <f7-nav-title>Pagina de Inicio</f7-nav-title>
-      <f7-nav-right> 
-        <small>{{ dfhora+' '+fullname}}</small>
-        <f7-link icon="fas fa-user" panel-open="right"></f7-link>
+      <f7-nav-right navbar-tooltip="hola"> 
+        <small>{{ dfhora }}</small>
+        <f7-link icon="fas fa-user" panel-open="right" id="menu-diestro"></f7-link>
+        <b-tooltip 
+        :title="fullname" 
+        target="menu-diestro" 
+        placement="left" 
+        delay="{ show: 0, hide: 0 }"
+        boundary-padding="10"
+        no-Fade="true"
+        show
+        ></b-tooltip>
       </f7-nav-right>
     </f7-navbar>
     <!-- Body -->
@@ -52,6 +61,11 @@ export default {
         lira: '',
         rublo: '',
         dolar: '',
+      },
+      dtd:{
+        fecha: '',
+        euro: '',
+        dolar: ''
       },
       productosSlider: [],
       paramSlider: {
@@ -136,13 +150,30 @@ export default {
         //Prueba de Tiempo de espera con setTimeout()
         let ahora = new Date()
         let hora_de_ejecucion = new Date()
-        hora_de_ejecucion.setHours(1)
-        hora_de_ejecucion.setMinutes(50)
+        hora_de_ejecucion.setHours(8)
+        hora_de_ejecucion.setMinutes(59)
         hora_de_ejecucion.setSeconds(0)
-        console.log(hora_de_ejecucion);
-        let tiempo_espera = hora_de_ejecucion.getTime() - ahora.getTime()
+        let tiempo_espera = hora_de_ejecucion.getTime() - Date.now()
+        console.log(ahora);
         console.log(tiempo_espera);
-        console.log(Date(tiempo_espera));
+        
+        
+        
+        var hora_fin = 8
+        var min_fin = 59
+        var seg_fin = 59
+
+        var hora = new Date()
+        var h = hora_fin - hora.getHours()
+        var m = min_fin - hora.getMinutes()
+        var s = seg_fin - hora.getSeconds()
+        function mifun(){
+          setTimeout(() => {
+            console.log(h+":"+m+":"+s);
+            mifun() 
+          }, 1000);
+        }       
+        mifun()
 
         //Si el tiempo de espera es mayor (o igual) a 0 -> Permanece en Escucha hasta que llegue a 0
         if (tiempo_espera>=0) {
@@ -196,10 +227,9 @@ export default {
     }
   },
   created(){
-    console.log(localStorage.getItem('user'));
+    // console.log(localStorage.getItem('user'));
     this.cargarDatosProductos()
     this.hora()
-    this.getTasasBCV()
   },
   beforeMount() {
     this.cargarDatosProductos()

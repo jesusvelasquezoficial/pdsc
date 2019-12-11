@@ -27,6 +27,11 @@ config :pdsc_server, PdscServerWeb.Endpoint,
       "development",
       "--watch-stdin",
       cd: Path.expand("../assets", __DIR__)
+    ],
+    node: [
+      "node_modules/nodemon/bin/nodemon.js",
+      "bot",
+      cd: Path.expand("../assets", __DIR__)
     ]
   ]
 

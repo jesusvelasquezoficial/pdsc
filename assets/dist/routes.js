@@ -20,6 +20,8 @@ import MostrarProducto from './assets/vue/pages/mostrar-producto.vue'
 
 //BOT de Tasas
 import Tasas from './assets/vue/pages/tasas.vue'
+import TasasBCV from './assets/vue/pages/tasasBCV.vue'
+import TasasDTD from './assets/vue/pages/tasasDTD.vue'
 
 import Auth from './assets/auth'
 
@@ -66,6 +68,14 @@ export default [
   {
     path: '/tasas/',
     component: Tasas
+  },
+  {
+    path: '/tasasBCV/',
+    component: TasasBCV
+  },
+  {
+    path: '/tasasDTD/',
+    component: TasasDTD
   },
   {
     path: '/form/',

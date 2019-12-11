@@ -2,11 +2,11 @@
   <!-- App -->
   <f7-app :params="f7params">
     <f7-statusbar></f7-statusbar>
-    <f7-panel left cover>
+    <f7-panel color-theme='deeporange' left cover>
       <f7-view url="/menu-izquierdo/" links-view=".view-main" />
     </f7-panel>
-    <f7-view url="/" :main="true" class="ios-edges"></f7-view>
-    <f7-panel right reveal>
+    <f7-view color-theme='deeporange' url="/" :main="true" class="ios-edges"></f7-view>
+    <f7-panel color-theme='deeporange' right reveal>
       <f7-view url="/menu-diestro/" links-view=".view-main" />
     </f7-panel>
   </f7-app>
@@ -15,6 +15,8 @@
 // Import Routes...
 import { f7App, f7Panel, f7View, f7Statusbar } from 'framework7-vue';
 import routes from './routes.js';
+import Auth from './assets/auth'
+
 
 let theme = 'auto';
 if (document.location.search.indexOf('theme=') >= 0) {
@@ -30,12 +32,23 @@ export default {
   },
   data() {
     return {
+      dtd:{
+        fecha: '',
+        euro: '',
+        dolar: ''
+      },
       f7params: {
         theme,
         routes,
         id: 'io.framework7.testapp',
       }
     }
-  }
+  },
+  methods: {
+    
+  },
+  created() {
+    
+  },
 }
 </script>
