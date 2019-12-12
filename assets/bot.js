@@ -75,13 +75,27 @@ var ejecutar_a_las = (hora, min, fun) => {
 
 }
 
-// app.get('/', (req, res) => {
-  
-// });
+app.get('/', (req, res) => {
+  res.send('Bot Activo')
+
+  console.log('Bot estado: Activo');
+  console.log('##### Mercado Oficial #####');
+  ejecutar_a_las(12,30,getTasasBCV)
+  console.log('###################################')
+  console.log('##### Mercado Paralelo #####');
+  ejecutar_a_las(12,30,getTasasDTD)
+  console.log('###################################')
+
+
+});
 
 
 app.listen(3000, () => {
-  ejecutar_a_las(9,30,getTasasDTD)
-  ejecutar_a_las(9,30,getTasasBCV)
   console.log('Bot listening on port 3000!');
+  console.log('##### Mercado Oficial #####');
+  ejecutar_a_las(12,30,getTasasBCV)
+  console.log('###################################')
+  console.log('##### Mercado Paralelo #####');
+  ejecutar_a_las(12,30,getTasasDTD)
+  console.log('###################################')
 });
