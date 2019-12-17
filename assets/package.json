@@ -4,7 +4,7 @@
   "scripts": {
     "deploy": "webpack -p",
     "watch": "webpack --mode development --watch",
-    "bot": "nodemon bot"
+    "bot": "nodemon --delay 10 bot"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.1",

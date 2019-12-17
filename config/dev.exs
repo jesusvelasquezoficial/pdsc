@@ -30,6 +30,8 @@ config :pdsc_server, PdscServerWeb.Endpoint,
     ],
     node: [
       "node_modules/nodemon/bin/nodemon.js",
+      "--delay",
+      "10",
       "bot",
       cd: Path.expand("../assets", __DIR__)
     ]
