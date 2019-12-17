@@ -25,6 +25,7 @@
       </b-row>
       <b-row>
         <b-col sm="12" md="6">
+          <f7-block-title class="mt-0"><h1>Euro</h1>Información Diaria</f7-block-title>
           <f7-block>
             <table class="data-table">
               <thead>
@@ -45,6 +46,7 @@
           </f7-block>
         </b-col>
         <b-col sm="12" md="6">
+          <f7-block-title class="mt-0"><h1>Dolar</h1>Información Diaria</f7-block-title>
           <f7-block>
             <table class="data-table">
               <thead>
@@ -267,8 +269,18 @@ export default {
         this.axios.get(Auth.URL+'/api/dtd').then(res=>{
           var data = res.data.data
           data.forEach((valor, index) => {
+
+            // FORMATO DE NUMERO     OJOOOOOOOOO OJOOOOOOOOOO !!!! 
+            var euroFormat = valor.euro.replace(",", "")
+            var euro = valor.euro.replace(",", ".")
+            var eur = parseFloat(euro).toLocaleString('de-DE')
+            euro = eur.toString()
+            
+            // var eur = euro.toString("F")
+            // euro = eur.replace(".", ",")
+            
             if (tabla[index] != undefined) {
-              tabla[index].euroParalelo = valor.euro
+              tabla[index].euroParalelo = euro
             }
             this.tablaE = tabla
           });
@@ -292,8 +304,13 @@ export default {
         this.axios.get(Auth.URL+'/api/dtd').then(res=>{
           var data = res.data.data
           data.forEach((valor, index) => {
+            // FORMATO DE NUMERO     OJOOOOOOOOO OJOOOOOOOOOO !!!! 
+            var euroFormat = valor.dolar.replace(",", "")
+            var dolar = valor.dolar.replace(",", ".")
+            var dol = parseFloat(dolar).toLocaleString('de-DE')
+            dolar = dol.toString()
             if (tabla[index] != undefined) {
-              tabla[index].dolarParalelo = valor.dolar
+              tabla[index].dolarParalelo = dolar
             }
             this.tablaD = tabla
           });

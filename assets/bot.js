@@ -85,8 +85,10 @@ app.listen(3000, () => {
   console.log('Bot listening on port 3000!');
   console.log('##### Mercado Oficial #####');
   ejecutar_a_las(20,10,getTasasBCV)
+  // ejecutar_a_las(8,59,getTasasBCV)
   console.log('###################################')
   console.log('##### Mercado Paralelo #####');
   ejecutar_a_las(20,10,getTasasDTD)
+  // ejecutar_a_las(8,59,getTasasDTD)
   console.log('###################################')
 });
