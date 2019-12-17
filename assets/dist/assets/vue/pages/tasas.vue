@@ -35,7 +35,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, i) in tablaEuro" :key="i">
+                <tr v-for="(item, i) in tablaE" :key="i">
                   <td class="fecha">{{ item.fecha }}</td>
                   <td class="euro">{{  item.euroOficial  }}</td>
                   <td class="dolar">{{  item.euroParalelo  }}</td>
@@ -55,7 +55,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, i) in tablaDolar" :key="i">
+                <tr v-for="(item, i) in tablaD" :key="i">
                   <td class="fecha">{{ item.fecha }}</td>
                   <td class="euro">{{  item.dolarOficial  }}</td>
                   <td class="dolar">{{  item.dolarParalelo  }}</td>
@@ -95,8 +95,8 @@ export default {
       euroParalelo: null,
       dolarParalelo: null,
 
-      tablaEuro: [],
-      tablaDolar: [],
+      tablaE: [],
+      tablaD: [],
 
       options: {
         responsive: true,
@@ -251,31 +251,54 @@ export default {
         this.loadedDolar = true
       })
     },
-    getDataTablaEuro(){
-      this.axios.get(Auth.URL+'/api/bcv').then((res)=>{
-        let data = res.data.data
-        console.log(data);
+    getTablaEuro(){
+      this.axios.get(Auth.URL+'/api/bcv').then(res=>{
+        var data = res.data.data
+        var tabla = {}
         data.forEach((valor, index) => {
-          this.tablaEuro[index] = {
-            fecha: data[index].fecha,
-            euroOficial: data[index].euro
-          }
-          this.tablaDolar[index] = {
-            fecha: data[index].fecha,
-            dolarOficial: data[index].dolar,
+          tabla[index] = {
+            fecha: valor.fecha,
+            euroOficial: valor.euro,
+            euroParalelo: null
           }
         });
+        return tabla
+      }).then(tabla => {
+        this.axios.get(Auth.URL+'/api/dtd').then(res=>{
+          var data = res.data.data
+          data.forEach((valor, index) => {
+            if (tabla[index] != undefined) {
+              tabla[index].euroParalelo = valor.euro
+            }
+            this.tablaE = tabla
+          });
+          
+        })
       })
     },
-    getDataTablaDolar(){
-      this.axios.get(Auth.URL+'/api/dtd').then((res)=>{
-        let data = res.data.data
-        console.log(data);
+    getTablaDolar(){
+      this.axios.get(Auth.URL+'/api/bcv').then(res=>{
+        var data = res.data.data
+        var tabla = {}
         data.forEach((valor, index) => {
-          this.tablaEuro[index].euroParalelo = data[index].euro
-          this.tablaDolar[index].dolarParalelo = data[index].dolar
-
+          tabla[index] = {
+            fecha: valor.fecha,
+            dolarOficial: valor.dolar,
+            dolarParalelo: null
+          }
         });
+        return tabla
+      }).then(tabla => {
+        this.axios.get(Auth.URL+'/api/dtd').then(res=>{
+          var data = res.data.data
+          data.forEach((valor, index) => {
+            if (tabla[index] != undefined) {
+              tabla[index].dolarParalelo = valor.dolar
+            }
+            this.tablaD = tabla
+          });
+          
+        })
       })
     }
   },
@@ -325,8 +348,8 @@ export default {
     this.hora()
     this.getDataOficial()
     this.getDataParalelo()
-    this.getDataTablaEuro()
-    this.getDataTablaDolar()
+    this.getTablaEuro()
+    this.getTablaDolar()
 
   },
 }
