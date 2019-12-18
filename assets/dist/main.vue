@@ -52,3 +52,13 @@ export default {
   },
 }
 </script>
+
+<style>
+@media (min-width: 1400px) {
+  body {
+    width: 1360px !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+</style>

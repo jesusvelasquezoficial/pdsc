@@ -254,7 +254,7 @@ export default {
       })
     },
     getTablaEuro(){
-      this.axios.get(Auth.URL+'/api/bcv').then(res=>{
+      this.axios.get(Auth.URL+'/api/bcvDesc').then(res=>{
         var data = res.data.data
         var tabla = {}
         data.forEach((valor, index) => {
@@ -289,7 +289,7 @@ export default {
       })
     },
     getTablaDolar(){
-      this.axios.get(Auth.URL+'/api/bcv').then(res=>{
+      this.axios.get(Auth.URL+'/api/bcvDesc').then(res=>{
         var data = res.data.data
         var tabla = {}
         data.forEach((valor, index) => {

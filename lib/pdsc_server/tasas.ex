@@ -21,6 +21,11 @@ defmodule PdscServer.Tasas do
     Repo.all(Bcv)
   end
 
+  def list_bcv_desc_id do
+    query = from bcv in Bcv, order_by: [desc: bcv.id]
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single bcv.
 

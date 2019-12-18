@@ -20,6 +20,7 @@
         ></b-tooltip>
       </f7-nav-right>
     </f7-navbar>
+    <marquee><pre>|   Euro Oficial: {{euroOficialHoy}}   |   Euro Paralelo: {{euroParaleloHoy}}  |   Dolar Oficial: {{dolarOficialHoy}}   |   Dolar Paralelo: {{dolarParaleloHoy}}   |   </pre></marquee>
     <!-- Body -->
     <f7-block-title>Productos</f7-block-title>
     <!-- Slider de Productos -->
@@ -54,6 +55,10 @@ export default {
       user: localStorage.getItem('user') != null ? JSON.parse(localStorage.getItem('user')) : '',
       productos: [],
       dfhora: '',
+      euroOficialHoy: '',
+      dolarOficialHoy: '',
+      euroParaleloHoy: '',
+      dolarParaleloHoy: '',
       bcv:{
         fecha: '',
         euro: '',
@@ -91,6 +96,18 @@ export default {
       this.axios.get(Auth.URL+'/api/productos').then(res => {
         this.productos = res.data.data
         this.productosSlider = res.data.data
+      })
+    },
+    getTasasHoy: function(){
+      this.axios.get('http://'+Auth.HOST+':8000/getTasasBCV').then(res => {
+        var data = res.data
+        this.euroOficialHoy = data.Euro[0]
+        this.dolarOficialHoy = data.Dolar[0]
+      })
+      this.axios.get('http://'+Auth.HOST+':8000/getTasasDTD').then(res2 => {
+        var data = res2.data
+        this.euroParaleloHoy = data.euro[0]
+        this.dolarParaleloHoy = data.dolar[0]
       })
     },
     getTasasBCV: function(){
@@ -228,6 +245,7 @@ export default {
   },
   created(){
     // console.log(localStorage.getItem('user'));
+    this.getTasasHoy()
     this.cargarDatosProductos()
     this.hora()
   },

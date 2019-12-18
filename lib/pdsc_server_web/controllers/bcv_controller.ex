@@ -11,6 +11,11 @@ defmodule PdscServerWeb.BcvController do
     render(conn, "index.json", bcv: bcv)
   end
 
+  def indexDescId(conn, _params) do
+    bcv = Tasas.list_bcv_desc_id()
+    render(conn, "index.json", bcv: bcv)
+  end
+
   def create(conn, %{"bcv" => bcv_params}) do
     with {:ok, %Bcv{} = bcv} <- Tasas.create_bcv(bcv_params) do
       conn
