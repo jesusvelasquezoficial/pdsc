@@ -11,12 +11,12 @@
         <b-col sm="12" md="6">
           <f7-block>
             <!-- Graficos de linea -->
-            <line-chart :chartData="datacollection" :options="options"></line-chart>
+            <line-chart :chartData="dataLine" :options="options"></line-chart>
           </f7-block>
         </b-col>
         <b-col sm="12" md="6">
           <f7-block>
-            <bar-chart :chartData="datacollection2" :options="options2"></bar-chart>
+            <bar-chart :chartData="dataBar" :options="options2"></bar-chart>
           </f7-block>
         </b-col>
       </b-row>
@@ -26,7 +26,6 @@
             <table class="data-table">
               <thead>
                 <tr>
-                  <th class="id">Nro</th>
                   <th class="fecha" style="min-width:100%">Fecha</th>
                   <th class="euro">Euro</th>
                   <th class="dolar">Dolar</th>
@@ -36,8 +35,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in bcv" :key="index">
-                  <td class="id">{{index+1}}</td>
+                <tr v-for="(item, index) in tabla" :key="index">
                   <td class="fecha" style="min-width:100%">{{item.fecha}}</td>
                   <td class="euro">{{item.euro}}</td>
                   <td class="dolar">{{item.dolar}}</td>
@@ -71,9 +69,13 @@ export default {
   data() {
     return {
       dfhora: '',
-      bcv: null,
-      datacollection: null,
-      datacollection2: null,
+
+      fecha: null,
+      euro: null,
+      dolar: null,
+
+      tabla: [],
+
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -91,64 +93,40 @@ export default {
     getDataBCV () {
       this.axios.get(Auth.URL+'/api/bcv').then(res => {
         let bcv = res.data.data
-        this.bcv = bcv
         var fecha = []
         var dolar = []
         var euro = []
-        var rdm = [this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),]
-        bcv.forEach((element, index) => {
-          fecha[index] = element.fecha
-        });
+
         bcv.forEach((e, i)=>{
+          fecha[i] = e.fecha
           var eu = e.euro.replace(".", "")
           var d = e.dolar.replace(".", "")
           euro[i] = eu.replace(",", ".")
           dolar[i] = d.replace(",", ".")
         })
         
-        
-        
-        this.datacollection = {
-          type:'line',
-          labels: fecha,
-          datasets: [
-            {
-              label: 'Euro',
-              backgroundColor:'rgba(0,0,0,0)',
-              borderColor: 'black',
-              data: euro
-            },
-            {
-              label: 'Dolar',
-              backgroundColor:'rgba(0,0,0,0)',
-              borderColor: 'grey',
-              data: dolar
-            }
-          ]
-        }
-        this.datacollection2 = {
-          type:'bar',
-          labels: fecha,
-          datasets: [
-            {
-              label: 'Euro',
-              backgroundColor:'rgba(200,0,0,1)',
-              borderColor: 'black',
-              data: euro
-            },
-            {
-              label: 'Dolar',
-              backgroundColor:'rgba(0,250,0,1)',
-              borderColor: 'grey',
-              data: dolar
-            }
-          ]
-        }
+        this.fecha = fecha
+        this.euro = euro
+        this.dolar = dolar
 
       })
     },
-    getRandomInt () {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+    getTablaBCV(){
+      this.axios.get(Auth.URL+'/api/bcvDesc').then(res=>{
+        var data = res.data.data
+        var tabla = {}
+        data.forEach((valor, index) => {
+          tabla[index] = {
+            fecha: valor.fecha,
+            euro: valor.euro,
+            dolar: valor.dolar,
+            yuan: valor.yuan,
+            lira: valor.lira,
+            rublo: valor.rublo
+          }
+        });
+        this.tabla = tabla
+      })
     },
     hora: function() {
       let t = new Date()
@@ -168,9 +146,52 @@ export default {
       this.dfhora = h+":"+m+":"+s
     }
   },
+  computed: {
+    dataLine(){
+      return {
+        type:'line',
+        labels: this.fecha,
+        datasets: [
+          {
+            label: 'Euro',
+            backgroundColor:'rgba(0,0,0,0)',
+            borderColor: 'red',
+            data: this.euro
+          },
+          {
+            label: 'Dolar',
+            backgroundColor:'rgba(0,0,0,0)',
+            borderColor: 'blue',
+            data: this.dolar
+          }
+        ]
+      }
+    },
+    dataBar(){
+      return {
+        type:'bar',
+        labels: this.fecha,
+        datasets: [
+          {
+            label: 'Euro',
+            backgroundColor:'red',
+            borderColor: 'red',
+            data: this.euro
+          },
+          {
+            label: 'Dolar',
+            backgroundColor:'blue',
+            borderColor: 'blue',
+            data: this.dolar
+          }
+        ]
+      }
+    }
+  },
   mounted() {
     this.hora()
     this.getDataBCV()
+    this.getTablaBCV()
 
   },
 }

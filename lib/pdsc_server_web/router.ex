@@ -28,6 +28,7 @@ defmodule PdscServerWeb.Router do
     post "/signin", UserController, :create
     post "/precioproductoforid", PrecioProductoController, :showForIdproducto
     get "/bcvDesc", BcvController, :indexDescId
+    get "/dtdDesc", DtdController, :indexDescId
 
     resources "/users", UserController
     resources "/productos", ProductoController

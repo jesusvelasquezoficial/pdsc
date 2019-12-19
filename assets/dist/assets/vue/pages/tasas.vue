@@ -140,13 +140,8 @@ export default {
           var d = e.dolar.replace(".", "")
           euro[i] = eu.replace(",", ".")
           dolar[i] = d.replace(",", ".")
-
-          // this.tablaEuro[i] = {
-          //   fecha: fecha[i],
-          //   euroOficial: dolar[i]
-          // }
-
         });
+        
         this.fechas = fecha
         this.euroOficial = euro
         this.dolarOficial = dolar
@@ -266,21 +261,11 @@ export default {
         });
         return tabla
       }).then(tabla => {
-        this.axios.get(Auth.URL+'/api/dtd').then(res=>{
+        this.axios.get(Auth.URL+'/api/dtdDesc').then(res=>{
           var data = res.data.data
           data.forEach((valor, index) => {
-
-            // FORMATO DE NUMERO     OJOOOOOOOOO OJOOOOOOOOOO !!!! 
-            var euroFormat = valor.euro.replace(",", "")
-            var euro = valor.euro.replace(",", ".")
-            var eur = parseFloat(euro).toLocaleString('de-DE')
-            euro = eur.toString()
-            
-            // var eur = euro.toString("F")
-            // euro = eur.replace(".", ",")
-            
             if (tabla[index] != undefined) {
-              tabla[index].euroParalelo = euro
+              tabla[index].euroParalelo = valor.euro
             }
             this.tablaE = tabla
           });
@@ -301,16 +286,11 @@ export default {
         });
         return tabla
       }).then(tabla => {
-        this.axios.get(Auth.URL+'/api/dtd').then(res=>{
+        this.axios.get(Auth.URL+'/api/dtdDesc').then(res=>{
           var data = res.data.data
           data.forEach((valor, index) => {
-            // FORMATO DE NUMERO     OJOOOOOOOOO OJOOOOOOOOOO !!!! 
-            var euroFormat = valor.dolar.replace(",", "")
-            var dolar = valor.dolar.replace(",", ".")
-            var dol = parseFloat(dolar).toLocaleString('de-DE')
-            dolar = dol.toString()
             if (tabla[index] != undefined) {
-              tabla[index].dolarParalelo = dolar
+              tabla[index].dolarParalelo = valor.dolar
             }
             this.tablaD = tabla
           });

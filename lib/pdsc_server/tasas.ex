@@ -122,6 +122,11 @@ defmodule PdscServer.Tasas do
     Repo.all(Dtd)
   end
 
+  def list_dtd_desc_id do
+    query = from dtd in Dtd, order_by: [desc: dtd.id]
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single dtd.
 

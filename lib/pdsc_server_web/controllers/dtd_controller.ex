@@ -11,6 +11,11 @@ defmodule PdscServerWeb.DtdController do
     render(conn, "index.json", dtd: dtd)
   end
 
+  def indexDescId(conn, _params) do
+    dtd = Tasas.list_dtd_desc_id()
+    render(conn, "index.json", dtd: dtd)
+  end
+
   def create(conn, %{"dtd" => dtd_params}) do
     with {:ok, %Dtd{} = dtd} <- Tasas.create_dtd(dtd_params) do
       conn

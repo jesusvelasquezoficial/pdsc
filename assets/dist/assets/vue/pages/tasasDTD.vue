@@ -11,12 +11,12 @@
         <b-col sm="12" md="6">
           <f7-block>
             <!-- Graficos de linea -->
-            <line-chart :chartData="datacollection" :options="options"></line-chart>
+            <line-chart :chartData="dataLine2" :options="options"></line-chart>
           </f7-block>
         </b-col>
         <b-col sm="12" md="6">
           <f7-block>
-            <bar-chart :chartData="datacollection2" :options="options2"></bar-chart>
+            <bar-chart :chartData="dataBar2" :options="options2"></bar-chart>
           </f7-block>
         </b-col>
       </b-row>
@@ -26,15 +26,13 @@
             <table class="data-table">
               <thead>
                 <tr>
-                  <th class="id">Nro</th>
                   <th class="fecha" style="min-width:100%">Fecha</th>
                   <th class="euro">Euro</th>
                   <th class="dolar">Dolar</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in dtd" :key="index">
-                  <td class="id">{{index+1}}</td>
+                <tr v-for="(item, index) in tabla" :key="index">
                   <td class="fecha" style="min-width:100%">{{item.fecha}}</td>
                   <td class="euro">{{item.euro}}</td>
                   <td class="dolar">{{item.dolar}}</td>
@@ -65,9 +63,13 @@ export default {
   data() {
     return {
       dfhora: '',
-      dtd: null,
-      datacollection: null,
-      datacollection2: null,
+
+      fecha: null,
+      euro: null,
+      dolar: null,
+
+      tabla: [],
+
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -85,64 +87,37 @@ export default {
     getDataDTD () {
       this.axios.get(Auth.URL+'/api/dtd').then(res => {
         let dtd = res.data.data
-        this.dtd = dtd
         var fecha = []
         var dolar = []
         var euro = []
-        var rdm = [this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),this.getRandomInt(),]
-        dtd.forEach((element, index) => {
-          fecha[index] = element.fecha
-        });
+        
         dtd.forEach((e, i)=>{
-          // var eu = e.euro.replace(".", "")
-          // var d = e.dolar.replace(".", "")
-          euro[i] = e.euro.replace(",", ".")
-          dolar[i] = e.dolar.replace(",", ".")
+          fecha[i] = e.fecha
+          var eu = e.euro.replace(".", "")
+          var d = e.dolar.replace(".", "")
+          euro[i] = eu.replace(",", ".")
+          dolar[i] = d.replace(",", ".")
         })
-        
-        
-        
-        this.datacollection = {
-          type:'line',
-          labels: fecha,
-          datasets: [
-            {
-              label: 'Euro',
-              backgroundColor:'rgba(0,0,0,0)',
-              borderColor: 'black',
-              data: euro
-            },
-            {
-              label: 'Dolar',
-              backgroundColor:'rgba(0,0,0,0)',
-              borderColor: 'grey',
-              data: dolar
-            }
-          ]
-        }
-        this.datacollection2 = {
-          type:'bar',
-          labels: fecha,
-          datasets: [
-            {
-              label: 'Euro',
-              backgroundColor:'rgba(200,0,0,1)',
-              borderColor: 'black',
-              data: euro
-            },
-            {
-              label: 'Dolar',
-              backgroundColor:'rgba(0,250,0,1)',
-              borderColor: 'grey',
-              data: dolar
-            }
-          ]
-        }
+
+        this.fecha = fecha
+        this.euro = euro
+        this.dolar = dolar
 
       })
     },
-    getRandomInt () {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+    getTablaDTD(){
+      this.axios.get(Auth.URL+'/api/dtdDesc').then(res=>{
+        var data = res.data.data
+        var tabla = {}
+        data.forEach((valor, index) => {
+          tabla[index] = {
+            fecha: valor.fecha,
+            euro: valor.euro,
+            dolar: valor.dolar,
+          }
+        });
+        this.tabla = tabla
+      })
     },
     hora: function() {
       let t = new Date()
@@ -162,9 +137,52 @@ export default {
       this.dfhora = h+":"+m+":"+s
     }
   },
+  computed: {
+    dataLine2(){
+      return {
+        type:'line',
+        labels: this.fecha,
+        datasets: [
+          {
+            label: 'Euro',
+            backgroundColor:'rgba(0,0,0,0)',
+            borderColor: 'Darkred',
+            data: this.euro
+          },
+          {
+            label: 'Dolar',
+            backgroundColor:'rgba(0,0,0,0)',
+            borderColor: 'Darkblue',
+            data: this.dolar
+          }
+        ]
+      }
+    },
+    dataBar2(){
+      return {
+        type:'bar',
+        labels: this.fecha,
+        datasets: [
+          {
+            label: 'Euro',
+            backgroundColor:'darkred',
+            borderColor: 'darkred',
+            data: this.euro
+          },
+          {
+            label: 'Dolar',
+            backgroundColor:'darkblue',
+            borderColor: 'darkblue',
+            data: this.dolar
+          }
+        ]
+      }
+    }
+  },
   mounted() {
     this.hora()
     this.getDataDTD()
+    this.getTablaDTD()
   },
 }
 </script>
