@@ -52,15 +52,17 @@
               <thead>
                 <tr>
                   <th class="fecha" style="min-width:100%">Fecha</th>
-                  <th class="euro">Dolar Oficial</th>
-                  <th class="dolar">Dolar Paralelo</th>
+                  <th class="euro">Dolar Oficial BCV</th>
+                  <th class="dolar">Dolar Today</th>
+                  <th class="dolar">Monitor Dolar</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(item, i) in tablaD" :key="i">
                   <td class="fecha">{{ item.fecha }}</td>
                   <td class="euro">{{  item.dolarOficial  }}</td>
-                  <td class="dolar">{{  item.dolarParalelo  }}</td>
+                  <td class="dolar">{{  item.dolarToday  }}</td>
+                  <td class="dolar">{{  item.monitorDolar  }}</td>
                 </tr>
               </tbody>
             </table>
@@ -95,7 +97,10 @@ export default {
       dolarOficial: null,
 
       euroParalelo: null,
-      dolarParalelo: null,
+      dolarToday: null,
+
+      fechaMonitor: null,
+      monitorDolar: null,
 
       tablaE: [],
       tablaD: [],
@@ -162,90 +167,31 @@ export default {
           euro[i] = eu.replace(",", ".")
           dolar[i] = d.replace(",", ".")
           
-          // this.tablaEuro[i]['euroParalelo'] = euro[i]
-          
         });
 
         this.fechaParalelo = fecha
         this.euroParalelo = euro
-        this.dolarParalelo = dolar
+        this.dolarToday = dolar
 
       })
     },
-    getDataBCV() {
-      this.loadedEuro = false
-      this.axios.get(Auth.URL+'/api/bcv').then(res => {
-        let bcv = res.data.data
-        this.bcv = bcv
-        var fecha = []
-        var dolar = []
-        var euro = []
-        bcv.forEach((e, i) => {
-          fecha[i] = e.fecha
-          var eu = e.euro.replace(".", "")
-          var d = e.dolar.replace(".", "")
-          euro[i] = eu.replace(",", ".")
-          dolar[i] = d.replace(",", ".")
-        });
-        this.euroOficial = euro
-        this.dolarOficial = dolar
-        this.dataEuroColeccion = {
-          type:'line',
-          labels: fecha,
-          datasets: [
-            {
-              label: 'Euro Oficial',
-              backgroundColor:'rgba(0,0,0,0)',
-              borderColor: 'Red',
-              data: this.euroOficial
-            },
-            {
-              label: 'Euro Paralelo',
-              backgroundColor:'rgba(0,0,0,0)',
-              borderColor: 'Darkred',
-              data: this.euroParalelo
-            }
-          ]
-        }
-        this.loadedEuro = true
-      })
-    },
-    getDataDTD() {
-      this.loadedDolar = false
-      this.axios.get(Auth.URL+'/api/dtd').then(async res => {
-        let dtd = res.data.data
-        this.dtd = dtd
-        var fecha = []
-        var dolar = []
-        var euro = []
-        dtd.forEach((e, i) => {
-          fecha[i] = e.fecha
+    getDolarMonitor(){
+      this.axios.get(Auth.URL+'/api/dm').then(res => {
+        let dm = res.data.data
+        var fechaM = []
+        var dolarM = []
+
+        dm.forEach((e, i) => {
+          fechaM[i] = e.fecha
           // var eu = e.euro.replace(".", "")
-          // var d = e.dolar.replace(".", "")
-          euro[i] = e.euro.replace(",", ".")
-          dolar[i] = e.dolar.replace(",", ".")
+          var d = e.dolar.replace(".", "")
+          // euro[i] = eu.replace(",", ".")
+          dolarM[i] = d.replace(",", ".")
+          
         });
-        this.euroParalelo = euro
-        this.dolarParalelo = dolar
-        this.dataDolarColeccion = {
-          type:'line',
-          labels: fecha,
-          datasets: [
-            {
-              label: 'Dolar Oficial',
-              backgroundColor:'rgba(0,0,0,0)',
-              borderColor: 'Blue',
-              data: this.dolarOficial
-            },
-            {
-              label: 'Dolar Paralelo',
-              backgroundColor:'rgba(0,0,0,0)',
-              borderColor: 'Darkblue',
-              data: this.dolarParalelo
-            }  
-          ]
-        }
-        this.loadedDolar = true
+        this.fechaMonitor = fechaM
+        this.monitorDolar = dolarM
+
       })
     },
     getTablaEuro(){
@@ -281,20 +227,26 @@ export default {
           tabla[index] = {
             fecha: valor.fecha,
             dolarOficial: valor.dolar,
-            dolarParalelo: null
+            dolarToday: [],
+            monitorDolar: [],
           }
         });
-        return tabla
-      }).then(tabla => {
-        this.axios.get(Auth.URL+'/api/dtdDesc').then(res=>{
-          var data = res.data.data
+        this.axios.get(Auth.URL+'/api/dtdDesc').then(res2=>{
+          var data = res2.data.data
           data.forEach((valor, index) => {
             if (tabla[index] != undefined) {
-              tabla[index].dolarParalelo = valor.dolar
+              tabla[index].dolarToday = valor.dolar
             }
-            this.tablaD = tabla
           });
-          
+          this.axios.get(Auth.URL+'/api/dmDesc').then(res3=>{
+            var data = res3.data.data
+            data.forEach((valor, index) => {
+              if (tabla[index] != undefined) {
+                tabla[index].monitorDolar = valor.dolar
+              }
+              this.tablaD = tabla
+            });
+          })
         })
       })
     }
@@ -326,16 +278,22 @@ export default {
         labels: this.fechas,
         datasets: [
           {
-            label: 'Dolar Oficial',
+            label: 'Dolar Oficial BCV',
             backgroundColor:'rgba(0,0,0,0)',
             borderColor: 'Blue',
             data: this.dolarOficial
           },
           {
-            label: 'Dolar Paralelo',
+            label: 'Dolar Today',
             backgroundColor:'rgba(0,0,0,0)',
-            borderColor: 'Darkblue',
-            data: this.dolarParalelo
+            borderColor: 'Green',
+            data: this.dolarToday
+          },
+          {
+            label: 'Monitor Dolar',
+            backgroundColor:'rgba(0,0,0,0)',
+            borderColor: 'rgba(232, 126, 4, 1)',
+            data: this.monitorDolar
           }
         ]
       }
@@ -345,6 +303,7 @@ export default {
     this.hora()
     this.getDataOficial()
     this.getDataParalelo()
+    this.getDolarMonitor()
     this.getTablaEuro()
     this.getTablaDolar()
 

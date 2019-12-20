@@ -20,7 +20,7 @@
         ></b-tooltip>
       </f7-nav-right>
     </f7-navbar>
-    <marquee><pre>|   Euro Oficial: {{euroOficialHoy}}   |   Euro Paralelo: {{euroParaleloHoy}}  |   Dolar Oficial: {{dolarOficialHoy}}   |   Dolar Paralelo: {{dolarParaleloHoy}}   |   </pre></marquee>
+    <marquee><pre>|   Euro Oficial BCV: {{euroOficialHoy}}   |   Euro Paralelo: {{euroParaleloHoy}}  |   Dolar Oficial BCV: {{dolarOficialHoy}}   |   Dolar Today: {{dolarParaleloHoy}}   |   Monitor Dolar: {{monitorDolarHoy}}   |   </pre></marquee>
     <!-- Body -->
     <f7-block-title>Productos</f7-block-title>
     <!-- Slider de Productos -->
@@ -59,6 +59,7 @@ export default {
       dolarOficialHoy: '',
       euroParaleloHoy: '',
       dolarParaleloHoy: '',
+      monitorDolarHoy: '',
       bcv:{
         fecha: '',
         euro: '',
@@ -108,6 +109,10 @@ export default {
         var data = res2.data
         this.euroParaleloHoy = data.euro[0]
         this.dolarParaleloHoy = data.dolar[0]
+      })
+      this.axios.get('http://'+Auth.HOST+':8000/getTasasDM').then(res3 => {
+        var data = res3.data
+        this.monitorDolarHoy = data.dolar[0]
       })
     },
     getTasasBCV: function(){

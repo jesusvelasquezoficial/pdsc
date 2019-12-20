@@ -134,4 +134,65 @@ defmodule PdscServer.TasasTest do
       assert %Ecto.Changeset{} = Tasas.change_dtd(dtd)
     end
   end
+
+  describe "dm" do
+    alias PdscServer.Tasas.Dm
+
+    @valid_attrs %{dolar: "some dolar", fecha: "some fecha"}
+    @update_attrs %{dolar: "some updated dolar", fecha: "some updated fecha"}
+    @invalid_attrs %{dolar: nil, fecha: nil}
+
+    def dm_fixture(attrs \\ %{}) do
+      {:ok, dm} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Tasas.create_dm()
+
+      dm
+    end
+
+    test "list_dm/0 returns all dm" do
+      dm = dm_fixture()
+      assert Tasas.list_dm() == [dm]
+    end
+
+    test "get_dm!/1 returns the dm with given id" do
+      dm = dm_fixture()
+      assert Tasas.get_dm!(dm.id) == dm
+    end
+
+    test "create_dm/1 with valid data creates a dm" do
+      assert {:ok, %Dm{} = dm} = Tasas.create_dm(@valid_attrs)
+      assert dm.dolar == "some dolar"
+      assert dm.fecha == "some fecha"
+    end
+
+    test "create_dm/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Tasas.create_dm(@invalid_attrs)
+    end
+
+    test "update_dm/2 with valid data updates the dm" do
+      dm = dm_fixture()
+      assert {:ok, %Dm{} = dm} = Tasas.update_dm(dm, @update_attrs)
+      assert dm.dolar == "some updated dolar"
+      assert dm.fecha == "some updated fecha"
+    end
+
+    test "update_dm/2 with invalid data returns error changeset" do
+      dm = dm_fixture()
+      assert {:error, %Ecto.Changeset{}} = Tasas.update_dm(dm, @invalid_attrs)
+      assert dm == Tasas.get_dm!(dm.id)
+    end
+
+    test "delete_dm/1 deletes the dm" do
+      dm = dm_fixture()
+      assert {:ok, %Dm{}} = Tasas.delete_dm(dm)
+      assert_raise Ecto.NoResultsError, fn -> Tasas.get_dm!(dm.id) end
+    end
+
+    test "change_dm/1 returns a dm changeset" do
+      dm = dm_fixture()
+      assert %Ecto.Changeset{} = Tasas.change_dm(dm)
+    end
+  end
 end

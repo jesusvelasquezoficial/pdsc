@@ -207,4 +207,105 @@ defmodule PdscServer.Tasas do
   def change_dtd(%Dtd{} = dtd) do
     Dtd.changeset(dtd, %{})
   end
+
+  alias PdscServer.Tasas.Dm
+
+  @doc """
+  Returns the list of dm.
+
+  ## Examples
+
+      iex> list_dm()
+      [%Dm{}, ...]
+
+  """
+  def list_dm do
+    Repo.all(Dm)
+  end
+
+  def list_dm_desc_id do
+    query = from dm in Dm, order_by: [desc: dm.id]
+    Repo.all(query)
+  end
+
+  @doc """
+  Gets a single dm.
+
+  Raises `Ecto.NoResultsError` if the Dm does not exist.
+
+  ## Examples
+
+      iex> get_dm!(123)
+      %Dm{}
+
+      iex> get_dm!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_dm!(id), do: Repo.get!(Dm, id)
+
+  @doc """
+  Creates a dm.
+
+  ## Examples
+
+      iex> create_dm(%{field: value})
+      {:ok, %Dm{}}
+
+      iex> create_dm(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_dm(attrs \\ %{}) do
+    %Dm{}
+    |> Dm.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a dm.
+
+  ## Examples
+
+      iex> update_dm(dm, %{field: new_value})
+      {:ok, %Dm{}}
+
+      iex> update_dm(dm, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_dm(%Dm{} = dm, attrs) do
+    dm
+    |> Dm.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Dm.
+
+  ## Examples
+
+      iex> delete_dm(dm)
+      {:ok, %Dm{}}
+
+      iex> delete_dm(dm)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_dm(%Dm{} = dm) do
+    Repo.delete(dm)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking dm changes.
+
+  ## Examples
+
+      iex> change_dm(dm)
+      %Ecto.Changeset{source: %Dm{}}
+
+  """
+  def change_dm(%Dm{} = dm) do
+    Dm.changeset(dm, %{})
+  end
 end

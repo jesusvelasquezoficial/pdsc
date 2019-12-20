@@ -15,7 +15,7 @@
 
 let PROTOCOLO = 'http://'
 let IPs = ['localhost', '127.0.0.1', '10.0.1.61','192.168.1.13', '161.117.228.169', 'pdsc.phoenixplus.net'] // 10.0.1.23
-let PORTs = ['4000'] // 8081
+let PORTs = ['4000', '8081'] // 8081
 
 let HOST = 'pdsc.phoenixplus.net'
 // Buscamos en la lista de IPs si coincide con la IP actual
@@ -25,7 +25,7 @@ IPs.forEach(IP => {
     HOST = IP
   }
 })
-let PORT =':4000'
+let PORT =':4000' //433
 PORTs.forEach(P => {
   if (location.port == P) {
     PORT = ':4000'

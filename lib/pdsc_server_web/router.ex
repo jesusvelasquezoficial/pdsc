@@ -29,12 +29,14 @@ defmodule PdscServerWeb.Router do
     post "/precioproductoforid", PrecioProductoController, :showForIdproducto
     get "/bcvDesc", BcvController, :indexDescId
     get "/dtdDesc", DtdController, :indexDescId
+    get "/dmDesc", DmController, :indexDescId
 
     resources "/users", UserController
     resources "/productos", ProductoController
     resources "/precioproducto", PrecioProductoController
     resources "/bcv", BcvController
     resources "/dtd", DtdController
+    resources "/dm", DmController
 
     # resources "/users", UserController, except: [:new, :edit]
   end

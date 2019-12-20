@@ -2,6 +2,26 @@ const axios = require("axios")
 var express = require('express');
 var app = express();
 
+var getTasasDM = () => {
+  axios.get('http://0.0.0.0:8000/getTasasDM').then(res => {
+    var dataDM = res.data
+    var dm = {
+      fecha: dataDM.fecha[0],
+      dolar: dataDM.dolar[0]
+    }
+    console.log(JSON.stringify(dataDM));
+    console.log("Se ejecuto el script al terminarse el tiempo");
+    console.log(dm);
+
+    axios.post('http://127.0.0.1:4000/api/dm', {dm: dm}).then(res => {
+      console.log(res.data.data);
+      console.log("CARGO A LA BASE DE DATOS");
+    }).catch(error => {
+      console.log(error);
+    })
+  })
+}
+
 var getTasasDTD = () => {
   axios.get('http://0.0.0.0:8000/getTasasDTD').then(res => {
     var dataDTD = res.data
@@ -84,11 +104,17 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log('Bot listening on port 3000!');
   console.log('##### Mercado Oficial #####');
+  console.log("BCV:");
   ejecutar_a_las(20,10,getTasasBCV)
   // ejecutar_a_las(8,59,getTasasBCV)
   console.log('###################################')
   console.log('##### Mercado Paralelo #####');
+  console.log("DTD:");
   ejecutar_a_las(20,10,getTasasDTD)
   // ejecutar_a_las(8,59,getTasasDTD)
+  console.log('--------------------------------------------------------------------------------')
+  console.log("DM");
+  ejecutar_a_las(21,1,getTasasDM)
+  // ejecutar_a_las(8,59,getTasasDM)
   console.log('###################################')
 });
