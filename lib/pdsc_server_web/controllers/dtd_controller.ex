@@ -16,6 +16,11 @@ defmodule PdscServerWeb.DtdController do
     render(conn, "index.json", dtd: dtd)
   end
 
+  def lastTasasDtd(conn, _params) do
+    dtd = Tasas.lastTasasDtd()
+    render(conn, "show.json", dtd: dtd)
+  end
+
   def create(conn, %{"dtd" => dtd_params}) do
     with {:ok, %Dtd{} = dtd} <- Tasas.create_dtd(dtd_params) do
       conn

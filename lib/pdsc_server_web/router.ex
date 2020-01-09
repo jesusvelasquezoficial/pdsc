@@ -30,6 +30,9 @@ defmodule PdscServerWeb.Router do
     get "/bcvDesc", BcvController, :indexDescId
     get "/dtdDesc", DtdController, :indexDescId
     get "/dmDesc", DmController, :indexDescId
+    get "/lastTasasBcv", BcvController, :lastTasasBcv
+    get "/lastTasasDtd", DtdController, :lastTasasDtd
+    get "/lastTasasDm", DmController, :lastTasasDm
 
     resources "/users", UserController
     resources "/productos", ProductoController

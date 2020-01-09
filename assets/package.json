@@ -25,6 +25,8 @@
     "nodemon": "^2.0.1",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
     "vue-chartjs": "^3.4.2",

@@ -1,6 +1,12 @@
-const axios = require("axios")
-var express = require('express');
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+const axios = require("axios");
+var express = require('express')
+const io = require('socket.io-client');
 var app = express();
+
+var bcv = null
+var dtd = null
+var dm = null
 
 var getTasasDM = () => {
   axios.get('http://0.0.0.0:8000/getTasasDM').then(res => {
@@ -95,10 +101,63 @@ var ejecutar_a_las = (hora, min, fun) => {
 
 }
 
+var getLastTasasDB = async () =>{
+  await axios.get('http://127.0.0.1:4000/api/lastTasasBcv').then(res => {
+    bcv = res.data.data
+  }).catch(error => {
+    console.log(error);
+    console.log('Entro por Catch Bcv');
+  }) 
+  await axios.get('http://127.0.0.1:4000/api/lastTasasDtd').then(res => {
+    dtd = res.data.data
+  }).catch(error => {
+    console.log(error);
+    console.log('Entro por Catch Dtd');
+  }) 
+  await axios.get('http://127.0.0.1:4000/api/lastTasasDm').then(res => {
+    dm = res.data.data
+  }).catch(error => {
+    console.log(error);
+    console.log('Entro por Catch Dm');
+  })
+  
+  var msj_notificacion = `Actualizacion de Tasas (Mercado Oficial y Paralelo): <br>
+  Fecha: ${dtd.fecha} <br>
+  -------------------------- <br>
+  Euro: <br>
+  BCV: ${bcv.euro} <br>
+  DolarToDay: ${dtd.euro} <br>
+  -------------------------- <br>
+  Dolar: <br>
+  BCV: ${bcv.dolar} <br>
+  DolarToDay: ${dtd.dolar} <br>
+  Monitor Dolar: ${dm.dolar}` 
+
+  console.log(msj_notificacion);
+  let message = {
+    from_id: 1, //Este es el ID del USUARIO Nro 1 --> DEBERIA SER UN ID del BOT
+    conversation_id: 1,
+    content: msj_notificacion
+  }
+
+  await axios.post('https://127.0.0.1:4001/api/messages', {message: message}).then().catch(error => {
+    console.log(error);
+    console.log('Entro por Catch MSJ');
+  })
+
+
+}
+
 app.get('/', (req, res) => {
   res.send('Bot Activo')
   console.log('Bot estado: Activo');
 });
+
+app.get('/bot_notificacion_push', (req, res) => {
+  res.send('El Puto Bot, envio una notificacion...!')
+  getLastTasasDB()
+   
+})
 
 
 app.listen(3000, () => {
@@ -114,7 +173,11 @@ app.listen(3000, () => {
   // ejecutar_a_las(8,59,getTasasDTD)
   console.log('--------------------------------------------------------------------------------')
   console.log("DM");
-  ejecutar_a_las(21,1,getTasasDM)
+  ejecutar_a_las(21,10,getTasasDM)
   // ejecutar_a_las(8,59,getTasasDM)
   console.log('###################################')
+  ejecutar_a_las(21, 45, getLastTasasDB)
+  ejecutar_a_las(1, 45, getLastTasasDB)
+  ejecutar_a_las(6, 0, getLastTasasDB)
+  ejecutar_a_las(9, 30, getLastTasasDB)
 });

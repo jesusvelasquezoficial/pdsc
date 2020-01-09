@@ -15,6 +15,11 @@ defmodule PdscServerWeb.DmController do
     dm = Tasas.list_dm_desc_id()
     render(conn, "index.json", dm: dm)
   end
+  
+  def lastTasasDm(conn, _params) do
+    dm = Tasas.lastTasasDm()
+    render(conn, "show.json", dm: dm)
+  end
 
   def create(conn, %{"dm" => dm_params}) do
     with {:ok, %Dm{} = dm} <- Tasas.create_dm(dm_params) do

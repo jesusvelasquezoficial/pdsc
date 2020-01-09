@@ -41,6 +41,10 @@ defmodule PdscServer.Tasas do
 
   """
   def get_bcv!(id), do: Repo.get!(Bcv, id)
+  def lastTasasBcv do
+    bcv = from x in Bcv, limit: 1, order_by: [desc: x.id]
+    Repo.one(bcv)
+  end
 
   @doc """
   Creates a bcv.
@@ -142,6 +146,10 @@ defmodule PdscServer.Tasas do
 
   """
   def get_dtd!(id), do: Repo.get!(Dtd, id)
+  def lastTasasDtd do
+    dtd = from x in Dtd, limit: 1, order_by: [desc: x.id]
+    Repo.one(dtd)
+  end
 
   @doc """
   Creates a dtd.
@@ -243,7 +251,10 @@ defmodule PdscServer.Tasas do
 
   """
   def get_dm!(id), do: Repo.get!(Dm, id)
-
+  def lastTasasDm do
+    dm = from x in Dm, limit: 1, order_by: [desc: x.id]
+    Repo.one(dm)
+  end
   @doc """
   Creates a dm.
 
