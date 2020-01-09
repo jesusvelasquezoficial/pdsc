@@ -121,21 +121,26 @@ var getLastTasasDB = async () =>{
     console.log('Entro por Catch Dm');
   })
   
-  var msj_notificacion = `Actualizacion de Tasas (Mercado Oficial y Paralelo): <br>
-  Fecha: ${dtd.fecha} <br>
+  var msj_notificacion = `<center> Este es un mensaje de la Central de Inteligencia Financiera de Phoenix Plus. </center> <br>
+  Actualizacion de Tasas <br>
+  Mercado Oficial y Paralelo <br>
+  </strong>Fecha:</strong> ${dtd.fecha} <br>
   -------------------------- <br>
-  Euro: <br>
+  <strong>Euro:</strong> <br>
   BCV: ${bcv.euro} <br>
-  DolarToDay: ${dtd.euro} <br>
+  Dolar Today: ${dtd.euro} <br>
   -------------------------- <br>
-  Dolar: <br>
+  <strong>Dolar:</strong> <br>
   BCV: ${bcv.dolar} <br>
-  DolarToDay: ${dtd.dolar} <br>
-  Monitor Dolar: ${dm.dolar}` 
+  Dolar Today: ${dtd.dolar} <br>
+  Monitor Dolar: ${dm.dolar} <br>
+  --------------------------
+  <p align="justify" style="margin:0px; padding:0px"><font size="1">Los precios reflejados son obtenidos de los indicadores referenciales y los resultados son mostrados a modo de orientación. <br> </font></p>
+  <div align='center'>Para ampliar informacion de click aqui: <br> <a href="http://pdsc.phoenixplus.net:4000" style="text-align:center; color:white; text-decoration:none;">Phoenix Plus</a></div>` 
 
   console.log(msj_notificacion);
   let message = {
-    from_id: 1, //Este es el ID del USUARIO Nro 1 --> DEBERIA SER UN ID del BOT
+    from_id: 3, //Este es el ID del USUARIO Nro 1 --> DEBERIA SER UN ID del BOT
     conversation_id: 1,
     content: msj_notificacion
   }
