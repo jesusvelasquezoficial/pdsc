@@ -147,7 +147,7 @@ export default {
           dolar[i] = d.replace(",", ".")
         });
         
-        this.fechas = fecha
+        // this.fechas = fecha
         this.euroOficial = euro
         this.dolarOficial = dolar
         
@@ -169,6 +169,7 @@ export default {
           
         });
 
+        this.fechas = fecha
         this.fechaParalelo = fecha
         this.euroParalelo = euro
         this.dolarToday = dolar

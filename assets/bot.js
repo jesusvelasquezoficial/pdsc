@@ -88,7 +88,7 @@ var ejecutar_a_las = (hora, min, fun) => {
   
   // si es la hora del momento es menos a la hora actual
   ahora = (momento<hora_actual) ? new Date(momento.getTime()+1000*60*60*24) : momento
-  console.log(`Hora de ejecucion: ${ahora}`);
+  console.log(`Hora ejecuc: ${ahora}`);
   tiempo_espera = ahora.getTime() - hora_actual.getTime()
   console.log(`Tiempo de espera: ${tiempo_espera}`);
   
@@ -167,22 +167,45 @@ app.get('/bot_notificacion_push', (req, res) => {
 
 app.listen(3000, () => {
   console.log('Bot listening on port 3000!');
-  console.log('##### Mercado Oficial #####');
-  console.log("BCV:");
+  console.log('############################# Mercado Oficial #############################');
+  console.log("BANCO CENTRAL DE VENEZUELA:");
   ejecutar_a_las(20,10,getTasasBCV)
   // ejecutar_a_las(8,59,getTasasBCV)
-  console.log('###################################')
-  console.log('##### Mercado Paralelo #####');
-  console.log("DTD:");
+  console.log('############################################################################')
+  console.log('############################# Mercado Paralelo #############################');
+  console.log("DOLAR TODAY:");
   ejecutar_a_las(20,10,getTasasDTD)
   // ejecutar_a_las(8,59,getTasasDTD)
-  console.log('--------------------------------------------------------------------------------')
-  console.log("DM");
+  console.log('-----------------------------------------------------------------------------')
+  console.log("MONITOR DOLAR");
   ejecutar_a_las(21,10,getTasasDM)
   // ejecutar_a_las(8,59,getTasasDM)
-  console.log('###################################')
-  ejecutar_a_las(21, 45, getLastTasasDB)
-  ejecutar_a_las(1, 45, getLastTasasDB)
+  console.log('############################################################################')
+  ejecutar_a_las(21, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(22, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(23, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(23, 59, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(1, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(2, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(3, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(4, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(5, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
   ejecutar_a_las(6, 0, getLastTasasDB)
-  ejecutar_a_las(9, 30, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(7, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(8, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(9, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+
 });
