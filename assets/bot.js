@@ -7,7 +7,7 @@ const telegraf = require('telegraf')
 var app = express();
 const bot = new telegraf('808493714:AAHY05haOIoj3MnrqmMBs7hsYmceH62S1zI')
 app.use(bot.webhookCallback('ruta_bot'))
-bot.telegram.setWebhook('http://pdsc.phoenixplux:4000/ruta_bot')
+bot.telegram.setWebhook('http://pdsc.phoenixplux:3000/ruta_bot')
 bot.command('/test', ctx => {
   ctx.reply('hola Mundo Bot')
 })
