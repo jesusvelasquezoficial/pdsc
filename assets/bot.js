@@ -2,7 +2,15 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 const axios = require("axios");
 var express = require('express')
 const io = require('socket.io-client');
+const telegraf = require('telegraf')
+
 var app = express();
+const bot = new telegraf('808493714:AAHY05haOIoj3MnrqmMBs7hsYmceH62S1zI')
+app.use(bot.webhookCallback('ruta_bot'))
+bot.telegram.setWebhook('http://pdsc.phoenixplux:4000/ruta_bot')
+bot.command('/test', ctx => {
+  ctx.reply('hola Mundo Bot')
+})
 
 var bcv = null
 var dtd = null
@@ -140,9 +148,12 @@ var getLastTasasDB = async () =>{
 
   console.log(msj_notificacion);
   let message = {
+    fecha: "", // FALTA LA FECHA DEL BOT
+    hora: "",  // FALTA LA HORA DEL BOT
+    name: "CIF BOT",
     from_id: 3, //Este es el ID del USUARIO Nro 1 --> DEBERIA SER UN ID del BOT
     conversation_id: 1,
-    content: msj_notificacion
+    text: msj_notificacion
   }
 
   await axios.post('https://127.0.0.1:4001/api/messages', {message: message}).then().catch(error => {
@@ -164,6 +175,20 @@ app.get('/bot_notificacion_push', (req, res) => {
    
 })
 
+app.get('/bot_getTasas', (req, res) => {
+  res.send('El Puto Bot, obtuvo las tasas...!')
+  getTasasBCV()
+  getTasasDTD()
+  getTasasDM()
+})
+
+app.get('/ruta_bot',(req,res)=>{
+  res.send('llamada a la ruta del bot')
+})
+
+app.post('/ruta_bot',(req,res)=>{
+  res.send('llamada a la ruta del bot')
+})
 
 app.listen(3000, () => {
   console.log('Bot listening on port 3000!');
