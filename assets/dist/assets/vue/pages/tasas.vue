@@ -133,7 +133,7 @@ export default {
       this.dfhora = h+":"+m+":"+s
     },
     getDataOficial(){
-      this.axios.get(Auth.URL+'/api/bcv').then(res => {
+      this.axios.get(Auth.URL+'/api/bcvDesc').then(res => {
         let bcv = res.data.data
         var fecha = []
         var dolar = []
@@ -154,7 +154,7 @@ export default {
       })
     },
     getDataParalelo(){
-      this.axios.get(Auth.URL+'/api/dtd').then(res => {
+      this.axios.get(Auth.URL+'/api/dtdDesc').then(res => {
         let dtd = res.data.data
         var fecha = []
         var dolar = []
@@ -177,7 +177,7 @@ export default {
       })
     },
     getDolarMonitor(){
-      this.axios.get(Auth.URL+'/api/dm').then(res => {
+      this.axios.get(Auth.URL+'/api/dmDesc').then(res => {
         let dm = res.data.data
         var fechaM = []
         var dolarM = []
