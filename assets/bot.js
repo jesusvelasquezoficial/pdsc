@@ -195,7 +195,7 @@ var getLastTasasDB = async () => {
   Dolar:
   BCV: ${bcv.dolar}
   Dolar Today: ${dtd.dolar}
-  Monitor Dolar: ${dm.euro}
+  Monitor Dolar: ${dm.dolar}
   --------------------------
   Euro: 
   BCV: ${bcv.euro}
