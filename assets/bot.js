@@ -187,10 +187,10 @@ var getLastTasasDB = async () => {
   --------------------------
   <p align="justify" style="margin:0px; padding:0px"><font size="1">Los precios reflejados son obtenidos de los indicadores referenciales y los resultados son mostrados a modo de orientación. <br> </font></p>
   <div align='center'>Para ampliar informacion de click aqui: <br> <a href="http://pdsc.phoenixplus.net:4000" style="text-align:center; color:white; text-decoration:none;">Phoenix Plus</a></div>` 
-  msj_telegram = `Este es un mensaje de la Central de Inteligencia Financiera de Phoenix Plus.
+  msj_telegram = `Mensaje de la Central de Inteligencia Financiera de Phoenix Plus.
   Actualizacion de Tasas
   Mercado Oficial y Paralelo
-  Fecha: ${dtd.fecha}
+  Fecha: ${dtd.fecha} 
   -------------------------- 
   Dolar:
   BCV: ${bcv.dolar}
@@ -202,7 +202,7 @@ var getLastTasasDB = async () => {
   Dolar Today: ${dtd.euro}
   --------------------------
   Los precios reflejados son obtenidos de los indicadores referenciales y los resultados son mostrados a modo de orientación.
-  Para ampliar informacion de click aqui: http://pdsc.phoenixplus.net:4000
+  Para ampliar informacion de click aqui: http://pdsc.phoenixplus.net:4000/
   ` 
   console.log(msj_notificacion);
   pushMsjTelegram()
@@ -237,6 +237,7 @@ app.get('/bot_getTasas', (req, res) => {
   getTasasBCV()
   getTasasDTD()
   getTasasDM()
+  pushMsjTelegram()    
 })
 
 app.get('/bot_telegram', (req, res) => {
@@ -256,26 +257,18 @@ app.listen(PORT, () => {
   console.log(`Bot listening on port ${PORT}!}`);
   console.log('############################# Mercado Oficial #############################');
   console.log("BANCO CENTRAL DE VENEZUELA:");
-  ejecutar_a_las(20,10,getTasasBCV)
+  ejecutar_a_las(9,10,getTasasBCV)
   // ejecutar_a_las(8,59,getTasasBCV)
   console.log('############################################################################')
   console.log('############################# Mercado Paralelo #############################');
   console.log("DOLAR TODAY:");
-  ejecutar_a_las(20,10,getTasasDTD)
+  ejecutar_a_las(9,10,getTasasDTD)
   // ejecutar_a_las(8,59,getTasasDTD)
   console.log('-----------------------------------------------------------------------------')
   console.log("MONITOR DOLAR");
-  ejecutar_a_las(21,10,getTasasDM)
+  ejecutar_a_las(9,10,getTasasDM)
   // ejecutar_a_las(8,59,getTasasDM)
   console.log('############################################################################')
-  ejecutar_a_las(21, 0, getLastTasasDB)
-  console.log('-----------------------------------------------------------------------------')
-  ejecutar_a_las(22, 0, getLastTasasDB)
-  console.log('-----------------------------------------------------------------------------')
-  ejecutar_a_las(23, 0, getLastTasasDB)
-  console.log('-----------------------------------------------------------------------------')
-  ejecutar_a_las(23, 59, getLastTasasDB)
-  console.log('-----------------------------------------------------------------------------')
   ejecutar_a_las(1, 0, getLastTasasDB)
   console.log('-----------------------------------------------------------------------------')
   ejecutar_a_las(2, 0, getLastTasasDB)
@@ -293,6 +286,36 @@ app.listen(PORT, () => {
   ejecutar_a_las(8, 0, getLastTasasDB)
   console.log('-----------------------------------------------------------------------------')
   ejecutar_a_las(9, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(10, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(11, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(12, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(13, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(14, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(15, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(16, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(17, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(18, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(19, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(20, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(21, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(22, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(23, 0, getLastTasasDB)
+  console.log('-----------------------------------------------------------------------------')
+  ejecutar_a_las(0, 0, getLastTasasDB)
   console.log('-----------------------------------------------------------------------------')
 
 });
