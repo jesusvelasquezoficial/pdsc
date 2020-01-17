@@ -1,16 +1,49 @@
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-const axios = require("axios");
-var express = require('express')
-const io = require('socket.io-client');
+// Dependencias
+const axios = require("axios")
+const express = require('express')
 const telegraf = require('telegraf')
-
-var app = express();
-const bot = new telegraf('808493714:AAHY05haOIoj3MnrqmMBs7hsYmceH62S1zI')
-app.use(bot.webhookCallback('ruta_bot'))
-bot.telegram.setWebhook('http://pdsc.phoenixplux:3000/ruta_bot')
-bot.command('/test', ctx => {
-  ctx.reply('hola Mundo Bot')
+const bodyParser = require('body-parser')
+// Configuracion Predeterminada
+var ngrok = 'https://f69dfab7.ngrok.io '
+const URL = ngrok+'/botTelegram' // '/' -> ruta del WebHook Entrante
+const PORT = '3000'
+// Variables
+var botInfo = {}
+var botToken = '808493714:AAHY05haOIoj3MnrqmMBs7hsYmceH62S1zI'
+var botMethod = 'getMe' // Todos los métodos en la API de Bot no distinguen entre mayúsculas y minúsculas
+var botURL = `https://api.telegram.org/bot${botToken}`
+var msj_telegram = 'NULL'
+var app = express()
+// PHOENIX CIF BOT
+const bot = new telegraf(botToken, {polling: true})
+// Especificamos una URL para recibir actualizaciones entrantes de un WebHoock saliente
+bot.telegram.setWebhook(URL) 
+// Configuraciones Middlewares
+app.use(bodyParser.json());
+app.use(bot.webhookCallback('/botTelegram')) // Escuchamos las llamadas al WebHook ('/ruta')
+bot.use(async (ctx, next) => {
+  const start = new Date()
+  await next()
+  const ms = new Date() - start
+  console.log('Tiempo Respuesta Bot: %sms', ms)
 })
+bot.start((ctx) => ctx.reply('Bienvenido a PHOENIX CIF BOT')) // Comando /Start de Telegram
+// Comandos de Telegram
+bot.command('/hola', ctx => {
+  ctx.reply('Hola')
+})
+// Escucha el Msg enviado desde Phoenix Cif Bot por Telegram
+bot.on('text', ctx => {
+  console.log(ctx);
+  ctx.reply('text')
+})
+// Informacion del Bot
+bot.telegram.getMe().then(async res =>{
+  botInfo = res
+}).catch((err)=>{
+  console.log(err);
+})
+bot.launch()
 
 var bcv = null
 var dtd = null
@@ -109,7 +142,16 @@ var ejecutar_a_las = (hora, min, fun) => {
 
 }
 
-var getLastTasasDB = async () =>{
+var pushMsjTelegram = () => {  
+  // await bot.telegram.sendMessage('@PhoenixPlusChat', msj_telegram, {parse_mode: 'HTML'})
+  //   .then(message => console.log(message))
+  //   .catch(err => console.log(err))
+  axios.post(`${botURL}/sendMessage`, {chat_id: '@PhoenixPlusChat', text: msj_telegram}).then(res => {
+    console.log(res);
+  }).catch(err => console.log(err))
+}
+
+var getLastTasasDB = async () => {
   await axios.get('http://127.0.0.1:4000/api/lastTasasBcv').then(res => {
     bcv = res.data.data
   }).catch(error => {
@@ -145,8 +187,25 @@ var getLastTasasDB = async () =>{
   --------------------------
   <p align="justify" style="margin:0px; padding:0px"><font size="1">Los precios reflejados son obtenidos de los indicadores referenciales y los resultados son mostrados a modo de orientación. <br> </font></p>
   <div align='center'>Para ampliar informacion de click aqui: <br> <a href="http://pdsc.phoenixplus.net:4000" style="text-align:center; color:white; text-decoration:none;">Phoenix Plus</a></div>` 
-
+  msj_telegram = `Este es un mensaje de la Central de Inteligencia Financiera de Phoenix Plus.
+  Actualizacion de Tasas
+  Mercado Oficial y Paralelo
+  Fecha: ${dtd.fecha}
+  -------------------------- 
+  Dolar:
+  BCV: ${bcv.dolar}
+  Dolar Today: ${dtd.dolar}
+  Monitor Dolar: ${dm.euro}
+  --------------------------
+  Euro: 
+  BCV: ${bcv.euro}
+  Dolar Today: ${dtd.euro}
+  --------------------------
+  Los precios reflejados son obtenidos de los indicadores referenciales y los resultados son mostrados a modo de orientación.
+  Para ampliar informacion de click aqui: http://pdsc.phoenixplus.net:4000
+  ` 
   console.log(msj_notificacion);
+  pushMsjTelegram()
   let message = {
     fecha: "", // FALTA LA FECHA DEL BOT
     hora: "",  // FALTA LA HORA DEL BOT
@@ -155,13 +214,11 @@ var getLastTasasDB = async () =>{
     conversation_id: 1,
     text: msj_notificacion
   }
-
+  
   await axios.post('https://127.0.0.1:4001/api/messages', {message: message}).then().catch(error => {
     console.log(error);
     console.log('Entro por Catch MSJ');
   })
-
-
 }
 
 app.get('/', (req, res) => {
@@ -169,10 +226,10 @@ app.get('/', (req, res) => {
   console.log('Bot estado: Activo');
 });
 
-app.get('/bot_notificacion_push', (req, res) => {
+app.get('/bot_notificacion_push', async (req, res) => {
   res.send('El Puto Bot, envio una notificacion...!')
-  getLastTasasDB()
-   
+  await getLastTasasDB()
+  pushMsjTelegram()    
 })
 
 app.get('/bot_getTasas', (req, res) => {
@@ -182,16 +239,21 @@ app.get('/bot_getTasas', (req, res) => {
   getTasasDM()
 })
 
-app.get('/ruta_bot',(req,res)=>{
+app.get('/bot_telegram', (req, res) => {
+  // Envio de Msg a traves del BOT al canal PHOENIX CHAT 
+  // await bot.telegram.sendMessage('@PhoenixPlusChat', 'Este es un mensaje desde el Bot JS')
+  pushMsjTelegram()    
   res.send('llamada a la ruta del bot')
+  console.log('entro por GET a -> /botTelegram');
 })
 
-app.post('/ruta_bot',(req,res)=>{
+app.post('/botTelegram', (req, res) => {
   res.send('llamada a la ruta del bot')
+  console.log('entro por POST a -> /botTelegram');
 })
 
-app.listen(3000, () => {
-  console.log('Bot listening on port 3000!');
+app.listen(PORT, () => {
+  console.log(`Bot listening on port ${PORT}!}`);
   console.log('############################# Mercado Oficial #############################');
   console.log("BANCO CENTRAL DE VENEZUELA:");
   ejecutar_a_las(20,10,getTasasBCV)
