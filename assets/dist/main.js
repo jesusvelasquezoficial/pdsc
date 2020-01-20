@@ -39,6 +39,8 @@ import store from './assets/vuex/storage.js';
 import BootstrapVue from  'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap-grid.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { SpinnerPlugin } from 'bootstrap-vue'
+Vue.use(SpinnerPlugin)
 Vue.use(BootstrapVue)
 
 // Different F7-Vue plugin initialization with f7 v3.0

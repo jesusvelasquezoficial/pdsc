@@ -18,7 +18,8 @@ defmodule PdscServer.Tasas do
 
   """
   def list_bcv do
-    Repo.all(Bcv)
+    query = from bcv in Bcv, order_by: [asc: bcv.id]
+    Repo.all(query)
   end
 
   def list_bcv_desc_id do
@@ -123,7 +124,8 @@ defmodule PdscServer.Tasas do
 
   """
   def list_dtd do
-    Repo.all(Dtd)
+    query = from dtd in Dtd, order_by: [asc: dtd.id]
+    Repo.all(query)
   end
 
   def list_dtd_desc_id do
@@ -228,7 +230,8 @@ defmodule PdscServer.Tasas do
 
   """
   def list_dm do
-    Repo.all(Dm)
+    query = from dm in Dm, order_by: [asc: dm.id]
+    Repo.all(query)
   end
 
   def list_dm_desc_id do
