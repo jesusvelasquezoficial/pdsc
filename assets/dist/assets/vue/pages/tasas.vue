@@ -103,7 +103,7 @@
 <script>
 //Recursos
 import Auth from "./../../auth";
-import moment from "moment";import { SpinnerPlugin } from 'bootstrap-vue'
+import moment from "moment";
 // import "chartjs-plugin-crosshair";
 // import "chartjs-plugin-zoom";
 import ChartDataLabels from "chartjs-plugin-datalabels";
@@ -619,15 +619,15 @@ export default {
       };
     }
   },
-  async mounted() {
+  mounted() {
     this.loaded = false;
     this.loaded2 = false;
-    await this.hora();
-    await this.getDataOficial();
-    await this.getDataParalelo();
-    await this.getDolarMonitor();
-    await this.getTablaEuro();
-    await this.getTablaDolar();
+    this.hora();
+    this.getDataOficial();
+    this.getDataParalelo();
+    this.getDolarMonitor();
+    this.getTablaEuro();
+    this.getTablaDolar();
   }
 };
 </script>
