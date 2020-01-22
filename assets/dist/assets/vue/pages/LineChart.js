@@ -1,4 +1,4 @@
-import { Line, mixins } from 'vue-chartjs'
+import { Line, mixins } from 'vue-chartjs';
 
 export default {
   extends: Line,  
@@ -15,14 +15,16 @@ export default {
     }
   },
   mounted() {
-    this.renderChart(this.chartData, this.options)
+    this.renderChart(this.chartData, this.options);
   },
   watch: {
     chartData() {
-      this.$data._chart.update()
+      console.log('OCURRIO UN CAMBIO EN EL CHARTDATA');
+      this.renderChart(this.chartData, this.options);
     },
     options() {
-      this.$data._chart.update()
+      console.log('OCURRIO UN CAMBIO EN LAS OPCIONES');
+      this.renderChart(this.chartData, this.options);
     }
   }
 }
