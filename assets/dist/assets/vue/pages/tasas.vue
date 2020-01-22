@@ -16,33 +16,36 @@
               <small style="color: #999; fontSize:18px">Oficial y Paralelo</small>
             </h1>
           </f7-block-title>
-          <f7-block class="mt-0">
+          <f7-block class="mt-0" v-if="dataDolarLoaded">
             <!-- Botones Escala de Tiempo -->
             <div class="mb-1 pl-2 ml-5 d-flex justify-content-start align-items-center">
               <!-- <b-col class="p-0 m-0 mr-auto"> -->
-              <span class="pr-2" style="color:#666666;">Zoom</span>
+              <span style="color:#666666;">Zoom</span>
               <!-- </b-col> -->
-              <div>
+              <div class="col-sm-8 col-md-10 col-lg-8">
                 <f7-segmented>
-                  <f7-button @click="minDolarX = ''" small outline color="gray">1d</f7-button>
-                  <f7-button @click="minDolarX = '01/14/2020'" small outline color="gray">7d</f7-button>
-                  <f7-button @click="minDolarX = '01/01/2020'" small outline color="gray">1m</f7-button>
-                  <f7-button @click="minDolarX = ''" small outline color="gray">3m</f7-button>
-                  <f7-button @click="minDolarX = ''" small outline color="gray">1y</f7-button>
-                  <f7-button @click="minDolarX = ''" small outline color="gray">YTD</f7-button>
-                  <f7-button @click="minDolarX = ''" small outline color="gray">ALL</f7-button>
+                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">1d</f7-button>
+                  <f7-button @click="sD7D" small outline color="gray" class="p-0">7d</f7-button>
+                  <f7-button @click="sD30D" small outline color="gray" class="p-0">1m</f7-button>
+                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">3m</f7-button>
+                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">1y</f7-button>
+                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">YTD</f7-button>
+                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">ALL</f7-button>
                 </f7-segmented>
               </div>
             </div>
             <!-- Graficos de linea -->
             <line-chart
-              v-if="dataDolarLoaded"
+              style="position: relative; height:500px;"
               id="mercadoDolar"
               ref="mercadoDolar"
               :chartData="dataDolar"
               :options="optionsDolar"
               :styles="styles"
             ></line-chart>
+          </f7-block>
+          <f7-block class="d-flex justify-content-center align-items-center" v-else>
+            <sync-loader :loading="!dataDolarLoaded" color="darkorange" size="24px"></sync-loader>
           </f7-block>
         </b-col>
         <b-col sm="12" md="6">
@@ -52,33 +55,36 @@
               <small style="color: #999; fontSize:18px">Oficial y Paralelo</small>
             </h1>
           </f7-block-title>
-          <f7-block>
+          <f7-block v-if="dataEuroLoaded">
             <!-- Botones Escala de Tiempo -->
             <div class="mb-1 pl-2 ml-5 d-flex justify-content-start align-items-center">
               <!-- <b-col class="p-0 m-0 mr-auto"> -->
               <span class="pr-2" style="color:#666666;">Zoom</span>
               <!-- </b-col> -->
-              <div>
+              <div class="col-sm-8 col-md-10 col-lg-8">
                 <f7-segmented>
-                  <f7-button @click="minEuroX = ''" small outline color="gray">1d</f7-button>
-                  <f7-button @click="minEuroX = '01/14/2020'" small outline color="gray">7d</f7-button>
-                  <f7-button @click="minEuroX = '01/01/2020'" small outline color="gray">1m</f7-button>
-                  <f7-button @click="minEuroX = ''" small outline color="gray">3m</f7-button>
-                  <f7-button @click="minEuroX = ''" small outline color="gray">1y</f7-button>
-                  <f7-button @click="minEuroX = ''" small outline color="gray">YTD</f7-button>
-                  <f7-button @click="minEuroX = ''" small outline color="gray">ALL</f7-button>
+                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">1d</f7-button>
+                  <f7-button @click="sE7D" small outline color="gray" class="p-0">7d</f7-button>
+                  <f7-button @click="sE30D" small outline color="gray" class="p-0">1m</f7-button>
+                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">3m</f7-button>
+                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">1y</f7-button>
+                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">YTD</f7-button>
+                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">ALL</f7-button>
                 </f7-segmented>
               </div>
             </div>
             <!-- Graficos de linea -->
             <line-chart
-              v-if="dataEuroLoaded"
+              style="position: relative; height:500px;"
               id="mercadoEuro"
               ref="mercadoEuro"
               :chartData="dataEuro"
               :options="optionsEuro"
               :styles="styles"
             ></line-chart>
+          </f7-block>
+          <f7-block class="d-flex justify-content-center align-items-center" v-else>
+            <sync-loader :loading="!dataEuroLoaded" color="darkorange" size="24px"></sync-loader>
           </f7-block>
         </b-col>
       </b-row>
@@ -141,6 +147,7 @@
 //Recursos
 import Auth from "./../../auth";
 // import ChartDataLabels from "chartjs-plugin-datalabels";
+import { SyncLoader } from "vue-spinner/dist/vue-spinner.min.js";
 import Datepicker from "vuejs-datepicker";
 import moment from "moment";
 // import "chartjs-plugin-crosshair";
@@ -152,7 +159,8 @@ import { mapState, mapActions } from "vuex";
 export default {
   components: {
     LineChart,
-    Datepicker
+    Datepicker,
+    SyncLoader
   },
   data() {
     return {
@@ -161,6 +169,12 @@ export default {
       //   minDolarX: state => state.user,
       //   minEuroX: state => state.minEuroX
       // }),
+      f7D: "",
+      f30D: "",
+      minPE7D: "",
+      minPE30D: "",
+      minPD7D: "",
+      minPD30D: "",
       horaDF: "",
       width: 100,
       height: 480,
@@ -170,11 +184,17 @@ export default {
       // Barra de escala
       scaleEuroX: null,
       scaleDolarX: null,
-      // Scale Graph 2D (x, y)
+      scaleEuroY: null,
+      scaleDolarY: null,
+      // Axis Graph 2D (x, y)
+      baseMinDolarX: null,
+      baseMaxDolarX: null,
       minDolarX: null,
       maxDolarX: null,
       minDolarY: null,
       maxDolarY: null,
+      baseMinEuroX: null,
+      baseMaxEuroX: null,
       minEuroX: null,
       maxEuroX: null,
       minEuroY: null,
@@ -194,20 +214,31 @@ export default {
     };
   },
   methods: {
-    // ...mapActions(["addMinEuroX"]),
-    requestDataDolar7D() {
-      var fecha_ultimos_7D = "01/14/2020";
-      console.log(fecha_ultimos_7D);
-      // this.scaleDolarX = fecha_ultimos_7D;
-      this.minDolarX = fecha_ultimos_7D;
+    sE7D() {
+      this.minEuroX = this.f7D;
+      this.minEuroY = this.minPE7D;
     },
-    requestDataEuro7D() {
-      var fecha_ultimos_7D = "01/14/2020";
-      console.log(fecha_ultimos_7D);
-      // this.scaleEuroX = fecha_ultimos_7D;
-      this.minEuroX = fecha_ultimos_7D;
+    sE30D() {
+      this.minEuroX = this.f30D;
+      this.minEuroY = this.minPE30D;
     },
-    getDataOficial() {
+    sD7D() {
+      this.minDolarX = this.f7D;
+      this.minDolarY = this.minPD7D;
+    },
+    sD30D() {
+      this.minDolarX = this.f30D;
+      this.minDolarY = this.minPD30D;
+    },
+    resertScaleDolar(){
+      this.minDolarX = this.baseMinDolarX
+      this.minDolarY = this.baseMinDolarY
+    },
+    resertScaleEuro(){
+      this.minEuroX = this.baseMinEuroX
+      this.minEuroY = this.baseMinEuroY
+    },
+    async getDataOficial() {
       this.axios.get(Auth.URL + "/api/bcv").then(res => {
         let bcv = res.data.data;
         var fecha = [];
@@ -237,7 +268,7 @@ export default {
         this.dolarOficial = dolar;
       });
     },
-    getDataParalelo() {
+    async getDataParalelo() {
       this.axios.get(Auth.URL + "/api/dtd").then(res => {
         let dtd = res.data.data;
         var fechaDtd = [];
@@ -264,6 +295,12 @@ export default {
           };
         });
         //Fecha Global
+        this.f7D = fechaDtd[fechaDtd.length - 7];
+        this.f30D = fechaDtd[fechaDtd.length - 30];
+        this.minPE7D = parseFloat(dtd[dtd.length - 7].euro.replace(".", "").replace(",", ".")) - (parseFloat(dtd[dtd.length - 7].euro.replace(".", "").replace(",", ".")) * 13) / 100;
+        this.minPE30D = parseFloat(dtd[dtd.length - 30].euro.replace(".", "").replace(",", ".")) - (parseFloat(dtd[dtd.length - 30].euro.replace(".", "").replace(",", ".")) * 10) / 100;
+        this.minPD7D = parseFloat(dtd[dtd.length - 7].dolar.replace(".", "").replace(",", ".")) - (parseFloat(dtd[dtd.length - 7].dolar.replace(".", "").replace(",", ".")) * 15) / 100;
+        this.minPD30D = parseFloat(dtd[dtd.length - 30].dolar.replace(".", "").replace(",", ".")) - (parseFloat(dtd[dtd.length - 30].dolar.replace(".", "").replace(",", ".")) * 15) / 100;
         this.fecha = fechaDtd;
         this.euroFecha = fechaDtd;
         this.dolarFecha = fechaDtd;
@@ -272,21 +309,23 @@ export default {
         this.dolarToday = dolarDtd;
         // Escala del Euro (x, y)
         this.minEuroX = moment(dtd[0].fecha).format("L");
-        // this.addMinEuroX(moment(dtd[0].fecha).format("L"))
-        // this.maxEuroX = moment().format("L");
         this.maxEuroX = moment(dtd[dtd.length - 1].fecha).format("L");
-        this.minEuroY = euroDtd[0] - 2500;
-        this.maxEuroY = euroDtd[dtd.length - 1] + 11000;
+        this.minEuroY = Math.min(...euroDtd) - (Math.min(...euroDtd) * 13) / 100;
+        this.maxEuroY = Math.max(...euroDtd) + (Math.max(...euroDtd) * 5) / 100;
         // Escala del Dolar (x, y)
         this.minDolarX = moment(dtd[0].fecha).format("L");
         this.maxDolarX = moment(dtd[dtd.length - 1].fecha).format("L");
-        this.minDolarY = dolarDtd[0] - 7500;
-        this.maxDolarY = dolarDtd[dtd.length - 1] + 9500;
+        this.minDolarY = Math.min(...dolarDtd) - (Math.min(...dolarDtd) * 23) / 100;
+        this.maxDolarY = Math.max(...dolarDtd) + (Math.max(...dolarDtd) * 5) / 100;
+        this.baseMinEuroX = this.minEuroX
+        this.baseMinDolarX = this.minDolarX
+        this.baseMinEuroY = this.minEuroY
+        this.baseMinDolarY = this.minDolarY
         // Pre-Carga del Euro
         this.dataEuroLoaded = true;
       });
     },
-    getDolarMonitor() {
+    async getDolarMonitor() {
       this.axios.get(Auth.URL + "/api/dm").then(res => {
         let dm = res.data.data;
         var fechaM = [];
@@ -622,16 +661,6 @@ export default {
           // axis: 'y'
         }
       };
-    }
-  },
-  watch: {
-    scaleEuroX: function(value) {
-      console.log("Cambio el valor de scaleEuroX a:", value);
-      this.minEuroX = value;
-    },
-    scaleDolarX: function(value) {
-      console.log("Cambio el valor de scaleDolarX a:", value);
-      this.minDolarX = value;
     }
   },
   created() {
