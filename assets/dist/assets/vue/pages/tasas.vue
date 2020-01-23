@@ -9,34 +9,49 @@
     <f7-block class="mt-0">
       <!-- GRAFICOS DEL MERCADO -->
       <b-row>
+        <!-- DOLAR -->
         <b-col sm="12" md="6">
+          <!-- TITULO -->
           <f7-block-title class="mt-2">
-            <h1 class="pl-5">
+            <h1 class="pl-3">
               Dolar
               <small style="color: #999; fontSize:18px">Oficial y Paralelo</small>
             </h1>
           </f7-block-title>
+          <!-- LAYOUT -->
           <f7-block class="mt-0" v-if="dataDolarLoaded">
+            <!-- Precios del dia -->
+            <div class="mb-3 pl-sm-2 ml-5 d-flex justify-content-between align-items-center">
+              <div class="col-md-4" style="border-left: solid 5px Blue;">
+                <p class="p-0 m-0">Dolar Oficial</p>
+                <h3 class="p-0 m-0">{{precioDolarBCV}}</h3>
+              </div>
+              <div class="col-md-4" style="border-left: solid 5px Green;">
+                <p class="p-0 m-0">Dolar Today</p>
+                <h3 class="p-0 m-0">{{precioDolarToday}}</h3>
+              </div>
+              <div class="col-md-4" style="border-left: solid 5px Orange;">
+                <p class="p-0 m-0">Dolar Monitor</p>
+                <h3 class="p-0 m-0">{{precioDolarMonitor}}</h3>
+              </div>
+            </div>
             <!-- Botones Escala de Tiempo -->
             <div class="mb-1 pl-2 ml-5 d-flex justify-content-start align-items-center">
-              <!-- <b-col class="p-0 m-0 mr-auto"> -->
               <span style="color:#666666;">Zoom</span>
-              <!-- </b-col> -->
-              <div class="col-sm-8 col-md-10 col-lg-8">
+              <div class="col-sm-8 col-md-10 col-lg-7">
                 <f7-segmented>
-                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">1d</f7-button>
                   <f7-button @click="sD7D" small outline color="gray" class="p-0">7d</f7-button>
+                  <f7-button @click="sD15D" small outline color="gray" class="p-0">15d</f7-button>
                   <f7-button @click="sD30D" small outline color="gray" class="p-0">1m</f7-button>
                   <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">3m</f7-button>
                   <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">1y</f7-button>
-                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">YTD</f7-button>
+                  <!-- <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">YTD</f7-button> -->
                   <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">ALL</f7-button>
                 </f7-segmented>
               </div>
             </div>
             <!-- Graficos de linea -->
             <line-chart
-              style="position: relative; height:500px;"
               id="mercadoDolar"
               ref="mercadoDolar"
               :chartData="dataDolar"
@@ -44,38 +59,52 @@
               :styles="styles"
             ></line-chart>
           </f7-block>
-          <f7-block class="d-flex justify-content-center align-items-center" v-else>
-            <sync-loader :loading="!dataDolarLoaded" color="darkorange" size="24px"></sync-loader>
+          <!-- SPINNER -->
+          <f7-block class="py-5 my-5 d-flex justify-content-center align-items-center" v-else>
+            <fade-loader :loading="!dataDolarLoaded" color="darkorange" size="32px"></fade-loader>
           </f7-block>
         </b-col>
+        <!-- EURO -->
         <b-col sm="12" md="6">
+          <!-- TITULOS -->
           <f7-block-title class="mt-2">
-            <h1 class="pl-5">
+            <h1 class="pl-3">
               Euro
               <small style="color: #999; fontSize:18px">Oficial y Paralelo</small>
             </h1>
           </f7-block-title>
-          <f7-block v-if="dataEuroLoaded">
+          <!-- LAYOUT -->
+          <f7-block class="mt-0" v-if="dataEuroLoaded">
+            <!-- Precio del Dia -->
+            <div class="mb-3 pl-2 ml-5 d-flex justify-content-start align-items-center">
+              <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
+                <p class="p-0 m-0">Euro Oficial</p>
+                <h3 class="p-0 m-0">{{precioEuroOficial}}</h3>
+              </div>
+              <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Darkred;">
+                <p class="p-0 m-0">Euro Paralelo</p>
+                <h3 class="p-0 m-0">{{precioEuroParalelo}}</h3>
+              </div>
+            </div>
             <!-- Botones Escala de Tiempo -->
             <div class="mb-1 pl-2 ml-5 d-flex justify-content-start align-items-center">
               <!-- <b-col class="p-0 m-0 mr-auto"> -->
               <span class="pr-2" style="color:#666666;">Zoom</span>
               <!-- </b-col> -->
-              <div class="col-sm-8 col-md-10 col-lg-8">
+              <div class="col-sm-8 col-md-10 col-lg-7">
                 <f7-segmented>
-                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">1d</f7-button>
                   <f7-button @click="sE7D" small outline color="gray" class="p-0">7d</f7-button>
+                  <f7-button @click="sE15D" small outline color="gray" class="p-0">15d</f7-button>
                   <f7-button @click="sE30D" small outline color="gray" class="p-0">1m</f7-button>
                   <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">3m</f7-button>
                   <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">1y</f7-button>
-                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">YTD</f7-button>
+                  <!-- <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">YTD</f7-button> -->
                   <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">ALL</f7-button>
                 </f7-segmented>
               </div>
             </div>
             <!-- Graficos de linea -->
             <line-chart
-              style="position: relative; height:500px;"
               id="mercadoEuro"
               ref="mercadoEuro"
               :chartData="dataEuro"
@@ -83,16 +112,21 @@
               :styles="styles"
             ></line-chart>
           </f7-block>
-          <f7-block class="d-flex justify-content-center align-items-center" v-else>
-            <sync-loader :loading="!dataEuroLoaded" color="darkorange" size="24px"></sync-loader>
+          <!-- SPINNER -->
+          <f7-block class="py-5 my-5 d-flex justify-content-center align-items-center" v-else>
+            <fade-loader :loading="!dataEuroLoaded" color="darkorange" size="32px"></fade-loader>
           </f7-block>
         </b-col>
       </b-row>
       <!-- TABLAS HISTORICAS -->
       <b-row>
+        <!-- DOLAR -->
         <b-col sm="12" md="6">
           <f7-block-title class="mt-0">
-            <h1>Dolar</h1>Información Diaria
+            <h1 class="pl-3">
+              Dolar
+              <small style="color: #999; fontSize:16px">Información Diaria</small>
+            </h1>
           </f7-block-title>
           <f7-block>
             <table class="data-table">
@@ -115,9 +149,13 @@
             </table>
           </f7-block>
         </b-col>
+        <!-- EURO -->
         <b-col sm="12" md="6">
           <f7-block-title class="mt-0">
-            <h1>Euro</h1>Información Diaria
+            <h1 class="pl-3">
+              Euro
+              <small style="color: #999; fontSize:16px">Información Diaria</small>
+            </h1>
           </f7-block-title>
           <f7-block>
             <table class="data-table">
@@ -147,9 +185,10 @@
 //Recursos
 import Auth from "./../../auth";
 // import ChartDataLabels from "chartjs-plugin-datalabels";
-import { SyncLoader } from "vue-spinner/dist/vue-spinner.min.js";
+import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
 import Datepicker from "vuejs-datepicker";
 import moment from "moment";
+import "regenerator-runtime/runtime";
 // import "chartjs-plugin-crosshair";
 // import "chartjs-plugin-zoom";
 //Componentes
@@ -160,7 +199,7 @@ export default {
   components: {
     LineChart,
     Datepicker,
-    SyncLoader
+    FadeLoader
   },
   data() {
     return {
@@ -169,15 +208,23 @@ export default {
       //   minDolarX: state => state.user,
       //   minEuroX: state => state.minEuroX
       // }),
-      f7D: "",
-      f30D: "",
-      minPE7D: "",
-      minPE30D: "",
-      minPD7D: "",
-      minPD30D: "",
-      horaDF: "",
+      f7D: null,
+      f15D: null,
+      f30D: null,
+      minPE7D: null,
+      minPE15D: null,
+      minPE30D: null,
+      minPD7D: null,
+      minPD15D: null,
+      minPD30D: null,
+      horaDF: null,
       width: 100,
-      height: 480,
+      height: 500,
+      precioDolarBCV: null,
+      precioDolarToday: null,
+      precioDolarMonitor: null,
+      precioEuroOficial: null,
+      precioEuroParalelo: null,
       // Pre-Carga Flag
       dataDolarLoaded: false,
       dataEuroLoaded: false,
@@ -218,6 +265,10 @@ export default {
       this.minEuroX = this.f7D;
       this.minEuroY = this.minPE7D;
     },
+    sE15D() {
+      this.minEuroX = this.f15D;
+      this.minEuroY = this.minPE15D;
+    },
     sE30D() {
       this.minEuroX = this.f30D;
       this.minEuroY = this.minPE30D;
@@ -226,27 +277,31 @@ export default {
       this.minDolarX = this.f7D;
       this.minDolarY = this.minPD7D;
     },
+    sD15D() {
+      this.minDolarX = this.f15D;
+      this.minDolarY = this.minPD15D;
+    },
     sD30D() {
       this.minDolarX = this.f30D;
       this.minDolarY = this.minPD30D;
     },
-    resertScaleDolar(){
-      this.minDolarX = this.baseMinDolarX
-      this.minDolarY = this.baseMinDolarY
+    resertScaleDolar() {
+      this.minDolarX = this.baseMinDolarX;
+      this.minDolarY = this.baseMinDolarY;
     },
-    resertScaleEuro(){
-      this.minEuroX = this.baseMinEuroX
-      this.minEuroY = this.baseMinEuroY
+    resertScaleEuro() {
+      this.minEuroX = this.baseMinEuroX;
+      this.minEuroY = this.baseMinEuroY;
     },
     async getDataOficial() {
-      this.axios.get(Auth.URL + "/api/bcv").then(res => {
+      this.axios.get(Auth.URL + "/api/bcv").then(async res => {
         let bcv = res.data.data;
         var fecha = [];
         var dolar = [];
         var euro = [];
         var dataEuro = [];
         var dataDolar = [];
-        bcv.forEach((e, i) => {
+        await bcv.forEach((e, i) => {
           var f = moment(e.fecha).format("L");
           fecha[i] = f;
           var eu = e.euro.replace(".", "");
@@ -266,17 +321,20 @@ export default {
         });
         this.euroOficial = euro;
         this.dolarOficial = dolar;
+        this.precioDolarBCV = dolar[dolar.length - 1];
+        this.precioEuroOficial = euro[euro.length - 1];
+        this.dataDolarLoaded = true;
       });
     },
     async getDataParalelo() {
-      this.axios.get(Auth.URL + "/api/dtd").then(res => {
+      this.axios.get(Auth.URL + "/api/dtd").then(async res => {
         let dtd = res.data.data;
         var fechaDtd = [];
         var dolarDtd = [];
         var euroDtd = [];
         var dataEuroDtd = [];
         var dataDolarDtd = [];
-        dtd.forEach((e, i) => {
+        await dtd.forEach((e, i) => {
           var f = moment(e.fecha).format("L");
           fechaDtd[i] = f;
           var eu2 = e.euro.replace(".", "");
@@ -296,11 +354,62 @@ export default {
         });
         //Fecha Global
         this.f7D = fechaDtd[fechaDtd.length - 7];
+        this.f15D = fechaDtd[fechaDtd.length - 15];
         this.f30D = fechaDtd[fechaDtd.length - 30];
-        this.minPE7D = parseFloat(dtd[dtd.length - 7].euro.replace(".", "").replace(",", ".")) - (parseFloat(dtd[dtd.length - 7].euro.replace(".", "").replace(",", ".")) * 13) / 100;
-        this.minPE30D = parseFloat(dtd[dtd.length - 30].euro.replace(".", "").replace(",", ".")) - (parseFloat(dtd[dtd.length - 30].euro.replace(".", "").replace(",", ".")) * 10) / 100;
-        this.minPD7D = parseFloat(dtd[dtd.length - 7].dolar.replace(".", "").replace(",", ".")) - (parseFloat(dtd[dtd.length - 7].dolar.replace(".", "").replace(",", ".")) * 15) / 100;
-        this.minPD30D = parseFloat(dtd[dtd.length - 30].dolar.replace(".", "").replace(",", ".")) - (parseFloat(dtd[dtd.length - 30].dolar.replace(".", "").replace(",", ".")) * 15) / 100;
+        this.minPE7D =
+          parseFloat(
+            dtd[dtd.length - 7].euro.replace(".", "").replace(",", ".")
+          ) -
+          (parseFloat(
+            dtd[dtd.length - 7].euro.replace(".", "").replace(",", ".")
+          ) *
+            20) /
+            100;
+        this.minPE15D =
+          parseFloat(
+            dtd[dtd.length - 15].euro.replace(".", "").replace(",", ".")
+          ) -
+          (parseFloat(
+            dtd[dtd.length - 15].euro.replace(".", "").replace(",", ".")
+          ) *
+            25) /
+            100;
+        this.minPE30D =
+          parseFloat(
+            dtd[dtd.length - 30].euro.replace(".", "").replace(",", ".")
+          ) -
+          (parseFloat(
+            dtd[dtd.length - 30].euro.replace(".", "").replace(",", ".")
+          ) *
+            15) /
+            100;
+        this.minPD7D =
+          parseFloat(
+            dtd[dtd.length - 7].dolar.replace(".", "").replace(",", ".")
+          ) -
+          (parseFloat(
+            dtd[dtd.length - 7].dolar.replace(".", "").replace(",", ".")
+          ) *
+            20) /
+            100;
+        this.minPD15D =
+          parseFloat(
+            dtd[dtd.length - 15].dolar.replace(".", "").replace(",", ".")
+          ) -
+          (parseFloat(
+            dtd[dtd.length - 15].dolar.replace(".", "").replace(",", ".")
+          ) *
+            25) /
+            100;
+        this.minPD30D =
+          parseFloat(
+            dtd[dtd.length - 30].dolar.replace(".", "").replace(",", ".")
+          ) -
+          (parseFloat(
+            dtd[dtd.length - 30].dolar.replace(".", "").replace(",", ".")
+          ) *
+            20) /
+            100;
         this.fecha = fechaDtd;
         this.euroFecha = fechaDtd;
         this.dolarFecha = fechaDtd;
@@ -308,30 +417,42 @@ export default {
         this.euroParalelo = euroDtd;
         this.dolarToday = dolarDtd;
         // Escala del Euro (x, y)
-        this.minEuroX = moment(dtd[0].fecha).format("L");
+        // this.minEuroX = moment(dtd[0].fecha).format("L");
+        this.minEuroX = this.f7D;
         this.maxEuroX = moment(dtd[dtd.length - 1].fecha).format("L");
-        this.minEuroY = Math.min(...euroDtd) - (Math.min(...euroDtd) * 13) / 100;
+        this.minEuroY =
+          // Math.min(...euroDtd) - (Math.min(...euroDtd) * 13) / 100;
+          this.minPE7D;
         this.maxEuroY = Math.max(...euroDtd) + (Math.max(...euroDtd) * 5) / 100;
         // Escala del Dolar (x, y)
-        this.minDolarX = moment(dtd[0].fecha).format("L");
+        // this.minDolarX = moment(dtd[0].fecha).format("L");
+        this.minDolarX = this.f7D;
         this.maxDolarX = moment(dtd[dtd.length - 1].fecha).format("L");
-        this.minDolarY = Math.min(...dolarDtd) - (Math.min(...dolarDtd) * 23) / 100;
+        this.minDolarY =
+          // Math.min(...dolarDtd) - (Math.min(...dolarDtd) * 23) / 100;
+          this.minPD7D;
         this.maxDolarY = Math.max(...dolarDtd) + (Math.max(...dolarDtd) * 5) / 100;
-        this.baseMinEuroX = this.minEuroX
-        this.baseMinDolarX = this.minDolarX
-        this.baseMinEuroY = this.minEuroY
-        this.baseMinDolarY = this.minDolarY
+        this.baseMinEuroX = moment(dtd[0].fecha).format("L"); // this.minEuroX;
+        this.baseMinDolarX = moment(dtd[0].fecha).format("L"); // this.minDolarX;
+        this.baseMinEuroY =
+          Math.min(...euroDtd) - (Math.min(...euroDtd) * 13) / 100;
+        // this.minEuroY;
+        this.baseMinDolarY =
+          Math.min(...dolarDtd) - (Math.min(...dolarDtd) * 23) / 100;
+        // this.minDolarY;
+        this.precioDolarToday = dolarDtd[dolarDtd.length - 1];
+        this.precioEuroParalelo = euroDtd[euroDtd.length - 1];
         // Pre-Carga del Euro
         this.dataEuroLoaded = true;
       });
     },
     async getDolarMonitor() {
-      this.axios.get(Auth.URL + "/api/dm").then(res => {
+      this.axios.get(Auth.URL + "/api/dm").then(async res => {
         let dm = res.data.data;
         var fechaM = [];
         var dolarM = [];
         var dataDolarM = [];
-        dm.forEach((e, i) => {
+        await dm.forEach((e, i) => {
           var f = moment(e.fecha).format("L");
           fechaM[i] = f;
           var d = e.dolar.replace(".", "");
@@ -343,35 +464,9 @@ export default {
           };
         });
         this.dolarMonitor = dolarM;
-        this.dataDolarLoaded = true;
+        this.precioDolarMonitor = dolarM[dolarM.length - 1];
+        // this.dataDolarLoaded = true;
       });
-    },
-    getTablaEuro() {
-      this.axios
-        .get(Auth.URL + "/api/bcvDesc")
-        .then(res => {
-          var data = res.data.data;
-          var tabla = {};
-          data.forEach((valor, index) => {
-            tabla[index] = {
-              fecha: moment(valor.fecha).format("L"),
-              euroOficial: valor.euro,
-              euroParalelo: null
-            };
-          });
-          return tabla;
-        })
-        .then(tabla => {
-          this.axios.get(Auth.URL + "/api/dtdDesc").then(res => {
-            var data = res.data.data;
-            data.forEach((valor, index) => {
-              if (tabla[index] != undefined) {
-                tabla[index].euroParalelo = valor.euro;
-              }
-              this.tablaEuro = tabla;
-            });
-          });
-        });
     },
     getTablaDolar() {
       this.axios.get(Auth.URL + "/api/bcvDesc").then(res => {
@@ -403,6 +498,33 @@ export default {
           });
         });
       });
+    },
+    getTablaEuro() {
+      this.axios
+        .get(Auth.URL + "/api/bcvDesc")
+        .then(res => {
+          var data = res.data.data;
+          var tabla = {};
+          data.forEach((valor, index) => {
+            tabla[index] = {
+              fecha: moment(valor.fecha).format("L"),
+              euroOficial: valor.euro,
+              euroParalelo: null
+            };
+          });
+          return tabla;
+        })
+        .then(tabla => {
+          this.axios.get(Auth.URL + "/api/dtdDesc").then(res => {
+            var data = res.data.data;
+            data.forEach((valor, index) => {
+              if (tabla[index] != undefined) {
+                tabla[index].euroParalelo = valor.euro;
+              }
+              this.tablaEuro = tabla;
+            });
+          });
+        });
     },
     hora() {
       let t = new Date();
@@ -666,13 +788,12 @@ export default {
   created() {
     this.dataDolarLoaded = false;
     this.dataEuroLoaded = false;
+    this.getDolarMonitor();
     this.getDataOficial();
     this.getDataParalelo();
-    this.getDolarMonitor();
     this.getTablaEuro();
     this.getTablaDolar();
     this.hora();
-  },
-  mounted() {}
+  }
 };
 </script>

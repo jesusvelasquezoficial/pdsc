@@ -113,7 +113,7 @@ export default {
       this.axios.get('http://'+Auth.HOST+':8000/getTasasDM').then(res3 => {
         var data = res3.data
         this.monitorDolarHoy = data.dolar[0]
-      })
+      }).catch(err => {console.log('Dolar Monitor', err)});
     },
     getTasasBCV: function(){
       //Obtenemos los datos de la API 
