@@ -49,6 +49,17 @@ var bcv = null
 var dtd = null
 var dm = null
 
+var getTasasOIL = () => {
+  axios.get('http://0.0.0.0:8000/getTasasOIL').then(res => {
+    var dataOIL = res.data
+    var oil = {
+      fecha: dataOIL.fecha[0],
+      dolar: dataOIL.petroleo[0]
+    }
+    console.log(oil);
+  })
+}
+
 var getTasasDM = () => {
   axios.get('http://0.0.0.0:8000/getTasasDM').then(res => {
     var dataDM = res.data

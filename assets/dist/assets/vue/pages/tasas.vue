@@ -22,7 +22,7 @@
           <f7-block class="mt-0" v-if="dataDolarLoaded">
             <!-- Precios del dia -->
             <div class="mb-3 pl-sm-2 ml-5 d-flex justify-content-between align-items-center">
-              <div class="col-md-4" style="border-left: solid 5px Blue;">
+              <div class="col-md-4" style="border-left: solid 5px #252F5D;">
                 <p class="p-0 m-0">Dolar Oficial</p>
                 <h3 class="p-0 m-0">{{precioDolarBCV}}</h3>
               </div>
@@ -30,7 +30,7 @@
                 <p class="p-0 m-0">Dolar Today</p>
                 <h3 class="p-0 m-0">{{precioDolarToday}}</h3>
               </div>
-              <div class="col-md-4" style="border-left: solid 5px Orange;">
+              <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
                 <p class="p-0 m-0">Dolar Monitor</p>
                 <h3 class="p-0 m-0">{{precioDolarMonitor}}</h3>
               </div>
@@ -61,7 +61,7 @@
           </f7-block>
           <!-- SPINNER -->
           <f7-block class="py-5 my-5 d-flex justify-content-center align-items-center" v-else>
-            <fade-loader :loading="!dataDolarLoaded" color="darkorange" size="32px"></fade-loader>
+            <fade-loader :loading="!dataDolarLoaded" color="DarkOrange" size="32px"></fade-loader>
           </f7-block>
         </b-col>
         <!-- EURO -->
@@ -114,7 +114,7 @@
           </f7-block>
           <!-- SPINNER -->
           <f7-block class="py-5 my-5 d-flex justify-content-center align-items-center" v-else>
-            <fade-loader :loading="!dataEuroLoaded" color="darkorange" size="32px"></fade-loader>
+            <fade-loader :loading="!dataEuroLoaded" color="DarkOrange" size="32px"></fade-loader>
           </f7-block>
         </b-col>
       </b-row>
@@ -180,7 +180,6 @@
     </f7-block>
   </f7-page>
 </template>
-
 <script>
 //Recursos
 import Auth from "./../../auth";
@@ -552,14 +551,14 @@ export default {
         datasets: [
           {
             label: "Dolar Oficial BCV",
-            borderColor: "Blue",
+            borderColor: "#252F5D",
             borderWidth: 2,
             hoverBorderWidth: 3,
             backgroundColor: "rgba(0, 0, 0, 0)",
-            pointBorderColor: "Blue",
-            pointBackgroundColor: "Blue",
-            pointHoverBorderColor: "Blue",
-            pointHoverBackgroundColor: "Blue",
+            pointBorderColor: "#252F5D",
+            pointBackgroundColor: "#252F5D",
+            pointHoverBorderColor: "#252F5D",
+            pointHoverBackgroundColor: "#252F5D",
             pointRadius: 1,
             data: this.dolarOficial
           },
@@ -578,14 +577,14 @@ export default {
           },
           {
             label: "Monitor Dolar",
-            borderColor: "rgba(232, 126, 4, 1)",
+            borderColor: "DarkOrange",
             borderWidth: 2,
             hoverBorderWidth: 3,
             backgroundColor: "rgba(0, 0, 0, 0)",
-            pointBorderColor: "rgba(232, 126, 4, 1)",
-            pointBackgroundColor: "rgba(232, 126, 4, 1)",
-            pointHoverBorderColor: "rgba(232, 126, 4, 1)",
-            pointHoverBackgroundColor: "rgba(232, 126, 4, 1)",
+            pointBorderColor: "DarkOrange",
+            pointBackgroundColor: "DarkOrange",
+            pointHoverBorderColor: "DarkOrange",
+            pointHoverBackgroundColor: "DarkOrange",
             pointRadius: 1,
             data: this.dolarMonitor
           }
