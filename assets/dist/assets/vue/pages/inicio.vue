@@ -176,7 +176,7 @@ export default {
           console.log("Dolar Monitor", err);
         });
       this.axios
-        .get("http://127.0.0.1:8000/getTasasOIL")
+        .get("http://" + Auth.HOST + ":8000/getTasasOIL")
         .then(res4 => {
           var data = res4.data;
           console.log(data);
@@ -186,8 +186,9 @@ export default {
           console.log("Petroleo", err);
         });
       this.axios
-        .get("http://127.0.0.1:8000/getTasasORO")
+        .get("http://" + Auth.HOST + ":8000/getTasasORO")
         .then(res3 => {
+          console.log(res3);
           var data = res3.data;
           this.oroHoy = data.oro[0];
         })
@@ -195,7 +196,7 @@ export default {
           console.log("Oro", err);
         });
       this.axios
-        .get("http://127.0.0.1:8000/getTasasPTR")
+        .get("http://" + Auth.HOST + ":8000/getTasasPTR")
         .then(res4 => {
           var data = res4.data;
           console.log(data);
@@ -205,34 +206,34 @@ export default {
           console.log("Petro", err);
         });
       this.axios
-        .get("http://127.0.0.1:8000/getTasasBTC")
+        .get("http://" + Auth.HOST + ":8000/getTasasBTC")
         .then(res4 => {
           var data = res4.data;
           console.log(data);
-          this.bitcoinHoy = data.bitcoin[0];
+          this.bitcoinHoy = data.bitcoin[0]; 
         })
         .catch(err => {
           console.log("Bitcoin", err);
         });
       this.axios
-        .get("http://127.0.0.1:8000/getTasasSP500")
+        .get("http://" + Auth.HOST + ":8000/getTasasSP500")
         .then(res4 => {
           var data = res4.data;
           console.log(data);
           this.sp500Hoy = data.sp500[0];
         })
         .catch(err => {
-          console.log("Bitcoin", err);
+          console.log("PS500", err);
         });
       this.axios
-        .get("http://127.0.0.1:8000/getTasasNASDAQ")
+        .get("http://" + Auth.HOST + ":8000/getTasasNASDAQ")
         .then(res4 => {
           var data = res4.data;
           console.log(data);
           this.nasdaqHoy = data.nasdaq[0];
         })
         .catch(err => {
-          console.log("Bitcoin", err);
+          console.log("Nasdaq", err);
         });
     },
     getTasasBCV: function() {
