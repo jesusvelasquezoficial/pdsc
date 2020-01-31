@@ -1,6 +1,6 @@
 <template>
 	<div :class="[customClasses, { 'd-none': close }]" class="idb-block customClasses">
-		<fullscreen ref="fullscreen" class="h-100">
+		<fullscreen ref="fullscreen">
 			<div class="app-card " :class="appCardClass">
 				<app-card-heading :heading="heading" :headingColor="headingColor" :headingMenu="headingMenu"
 					:closeable="closeable" :reloadable="reloadable" :fullScreen="fullScreen" :withTabs="withTabs"

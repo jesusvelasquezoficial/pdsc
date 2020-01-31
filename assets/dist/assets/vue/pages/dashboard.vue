@@ -5,7 +5,7 @@
       <f7-nav-left>
         <f7-link panel-open="left" icon="fas fa-bars"></f7-link>
       </f7-nav-left>
-      <f7-nav-title>Central de Inteligencia Financiera</f7-nav-title>
+      <!-- <f7-nav-title>Central de Inteligencia Financiera</f7-nav-title> -->
       <f7-nav-right>
         <small>{{ horaDF }}</small>
         <f7-link icon="fas fa-user" panel-open="right" id="menu-diestro"></f7-link>
@@ -20,14 +20,20 @@
         ></b-tooltip>
       </f7-nav-right>
     </f7-navbar>
-    <f7-block>
-       <!-- SLIDER TASAS -->
-      <app-card class="ticker-slider grid-b-space" v-if="loaded" style="height:75;">
+    <f7-block class="mb-0">
+      <!--  NOMBRE DEL SITIO -->
+      <app-card customClasses="page-title rounded-0">
+        <h4 class="text-capitalize mb-0"><b>Central de Inteligencia Financiera</b></h4>
+      </app-card>
+      <!-- SLIDER TASAS -->
+      <app-card v-if="sliderLoaded" class="ticker-slider grid-b-space" style="height:75;">
         <slick :options="slickOptions">
           <div class="ticker-item-wrap px-3" v-for="(item,index) in tasasSliderData" :key="index">
             <div class="d-flex align-items-center justify-content-between">
               <div class="price-content">
                 <span class="d-inline-block">{{ item.coin1 }}</span>
+                <!-- <span class="d-inline-block ml-1 mr-1">/</span> -->
+                <!-- <span class="d-inline-block">{{ item.coin2 }}</span> -->
                 <span>{{ item.volume }}</span>
                 <div class="fw-bold mt-2">
                   {{ item.price }}
@@ -42,11 +48,16 @@
           </div>
         </slick>
       </app-card>
-      <!-- INDICADORES GRAPH -->
+      <!-- SPINNER -->
+      <f7-block v-else class="py-5 my-5 d-flex justify-content-center align-items-center">
+        <fade-loader :loading="!sliderLoaded" color="DarkOrange" size="32px"></fade-loader>
+      </f7-block>
+      <!-- INDICADORES GRAPH AND CALENDARIO -->
       <div class="row">
+        <!-- CARTAS DE TASAS -->
         <div class="col-md-8">
-          <div class="row">
-            <div class="col-4 grid-b-space">
+          <div class="row" v-if="indicadoresLoaded">
+            <div class="col-12 col-md-4 grid-b-space">
               <app-card>
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="d-block">
@@ -77,7 +88,7 @@
                 </div>
               </app-card>
             </div>
-            <div class="col-4 grid-b-space">
+            <div class="col-12 col-md-4 grid-b-space">
               <app-card>
                 <div class="layout justify-content-between">
                   <div class="align-items-center d-flex mb-1">
@@ -98,7 +109,7 @@
                 </div>
               </app-card>
             </div>
-            <div class="col-4 grid-b-space">
+            <div class="col-12 col-md-4 grid-b-space">
               <app-card>
                 <div class="layout justify-content-between">
                   <div class="align-items-center d-flex mb-1">
@@ -119,7 +130,7 @@
                 </div>
               </app-card>
             </div>
-            <div class="col-4 grid-b-space">
+            <div class="col-12 col-md-4 grid-b-space">
               <app-card>
                 <div class="layout justify-content-between">
                   <div class="align-items-center d-flex mb-1">
@@ -140,7 +151,7 @@
                 </div>
               </app-card>
             </div>
-            <div class="col-4 grid-b-space">
+            <div class="col-12 col-md-4 grid-b-space">
               <app-card>
                 <div class="layout justify-content-between">
                   <div class="align-items-center d-flex mb-1">
@@ -161,7 +172,7 @@
                 </div>
               </app-card>
             </div>
-            <div class="col-4 grid-b-space">
+            <div class="col-12 col-md-4 grid-b-space">
               <app-card>
                 <div class="layout justify-content-between">
                   <div class="align-items-center d-flex mb-1">
@@ -183,6 +194,10 @@
               </app-card>
             </div>
           </div>
+          <!-- SPINNER -->
+          <f7-block v-else class="py-5 my-5 d-flex justify-content-center align-items-center">
+            <fade-loader :loading="!indicadoresLoaded" color="DarkOrange" size="32px"></fade-loader>
+          </f7-block>
         </div>
         <!-- CALENDARIOS -->
         <div class="col-md-4">
@@ -206,16 +221,16 @@
                 <!-- Precios del dia -->
                 <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
                   <div class="col-md-4" style="border-left: solid 5px #252F5D;">
-                    <p class="p-0 m-0">Dolar Oficial</p>
-                    <h3 class="p-0 m-0">{{precioDolarBCV}}</h3>
+                    <p class="p-0 m-0" style="font-size:.7rem">Dolar Oficial</p>
+                    <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarBCV}}</h3>
                   </div>
                   <div class="col-md-4" style="border-left: solid 5px Green;">
-                    <p class="p-0 m-0">Dolar Today</p>
-                    <h3 class="p-0 m-0">{{precioDolarToday}}</h3>
+                    <p class="p-0 m-0" style="font-size:.7rem">Dolar Today</p>
+                    <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarToday}}</h3>
                   </div>
                   <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
-                    <p class="p-0 m-0">Dolar Monitor</p>
-                    <h3 class="p-0 m-0">{{precioDolarMonitor}}</h3>
+                    <p class="p-0 m-0" style="font-size:.7rem">Dolar Monitor</p>
+                    <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarMonitor}}</h3>
                   </div>
                 </div>
                 <!-- Botones Escala de Tiempo -->
@@ -256,12 +271,12 @@
                 <!-- Precio del Dia -->
                 <div class="mb-3 ml-4 d-flex justify-content-start align-items-center">
                   <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
-                    <p class="p-0 m-0">Euro Oficial</p>
-                    <h3 class="p-0 m-0">{{precioEuroOficial}}</h3>
+                    <p class="p-0 m-0" style="font-size:.7rem">Euro Oficial</p>
+                    <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroOficial}}</h3>
                   </div>
                   <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Darkred;">
-                    <p class="p-0 m-0">Euro Paralelo</p>
-                    <h3 class="p-0 m-0">{{precioEuroParalelo}}</h3>
+                    <p class="p-0 m-0" style="font-size:.7rem">Euro Paralelo</p>
+                    <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroParalelo}}</h3>
                   </div>
                 </div>
                 <!-- Botones Escala de Tiempo -->
@@ -303,8 +318,8 @@
       <b-row>
         <!-- DOLAR -->
         <b-col sm="12" md="6">
-          <app-card heading="Dolar Informacion Diaria">
-            <div class="table-responsive">
+          <app-card heading="Dolar Informacion Diaria" v-if="tablaDolarLoaded">
+            <div class="table-responsive mb-0">
               <div class="unseen">
                 <table class="table table-hover table-bordered table-striped">
                   <thead>
@@ -328,11 +343,15 @@
             </div>
             <!-- table responsive closed -->
           </app-card>
+          <!-- SPINNER -->
+          <f7-block v-else class="py-5 my-5 d-flex justify-content-center align-items-center">
+            <fade-loader :loading="!tablaDolarLoaded" color="DarkOrange" size="32px"></fade-loader>
+          </f7-block>
         </b-col>
         <!-- EURO -->
         <b-col sm="12" md="6">
-          <app-card heading="Euro Informacion Diaria">
-            <div class="table-responsive">
+          <app-card heading="Euro Informacion Diaria" v-if="tablaEuroLoaded">
+            <div class="table-responsive mb-0">
               <div class="unseen">
                 <table class="table table-hover table-bordered table-striped">
                   <thead>
@@ -353,6 +372,9 @@
               </div>
             </div>
           </app-card>
+          <f7-block v-else class="py-5 my-5 d-flex justify-content-center align-items-center">
+            <fade-loader :loading="!tablaEuroLoaded" color="DarkOrange" size="32px"></fade-loader>
+          </f7-block>
         </b-col>
       </b-row>
     </f7-block>
@@ -360,7 +382,6 @@
 </template>
 <script>
 //Recursos
-import Slick from "vue-slick";
 import Auth from "./../../auth";
 // import ChartDataLabels from "chartjs-plugin-datalabels";
 import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
@@ -369,14 +390,15 @@ import "regenerator-runtime/runtime";
 // import "chartjs-plugin-crosshair";
 // import "chartjs-plugin-zoom";
 //Componentes
+import Slick from "vue-slick";
+import { f7Row } from "framework7-vue";
 import LineChart from "./LineChart.js";
+import ChartConfig from "Constants/ChartConfig";
 import TasasSlider from "./TasasSlider.vue";
 import StatsCardV7 from "Components/StatsCardV7/StatsCardV7";
-import LineChartShadow from "Components/Charts/LineChartShadow";
 import TraderHistory from "Components/Widgets/TradeHistory";
-import { f7Row } from "framework7-vue";
+import LineChartShadow from "Components/Charts/LineChartShadow";
 import { mapState, mapActions } from "vuex";
-import ChartConfig from "Constants/ChartConfig";
 // import { mapState, mapActions } from "vuex";
 
 export default {
@@ -391,7 +413,6 @@ export default {
   },
   data() {
     return {
-      paginate: ['tablaDolar'],
       ddCalendar:[
         { 
           weekdays: [1, 7]
@@ -413,7 +434,10 @@ export default {
           }
         }
       ],
-      loaded: false,
+      tablaDolarLoaded: false,
+      tablaEuroLoaded: false,
+      sliderLoaded: false,
+      indicadoresLoaded: false,
       euroOficialHoy: "",
       dolarOficialHoy: "",
       euroParaleloHoy: "",
@@ -426,8 +450,8 @@ export default {
       sp500Hoy: "",
       nasdaqHoy: "",
       slickOptions: {
-        speed: 6000,
-        autoplay: false,
+        speed: 5000,
+        autoplay: true,
         autoplaySpeed: 0,
         arrows: false,
         cssEase: 'linear',
@@ -539,7 +563,7 @@ export default {
       this.minEuroX = this.baseMinEuroX;
       this.minEuroY = this.baseMinEuroY;
     },
-    async getDataOficial() {
+    getDataOficial() {
       this.axios.get(Auth.URL + "/api/bcv").then(async res => {
         let bcv = res.data.data;
         var fecha = [];
@@ -572,7 +596,7 @@ export default {
         this.dataDolarLoaded = true;
       });
     },
-    async getDataParalelo() {
+    getDataParalelo() {
       this.axios.get(Auth.URL + "/api/dtd").then(async res => {
         let dtd = res.data.data;
         var fechaDtd = [];
@@ -692,7 +716,7 @@ export default {
         this.dataEuroLoaded = true;
       });
     },
-    async getDolarMonitor() {
+    getDolarMonitor() {
       this.axios.get(Auth.URL + "/api/dm").then(async res => {
         let dm = res.data.data;
         var fechaM = [];
@@ -714,25 +738,11 @@ export default {
         // this.dataDolarLoaded = true;
       });
     },
-    async getPetroleo(){
-      this.axios.get('http://192.168.1.13:4000/api/oil').then(res => {
-        let oil = res.data.data;
-        var fechaOil = [];
-        var dolarOil = [];
-        oil.forEach((e, i) => {
-          var f = moment(e.fecha).format("L");
-          fechaOil[i] = f;
-          var d = e.dolar.replace(".", "");
-          dolarOil[i] = parseFloat(d.replace(",", "."));
-        });
-        this.dolarOil = dolarOil;
-      });
-    },
     getTablaDolar() {
-      this.axios.get(Auth.URL + "/api/bcvDesc").then(res => {
+      this.axios.get(Auth.URL + "/api/bcvDesc").then(async res => {
         var data = res.data.data;
         var tabla = {};
-        data.forEach((valor, index) => {
+        await data.forEach((valor, index) => {
           tabla[index] = {
             fecha: moment(valor.fecha).format("L"),
             dolarOficial: valor.dolar,
@@ -740,20 +750,21 @@ export default {
             dolarMonitor: []
           };
         });
-        this.axios.get(Auth.URL + "/api/dtdDesc").then(res2 => {
+        this.axios.get(Auth.URL + "/api/dtdDesc").then( async res2 => {
           var data = res2.data.data;
-          data.forEach((valor, index) => {
+          await data.forEach((valor, index) => {
             if (tabla[index] != undefined) {
               tabla[index].dolarToday = valor.dolar;
             }
           });
-          this.axios.get(Auth.URL + "/api/dmDesc").then(res3 => {
+          this.axios.get(Auth.URL + "/api/dmDesc").then( async res3 => {
             var data = res3.data.data;
-            data.forEach((valor, index) => {
+            await data.forEach((valor, index) => {
               if (tabla[index] != undefined) {
                 tabla[index].dolarMonitor = valor.dolar;
               }
               this.tablaDolar = tabla;
+              this.tablaDolarLoaded = true;
             });
           });
         });
@@ -782,92 +793,115 @@ export default {
                 tabla[index].euroParalelo = valor.euro;
               }
               this.tablaEuro = tabla;
+              this.tablaEuroLoaded = true;
             });
           });
         });
     },
-    getTasasHoy() {
+    getPetroleo(){
+      this.axios.get('http://pdsc.phoenixplus.net:8000/getTasasOIL').then(async res => {
+        let oil = res.data.data;
+        var fechaOil = [];
+        var dolarOil = [];
+        console.log(res);
+        
+        await oil.forEach((e, i) => {
+          var f = moment(e.fecha).format("L");
+          fechaOil[i] = f;
+          var d = e.petroleo.replace(".", "");
+          dolarOil[i] = parseFloat(d.replace(",", "."));
+        });
+        this.dolarOil = dolarOil;
+      });
+    },
+    getTasasOficialHoy(){
       this.axios.get("http://" + Auth.HOST + ":8000/getTasasBCV").then(res => {
         var data = res.data;
         this.euroOficialHoy = data.Euro[0];
         this.dolarOficialHoy = data.Dolar[0];
-      });
-      this.axios.get("http://" + Auth.HOST + ":8000/getTasasDTD").then(res2 => {
-        var data = res2.data;
+      }).catch(err => console.log('Dolar',err));
+    },
+    getTasasParalelaHoy(){
+      this.axios.get("http://" + Auth.HOST + ":8000/getTasasDTD").then(res => {
+        var data = res.data;
         this.euroParaleloHoy = data.euro[0];
         this.dolarParaleloHoy = data.dolar[0];
-      });
+      }).catch(err => console.log('Euro',err));
+    },
+    getTasasDolarMonitorHoy(){-
       this.axios
         .get("http://" + Auth.HOST + ":8000/getTasasDM")
-        .then(res3 => {
-          var data = res3.data;
+        .then(res => {
+          var data = res.data;
           this.monitorDolarHoy = data.dolar[0];
         })
-        .catch(err => {
-          console.log("Dolar Monitor", err);
-        });
+        .catch(err => console.log("Dolar Monitor", err));
+    },
+    getTasasPetroleoHoy(){
       this.axios
         .get("http://" + Auth.HOST + ":8000/getTasasOIL")
-        .then(res4 => {
-          var data = res4.data;
-          console.log(data);
+        .then(res => {
+          var data = res.data;
           this.petroleoHoy = data.petroleo[0];
         })
-        .catch(err => {
-          console.log("Petroleo", err);
-        });
+        .catch(err => console.log("Petroleo", err));
+    },
+    getTasasOroHoy(){
       this.axios
         .get("http://" + Auth.HOST + ":8000/getTasasORO")
-        .then(res3 => {
-          console.log(res3);
-          var data = res3.data;
+        .then(res => {
+          var data = res.data;
           this.oroHoy = data.oro[0];
         })
-        .catch(err => {
-          console.log("Oro", err);
-        });
+        .catch(err => console.log("Oro", err));
+    },
+    getTasasPetroHoy(){
       this.axios
         .get("http://" + Auth.HOST + ":8000/getTasasPTR")
-        .then(res4 => {
-          var data = res4.data;
-          console.log(data);
+        .then(res => {
+          var data = res.data;
           this.petroHoy = data.bolivar[0];
         })
-        .catch(err => {
-          console.log("Petro", err);
-        });
+        .catch(err => console.log("Petro", err));
+    },
+    getTasasBitcoinHoy(){
       this.axios
         .get("http://" + Auth.HOST + ":8000/getTasasBTC")
-        .then(res4 => {
-          var data = res4.data;
-          console.log(data);
+        .then(res => {
+          var data = res.data;
           this.bitcoinHoy = data.bitcoin[0]; 
         })
-        .catch(err => {
-          console.log("Bitcoin", err);
-        });
+        .catch(err => console.log("Bitcoin", err));
+    },
+    getTasasSP500Hoy(){
       this.axios
         .get("http://" + Auth.HOST + ":8000/getTasasSP500")
-        .then(res4 => {
-          var data = res4.data;
-          console.log(data);
+        .then(res => {
+          var data = res.data;
           this.sp500Hoy = data.sp500[0];
         })
-        .catch(err => {
-          console.log("PS500", err);
-        });
+        .catch(err => console.log("PS500", err));
+    },
+    getTasasNasdaqHoy(){
       this.axios
         .get("http://" + Auth.HOST + ":8000/getTasasNASDAQ")
-        .then(res4 => {
-          var data = res4.data;
-          console.log(data);
+        .then(res => {
+          var data = res.data;
           this.nasdaqHoy = data.nasdaq[0];
         })
-        .catch(err => {
-          console.log("Nasdaq", err);
-        });
-      this.loaded = true;
-
+        .catch(err => console.log("Nasdaq", err));
+    },
+    async getTasasHoy() {
+      await this.getTasasOficialHoy()
+      await this.getTasasParalelaHoy()
+      await this.getTasasPetroleoHoy()
+      await this.getTasasOroHoy()
+      await this.getTasasPetroHoy()
+      await this.getTasasBitcoinHoy()
+      await this.getTasasSP500Hoy()
+      await this.getTasasNasdaqHoy()
+      this.sliderLoaded = true;
+      this.indicadoresLoaded = true;
     },
     hora() {
       let t = new Date();
@@ -1214,19 +1248,13 @@ export default {
     },
   },
   created() {
-    this.dataDolarLoaded = false;
-    this.dataEuroLoaded = false;
-    this.loaded = false;
     this.getTasasHoy();
     this.getDolarMonitor();
     this.getDataOficial();
     this.getDataParalelo();
-    this.getPetroleo();
     this.getTablaEuro();
     this.getTablaDolar();
     this.hora();
   }
 };
 </script>
-<style scope>
-</style>

@@ -88,7 +88,7 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.sass$/,
-        loader: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
+        loader: ['sass-loader?indentedSyntax', 'css-loader', 'vue-style-loader']
       },
       {
         test: /\.css$/,
