@@ -22,9 +22,14 @@ module.exports = (env, options) => ({
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, 'js/'),
-      'assets': path.resolve(__dirname, 'js/assets/'),
+      // 'assets': path.resolve(__dirname, 'js/assets/'),
       'pages': path.resolve(__dirname, 'js/assets/vue/pages/'),
-      'components': path.resolve(__dirname, 'js/assets/vue/components/')
+      // 'components': path.resolve(__dirname, 'js/assets/vue/components/'),
+      'Components': path.resolve(__dirname, 'dist/components/'),
+      'Constants': path.resolve(__dirname, 'dist/constants/'),
+      'Assets': path.resolve(__dirname, 'dist/assets/'),
+      'Helpers': path.resolve(__dirname, 'dist/helpers/'),
+      'Views': path.resolve(__dirname, 'dist/views/')
     }
   },
   output: {

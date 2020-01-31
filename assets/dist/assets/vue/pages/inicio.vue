@@ -1,5 +1,5 @@
 <template>
-  <f7-page>
+  <f7-page style="background:#EEE;">
     <!-- Menu superior -->
     <f7-navbar>
       <f7-nav-left>
@@ -20,11 +20,11 @@
         ></b-tooltip>
       </f7-nav-right>
     </f7-navbar>
-    <marquee he direction="left">
+    <marquee direction="left" >
       <div class="d-flex justify-content-between align-items-center">
         <div class="col-1" style="border-left: solid 5px #252F5D;">
           <p class="p-0 m-0">Dolar Oficial</p>
-          <h3 class="p-0 m-0">{{euroOficialHoy}}</h3>
+          <h3 class="p-0 m-0">{{dolarOficialHoy}}</h3>
         </div>
         <div class="col-1" style="border-left: solid 5px Green;">
           <p class="p-0 m-0">Dolar Today</p>

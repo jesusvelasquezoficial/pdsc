@@ -40,6 +40,7 @@ defmodule PdscServerWeb.Router do
     resources "/bcv", BcvController
     resources "/dtd", DtdController
     resources "/dm", DmController
+    resources "/oil", OilController
 
     # resources "/users", UserController, except: [:new, :edit]
   end

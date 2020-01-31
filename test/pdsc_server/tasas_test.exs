@@ -195,4 +195,65 @@ defmodule PdscServer.TasasTest do
       assert %Ecto.Changeset{} = Tasas.change_dm(dm)
     end
   end
+
+  describe "oil" do
+    alias PdscServer.Tasas.Oil
+
+    @valid_attrs %{dolar: "some dolar", fecha: "some fecha"}
+    @update_attrs %{dolar: "some updated dolar", fecha: "some updated fecha"}
+    @invalid_attrs %{dolar: nil, fecha: nil}
+
+    def oil_fixture(attrs \\ %{}) do
+      {:ok, oil} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Tasas.create_oil()
+
+      oil
+    end
+
+    test "list_oil/0 returns all oil" do
+      oil = oil_fixture()
+      assert Tasas.list_oil() == [oil]
+    end
+
+    test "get_oil!/1 returns the oil with given id" do
+      oil = oil_fixture()
+      assert Tasas.get_oil!(oil.id) == oil
+    end
+
+    test "create_oil/1 with valid data creates a oil" do
+      assert {:ok, %Oil{} = oil} = Tasas.create_oil(@valid_attrs)
+      assert oil.dolar == "some dolar"
+      assert oil.fecha == "some fecha"
+    end
+
+    test "create_oil/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Tasas.create_oil(@invalid_attrs)
+    end
+
+    test "update_oil/2 with valid data updates the oil" do
+      oil = oil_fixture()
+      assert {:ok, %Oil{} = oil} = Tasas.update_oil(oil, @update_attrs)
+      assert oil.dolar == "some updated dolar"
+      assert oil.fecha == "some updated fecha"
+    end
+
+    test "update_oil/2 with invalid data returns error changeset" do
+      oil = oil_fixture()
+      assert {:error, %Ecto.Changeset{}} = Tasas.update_oil(oil, @invalid_attrs)
+      assert oil == Tasas.get_oil!(oil.id)
+    end
+
+    test "delete_oil/1 deletes the oil" do
+      oil = oil_fixture()
+      assert {:ok, %Oil{}} = Tasas.delete_oil(oil)
+      assert_raise Ecto.NoResultsError, fn -> Tasas.get_oil!(oil.id) end
+    end
+
+    test "change_oil/1 returns a oil changeset" do
+      oil = oil_fixture()
+      assert %Ecto.Changeset{} = Tasas.change_oil(oil)
+    end
+  end
 end

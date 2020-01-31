@@ -43,17 +43,14 @@ export default {
         id: 'io.framework7.testapp',
       }
     }
-  },
-  methods: {
-    
-  },
-  created() {
-    
-  },
+  }
 }
 </script>
 
 <style>
+.page-content {
+  background: #eee;
+}
 @media (min-width: 1400px) {
   body {
     width: 1360px !important;

@@ -322,4 +322,100 @@ defmodule PdscServer.Tasas do
   def change_dm(%Dm{} = dm) do
     Dm.changeset(dm, %{})
   end
+
+  alias PdscServer.Tasas.Oil
+
+  @doc """
+  Returns the list of oil.
+
+  ## Examples
+
+      iex> list_oil()
+      [%Oil{}, ...]
+
+  """
+  def list_oil do
+    Repo.all(Oil)
+  end
+
+  @doc """
+  Gets a single oil.
+
+  Raises `Ecto.NoResultsError` if the Oil does not exist.
+
+  ## Examples
+
+      iex> get_oil!(123)
+      %Oil{}
+
+      iex> get_oil!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_oil!(id), do: Repo.get!(Oil, id)
+
+  @doc """
+  Creates a oil.
+
+  ## Examples
+
+      iex> create_oil(%{field: value})
+      {:ok, %Oil{}}
+
+      iex> create_oil(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_oil(attrs \\ %{}) do
+    %Oil{}
+    |> Oil.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a oil.
+
+  ## Examples
+
+      iex> update_oil(oil, %{field: new_value})
+      {:ok, %Oil{}}
+
+      iex> update_oil(oil, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_oil(%Oil{} = oil, attrs) do
+    oil
+    |> Oil.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Oil.
+
+  ## Examples
+
+      iex> delete_oil(oil)
+      {:ok, %Oil{}}
+
+      iex> delete_oil(oil)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_oil(%Oil{} = oil) do
+    Repo.delete(oil)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking oil changes.
+
+  ## Examples
+
+      iex> change_oil(oil)
+      %Ecto.Changeset{source: %Oil{}}
+
+  """
+  def change_oil(%Oil{} = oil) do
+    Oil.changeset(oil, %{})
+  end
 end

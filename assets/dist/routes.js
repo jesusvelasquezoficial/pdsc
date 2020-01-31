@@ -9,7 +9,8 @@ import Chat from './assets/vue/pages/chat.vue';
 import Vuex from './assets/vue/pages/vuex.vue';
 
 // Componentes
-import Inicio from './assets/vue/pages/inicio.vue'
+// import Inicio from './assets/vue/pages/inicio.vue'
+import Inicio from './assets/vue/pages/dashboard.vue'
 import IniciarSesion from './assets/vue/pages/iniciar-sesion.vue'
 import RegistrarUsuario from './assets/vue/pages/registrar-usuario.vue'
 import RegistroExitoso from './assets/vue/pages/registro-exitoso.vue'
@@ -23,20 +24,25 @@ import Tasas from './assets/vue/pages/tasas.vue'
 import TasasBCV from './assets/vue/pages/tasasBCV.vue'
 import TasasDTD from './assets/vue/pages/tasasDTD.vue'
 
+//dashboard views 
+import DashboardOne from './views/dashboard/DashboardOne'
+import Crypto from './views/dashboard/Crypto.vue'
+
 import Auth from './assets/auth'
 
 export default [
   {
     path: '/',
-    async: (routeTo, routeFrom, resolve, reject) => { 
-      if(Auth.user.authenticated){
-        resolve({component: Inicio})  
-      }else{
-        resolve({component: IniciarSesion})
-      } 
+    async: (routeTo, routeFrom, resolve, reject) => {
+      if (Auth.user.authenticated) {
+        resolve({ component: Inicio }) // Inicio  
+      } else {
+        resolve({ component: IniciarSesion })
+      }
     }
   },
   {
+    name: "Inicio",
     path: '/inicio/',
     component: Inicio
   },

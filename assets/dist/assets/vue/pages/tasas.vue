@@ -1,180 +1,214 @@
 <template>
-  <f7-page>
+  <f7-page style="background:#EEE;">
     <f7-navbar title="Tasas del Mercado" back-link="Back">
       <f7-nav-right>
         <small>{{horaDF}}</small>
         <f7-link icon="fas fa-user" panel-open="right"></f7-link>
       </f7-nav-right>
     </f7-navbar>
+    <f7-block class="mb-0">
+      <crypto-slider></crypto-slider>
+      <div class="row">
+        <div class="col-8">
+          <div class="row">
+            <div class="col-4 grid-b-space">
+              <stats-card-v7 heading="Petroleo" color="text-danger"></stats-card-v7>
+            </div>
+            <div class="col-4 grid-b-space">
+              <stats-card-v7 heading="Oro" color="text-success"></stats-card-v7>
+            </div>
+            <div class="col-4 grid-b-space">
+              <stats-card-v7 heading="Petro" color="text-danger"></stats-card-v7>
+            </div>
+            <div class="col-4 grid-b-space">
+              <stats-card-v7 heading="Bitcoin" color="text-success"></stats-card-v7>
+            </div>
+            <div class="col-4 grid-b-space">
+              <stats-card-v7 heading="S&P 500" color="text-danger"></stats-card-v7>
+            </div>
+            <div class="col-4 grid-b-space">
+              <stats-card-v7 heading="Nasdaq" :color="bitcoin.color"></stats-card-v7>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="row">
+            <div class="col-md-6">CALENDARIO</div>
+            <div class="col-md-6">CALENDARIO</div>
+          </div>
+        </div>
+      </div>
+    </f7-block>
     <f7-block class="mt-0">
       <!-- GRAFICOS DEL MERCADO -->
-      <b-row>
-        <!-- DOLAR -->
-        <b-col sm="12" md="6">
-          <!-- TITULO -->
-          <f7-block-title class="mt-2">
-            <h1 class="pl-3">
-              Dolar
-              <small style="color: #999; fontSize:18px">Oficial y Paralelo</small>
-            </h1>
-          </f7-block-title>
-          <!-- LAYOUT -->
-          <f7-block class="mt-0" v-if="dataDolarLoaded">
-            <!-- Precios del dia -->
-            <div class="mb-3 pl-sm-2 ml-5 d-flex justify-content-between align-items-center">
-              <div class="col-md-4" style="border-left: solid 5px #252F5D;">
-                <p class="p-0 m-0">Dolar Oficial</p>
-                <h3 class="p-0 m-0">{{precioDolarBCV}}</h3>
+      <app-card>
+        <b-row>
+          <!-- DOLAR -->
+          <b-col sm="12" md="6">
+            <!-- TITULO -->
+            <f7-block-title class="mt-2">
+              <h1 class="pl-3">
+                Dolar
+                <small style="color: #999; fontSize:18px">Oficial y Paralelo</small>
+              </h1>
+            </f7-block-title>
+            <!-- LAYOUT -->
+            <f7-block class="mt-0" v-if="dataDolarLoaded">
+              <!-- Precios del dia -->
+              <div class="mb-3 pl-sm-2 ml-5 d-flex justify-content-between align-items-center">
+                <div class="col-md-4" style="border-left: solid 5px #252F5D;">
+                  <p class="p-0 m-0">Dolar Oficial</p>
+                  <h3 class="p-0 m-0">{{precioDolarBCV}}</h3>
+                </div>
+                <div class="col-md-4" style="border-left: solid 5px Green;">
+                  <p class="p-0 m-0">Dolar Today</p>
+                  <h3 class="p-0 m-0">{{precioDolarToday}}</h3>
+                </div>
+                <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
+                  <p class="p-0 m-0">Dolar Monitor</p>
+                  <h3 class="p-0 m-0">{{precioDolarMonitor}}</h3>
+                </div>
               </div>
-              <div class="col-md-4" style="border-left: solid 5px Green;">
-                <p class="p-0 m-0">Dolar Today</p>
-                <h3 class="p-0 m-0">{{precioDolarToday}}</h3>
+              <!-- Botones Escala de Tiempo -->
+              <div class="mb-1 pl-2 ml-5 d-flex justify-content-start align-items-center">
+                <span style="color:#666666;">Zoom</span>
+                <div class="col-sm-8 col-md-10 col-lg-7">
+                  <f7-segmented>
+                    <f7-button @click="sD7D" small outline color="gray" class="p-0">7d</f7-button>
+                    <f7-button @click="sD15D" small outline color="gray" class="p-0">15d</f7-button>
+                    <f7-button @click="sD30D" small outline color="gray" class="p-0">1m</f7-button>
+                    <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">3m</f7-button>
+                    <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">1y</f7-button>
+                    <!-- <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">YTD</f7-button> -->
+                    <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">ALL</f7-button>
+                  </f7-segmented>
+                </div>
               </div>
-              <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
-                <p class="p-0 m-0">Dolar Monitor</p>
-                <h3 class="p-0 m-0">{{precioDolarMonitor}}</h3>
+              <!-- Graficos de linea -->
+              <line-chart
+                id="mercadoDolar"
+                ref="mercadoDolar"
+                :chartData="dataDolar"
+                :options="optionsDolar"
+                :styles="styles"
+              ></line-chart>
+            </f7-block>
+            <!-- SPINNER -->
+            <f7-block class="py-5 my-5 d-flex justify-content-center align-items-center" v-else>
+              <fade-loader :loading="!dataDolarLoaded" color="DarkOrange" size="32px"></fade-loader>
+            </f7-block>
+          </b-col>
+          <!-- EURO -->
+          <b-col sm="12" md="6">
+            <!-- TITULOS -->
+            <f7-block-title class="mt-2">
+              <h1 class="pl-3">
+                Euro
+                <small style="color: #999; fontSize:18px">Oficial y Paralelo</small>
+              </h1>
+            </f7-block-title>
+            <!-- LAYOUT -->
+            <f7-block class="mt-0" v-if="dataEuroLoaded">
+              <!-- Precio del Dia -->
+              <div class="mb-3 pl-2 ml-5 d-flex justify-content-start align-items-center">
+                <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
+                  <p class="p-0 m-0">Euro Oficial</p>
+                  <h3 class="p-0 m-0">{{precioEuroOficial}}</h3>
+                </div>
+                <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Darkred;">
+                  <p class="p-0 m-0">Euro Paralelo</p>
+                  <h3 class="p-0 m-0">{{precioEuroParalelo}}</h3>
+                </div>
               </div>
-            </div>
-            <!-- Botones Escala de Tiempo -->
-            <div class="mb-1 pl-2 ml-5 d-flex justify-content-start align-items-center">
-              <span style="color:#666666;">Zoom</span>
-              <div class="col-sm-8 col-md-10 col-lg-7">
-                <f7-segmented>
-                  <f7-button @click="sD7D" small outline color="gray" class="p-0">7d</f7-button>
-                  <f7-button @click="sD15D" small outline color="gray" class="p-0">15d</f7-button>
-                  <f7-button @click="sD30D" small outline color="gray" class="p-0">1m</f7-button>
-                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">3m</f7-button>
-                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">1y</f7-button>
-                  <!-- <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">YTD</f7-button> -->
-                  <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">ALL</f7-button>
-                </f7-segmented>
+              <!-- Botones Escala de Tiempo -->
+              <div class="mb-1 pl-2 ml-5 d-flex justify-content-start align-items-center">
+                <!-- <b-col class="p-0 m-0 mr-auto"> -->
+                <span class="pr-2" style="color:#666666;">Zoom</span>
+                <!-- </b-col> -->
+                <div class="col-sm-8 col-md-10 col-lg-7">
+                  <f7-segmented>
+                    <f7-button @click="sE7D" small outline color="gray" class="p-0">7d</f7-button>
+                    <f7-button @click="sE15D" small outline color="gray" class="p-0">15d</f7-button>
+                    <f7-button @click="sE30D" small outline color="gray" class="p-0">1m</f7-button>
+                    <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">3m</f7-button>
+                    <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">1y</f7-button>
+                    <!-- <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">YTD</f7-button> -->
+                    <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">ALL</f7-button>
+                  </f7-segmented>
+                </div>
               </div>
-            </div>
-            <!-- Graficos de linea -->
-            <line-chart
-              id="mercadoDolar"
-              ref="mercadoDolar"
-              :chartData="dataDolar"
-              :options="optionsDolar"
-              :styles="styles"
-            ></line-chart>
-          </f7-block>
-          <!-- SPINNER -->
-          <f7-block class="py-5 my-5 d-flex justify-content-center align-items-center" v-else>
-            <fade-loader :loading="!dataDolarLoaded" color="DarkOrange" size="32px"></fade-loader>
-          </f7-block>
-        </b-col>
-        <!-- EURO -->
-        <b-col sm="12" md="6">
-          <!-- TITULOS -->
-          <f7-block-title class="mt-2">
-            <h1 class="pl-3">
-              Euro
-              <small style="color: #999; fontSize:18px">Oficial y Paralelo</small>
-            </h1>
-          </f7-block-title>
-          <!-- LAYOUT -->
-          <f7-block class="mt-0" v-if="dataEuroLoaded">
-            <!-- Precio del Dia -->
-            <div class="mb-3 pl-2 ml-5 d-flex justify-content-start align-items-center">
-              <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
-                <p class="p-0 m-0">Euro Oficial</p>
-                <h3 class="p-0 m-0">{{precioEuroOficial}}</h3>
-              </div>
-              <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Darkred;">
-                <p class="p-0 m-0">Euro Paralelo</p>
-                <h3 class="p-0 m-0">{{precioEuroParalelo}}</h3>
-              </div>
-            </div>
-            <!-- Botones Escala de Tiempo -->
-            <div class="mb-1 pl-2 ml-5 d-flex justify-content-start align-items-center">
-              <!-- <b-col class="p-0 m-0 mr-auto"> -->
-              <span class="pr-2" style="color:#666666;">Zoom</span>
-              <!-- </b-col> -->
-              <div class="col-sm-8 col-md-10 col-lg-7">
-                <f7-segmented>
-                  <f7-button @click="sE7D" small outline color="gray" class="p-0">7d</f7-button>
-                  <f7-button @click="sE15D" small outline color="gray" class="p-0">15d</f7-button>
-                  <f7-button @click="sE30D" small outline color="gray" class="p-0">1m</f7-button>
-                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">3m</f7-button>
-                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">1y</f7-button>
-                  <!-- <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">YTD</f7-button> -->
-                  <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">ALL</f7-button>
-                </f7-segmented>
-              </div>
-            </div>
-            <!-- Graficos de linea -->
-            <line-chart
-              id="mercadoEuro"
-              ref="mercadoEuro"
-              :chartData="dataEuro"
-              :options="optionsEuro"
-              :styles="styles"
-            ></line-chart>
-          </f7-block>
-          <!-- SPINNER -->
-          <f7-block class="py-5 my-5 d-flex justify-content-center align-items-center" v-else>
-            <fade-loader :loading="!dataEuroLoaded" color="DarkOrange" size="32px"></fade-loader>
-          </f7-block>
-        </b-col>
-      </b-row>
+              <!-- Graficos de linea -->
+              <line-chart
+                id="mercadoEuro"
+                ref="mercadoEuro"
+                :chartData="dataEuro"
+                :options="optionsEuro"
+                :styles="styles"
+              ></line-chart>
+            </f7-block>
+            <!-- SPINNER -->
+            <f7-block class="py-5 my-5 d-flex justify-content-center align-items-center" v-else>
+              <fade-loader :loading="!dataEuroLoaded" color="DarkOrange" size="32px"></fade-loader>
+            </f7-block>
+          </b-col>
+        </b-row>
+      </app-card>
+    </f7-block>
+    <f7-block>
       <!-- TABLAS HISTORICAS -->
       <b-row>
         <!-- DOLAR -->
         <b-col sm="12" md="6">
-          <f7-block-title class="mt-0">
-            <h1 class="pl-3">
-              Dolar
-              <small style="color: #999; fontSize:16px">Información Diaria</small>
-            </h1>
-          </f7-block-title>
-          <f7-block>
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th class="fecha" style="min-width:100%">Fecha</th>
-                  <th class="euro">Dolar Oficial BCV</th>
-                  <th class="dolar">Dolar Today</th>
-                  <th class="dolar">Monitor Dolar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(item, i) in tablaDolar" :key="i">
-                  <td class="fecha">{{ item.fecha }}</td>
-                  <td class="euro">{{ item.dolarOficial }}</td>
-                  <td class="dolar">{{ item.dolarToday }}</td>
-                  <td class="dolar">{{ item.dolarMonitor }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </f7-block>
+          <app-card customClasses="grid-b-space" heading="Dolar Informacion Diaria">
+            <div class="table-responsive">
+              <div class="unseen">
+                <table class="table table-hover table-bordered table-striped">
+                  <thead>
+                    <tr class="bg-primary">
+                      <th class="fecha" style="min-width:100%">Fecha</th>
+                      <th class="numeric euro">Dolar Oficial</th>
+                      <th class="numeric dolar">Dolar Today</th>
+                      <th class="numeric dolar">Monitor Dolar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(item, i) in tablaDolar" :key="i">
+                      <td class="fecha">{{ item.fecha }}</td>
+                      <td class="numeric euro">{{ item.dolarOficial }}</td>
+                      <td class="numeric dolar">{{ item.dolarToday }}</td>
+                      <td class="numeric dolar">{{ item.dolarMonitor }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- table responsive closed -->
+          </app-card>
         </b-col>
         <!-- EURO -->
         <b-col sm="12" md="6">
-          <f7-block-title class="mt-0">
-            <h1 class="pl-3">
-              Euro
-              <small style="color: #999; fontSize:16px">Información Diaria</small>
-            </h1>
-          </f7-block-title>
-          <f7-block>
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th class="fecha" style="min-width:100%">Fecha</th>
-                  <th class="euro">Euro Oficial</th>
-                  <th class="dolar">Euro Paralelo</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(item, i) in tablaEuro" :key="i">
-                  <td class="fecha">{{ item.fecha }}</td>
-                  <td class="euro">{{ item.euroOficial }}</td>
-                  <td class="dolar">{{ item.euroParalelo }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </f7-block>
+          <app-card customClasses="grid-b-space" heading="Euro Informacion Diaria">
+            <div class="table-responsive">
+              <div class="unseen">
+                <table class="table table-hover table-bordered table-striped">
+                  <thead>
+                    <tr class="bg-primary">
+                      <th class="fecha" style="min-width:100%">Fecha</th>
+                      <th class="numeric euro">Euro Oficial</th>
+                      <th class="numeric dolar">Euro Paralelo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(item, i) in tablaEuro" :key="i">
+                      <td class="fecha">{{ item.fecha }}</td>
+                      <td class="numeric euro">{{ item.euroOficial }}</td>
+                      <td class="numeric dolar">{{ item.euroParalelo }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </app-card>
         </b-col>
       </b-row>
     </f7-block>
@@ -193,12 +227,20 @@ import "regenerator-runtime/runtime";
 //Componentes
 import LineChart from "./LineChart.js";
 import { f7Row } from "framework7-vue";
+import ChartConfig from "Constants/ChartConfig";
+import StatsCardV7 from "Components/StatsCardV7/StatsCardV7";
+import LineChartShadow from "Components/Charts/LineChartShadow";
+import TraderHistory from "Components/Widgets/TradeHistory";
 import { mapState, mapActions } from "vuex";
+
 export default {
   components: {
     LineChart,
     Datepicker,
-    FadeLoader
+    FadeLoader,
+    StatsCardV7,
+    LineChartShadow,
+    TraderHistory
   },
   data() {
     return {
@@ -207,6 +249,19 @@ export default {
       //   minDolarX: state => state.user,
       //   minEuroX: state => state.minEuroX
       // }),
+      ChartConfig,
+      bitcoin: {
+        icon: "cc BTC text-success",
+        name: "Bitcoin",
+        color: "fw-semi-bold text-success",
+        duration: "last 4 days",
+        market_cap: "2.3",
+        market_cap_icon: "fa-arrow-up",
+        market_cap_color: "success-text",
+        chartLabel: ["A", "B", "C", "D", "E"],
+        data: [1, 26, 8, 22, 1],
+        chartBorderColor: ChartConfig.color.success
+      },
       f7D: null,
       f15D: null,
       f30D: null,
@@ -430,7 +485,8 @@ export default {
         this.minDolarY =
           // Math.min(...dolarDtd) - (Math.min(...dolarDtd) * 23) / 100;
           this.minPD7D;
-        this.maxDolarY = Math.max(...dolarDtd) + (Math.max(...dolarDtd) * 5) / 100;
+        this.maxDolarY =
+          Math.max(...dolarDtd) + (Math.max(...dolarDtd) * 5) / 100;
         this.baseMinEuroX = moment(dtd[0].fecha).format("L"); // this.minEuroX;
         this.baseMinDolarX = moment(dtd[0].fecha).format("L"); // this.minDolarX;
         this.baseMinEuroY =
