@@ -4,23 +4,29 @@
     <f7-navbar>
       <f7-nav-left>
         <f7-link panel-open="left" icon="fas fa-bars"></f7-link>
+        <f7-link class="searchbar-enable" data-searchbar=".searchbar-demo" icon-ios="f7:search" icon-aurora="f7:search" icon-md="material:search"></f7-link>
       </f7-nav-left>
-      <!-- <f7-nav-title>Central de Inteligencia Financiera</f7-nav-title> -->
-      <f7-nav-right>
-        <small>{{ horaDF }}</small>
-        <f7-link icon="fas fa-user" panel-open="right" id="menu-diestro"></f7-link>
-        <b-tooltip
-          :title="fullname"
-          target="menu-diestro"
-          placement="left"
-          delay="{ show: 0, hide: 0 }"
-          boundary-padding="10"
-          no-Fade="true"
-          show
-        ></b-tooltip>
+      <f7-nav-title class="mx-auto">
+        <img 
+          src="images/phoenix.png" 
+          class="img-fluid mr-5" 
+          alt="site logo" 
+          width="200" 
+          height="100"
+        >
+      </f7-nav-title>
+      <f7-searchbar
+        class="searchbar-demo"
+        expandable
+        search-container=".search-list"
+        search-in=".item-title"
+        :disable-button="true"
+      ></f7-searchbar>
+      <f7-nav-right class="mx-0">
+        <small class="mr-4">{{ horaDF }}</small>
       </f7-nav-right>
     </f7-navbar>
-    <f7-block class="mb-0">
+    <f7-block class="mb-0 mt-3">
       <!--  NOMBRE DEL SITIO -->
       <app-card customClasses="page-title rounded-0">
         <h4 class="text-capitalize mb-0"><b>Central de Inteligencia Financiera</b></h4>
@@ -200,7 +206,7 @@
           </f7-block>
         </div>
         <!-- CALENDARIOS -->
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
           <div class="row">
             <div class="col-md-12">
               <calendar :attributes='attrsCalendar' :disabled-dates='ddCalendar' class='m-0 p-0' style="height:239px;" is-expanded/>
@@ -211,10 +217,10 @@
       </div>
     </f7-block>
     <!-- GRAFICOS DEL MERCADO -->
-    <f7-block class="mt-sm-2">
+    <f7-block class="my-0">
         <b-row>
           <!-- DOLAR -->
-          <b-col sm="12" md="6">
+          <b-col sm="12" md="6" class="mb-4">
             <app-card heading="Dolar Oficial y Paralelo">
               <!-- LAYOUT -->
               <div v-if="dataDolarLoaded">
@@ -239,7 +245,7 @@
                   <div class="col-sm-8 col-md-10 col-lg-7">
                     <f7-segmented>
                       <f7-button @click="sD7D" small outline color="gray" class="p-0">7d</f7-button>
-                      <f7-button @click="sD15D" small outline color="gray" class="p-0">15d</f7-button>
+                      <f7-button @click="sD2S" small outline color="gray" class="p-0">2s</f7-button>
                       <f7-button @click="sD30D" small outline color="gray" class="p-0">1m</f7-button>
                       <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">3m</f7-button>
                       <f7-button @click="resertScaleDolar" small outline color="gray" class="p-0">1y</f7-button>
@@ -264,7 +270,7 @@
             </app-card>
           </b-col>
           <!-- EURO -->
-          <b-col sm="12" md="6">
+          <b-col sm="12" md="6" class="mb-4">
             <app-card heading="Euro Oficial y Paralelo">
               <!-- LAYOUT -->
               <div v-if="dataEuroLoaded">
@@ -272,7 +278,7 @@
                 <div class="mb-3 ml-4 d-flex justify-content-start align-items-center">
                   <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
                     <p class="p-0 m-0" style="font-size:.7rem">Euro Oficial</p>
-                    <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroOficial}}</h3>
+                    <h3 class="p-0 m-0" style="font-size:1f.2rem">{{precioEuroOficial}}</h3>
                   </div>
                   <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Darkred;">
                     <p class="p-0 m-0" style="font-size:.7rem">Euro Paralelo</p>
@@ -287,7 +293,7 @@
                   <div class="col-sm-8 col-md-10 col-lg-7">
                     <f7-segmented>
                       <f7-button @click="sE7D" small outline color="gray" class="p-0">7d</f7-button>
-                      <f7-button @click="sE15D" small outline color="gray" class="p-0">15d</f7-button>
+                      <f7-button @click="sE2S" small outline color="gray" class="p-0">2s</f7-button>
                       <f7-button @click="sE30D" small outline color="gray" class="p-0">1m</f7-button>
                       <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">3m</f7-button>
                       <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">1y</f7-button>
@@ -314,34 +320,30 @@
         </b-row>
     </f7-block>
     <!-- TABLAS HISTORICAS -->
-    <f7-block>
+    <f7-block class="my-0">
       <b-row>
         <!-- DOLAR -->
-        <b-col sm="12" md="6">
+        <b-col sm="12" md="6" class="mb-4">
           <app-card heading="Dolar Informacion Diaria" v-if="tablaDolarLoaded">
             <div class="table-responsive mb-0">
               <div class="unseen">
-                <table class="table table-hover table-bordered table-striped">
-                  <thead>
-                    <tr class="bg-primary">
-                      <th class="fecha" style="min-width:100%">Fecha</th>
-                      <th class="numeric euro">Dolar Oficial</th>
-                      <th class="numeric dolar">Dolar Today</th>
-                      <th class="numeric dolar">Monitor Dolar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(item, i) in tablaDolar" :key="i">
-                      <td class="fecha">{{ item.fecha }}</td>
-                      <td class="numeric euro">{{ item.dolarOficial }}</td>
-                      <td class="numeric dolar">{{ item.dolarToday }}</td>
-                      <td class="numeric dolar">{{ item.dolarMonitor }}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <b-table class="table table-hover table-bordered table-striped"
+                  id="tablaDolar"
+                  :items="tablaDolar"
+                  :per-page="paginacionDolarPorPagina"
+                  :current-page="paginacionDolarPagina"
+                  :thead-class="['bg-primary', 'text-white']"  
+                  small
+                >
+                <template v-slot:table-caption>Total de Registros: {{paginacionDolarTotal}}</template>
+                </b-table>
               </div>
             </div>
             <!-- table responsive closed -->
+            <div class="mb-20">
+							<b-pagination aria-controls="tablaDolar" pills align="center" :total-rows="paginacionDolarTotal" v-model="paginacionDolarPagina" :per-page="paginacionDolarPorPagina">
+							</b-pagination>
+						</div>
           </app-card>
           <!-- SPINNER -->
           <f7-block v-else class="py-5 my-5 d-flex justify-content-center align-items-center">
@@ -349,28 +351,27 @@
           </f7-block>
         </b-col>
         <!-- EURO -->
-        <b-col sm="12" md="6">
+        <b-col sm="12" md="6" class="mb-4">
           <app-card heading="Euro Informacion Diaria" v-if="tablaEuroLoaded">
             <div class="table-responsive mb-0">
               <div class="unseen">
-                <table class="table table-hover table-bordered table-striped">
-                  <thead>
-                    <tr class="bg-primary">
-                      <th class="fecha" style="min-width:100%">Fecha</th>
-                      <th class="numeric euro">Euro Oficial</th>
-                      <th class="numeric dolar">Euro Paralelo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="(item, i) in tablaEuro" :key="i">
-                      <td class="fecha">{{ item.fecha }}</td>
-                      <td class="numeric euro">{{ item.euroOficial }}</td>
-                      <td class="numeric dolar">{{ item.euroParalelo }}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <b-table class="table table-hover table-bordered table-striped"
+                  id="tablaEuro"
+                  :items="tablaEuro"
+                  :per-page="paginacionEuroPorPagina"
+                  :current-page="paginacionEuroPagina"
+                  :thead-class="['bg-primary', 'text-white']"  
+                  small
+                >
+                <template v-slot:table-caption>Total de Registros: {{paginacionEuroTotal}}</template>
+                </b-table>
               </div>
             </div>
+            <!-- table responsive closed -->
+            <div class="mb-20">
+							<b-pagination aria-controls="tablaEuro" pills align="center" :total-rows="paginacionEuroTotal" v-model="paginacionEuroPagina" :per-page="paginacionEuroPorPagina">
+							</b-pagination>
+						</div>
           </app-card>
           <f7-block v-else class="py-5 my-5 d-flex justify-content-center align-items-center">
             <fade-loader :loading="!tablaEuroLoaded" color="DarkOrange" size="32px"></fade-loader>
@@ -398,6 +399,9 @@ import TasasSlider from "./TasasSlider.vue";
 import StatsCardV7 from "Components/StatsCardV7/StatsCardV7";
 import TraderHistory from "Components/Widgets/TradeHistory";
 import LineChartShadow from "Components/Charts/LineChartShadow";
+import SearchForm from "Components/Header/SearchForm.vue";
+import MobileSearchForm from "Components/Header/MobileSearchForm";
+
 import { mapState, mapActions } from "vuex";
 // import { mapState, mapActions } from "vuex";
 
@@ -409,10 +413,22 @@ export default {
     LineChartShadow,
     TraderHistory,
     Slick,
-    TasasSlider
+    TasasSlider,
+    SearchForm,
+    MobileSearchForm
   },
   data() {
     return {
+      euroVariacion: 0,
+      dolarVariacion: 0,
+      paginacionEuroTotal: 0,
+      paginacionEuroPaginas: 0,
+      paginacionEuroPorPagina: 7,
+      paginacionEuroPagina: 1,
+      paginacionDolarTotal: 0,
+      paginacionDolarPaginas: 0,
+      paginacionDolarPorPagina: 7,
+      paginacionDolarPagina: 1,
       ddCalendar:[
         { 
           weekdays: [1, 7]
@@ -478,13 +494,13 @@ export default {
       },
       dfhora: "",
       f7D: null,
-      f15D: null,
+      f2S: null,
       f30D: null,
       minPE7D: null,
-      minPE15D: null,
+      minPE2S: null,
       minPE30D: null,
       minPD7D: null,
-      minPD15D: null,
+      minPD2S: null,
       minPD30D: null,
       horaDF: null,
       width: 100,
@@ -535,9 +551,9 @@ export default {
       this.minEuroX = this.f7D;
       this.minEuroY = this.minPE7D;
     },
-    sE15D() {
-      this.minEuroX = this.f15D;
-      this.minEuroY = this.minPE15D;
+    sE2S() {
+      this.minEuroX = this.f2S;
+      this.minEuroY = this.minPE2S;
     },
     sE30D() {
       this.minEuroX = this.f30D;
@@ -547,9 +563,9 @@ export default {
       this.minDolarX = this.f7D;
       this.minDolarY = this.minPD7D;
     },
-    sD15D() {
-      this.minDolarX = this.f15D;
-      this.minDolarY = this.minPD15D;
+    sD2S() {
+      this.minDolarX = this.f2S;
+      this.minDolarY = this.minPD2S;
     },
     sD30D() {
       this.minDolarX = this.f30D;
@@ -590,7 +606,15 @@ export default {
           };
         });
         this.euroOficial = euro;
+        var a = euro[euro.length - 2]
+        var b = euro[euro.length - 1]
+        var v = ((b - a) / a) * 100
+        this.euroVariacion = v.toFixed(2)
         this.dolarOficial = dolar;
+        var a2 = dolar[dolar.length - 2]
+        var b2 = dolar[dolar.length - 1]
+        var v2 = ((b2 - a2) / a2) * 100
+        this.dolarVariacion = v.toFixed(2)
         this.precioDolarBCV = dolar[dolar.length - 1];
         this.precioEuroOficial = euro[euro.length - 1];
         this.dataDolarLoaded = true;
@@ -624,7 +648,7 @@ export default {
         });
         //Fecha Global
         this.f7D = fechaDtd[fechaDtd.length - 7];
-        this.f15D = fechaDtd[fechaDtd.length - 15];
+        this.f2S = fechaDtd[fechaDtd.length - 15];
         this.f30D = fechaDtd[fechaDtd.length - 30];
         this.minPE7D =
           parseFloat(
@@ -635,14 +659,14 @@ export default {
           ) *
             20) /
             100;
-        this.minPE15D =
+        this.minPE2S =
           parseFloat(
             dtd[dtd.length - 15].euro.replace(".", "").replace(",", ".")
           ) -
           (parseFloat(
             dtd[dtd.length - 15].euro.replace(".", "").replace(",", ".")
           ) *
-            25) /
+            20) /
             100;
         this.minPE30D =
           parseFloat(
@@ -651,7 +675,7 @@ export default {
           (parseFloat(
             dtd[dtd.length - 30].euro.replace(".", "").replace(",", ".")
           ) *
-            15) /
+            40) /
             100;
         this.minPD7D =
           parseFloat(
@@ -662,14 +686,14 @@ export default {
           ) *
             20) /
             100;
-        this.minPD15D =
+        this.minPD2S =
           parseFloat(
             dtd[dtd.length - 15].dolar.replace(".", "").replace(",", ".")
           ) -
           (parseFloat(
             dtd[dtd.length - 15].dolar.replace(".", "").replace(",", ".")
           ) *
-            25) /
+            20) /
             100;
         this.minPD30D =
           parseFloat(
@@ -678,7 +702,7 @@ export default {
           (parseFloat(
             dtd[dtd.length - 30].dolar.replace(".", "").replace(",", ".")
           ) *
-            20) /
+            40) /
             100;
         this.fecha = fechaDtd;
         this.euroFecha = fechaDtd;
@@ -741,7 +765,7 @@ export default {
     getTablaDolar() {
       this.axios.get(Auth.URL + "/api/bcvDesc").then(async res => {
         var data = res.data.data;
-        var tabla = {};
+        var tabla = [];
         await data.forEach((valor, index) => {
           tabla[index] = {
             fecha: moment(valor.fecha).format("L"),
@@ -768,6 +792,11 @@ export default {
             });
           });
         });
+        console.log("tabla", Object.keys(tabla).length);
+        this.paginacionDolarTotal = Object.keys(tabla).length
+        this.paginacionDolarPaginas = Math.ceil((Object.keys(tabla).length / this.paginacionDolarPorPagina))
+        console.log(this.paginacionDolarTotal);
+        console.log(this.paginacionDolarPaginas);
       });
     },
     getTablaEuro() {
@@ -775,7 +804,7 @@ export default {
         .get(Auth.URL + "/api/bcvDesc")
         .then(res => {
           var data = res.data.data;
-          var tabla = {};
+          var tabla = [];
           data.forEach((valor, index) => {
             tabla[index] = {
               fecha: moment(valor.fecha).format("L"),
@@ -796,6 +825,11 @@ export default {
               this.tablaEuroLoaded = true;
             });
           });
+          console.log("tabla", Object.keys(tabla).length);
+          this.paginacionEuroTotal = Object.keys(tabla).length
+          this.paginacionEuroPaginas = Math.ceil((Object.keys(tabla).length / this.paginacionEuroPorPagina))
+          console.log(this.paginacionEuroTotal);
+          console.log(this.paginacionEuroPaginas);
         });
     },
     getPetroleo(){
@@ -1169,25 +1203,25 @@ export default {
         "coin1": "Dolar Oficial",
         "coin2": "",
         "price": this.dolarOficialHoy,
-        "market_cap": "",
-        "icon": "",
-        "color": ""
+        "market_cap": this.dolarVariacion,
+        "icon": "zmdi zmdi-long-arrow-up",
+        "color": "text-green"
       },
       {
         "coin1": "Dolar Paralelo",
         "coin2": "",
         "price": this.dolarParaleloHoy,
-        "market_cap": "",
-        "icon": "",
-        "color": ""
+        "market_cap": "0",
+        "icon": "zmdi zmdi-long-arrow-down",
+        "color": "text-danger"
       },
       {
         "coin1": "Euro Oficial",
         "coin2": "",
         "price": this.euroOficialHoy,
-        "market_cap": "",
-        "icon": "",
-        "color": ""
+        "market_cap": this.euroVariacion,
+        "icon": "zmdi zmdi-long-arrow-up",
+        "color": "text-green"
       },
       {
         "coin1": "Euro Paralelo",

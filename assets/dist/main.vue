@@ -2,11 +2,11 @@
   <!-- App -->
   <f7-app :params="f7params">
     <f7-statusbar></f7-statusbar>
-    <f7-panel color-theme='deeporange' left cover>
-      <f7-view url="/menu-izquierdo/" links-view=".view-main" />
+    <f7-panel color-theme='deeporange' left reveal style="background:rgba(46, 51, 68,.9);">
+      <f7-view url="/menu-left/" links-view=".view-main" />
     </f7-panel>
     <f7-view color-theme='deeporange' url="/" :main="true" class="ios-edges"></f7-view>
-    <f7-panel color-theme='deeporange' right reveal>
+    <f7-panel color-theme='deeporange' right cover>
       <f7-view url="/menu-diestro/" links-view=".view-main" />
     </f7-panel>
   </f7-app>

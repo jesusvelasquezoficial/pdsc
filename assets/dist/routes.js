@@ -12,7 +12,7 @@ import Inicio from './assets/vue/pages/dashboard.vue'
 import IniciarSesion from './assets/vue/pages/iniciar-sesion.vue'
 import RegistrarUsuario from './assets/vue/pages/registrar-usuario.vue'
 import RegistroExitoso from './assets/vue/pages/registro-exitoso.vue'
-import MenuIzquierdo from './assets/vue/pages/menu-izquierdo.vue'
+import MenuLeft from './assets/vue/pages/menu-left.vue'
 import MenuDiestro from './assets/vue/pages/menu-diestro.vue'
 import AgregarProducto from './assets/vue/pages/agregar-producto.vue'
 import MostrarProducto from './assets/vue/pages/mostrar-producto.vue'
@@ -50,8 +50,8 @@ export default [
     component: RegistroExitoso
   },
   {
-    path: '/menu-izquierdo/',
-    component: MenuIzquierdo
+    path: '/menu-left/',
+    component: MenuLeft
   },
   {
     path: '/menu-diestro/',
