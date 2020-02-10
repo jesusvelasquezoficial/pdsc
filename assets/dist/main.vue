@@ -48,12 +48,4 @@
     margin-right: auto;
   }
 } */
-.icono-buscar{
-	padding-top: 10px !important;
-	margin-top: 10px !important;
-}
-.zmdi .zmdi-search{
-	padding-top: 10px !important;
-	margin-top: 10px !important;
-}
 </style>

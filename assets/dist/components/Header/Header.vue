@@ -10,7 +10,7 @@
 				<search-form class="v-step-1"></search-form>
 				<div class="mobile-search d-none">
 					<b-btn class="mobile-search-btn" variant="white">
-						<i class="icono-buscar zmdi zmdi-search"></i>
+						<span class="zmdi zmdi-search"></span>
 					</b-btn>
 				</div>
 			</div>

@@ -428,8 +428,8 @@ const actions = {
     }).catch(err => console.log(err));
     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasDTD').then(res => {
       let data = res.data;
-      context.commit('setDolarParalelo', data.euro[0]);
-      context.commit('setEuroParalelo', data.dolar[0]);
+      context.commit('setDolarParalelo', data.dolar[0]);
+      context.commit('setEuroParalelo', data.euro[0]);
     }).catch(err => console.log(err));
     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasDM').then(res => {
       let data = res.data;

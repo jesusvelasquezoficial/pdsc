@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<app-card class="ticker-slider grid-b-space">
-			<slick  v-if="loaded" :options="slickOptions" style="height:40;">
+		<app-card class="ticker-slider grid-b-space" style="height:77;">
+			<slick  v-if="loaded" :options="slickOptions">
 				<div class="ticker-item-wrap px-3" v-for="(item,index) in getData" :key="index">
 					<div class="d-flex align-items-center justify-content-between">
 						<div class="price-content">
@@ -166,5 +166,4 @@
 	};
 </script>
 <style scoped>
-
 </style>

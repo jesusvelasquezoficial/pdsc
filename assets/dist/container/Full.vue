@@ -25,11 +25,11 @@
 </template>
 
 <script>
-	import $ from 'jquery';
 	import Header from '@/components/Header/Header'
 	import SideNav from '@/components/Sidebar/SideNav'
 	import Customizer from '@/components/Customizer/Customizer'
 	import { mapGetters } from "vuex"
+	import $ from 'jquery';
 	export default {
 		data() {
 			return {

@@ -12,7 +12,13 @@ module.exports = {
       'Helpers': path.resolve(__dirname, 'dist/helpers/'),
       'Assets': path.resolve(__dirname, 'dist/assets/'),
       'Themes': path.resolve(__dirname, 'dist/themes/'),
-      'Views': path.resolve(__dirname, 'dist/views/'),
+      "_Views": path.resolve(__dirname, 'dist/views/'),
+      get "Views"() {
+        return this["_Views"];
+      },
+      set "Views"(value) {
+        this["_Views"] = value;
+      },
       'lib': path.resolve(__dirname, 'dist/lib/'),
     }
   }
