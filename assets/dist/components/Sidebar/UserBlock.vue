@@ -1,12 +1,13 @@
 <template>
-	<div class="user-section d-flex flex-column align-items-center">
+	<div class="user-section d-flex flex-column align-items-center mt-3">
 		<div class="pos-relative d-inline-block">
-			<img src="/static/img/user-1.jpg" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10" />
+			<img src="Static/img/user.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10" />
 			<span class="badge badge-success badge-label-sm badge-thumb-top-right badge-pill fa-notify">&nbsp;</span>
 		</div>
-		<b-dropdown variant="link" size="md" text="Jan Doe" class="admin-section py-0 ">
+
+		<b-dropdown variant="link" size="md" :text="fullname" class="admin-section py-0">
 			<b-dropdown-header class="gradient-primary">
-				<span>Jan Doe</span>
+				<span>{{fullname}}</span>
 			</b-dropdown-header>
 			<template v-for="(menu,index) in userMenu">
 				<b-dropdown-item :to="menu.path" v-if="index !== 3" :key="index">
@@ -25,6 +26,7 @@
 	export default {
 		data() {
 			return {
+				fullname:localStorage.getItem('fullname'),
 				userMenu: [
 					{
 						icon: "ti-user",
@@ -60,3 +62,8 @@
 		}
 	}
 </script>
+<style>
+	#app .app-container .sidebar-wrapper .user-section .dropdown-menu {
+		left: -12% !important
+	}
+</style>

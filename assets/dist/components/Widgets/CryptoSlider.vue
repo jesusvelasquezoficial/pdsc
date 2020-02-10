@@ -1,16 +1,16 @@
 <template>
 	<div>
 		<app-card class="ticker-slider grid-b-space">
-			<slick :options="slickOptions">
-				<div class="ticker-item-wrap px-3" v-for="(item,index) in cryptoSliderData" :key="index">
+			<slick  v-if="loaded" :options="slickOptions" style="height:40;">
+				<div class="ticker-item-wrap px-3" v-for="(item,index) in getData" :key="index">
 					<div class="d-flex align-items-center justify-content-between">
 						<div class="price-content">
-							<div class="fw-bold mb-2">
+							<span class="d-inline-block">{{ item.coin1 }}</span>
+							<!-- <span class="d-inline-block ml-1 mr-1">/</span> -->
+							<span class="d-inline-block">{{ item.coin2 }}</span>
+							<div class="fw-bold mt-2">
 								{{ item.price }}
 							</div>
-							<span class="d-inline-block">{{ item.coin1 }}</span>
-							<span class="d-inline-block ml-1 mr-1">/</span>
-							<span class="d-inline-block">{{ item.coin2 }}</span>
 							<span>{{ item.volume }}</span>
 						</div>
 						<div>
@@ -21,21 +21,28 @@
 					</div>
 				</div>
 			</slick>
+			<div v-else class="d-flex justify-content-center">
+				<fade-loader :loading="!loaded" color="DarkOrange" size="32px"></fade-loader>
+			</div>
 		</app-card>
+		
 	</div>
 </template>
 
 <script>
 	import Slick from "vue-slick";
-
+	import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
+  import Auth from "@/assets/auth";
+	import { mapState, mapGetters, mapActions } from 'vuex';
 	export default {
 		components: {
 			Slick,
+			FadeLoader
 		},
 		data() {
 			return {
 				slickOptions: {
-					speed: 10000,
+					speed: 5000,
 					autoplay: true,
 					autoplaySpeed: 0,
 					arrows: false,
@@ -43,7 +50,7 @@
 					slidesToShow: 1,
 					slidesToScroll: 1,
 					variableWidth: true,
-				},
+        },
 				cryptoSliderData: [
 					{
 						"coin1": "BTC",
@@ -142,10 +149,22 @@
 						"color": "text-danger"
 					}
 				]
-
 			};
-		}
+		},
+    computed: {
+			...mapState({
+				loaded: state => state.tasas.loaded,
+			}),
+			...mapGetters('tasas', ['getData'])
+		},
+		methods: {
+			...mapActions('tasas', ['loadTasasSlider'])
+		},
+		created() {
+			this.loadTasasSlider();
+		},
 	};
 </script>
 <style scoped>
+
 </style>

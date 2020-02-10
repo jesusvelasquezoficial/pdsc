@@ -9,7 +9,8 @@ export default {
       'success': '#00D014',
       'info': '#00D0BD',
       'white': '#fff',
-      'lightGrey': '#E8ECEE'
+      'lightGrey': '#E8ECEE',
+      'dark': '#000000'
    },
    lineChartAxesColor: '#E9ECEF',
    legendFontColor: '#AAAEB3', // only works on react chart js 2

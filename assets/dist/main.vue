@@ -1,58 +1,59 @@
 <template>
-  <!-- App -->
-  <f7-app :params="f7params">
-    <f7-statusbar></f7-statusbar>
-    <f7-panel color-theme='deeporange' left reveal style="background:rgba(46, 51, 68,.9);">
-      <f7-view url="/menu-left/" links-view=".view-main" />
-    </f7-panel>
-    <f7-view color-theme='deeporange' url="/" :main="true" class="ios-edges"></f7-view>
-    <f7-panel color-theme='deeporange' right cover>
-      <f7-view url="/menu-diestro/" links-view=".view-main" />
-    </f7-panel>
-  </f7-app>
+  <div id="app">
+    <router-view></router-view>
+    <tour></tour>
+		<notifications group="loggedIn" position="top right" animation-type="velocity"/>
+  </div>
 </template>
 <script>
-// Import Routes...
-import { f7App, f7Panel, f7View, f7Statusbar } from 'framework7-vue';
-import routes from './routes.js';
-let theme = 'auto';
-if (document.location.search.indexOf('theme=') >= 0) {
-  theme = document.location.search.split('theme=')[1].split('&')[0];
-}
-
-export default {
-  components: {
-    f7App,
-    f7Panel,
-    f7View,
-    f7Statusbar,
-  },
-  data() {
-    return {
-      dtd:{
-        fecha: '',
-        euro: '',
-        dolar: ''
-      },
-      f7params: {
-        theme,
-        routes,
-        id: 'io.framework7.testapp',
+  import { mapGetters } from "vuex";
+  import Tour from "Components/Tour/Tour";
+  import AppConfig from "Constants/AppConfig";
+  export default {
+    components: {
+        Tour
+    },
+    mounted() {
+      setTimeout(() => {
+          this.loading = false;
+          setTimeout(() => {
+            if (AppConfig.enableUserTour) {
+              this.$tours["vuelyTour"].start();
+            }
+          }, 1000);
+        }, 2000);
+    },
+    data() {
+      return {
+        animation: {
+          enter: {
+            opacity: [1, 0],
+            translateX: [0, -300],
+            scale: [1, 0.2]
+          },
+          leave: {
+            opacity: 0,
+            height: 0
+          }
+        }
       }
     }
   }
-}
 </script>
-
 <style>
-.page-content {
-  background: #eee;
-}
-@media (min-width: 1400px) {
+/* @media (min-width: 1400px) {
   body {
     width: 1360px !important;
     margin-left: auto;
     margin-right: auto;
   }
+} */
+.icono-buscar{
+	padding-top: 10px !important;
+	margin-top: 10px !important;
+}
+.zmdi .zmdi-search{
+	padding-top: 10px !important;
+	margin-top: 10px !important;
 }
 </style>

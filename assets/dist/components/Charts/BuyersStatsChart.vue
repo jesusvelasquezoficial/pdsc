@@ -1,7 +1,7 @@
 <template>
 	<app-card appCardClass="h-100 d-flex flex-column justify-content-between " :heading="$t('message.buyersStats')"
 		headingMenu="true" footerClasses="p-0" :enableFooter="true" customClasses="buyers-stats overflow-hide h-100">
-		<ECharts :options="pie" style="width:100%; height:270px" auto-resize></ECharts>
+		<!-- <ECharts :options="pie" style="width:100%; height:270px" auto-resize></ECharts> -->
 		<ul slot="footer" class="footer-border border-0">
 			<li class="w-33" v-for="(stats, index) in buyersStats" :key="index">
 				<h5 class="font-weight-bold mb">{{stats.count}}</h5>
@@ -12,14 +12,14 @@
 </template>
 
 <script>
-	import ECharts from 'vue-echarts';
-	import 'echarts/lib/chart/pie';
-	import 'echarts/lib/component/title';
+	// import ECharts from 'vue-echarts';
+	// import 'echarts/lib/chart/pie';
+	// import 'echarts/lib/component/title';
 	import ChartConfig from 'Constants/ChartConfig';
 
 	export default {
 		components: {
-			ECharts
+			// ECharts
 		},
 		data() {
 			return {

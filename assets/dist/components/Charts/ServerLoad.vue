@@ -1,18 +1,18 @@
 <template>
 	<div class="overflw-hidden">
-		<ECharts :options="pie" style="width:100%; height:290px" auto-resize></ECharts>
+		<!-- <ECharts :options="pie" style="width:100%; height:290px" auto-resize></ECharts> -->
 	</div>
 </template>
 
 <script>
-	import ECharts from 'vue-echarts'
-	import 'echarts/lib/chart/pie';
-	import 'echarts/lib/component/title';
+	// import ECharts from 'vue-echarts'
+	// import 'echarts/lib/chart/pie';
+	// import 'echarts/lib/component/title';
 	import ChartConfig from 'Constants/ChartConfig';
 
 	export default {
 		components: {
-			ECharts
+			// ECharts
 		},
 		data() {
 			return {

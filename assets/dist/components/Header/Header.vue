@@ -10,7 +10,7 @@
 				<search-form class="v-step-1"></search-form>
 				<div class="mobile-search d-none">
 					<b-btn class="mobile-search-btn" variant="white">
-						<span class="zmdi zmdi-search"></span>
+						<i class="icono-buscar zmdi zmdi-search"></i>
 					</b-btn>
 				</div>
 			</div>
@@ -74,9 +74,8 @@
 	import { mapGetters } from "vuex";
 
 	// import "tour-component/vue";
-	// import "vue-class-component";
+	import "vue-class-component";
 	// import "tour-component/tour.min.css";
-
 
 	export default {
 		data: function () {
@@ -117,25 +116,25 @@
 					{
 						name: "John Doe",
 						message: "Hey, We have a meeting planned at the end of the day.",
-						img: "/static/img/user-1.jpg",
+						img: "Static/img/user-1.jpg",
 						badgeColor: "badge-danger"
 					},
 					{
 						name: "John Doe",
 						message: "Can we schedule a call this afternoon?",
-						img: "/static/img/user-2.jpg",
+						img: "Static/img/user-2.jpg",
 						badgeColor: "badge-success"
 					},
 					{
 						name: "John Doe",
 						message: "Great presentation the other day. Keep up the good work!",
-						img: "/static/img/user-3.jpg",
+						img: "Static/img/user-3.jpg",
 						badgeColor: "badge-warning"
 					},
 					{
 						name: "John Doe",
 						message: "Need the updates of the project at the end of the week.",
-						img: "/static/img/user-4.jpg",
+						img: "Static/img/user-4.jpg",
 						badgeColor: "badge-success"
 					}
 				],
@@ -210,3 +209,23 @@
 		}
 	};
 </script>
+<style>
+.app-header {
+	transition: all 0.2s ease-in-out;
+	z-index: 10;
+}
+.collapsed-sidebar .app-header {
+	left: 0;
+}
+/* .lock-screen-wrapper, .session-wrapper{
+	z-index: 999999;
+} */
+/* .social-wrap li:last-child {
+	display: none;
+} */
+/* .overlay.lock-screen-wrapper::before, .session-wrapper.overlay::before {
+
+	pointer-events: none; */
+	/* display: none; */
+/* } */
+</style>

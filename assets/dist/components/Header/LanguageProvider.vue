@@ -1,12 +1,12 @@
 <template>
 	<b-nav-item-dropdown right no-caret class="custom-dropdown lang language-wrap">
 		<template slot="button-content">
-			<img class="flag-img" :src="`/static/flag-icons/${selectedLocale.icon}.png`">
+			<img class="flag-img" :src="`Static/flag-icons/${selectedLocale.icon}.png`">
 		</template>
 		<b-dropdown-header class="gradient-primary text-white">Languages</b-dropdown-header>
 		<b-dropdown-item v-for="language in languages" :key="language.locale" @click="changeLanguage(language)">
 			<div class="icon-area">
-				<img class="img-responsive" :src="`/static/flag-icons/${language.icon}.png`">
+				<img class="img-responsive" :src="`Static/flag-icons/${language.icon}.png`">
 			</div>
 			<small>{{language.name}}</small>
 		</b-dropdown-item>

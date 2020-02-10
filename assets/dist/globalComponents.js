@@ -1,44 +1,21 @@
-/**
- * Vuely Global Components
- */
-
-//spinner for app card
 import Spinner from 'vue-spinner/dist/vue-spinner.min.js';
-
-//perfect scroll bar
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-
-//date picker
 import Datepicker from 'vuejs-datepicker';
 import VCalendar from 'v-calendar/lib/components/calendar.umd';
-
 import CountUp from 'Components/CountUp/CountUp';
-
-// page title bar
 import PageTitleBar from "Components/PageTitleBar/PageTitleBar";
-
-// App Card component
 import AppCard from 'Components/AppCard/AppCard';
-
-// Stats Card Component
 import StatsCard from 'Components/StatsCard/StatsCard';
-
-// Stats Card V2 Component
 import StatsCardV2 from "Components/StatsCardV2/StatsCardV2"
-
-// social stats card
 import SocialStatsCard from 'Components/SocialStatsCard/SocialStatsCard';
-
-//App Card loader 
 import AppSectionLoader from 'Components/AppSectionLoader/AppSectionLoader';
-
-//crypto slider
 import CryptoSlider from "Components/Widgets/CryptoSlider";
-// import TasasSlider from "Components/Widgets/TasasSlider";
-
-//Delete Confirmation Dialog
+import IndicadoresTasas from "Components/Widgets/IndicadoresTasas";
+import Calendario from "Components/Widgets/Calendario";
+import GraphMercadoOficial from "Components/Widgets/GraphMercadoOficial";
+import TablasMercados from 'Components/Widgets/TablasMercados';
 import DeleteConfirmationDialog from 'Components/DeleteConfirmationDialog/DeleteConfirmationDialog';
-
+// import TasasSlider from "Components/Widgets/TasasSlider";
 const GlobalComponents = {
 	install(Vue) {
 		Vue.component('countUp', CountUp);
@@ -54,8 +31,11 @@ const GlobalComponents = {
 		Vue.component('DeleteConfirmationDialog', DeleteConfirmationDialog);
 		Vue.component('Spinner', Spinner);
 		Vue.component('cryptoSlider', CryptoSlider);
+		Vue.component('indicadoresTasas', IndicadoresTasas);
+		Vue.component('calendario', Calendario);
+		Vue.component('graphMercadoOficial', GraphMercadoOficial);
+		Vue.component('TablasMercados', TablasMercados);
 		// Vue.component('tasasSlider', TasasSlider);
 	}
 }
-
 export default GlobalComponents

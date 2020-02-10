@@ -1,3 +1,10 @@
 /* This file is for your main application css. */
 
-@import "./phoenix.css";
+/* @import "./phoenix.css"; */
+@import "~bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap-vue/dist/bootstrap-vue.css";
+@import "../dist/assets/material-design-iconic-font/css/material-design-iconic-font.min.css";
+@import "../dist/assets/themify-icons/themify-icons.css";
+@import "../dist/assets/webfont/cryptocoins-colors.css";
+@import "../dist/assets/sass/main.scss";
+

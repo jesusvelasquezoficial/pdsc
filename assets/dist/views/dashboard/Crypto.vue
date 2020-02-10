@@ -38,13 +38,13 @@
 				</stats-card-v7>
 			</div>
 		</div>
-		<!-- <div class="row">
+		<div class="row">
 			<div class="col-lg-12 grid-b-space">
 				<app-card heading="BTC/USD" :headingMenu="true">
 					<CandleSticks></CandleSticks>
 				</app-card>
 			</div>
-		</div> -->
+		</div>
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="row">
@@ -111,7 +111,7 @@
 			CoinsList,
 			ExchangeRate,
 			SafeTrade,
-			ExchangeStatistics
+			ExchangeStatistics,
 			// CandleSticks
 		},
 		data() {

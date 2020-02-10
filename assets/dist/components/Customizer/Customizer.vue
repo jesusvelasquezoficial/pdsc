@@ -35,7 +35,7 @@
 								<span class="custom-control-indicator"></span>
 								<span class="d-block mb-15 theme-option-text">{{$t('message.darkMode')}}</span>
 							</label>
-							<img src="/static/img/nightmode.png" alt="layout">
+							<img src="Static/img/nightmode.png" alt="layout">
 						</div>
 						<div class="layout-item rtl-layout-xl form-check mb-2">
 							<label class="custom-control custom-checkbox" for="rtlLayout">

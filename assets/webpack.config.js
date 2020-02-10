@@ -22,14 +22,15 @@ module.exports = (env, options) => ({
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, 'js/'),
-      // 'assets': path.resolve(__dirname, 'js/assets/'),
-      'pages': path.resolve(__dirname, 'js/assets/vue/pages/'),
-      // 'components': path.resolve(__dirname, 'js/assets/vue/components/'),
+      '@': path.resolve(__dirname, "dist/"),
       'Components': path.resolve(__dirname, 'dist/components/'),
       'Constants': path.resolve(__dirname, 'dist/constants/'),
-      'Assets': path.resolve(__dirname, 'dist/assets/'),
+      'Container': path.resolve(__dirname, 'dist/container/'),
       'Helpers': path.resolve(__dirname, 'dist/helpers/'),
-      'Views': path.resolve(__dirname, 'dist/views/')
+      'Assets': path.resolve(__dirname, 'dist/assets/'),
+      'Themes': path.resolve(__dirname, 'dist/themes/'),
+      'Views': path.resolve(__dirname, 'dist/views/'),
+      'lib': path.resolve(__dirname, 'dist/lib/'),
     }
   },
   output: {
@@ -47,7 +48,8 @@ module.exports = (env, options) => ({
             js: {
               loader: 'babel-loader',
               options: {
-                presets: ['@babel/preset-env']
+                presets: ['@babel/preset-env'],
+                plugins: ['@babel/transform-runtime']
               }
             }
           }
@@ -55,11 +57,12 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.js$/,
-        exclude: /node_modules(\/|\\)(?!(framework7|framework7-vue|template7|dom7)(\/|\\)).*/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/transform-runtime']
           }
         }
       },
@@ -68,6 +71,7 @@ module.exports = (env, options) => ({
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
+          // outputPath: '../img'
         }
       },
       {
@@ -75,7 +79,7 @@ module.exports = (env, options) => ({
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]',
-          outputPath: '../css'
+          outputPath: '../fonts'
         }
       },
       {
@@ -88,7 +92,7 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.sass$/,
-        loader: ['sass-loader?indentedSyntax', 'css-loader', 'vue-style-loader']
+        loader: [MiniCssExtractPlugin.loader,'sass-loader?indentedSyntax', 'css-loader', 'vue-style-loader']
       },
       {
         test: /\.css$/,
@@ -99,7 +103,10 @@ module.exports = (env, options) => ({
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-    new CopyWebpackPlugin([{ from: 'dist/assets/images/', to: '../images' }]),
-    new CopyWebpackPlugin([{ from: 'static/favicon.ico', to: '../' }])
+    // new CopyWebpackPlugin([{ from: 'dist/assets/images/', to: '../images' }]),
+    new CopyWebpackPlugin([{ from: 'dist/static/', to: '../Static' }]),
+    // new CopyWebpackPlugin([{ from: 'dist/assets/images/', to: '../img' }]),
+    new CopyWebpackPlugin([{ from: 'css/', to: '../css' }]),
+    new CopyWebpackPlugin([{ from: 'dist/static/favicon.ico', to: '../' }])
   ]
 });
