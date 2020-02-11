@@ -5,10 +5,15 @@ import VueAxios from 'vue-axios';
 import BootstrapVue from 'bootstrap-vue';
 import MaterialIcons from 'material-design-icons/iconfont/material-icons.css';
 import FontAwesome from '@fortawesome/fontawesome-free/css/all.min.css';
-import FastClick from 'fastclick';
-// import AppStyles from './assets/sass/main.scss'
+
 import app from './main.vue';
 import messages from "./lang";
+import { store } from "./store/store";
+import router from "./router";
+import GlobalComponents from "./globalComponents";
+import "./lib/adminifyScripts";
+import "./lib/adminifycss";
+
 import VueSweetAlert from "vue-sweetalert";
 import Nprogress from "nprogress";
 import wysiwyg from "vue-wysiwyg";
@@ -27,14 +32,6 @@ import VuePaginate from 'vue-paginate';
 import VCalendar from 'v-calendar/lib/components/calendar.umd';
 // import * as VueGoogleMaps from "vue2-google-maps";
 // Scripts Template
-import "./lib/adminifyScripts";
-import "./lib/adminifycss";
-// Import Vuex Storage
-import { store } from "./store/store";
-// import store from './assets/vuex/storage.js';
-import router from "./router";
-//global components
-import GlobalComponents from "./globalComponents";
 // navigation guards before each
 router.beforeEach((to, from, next) => {
 	Nprogress.start();
@@ -109,10 +106,4 @@ export default new Vue({
   components: {
     app
   },
-  // mounted() {
-  //   window.addEventListener('load', () => {
-  //     // run after everything is in-place
-  //     FastClick.attach(document.body);
-  //   });
-  // }
 }).$mount('#app');

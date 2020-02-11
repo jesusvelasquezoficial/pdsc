@@ -14,23 +14,23 @@ module.exports = (env, options) => ({
     ]
   },
   entry: {
-    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
+    './src/main.js': ['./src/main.js'].concat(glob.sync('./vendor/**/*.js'))
   },
   resolve: {
     extensions: ['.js', '.json', '.vue'],
-    modules: [path.join(__dirname, './'), 'node_modules'],
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
-      'src': path.resolve(__dirname, 'js/'),
-      '@': path.resolve(__dirname, "dist/"),
-      'Components': path.resolve(__dirname, 'dist/components/'),
-      'Constants': path.resolve(__dirname, 'dist/constants/'),
-      'Container': path.resolve(__dirname, 'dist/container/'),
-      'Helpers': path.resolve(__dirname, 'dist/helpers/'),
-      'Assets': path.resolve(__dirname, 'dist/assets/'),
-      'Themes': path.resolve(__dirname, 'dist/themes/'),
-      'Views': path.resolve(__dirname, 'dist/views/'),
-      'lib': path.resolve(__dirname, 'dist/lib/'),
+      // 'src': path.resolve(__dirname, 'js/'),
+      '@': path.resolve(__dirname, "src/"),
+      'Components': path.resolve(__dirname, 'src/components/'),
+      'Constants': path.resolve(__dirname, 'src/constants/'),
+      'Container': path.resolve(__dirname, 'src/container/'),
+      'Helpers': path.resolve(__dirname, 'src/helpers/'),
+      'Assets': path.resolve(__dirname, 'src/assets/'),
+      'Themes': path.resolve(__dirname, 'src/themes/'),
+      'Views': path.resolve(__dirname, 'src/views/'),
+      'lib': path.resolve(__dirname, 'src/lib/'),
     }
   },
   output: {
@@ -103,10 +103,10 @@ module.exports = (env, options) => ({
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-    // new CopyWebpackPlugin([{ from: 'dist/assets/images/', to: '../images' }]),
-    new CopyWebpackPlugin([{ from: 'dist/static/', to: '../Static' }]),
-    // new CopyWebpackPlugin([{ from: 'dist/assets/images/', to: '../img' }]),
+    // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../images' }]),
+    new CopyWebpackPlugin([{ from: 'src/static/', to: '../Static' }]),
+    // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../img' }]),
     new CopyWebpackPlugin([{ from: 'css/', to: '../css' }]),
-    new CopyWebpackPlugin([{ from: 'dist/static/favicon.ico', to: '../' }])
+    new CopyWebpackPlugin([{ from: 'src/static/favicon.ico', to: '../' }])
   ]
 });

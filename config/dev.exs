@@ -25,7 +25,8 @@ config :pdsc_server, PdscServerWeb.Endpoint,
       "node_modules/webpack/bin/webpack.js",
       "--mode",
       "development",
-      "--watch-stdin",
+      "--watch-stdin", 
+      # "--config","../assets/webpack.config.js",
       cd: Path.expand("../assets", __DIR__)
     ],
     node: [
@@ -65,7 +66,7 @@ config :pdsc_server, PdscServerWeb.Endpoint,
 config :pdsc_server, PdscServerWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/.*(vue|js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/pdsc_server_web/{live,views}/.*(ex)$",
       ~r"lib/pdsc_server_web/templates/.*(eex)$"
