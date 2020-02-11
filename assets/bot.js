@@ -38,11 +38,11 @@ bot.on('text', ctx => {
   ctx.reply('text')
 })
 // Informacion del Bot
-bot.telegram.getMe().then(async res =>{
-  botInfo = res
-}).catch((err)=>{
-  console.log(err);
-})
+// bot.telegram.getMe().then(async res =>{
+//   botInfo = res
+// }).catch((err)=>{
+//   console.log(err);
+// })
 bot.launch()
 
 var bcv = null

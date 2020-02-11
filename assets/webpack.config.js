@@ -14,11 +14,11 @@ module.exports = (env, options) => ({
     ]
   },
   entry: {
-    './src/main.js': ['./src/main.js'].concat(glob.sync('./vendor/**/*.js'))
+    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
   },
   resolve: {
     extensions: ['.js', '.json', '.vue'],
-    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    modules: [path.join(__dirname, 'src/'), 'node_modules'],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       // 'src': path.resolve(__dirname, 'js/'),
@@ -42,8 +42,7 @@ module.exports = (env, options) => ({
       {
         test: /\.vue$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'vue-loader',
+        loader: 'vue-loader',
           options: {
             loaders: {
               js: {
@@ -55,7 +54,6 @@ module.exports = (env, options) => ({
               }
             }
           }
-        }
       },
       {
         test: /\.js$/,
