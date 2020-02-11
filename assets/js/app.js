@@ -14,5 +14,5 @@ import 'bootstrap';
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 // import './main.js'
-import app from "../dist/main.js";
+import app from "../src/main.js";
 export default app;

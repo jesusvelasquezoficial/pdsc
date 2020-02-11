@@ -17,10 +17,11 @@ module.exports = (env, options) => ({
     './src/main.js': ['./src/main.js'].concat(glob.sync('./vendor/**/*.js'))
   },
   resolve: {
-    extensions: ['.js', '.json', '.vue'],
+    extensions: ['*', '.js', '.json', '.vue'],
     modules: [path.join(__dirname, 'src'), 'node_modules'],
     alias: {
-      'vue$': 'vue/dist/vue.common.js',
+      'vue$': 'vue/dist/vue.esm.js',
+      // 'vue$': 'vue/dist/vue.common.js',
       // 'src': path.resolve(__dirname, 'js/'),
       '@': path.resolve(__dirname, "src/"),
       'Components': path.resolve(__dirname, 'src/components/'),
@@ -101,12 +102,12 @@ module.exports = (env, options) => ({
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
     // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../images' }]),
     new CopyWebpackPlugin([{ from: 'src/static/', to: '../Static' }]),
     // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../img' }]),
     new CopyWebpackPlugin([{ from: 'css/', to: '../css' }]),
-    new CopyWebpackPlugin([{ from: 'src/static/favicon.ico', to: '../' }])
+    new CopyWebpackPlugin([{ from: 'src/static/favicon.ico', to: '../' }]),
+    new VueLoaderPlugin()
   ]
 });
