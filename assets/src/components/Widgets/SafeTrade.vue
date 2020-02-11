@@ -29,7 +29,7 @@
 
 <script>
 	import Slick from "vue-slick";
-	import { safeTradeContent } from 'Views/crypto/data.js'
+	import { safeTradeContent } from 'Templates/crypto/data.js'
 	import LineChartShadowV2 from "Components/Charts/LineChartShadowV2";
 
 	export default {

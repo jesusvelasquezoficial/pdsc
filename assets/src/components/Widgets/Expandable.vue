@@ -38,7 +38,7 @@
 </template>
 <script>
 	import LineChartV3 from "Components/Charts/LineChartV3";
-	import { marketCapDetails } from "Views/crypto/data.js";
+	import { marketCapDetails } from "Templates/crypto/data.js";
 
 	export default {
 		components: {
