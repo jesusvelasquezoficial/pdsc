@@ -1,7 +1,7 @@
 const path = require('path');
 module.exports = {
   runtimeCompiler: true,
-  extensions: ['*', '.js', '.json', '.vue'],
+  extensions: ['.js', '.json', '.vue'],
   modules: [path.join(__dirname, 'src'), 'node_modules'],
   resolve: {
     alias: {

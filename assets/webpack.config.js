@@ -17,7 +17,7 @@ module.exports = (env, options) => ({
     './src/main.js': ['./src/main.js'].concat(glob.sync('./vendor/**/*.js'))
   },
   resolve: {
-    extensions: ['*', '.js', '.json', '.vue'],
+    extensions: ['.js', '.json', '.vue'],
     modules: [path.join(__dirname, 'src'), 'node_modules'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
