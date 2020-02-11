@@ -30,7 +30,7 @@ module.exports = (env, options) => ({
       'Helpers': path.resolve(__dirname, 'src/helpers/'),
       'Assets': path.resolve(__dirname, 'src/assets/'),
       'Themes': path.resolve(__dirname, 'src/themes/'),
-      'Views': path.resolve(__dirname, 'src/views/'),
+      'Templates': path.resolve(__dirname, 'src/templates/'),
       'lib': path.resolve(__dirname, 'src/lib/'),
     }
   },
@@ -107,7 +107,7 @@ module.exports = (env, options) => ({
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
     // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../images' }]),
     new CopyWebpackPlugin([{ from: 'src/static/', to: '../Static' }]),
-    new CopyWebpackPlugin([{ from: 'src/views/', to: '../Views' }]),
+    new CopyWebpackPlugin([{ from: 'src/views/', to: '../Templates' }]),
     // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../img' }]),
     new CopyWebpackPlugin([{ from: 'css/', to: '../css' }]),
     new CopyWebpackPlugin([{ from: 'src/static/favicon.ico', to: '../' }]),

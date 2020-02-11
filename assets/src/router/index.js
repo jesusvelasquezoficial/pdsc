@@ -5,83 +5,83 @@ import Router from 'vue-router'
 import Full from 'Container/Full'
 
 // inicio
-import Dashboard from 'Views/dashboard/DashboardCif';
+import Dashboard from 'Templates/dashboard/DashboardCif';
 
 // dashboard views
-import DashboardOne from 'Views/dashboard/DashboardOne'
-import DashboardTwo from 'Views/dashboard/DashboardTwo'
-import CRM from 'Views/dashboard/CRM'
-import Crypto from 'Views/dashboard/Crypto'
+import DashboardOne from 'Templates/dashboard/DashboardOne'
+import DashboardTwo from 'Templates/dashboard/DashboardTwo'
+import CRM from 'Templates/dashboard/CRM'
+import Crypto from 'Templates/dashboard/Crypto'
 
 
 //CRM
-import Projects from 'Views/crm/Projects'
-import ProjectDetails from 'Views/crm/ProjectDetails'
-import Reports from 'Views/crm/Reports'
-import Clients from 'Views/crm/Clients'
+import Projects from 'Templates/crm/Projects'
+import ProjectDetails from 'Templates/crm/ProjectDetails'
+import Reports from 'Templates/crm/Reports'
+import Clients from 'Templates/crm/Clients'
 
 //Crypto
-import MarketCap from 'Views/crypto/MarketCap'
-import Wallet from 'Views/crypto/Wallet'
-import Trade from 'Views/crypto/Trade'
+import MarketCap from 'Templates/crypto/MarketCap'
+import Wallet from 'Templates/crypto/Wallet'
+import Trade from 'Templates/crypto/Trade'
 
 // ui elements views
-import Buttons from 'Views/ui-elements/Buttons'
-import ProgressBar from 'Views/ui-elements/ProgressBar'
-import Tabs from 'Views/ui-elements/Tabs'
-import Accordions from 'Views/ui-elements/Accordions'
-import Pagination from 'Views/ui-elements/Pagination'
-import Tooltip from 'Views/ui-elements/Tooltip'
-import Badges from 'Views/ui-elements/Badges'
-import Cards from 'Views/ui-elements/Cards'
-import Alerts from 'Views/ui-elements/Alerts'
-import Carousel from 'Views/ui-elements/Carousel'
+import Buttons from 'Templates/ui-elements/Buttons'
+import ProgressBar from 'Templates/ui-elements/ProgressBar'
+import Tabs from 'Templates/ui-elements/Tabs'
+import Accordions from 'Templates/ui-elements/Accordions'
+import Pagination from 'Templates/ui-elements/Pagination'
+import Tooltip from 'Templates/ui-elements/Tooltip'
+import Badges from 'Templates/ui-elements/Badges'
+import Cards from 'Templates/ui-elements/Cards'
+import Alerts from 'Templates/ui-elements/Alerts'
+import Carousel from 'Templates/ui-elements/Carousel'
 
 // editors views
-import QuillEditor from 'Views/editor/QuillEditor'
-import WYSIWYG from 'Views/editor/WYSIWYG'
+import QuillEditor from 'Templates/editor/QuillEditor'
+import WYSIWYG from 'Templates/editor/WYSIWYG'
 
 // drag and drop views
-import Vuedraggable from 'Views/drag-drop/Vuedraggable'
-import Vue2Dragula from 'Views/drag-drop/Vue2Dragula'
-import VueDraggableResizable from 'Views/drag-drop/VueDraggableResizable'
+import Vuedraggable from 'Templates/drag-drop/Vuedraggable'
+import Vue2Dragula from 'Templates/drag-drop/Vue2Dragula'
+import VueDraggableResizable from 'Templates/drag-drop/VueDraggableResizable'
 
 // icons views
-import Themify from 'Views/icons/Themify'
-import Material from 'Views/icons/Material'
-import FontAwesome from 'Views/icons/FontAwesome'
+import Themify from 'Templates/icons/Themify'
+import Material from 'Templates/icons/Material'
+import FontAwesome from 'Templates/icons/FontAwesome'
 
 // charts views
-import VueChartjs from 'Views/charts/VueChartjs'
-// import VueEcharts from 'Views/charts/VueEcharts'
+import VueChartjs from 'Templates/charts/VueChartjs'
+// import VueEcharts from 'Templates/charts/VueEcharts'
 
 // maps views
-// import GoogleMaps from 'Views/maps/GoogleMaps'
-import LeafletMaps from 'Views/maps/LeafletMaps'
+// import GoogleMaps from 'Templates/maps/GoogleMaps'
+import LeafletMaps from 'Templates/maps/LeafletMaps'
 
 // tables views
-import BasicTable from 'Views/tables/Basic'
-import ResponsiveTable from 'Views/tables/Responsive'
+import BasicTable from 'Templates/tables/Basic'
+import ResponsiveTable from 'Templates/tables/Responsive'
 
 // pages views
-import Gallery from 'Views/pages/Gallery'
-import Pricing from 'Views/pages/Pricing'
-import Blank from 'Views/pages/Blank'
+import Gallery from 'Templates/pages/Gallery'
+import Pricing from 'Templates/pages/Pricing'
+import Blank from 'Templates/pages/Blank'
 
 // users views
-import UserProfile from 'Views/users/UserProfile'
-import UsersList from 'Views/users/UsersList'
+import UserProfile from 'Templates/users/UserProfile'
+import UsersList from 'Templates/users/UsersList'
 
 // session views
-import Login from 'Views/session/Login'
-import SignUp from 'Views/session/SignUp'
-import LockScreen from 'Views/session/LockScreen'
-import ForgotPassword from 'Views/session/ForgotPassword'
+import Login from 'Templates/session/Login'
+import SignUp from 'Templates/session/SignUp'
+import LockScreen from 'Templates/session/LockScreen'
+import ForgotPassword from 'Templates/session/ForgotPassword'
 
 // features views
-import ImageCropper from 'Views/features/ImageCropper'
-import VideoPlayer from 'Views/features/VideoPlayer'
-import Dropzone from 'Views/features/Dropzone'
+import ImageCropper from 'Templates/features/ImageCropper'
+import VideoPlayer from 'Templates/features/VideoPlayer'
+import Dropzone from 'Templates/features/Dropzone'
 
 import Auth0CallBack from 'Components/Auth0Callback/Auth0Callback'
 

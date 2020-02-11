@@ -15,7 +15,7 @@ module.exports = {
       'Helpers': path.resolve(__dirname, 'src/helpers/'),
       'Assets': path.resolve(__dirname, 'src/assets/'),
       'Themes': path.resolve(__dirname, 'src/themes/'),
-      'Views': path.resolve(__dirname, 'src/views/'),
+      'Template': path.resolve(__dirname, 'src/views/'),
       'lib': path.resolve(__dirname, 'src/lib/'),
     }
   }
