@@ -43,14 +43,16 @@ module.exports = (env, options) => ({
       {
         test: /\.vue$/,
         exclude: /node_modules/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            js: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env'],
-                plugins: ['@babel/transform-runtime']
+        use: {
+          loader: 'vue-loader',
+          options: {
+            loaders: {
+              js: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env'],
+                  plugins: ['@babel/transform-runtime']
+                }
               }
             }
           }
@@ -93,7 +95,7 @@ module.exports = (env, options) => ({
       },
       {
         test: /\.sass$/,
-        loader: [MiniCssExtractPlugin.loader,'sass-loader?indentedSyntax', 'css-loader', 'vue-style-loader']
+        loader: [MiniCssExtractPlugin.loader, 'sass-loader?indentedSyntax', 'css-loader', 'vue-style-loader']
       },
       {
         test: /\.css$/,
@@ -105,6 +107,7 @@ module.exports = (env, options) => ({
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
     // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../images' }]),
     new CopyWebpackPlugin([{ from: 'src/static/', to: '../Static' }]),
+    new CopyWebpackPlugin([{ from: 'src/views/', to: '../Views' }]),
     // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../img' }]),
     new CopyWebpackPlugin([{ from: 'css/', to: '../css' }]),
     new CopyWebpackPlugin([{ from: 'src/static/favicon.ico', to: '../' }]),
