@@ -38,7 +38,7 @@
 </template>
 
 <script>
-	import { coinsList } from 'Templates/crypto/data.js'
+	import { coinsList } from 'Pages/crypto/data.js'
 	import LineChartShadowV3 from "Components/Charts/LineChartShadowV3";
 	import ChartConfig from "Constants/ChartConfig";
 

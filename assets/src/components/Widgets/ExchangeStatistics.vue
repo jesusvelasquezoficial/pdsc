@@ -41,7 +41,7 @@
 </template>
 <script>
 	import Slick from "vue-slick";
-	import { exchangeStatistic } from 'Templates/crypto/data.js'
+	import { exchangeStatistic } from 'Pages/crypto/data.js'
 	import LineChartV5 from "Components/Charts/LineChartV5";
 	import ChartConfig from "Constants/ChartConfig";
 

@@ -20,8 +20,7 @@ module.exports = (env, options) => ({
     extensions: ['.js', '.json', '.vue'],
     modules: [path.join(__dirname, 'src'), 'node_modules'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      // 'vue$': 'vue/dist/vue.common.js',
+      'vue$': 'vue/dist/vue.common.js',
       // 'src': path.resolve(__dirname, 'js/'),
       '@': path.resolve(__dirname, "src/"),
       'Components': path.resolve(__dirname, 'src/components/'),
@@ -30,7 +29,7 @@ module.exports = (env, options) => ({
       'Helpers': path.resolve(__dirname, 'src/helpers/'),
       'Assets': path.resolve(__dirname, 'src/assets/'),
       'Themes': path.resolve(__dirname, 'src/themes/'),
-      'Templates': path.resolve(__dirname, 'src/templates/'),
+      'Pages': path.resolve(__dirname, 'src/pages/'),
       'lib': path.resolve(__dirname, 'src/lib/'),
     }
   },
@@ -107,7 +106,7 @@ module.exports = (env, options) => ({
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
     // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../images' }]),
     new CopyWebpackPlugin([{ from: 'src/static/', to: '../Static' }]),
-    new CopyWebpackPlugin([{ from: 'src/templates/', to: '../Templates' }]),
+    new CopyWebpackPlugin([{ from: 'src/pages/', to: '../Pages' }]),
     // new CopyWebpackPlugin([{ from: 'src/assets/images/', to: '../img' }]),
     new CopyWebpackPlugin([{ from: 'css/', to: '../css' }]),
     new CopyWebpackPlugin([{ from: 'src/static/favicon.ico', to: '../' }]),
