@@ -6,11 +6,31 @@ import moment from "moment";
 
 const state = {
   loaded: false,
-  euroOficial: localStorage.getItem('euroOficial') || "cargando...",
+  
   dolarOficial: localStorage.getItem('dolarOficial') || "cargando...",
-  euroParalelo: localStorage.getItem('euroParalelo') || "cargando...",
   dolarParalelo: localStorage.getItem('dolarParalelo') || "cargando...",
   monitorDolar: localStorage.getItem('monitorDolar') || "cargando...",
+  euroOficial: localStorage.getItem('euroOficial') || "cargando...",
+  euroParalelo: localStorage.getItem('euroParalelo') || "cargando...",
+  
+  dolarVariacion: localStorage.getItem('dolarVariacion') || "cargando...",
+  euroVariacion: localStorage.getItem('euroVariacion') || "cargando...",
+  
+  dolarOficialVariacion: localStorage.getItem('dolarOficialVariacion') || "0.0",  
+  dolarParaleloVariacion: localStorage.getItem('dolarParaleloVariacion') || "0.0",
+  monitorDolarVariacion: localStorage.getItem('monitorDolarVariacion') || "0.0",
+  
+  euroOficialVariacion: localStorage.getItem('euroOficialVariacion') || "0.0",
+  euroParaleloVariacion: localStorage.getItem('euroParaleloVariacion') || "0.0",
+  
+  petroleoVariacion: localStorage.getItem('petroleoVariacion') || "0.0",
+  oroVariacion: localStorage.getItem('oroVariacion') || "0.0",
+  petroVariacion: localStorage.getItem('petroVariacion') || "0.0",
+  petroVariacion: localStorage.getItem('petroVariacion') || "0.0",
+  bitcoinVariacion: localStorage.getItem('bitcoinVariacion') || "0.0",
+  sp500Variacion: localStorage.getItem('sp500Variacion') || "0.0",
+  nasdaqVariacion: localStorage.getItem('nasdaqVariacion') || "0.0",
+  
   petroleo: localStorage.getItem('petroleo') || "cargando...",
   oro: localStorage.getItem('oro') || "cargando...",
   petro: localStorage.getItem('petro') || "cargando...",
@@ -40,9 +60,6 @@ const state = {
   paginacionDolarPaginas: localStorage.getItem('pagDolarPaginas') || 0,
   paginacionDolarPorPagina: 7,
   paginacionDolarPagina: localStorage.getItem('pagDolarPagina') || 1,
-
-  dolarVariacion: localStorage.getItem('dolarVariacion') || "cargando...",
-  euroVariacion: localStorage.getItem('euroVariacion') || "cargando...",
 
   f7D: localStorage.getItem('f7D') || 'cargando...',
   f2S: localStorage.getItem('f2S') || 'cargando...',
@@ -84,81 +101,100 @@ const getters = {
       "coin1": "Dolar Oficial",
       "coin2": "",
       "price": `$ ${state.dolarOficial}`,
-      "market_cap": "12.3%",
-      "icon": "zmdi zmdi-long-arrow-up",
-      "color": "text-green"
+      "market_cap": `${state.dolarOficialVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-up",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "Dolar Paralelo",
       "coin2": "",
       "price": `$ ${state.dolarParalelo}`,
-      "market_cap": "3.3%",
-      "icon": "zmdi zmdi-long-arrow-down",
-      "color": "text-danger"
+      "market_cap": `${state.dolarParaleloVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-down",
+      "icon": "",
+      "color": "text-white"
+    },
+    {
+      "coin1": "Monitor Dolar",
+      "coin2": "",
+      "price": `$ ${state.monitorDolar}`,
+      "market_cap": `${state.monitorDolarVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-up",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "Euro Oficial",
       "coin2": "",
       "price": `€ ${state.euroOficial}`,
-      "market_cap": "14.3%",
-      "icon": "zmdi zmdi-long-arrow-up",
-      "color": "text-green"
+      "market_cap": `${state.euroOficialVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-up",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "Euro Paralelo",
       "coin2": "",
       "price": `€ ${state.euroParalelo}`,
-      "market_cap": "7.3%",
-      "icon": "zmdi zmdi-long-arrow-down",
-      "color": "text-danger"
+      "market_cap": `${state.euroParaleloVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-down",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "Petroleo",
       "coin2": "",
       "price": `$ ${state.petroleo}`,
-      "market_cap": "1.43%",
-      "icon": "zmdi zmdi-long-arrow-up",
-      "color": "text-green"
+      "market_cap": `${state.petroleoVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-up",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "Oro",
       "coin2": "",
       "price": `BsS ${state.oro}`,
-      "market_cap": "1.43%",
-      "icon": "zmdi zmdi-long-arrow-down",
-      "color": "text-danger"
+      "market_cap": `${state.oroVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-down",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "Petro",
       "coin2": "",
       "price": `$ ${state.petro}`,
-      "market_cap": "14.3%",
-      "icon": "zmdi zmdi-long-arrow-up",
-      "color": "text-green"
+      "market_cap": `${state.petroVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-up",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "Bitcoin",
       "coin2": "",
       "price": `$ ${state.bitcoin}`,
-      "market_cap": "1.43%",
-      "icon": "zmdi zmdi-long-arrow-up",
-      "color": "text-green"
+      "market_cap": `${state.bitcoinVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-up",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "S&P 500",
       "coin2": "",
       "price": `$ ${state.sp500}`,
-      "market_cap": "7.3%",
-      "icon": "zmdi zmdi-long-arrow-up",
-      "color": "text-green"
+      "market_cap": `${state.sp500Variacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-up",
+      "icon": "",
+      "color": "text-white"
     },
     {
       "coin1": "Nasdaq",
       "coin2": "",
       "price": `$ ${state.nasdaq}`,
-      "market_cap": "6.3%",
-      "icon": "zmdi zmdi-long-arrow-down",
-      "color": "text-danger"
+      "market_cap": `${state.nasdaqVariacion}%`,
+      // "icon": "zmdi zmdi-long-arrow-down",
+      "icon": "",
+      "color": "text-white"
     }];
   },
   dataDolar: (state) => {
@@ -491,12 +527,12 @@ const actions = {
       var a = euro[euro.length - 2];
       var b = euro[euro.length - 1];
       var v = ((b - a) / a) * 100;
-      context.commit('setEuroVariacion', v.toFixed(2));
+      context.commit('setEuroOficialVariacion', v.toFixed(2));
       context.commit('setDataDolarOficial', dolar);
       var a2 = dolar[dolar.length - 2];
       var b2 = dolar[dolar.length - 1];
       var v2 = ((b2 - a2) / a2) * 100;
-      context.commit('setDolarVariacion', v2.toFixed(2));
+      context.commit('setDolarOficialVariacion', v2.toFixed(2));
       context.commit('setPrecioDolarBCV', dolar[dolar.length - 1]);
       context.commit('setPrecioEuroOficial', euro[euro.length - 1]);
     })
@@ -542,7 +578,15 @@ const actions = {
       context.commit('dolarFecha', fechaDtd);
       // Valor de la Tasa
       context.commit('dataEuroParalelo', euroDtd);
+      var a = euroDtd[euroDtd.length - 2];
+      var b = euroDtd[euroDtd.length - 1];
+      var v = ((b - a) / a) * 100;
+      context.commit('setEuroParaleloVariacion', v.toFixed(2));
       context.commit('dataDolarToday', dolarDtd);
+      var a2 = dolarDtd[dolarDtd.length - 2];
+      var b2 = dolarDtd[dolarDtd.length - 1];
+      var v2 = ((b2 - a2) / a2) * 100;
+      context.commit('setDolarParaleloVariacion', v2.toFixed(2));
       // Escala del Euro (x, y)
       // this.minEuroX = moment(dtd[0].fecha).format("L");
       context.commit('baseMinEuroX', moment(dtd[0].fecha).format("L")); // this.minEuroX;
@@ -585,6 +629,10 @@ const actions = {
         };
       });
       context.commit('setDataDolarMonitor', dolarM);
+      var a = dolarM[dolarM.length - 2];
+      var b = dolarM[dolarM.length - 1];
+      var v = ((b - a) / a) * 100;
+      context.commit('setDolarMonitorVariacion', v.toFixed(2));
       context.commit('setPrecioDolarMonitor', dolarM[dolarM.length - 1]);
     });
   },
@@ -783,14 +831,6 @@ const mutations = {
     state.dataEuroOficial = valor;
     localStorage.setItem('dataEuroOficial', valor);
   },
-  setDolarVariacion(state, valor) {
-    state.dolarVariacion = valor;
-    localStorage.setItem('dolarVariacion', valor);
-  },
-  setEuroVariacion(state, valor) {
-    state.euroVariacion = valor;
-    localStorage.setItem('euroVariacion', valor);
-  },
   setPrecioDolarBCV(state, valor) {
     state.precioDolarBCV = valor;
     localStorage.setItem('precioDolarBCV', valor);
@@ -919,7 +959,26 @@ const mutations = {
     state.precioDolarMonitor = valor;
     localStorage.setItem('precioDolarMonitor', valor);
   },
-
+  setDolarOficialVariacion(state, valor) {
+    state.dolarOficialVariacion = valor;
+    localStorage.setItem('dolarOficialVariacion', valor);
+  },
+  setEuroOficialVariacion(state, valor) {
+    state.euroOficialVariacion = valor;
+    localStorage.setItem('euroOficialVariacion', valor);
+  },
+  setDolarParaleloVariacion(state, valor) {
+    state.dolarParaleloVariacion = valor;
+    localStorage.setItem('dolarParaleloVariacion', valor);
+  },
+  setEuroParaleloVariacion(state, valor) {
+    state.euroParaleloVariacion = valor;
+    localStorage.setItem('euroParaleloVariacion', valor);
+  },
+  setDolarMonitorVariacion(state, valor) {
+    state.monitorDolarVariacion = valor;
+    localStorage.setItem('monitorDolarVariacion', valor);
+  },
 }
 
 export default {
