@@ -47,7 +47,7 @@ const actions = {
 					context.commit('loginUserFailure', {message: res.data.errors});
 				}		
 			}).catch(err => {
-				context.commit('loginUserFailure', {message: res.data.errors});
+				context.commit('loginUserFailure', {message: err});
 			})
 	},
 	signupUserInPHX(context, payload) {
