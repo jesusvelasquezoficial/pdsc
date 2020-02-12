@@ -14,14 +14,13 @@ module.exports = (env, options) => ({
     ]
   },
   entry: {
-    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
+    './src/main.js': ['./src/main.js'].concat(glob.sync('./vendor/**/*.js'))
   },
   resolve: {
     extensions: ['.js', '.json', '.vue'],
     modules: [path.join(__dirname, 'src/'), 'node_modules'],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
-      // 'src': path.resolve(__dirname, 'js/'),
       '@': path.resolve(__dirname, "src/"),
       'Components': path.resolve(__dirname, 'src/components/'),
       'Constants': path.resolve(__dirname, 'src/constants/'),
