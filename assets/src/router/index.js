@@ -5,7 +5,7 @@ import Router from 'vue-router'
 import Full from 'Container/Full'
 
 // inicio
-import Dashboard from 'Pages/dashboard/DashboardCif';
+import Dashboard from 'Pages/dashboard/DashboardCIF';
 
 // dashboard views
 import DashboardOne from 'Pages/dashboard/DashboardOne'
