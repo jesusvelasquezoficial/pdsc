@@ -19,7 +19,8 @@
 								<slot class=""><h4 class="m-0 p-0"><b>$ {{petroleo}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div class="text-danger">
-										<i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0%
+										<i class="zmdi"></i>
+										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
@@ -50,7 +51,8 @@
 								<slot><h4 class="m-0 p-0"><b>$ {{oro}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div class="text-success">
-										<i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0%
+										<i class="zmdi"></i>
+										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
@@ -81,7 +83,8 @@
 								<slot><h4 class="m-0 p-0"><b>BsS {{petro}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div class="text-danger">
-										<i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0%
+										<i class="zmdi"></i>
+										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
@@ -112,7 +115,8 @@
 								<slot><h4 class="m-0 p-0"><b>$ {{bitcoin}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div class="text-success">
-										<i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0%
+										<i class="zmdi"></i>
+										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
@@ -143,7 +147,8 @@
 							<slot><h4 class="m-0 p-0"><b>$ {{sp500}}</b></h4></slot>
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 								<div class="text-danger">
-									<i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0%
+									<i class="zmdi"></i>
+									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
 								<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 							</div>
@@ -174,7 +179,8 @@
 							<slot><h4 class="m-0 p-0"><b>$ {{nasdaq}}</b></h4></slot>
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 								<div class="text-success">
-									<i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0%
+									<i class="zmdi"></i>
+									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
 								<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 							</div>
