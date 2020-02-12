@@ -12,8 +12,8 @@ import router from '../../../router';
 // 	twitterAuthProvider,
 // 	githubAuthProvider
 // } from '../../../firebase';
-// const URL = 'http://pdsc.phoenixplus.net:4000'
-const URL = 'http://localhost:4000'
+const URL = 'http://pdsc.phoenixplus.net:4000'
+// const URL = 'http://localhost:4000'
 const state = {
 	url: URL,
 	user: localStorage.getItem('user'),
