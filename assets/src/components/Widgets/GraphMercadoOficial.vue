@@ -2,7 +2,7 @@
   <div id='graph'>
     <b-row>
       <b-col sm="12" md="6" class="mb-4">
-      <app-card heading="Dolar Oficial y Paralelo">
+      <app-card heading="Dolar Oficial y Paralelo" :headingMenu="true">
         <!-- Precios del dia -->
         <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
           <div class="col-md-4" style="border-left: solid 5px #252F5D;">
@@ -44,7 +44,7 @@
       </app-card>
     </b-col>
     <b-col sm="12" md="6" class="mb-4">
-      <app-card heading="Euro Oficial y Paralelo">
+      <app-card heading="Euro Oficial y Paralelo" :headingMenu="true">
         <!-- Precio del Dia -->
         <div class="mb-3 ml-4 d-flex justify-content-start align-items-center">
           <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
