@@ -3,7 +3,7 @@
     <b-row>
       <!-- DOLAR -->
       <b-col sm="12" md="6" class="mb-4">
-        <app-card heading="Dolar Informacion Diaria">
+        <app-card heading="Dolar Informacion Diaria" :headingMenu="true">
           <div class="table-responsive mb-0">
             <div class="unseen">
               <b-table class="table table-hover table-bordered table-striped"
@@ -27,7 +27,7 @@
       </b-col>
       <!-- EURO -->
       <b-col sm="12" md="6" class="mb-4">
-        <app-card heading="Euro Informacion Diaria">
+        <app-card heading="Euro Informacion Diaria" :headingMenu="true">
           <div class="table-responsive mb-0">
             <div class="unseen">
               <b-table class="table table-hover table-bordered table-striped"
