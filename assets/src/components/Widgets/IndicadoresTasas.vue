@@ -26,7 +26,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
+								<line-chart-shadow :dataSet="[1,30,10,42,3,4,1]" :lineTension="0.4" :dataLabels="['a','b','c','d','e','f','g']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
 								</line-chart-shadow>
