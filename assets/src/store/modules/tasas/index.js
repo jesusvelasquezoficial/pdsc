@@ -4,6 +4,17 @@ import Nprogress from 'nprogress';
 import router from '../../../router';
 import moment from "moment";
 
+function sube0baja(params) {
+  var flag = Math.sign(params);
+  if (flag > 0) {
+    return ['zmdi zmdi-long-arrow-up', 'text-green'];
+  }else if(flag < 0){
+    return ['zmdi zmdi-long-arrow-down', 'text-danger'];
+  } else {
+    return ['fas fa-equals font-sm', 'text-white'];
+  }
+}
+
 const state = {
   loaded: false,
   
@@ -13,23 +24,50 @@ const state = {
   euroOficial: localStorage.getItem('euroOficial') || "cargando...",
   euroParalelo: localStorage.getItem('euroParalelo') || "cargando...",
   
-  dolarVariacion: localStorage.getItem('dolarVariacion') || "cargando...",
-  euroVariacion: localStorage.getItem('euroVariacion') || "cargando...",
-  
-  dolarOficialVariacion: localStorage.getItem('dolarOficialVariacion') || "0.0",  
+  dolarOficialVariacion: localStorage.getItem('dolarOficialVariacion') || "0.0",
+  dolarOficialUpOrDown: localStorage.getItem('dolarOficialUpOrDown') || "",
+  dolarOficialColor: localStorage.getItem('dolarOficialColor') || "",
+    
   dolarParaleloVariacion: localStorage.getItem('dolarParaleloVariacion') || "0.0",
+  dolarParaleloUpOrDown: localStorage.getItem('dolarParaleloUpOrDown') || "",
+  dolarParaleloColor: localStorage.getItem('dolarParaleloColor') || "",
+
   monitorDolarVariacion: localStorage.getItem('monitorDolarVariacion') || "0.0",
+  monitorDolarUpOrDown: localStorage.getItem('monitorDolarUpOrDown') || "",
+  monitorDolarColor: localStorage.getItem('monitorDolarColor') || "",
   
   euroOficialVariacion: localStorage.getItem('euroOficialVariacion') || "0.0",
+  euroOficialUpOrDown: localStorage.getItem('euroOficialUpOrDown') || "",
+  euroOficialColor: localStorage.getItem('euroOficialColor') || "",
+
   euroParaleloVariacion: localStorage.getItem('euroParaleloVariacion') || "0.0",
+  euroParaleloUpOrDown: localStorage.getItem('euroParaleloUpOrDown') || "",
+  euroParaleloColor: localStorage.getItem('euroParaleloColor') || "",
   
   petroleoVariacion: localStorage.getItem('petroleoVariacion') || "0.0",
+  petroleoUpOrDown: localStorage.getItem('petroleoUpOrDown') || "",
+  petroleoColor: localStorage.getItem('petroleoColor') || "",
+  
   oroVariacion: localStorage.getItem('oroVariacion') || "0.0",
+  oroUpOrDown: localStorage.getItem('oroUpOrDown') || "",
+  oroColor: localStorage.getItem('oroColor') || "",
+  
   petroVariacion: localStorage.getItem('petroVariacion') || "0.0",
-  petroVariacion: localStorage.getItem('petroVariacion') || "0.0",
+  petroUpOrDown: localStorage.getItem('petroUpOrDown') || "",
+  petroColor: localStorage.getItem('petroColor') || "",
+  
   bitcoinVariacion: localStorage.getItem('bitcoinVariacion') || "0.0",
+  bitcoinUpOrDown: localStorage.getItem('bitcoinUpOrDown') || "",
+  bitcoinColor: localStorage.getItem('bitcoinColor') || "",
+  
   sp500Variacion: localStorage.getItem('sp500Variacion') || "0.0",
+  sp500UpOrDown: localStorage.getItem('sp500UpOrDown') || "",
+  sp500Color: localStorage.getItem('sp500Color') || "",
+  
   nasdaqVariacion: localStorage.getItem('nasdaqVariacion') || "0.0",
+  nasdaqUpOrDown: localStorage.getItem('nasdaqUpOrDown') || "",
+  nasdaqColor: localStorage.getItem('nasdaqColor') || "",
+  
   
   petroleo: localStorage.getItem('petroleo') || "cargando...",
   oro: localStorage.getItem('oro') || "cargando...",
@@ -102,99 +140,88 @@ const getters = {
       "coin2": "",
       "price": `$ ${state.dolarOficial}`,
       "market_cap": `${state.dolarOficialVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-up",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.dolarOficialUpOrDown}`,
+      "color": `${state.dolarOficialColor}`,
     },
     {
-      "coin1": "Dolar Paralelo",
+      "coin1": "Dolar Today",
       "coin2": "",
       "price": `$ ${state.dolarParalelo}`,
       "market_cap": `${state.dolarParaleloVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-down",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.dolarParaleloUpOrDown}`,
+      "color": `${state.dolarParaleloColor}`,
     },
     {
       "coin1": "Monitor Dolar",
       "coin2": "",
       "price": `$ ${state.monitorDolar}`,
       "market_cap": `${state.monitorDolarVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-up",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.monitorDolarUpOrDown}`,
+      "color": `${state.monitorDolarColor}`,
     },
     {
       "coin1": "Euro Oficial",
       "coin2": "",
       "price": `€ ${state.euroOficial}`,
       "market_cap": `${state.euroOficialVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-up",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.euroOficialUpOrDown}`,
+      "color": `${state.euroOficialColor}`,
     },
     {
       "coin1": "Euro Paralelo",
       "coin2": "",
       "price": `€ ${state.euroParalelo}`,
       "market_cap": `${state.euroParaleloVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-down",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.euroParaleloUpOrDown}`,
+      "color": `${state.euroParaleloColor}`,
     },
     {
       "coin1": "Petroleo",
       "coin2": "",
       "price": `$ ${state.petroleo}`,
       "market_cap": `${state.petroleoVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-up",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.petroleoUpOrDown}`,
+      "color": `${state.petroleoColor}`,
     },
     {
       "coin1": "Oro",
       "coin2": "",
-      "price": `BsS ${state.oro}`,
+      "price": `$ ${state.oro}`,
       "market_cap": `${state.oroVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-down",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.oroUpOrDown}`,
+      "color": `${state.oroColor}`,
     },
     {
       "coin1": "Petro",
       "coin2": "",
-      "price": `$ ${state.petro}`,
+      "price": `BsS ${state.petro}`,
       "market_cap": `${state.petroVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-up",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.petroUpOrDown}`,
+      "color": `${state.petroColor}`,
     },
     {
       "coin1": "Bitcoin",
       "coin2": "",
       "price": `$ ${state.bitcoin}`,
       "market_cap": `${state.bitcoinVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-up",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.bitcoinUpOrDown}`,
+      "color": `${state.bitcoinColor}`,
     },
     {
       "coin1": "S&P 500",
       "coin2": "",
       "price": `$ ${state.sp500}`,
       "market_cap": `${state.sp500Variacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-up",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.sp500UpOrDown}`,
+      "color": `${state.sp500Color}`,
     },
     {
       "coin1": "Nasdaq",
       "coin2": "",
       "price": `$ ${state.nasdaq}`,
       "market_cap": `${state.nasdaqVariacion}%`,
-      // "icon": "zmdi zmdi-long-arrow-down",
-      "icon": "",
-      "color": "text-white"
+      "icon": `${state.nasdaqUpOrDown}`,
+      "color": `${state.nasdaqColor}`,
     }];
   },
   dataDolar: (state) => {
@@ -527,12 +554,16 @@ const actions = {
       var a = euro[euro.length - 2];
       var b = euro[euro.length - 1];
       var v = ((b - a) / a) * 100;
-      context.commit('setEuroOficialVariacion', v.toFixed(2));
+      var c = sube0baja(v);
+      c.unshift(v.toFixed(2));
+      context.commit('setEuroOficialVariacion', c);
       context.commit('setDataDolarOficial', dolar);
       var a2 = dolar[dolar.length - 2];
       var b2 = dolar[dolar.length - 1];
       var v2 = ((b2 - a2) / a2) * 100;
-      context.commit('setDolarOficialVariacion', v2.toFixed(2));
+      var c2 = sube0baja(v2);
+      c2.unshift(v2.toFixed(2));
+      context.commit('setDolarOficialVariacion', c2);
       context.commit('setPrecioDolarBCV', dolar[dolar.length - 1]);
       context.commit('setPrecioEuroOficial', euro[euro.length - 1]);
     })
@@ -581,12 +612,16 @@ const actions = {
       var a = euroDtd[euroDtd.length - 2];
       var b = euroDtd[euroDtd.length - 1];
       var v = ((b - a) / a) * 100;
-      context.commit('setEuroParaleloVariacion', v.toFixed(2));
+      var c = sube0baja(v);
+      c.unshift(v.toFixed(2));
+      context.commit('setEuroParaleloVariacion', c);
       context.commit('dataDolarToday', dolarDtd);
       var a2 = dolarDtd[dolarDtd.length - 2];
       var b2 = dolarDtd[dolarDtd.length - 1];
       var v2 = ((b2 - a2) / a2) * 100;
-      context.commit('setDolarParaleloVariacion', v2.toFixed(2));
+      var c2 = sube0baja(v2);
+      c2.unshift(v2.toFixed(2));
+      context.commit('setDolarParaleloVariacion', c2);
       // Escala del Euro (x, y)
       // this.minEuroX = moment(dtd[0].fecha).format("L");
       context.commit('baseMinEuroX', moment(dtd[0].fecha).format("L")); // this.minEuroX;
@@ -632,7 +667,9 @@ const actions = {
       var a = dolarM[dolarM.length - 2];
       var b = dolarM[dolarM.length - 1];
       var v = ((b - a) / a) * 100;
-      context.commit('setDolarMonitorVariacion', v.toFixed(2));
+      var c = sube0baja(v);
+      c.unshift(v.toFixed(2));
+      context.commit('setDolarMonitorVariacion', c);
       context.commit('setPrecioDolarMonitor', dolarM[dolarM.length - 1]);
     });
   },
@@ -960,24 +997,44 @@ const mutations = {
     localStorage.setItem('precioDolarMonitor', valor);
   },
   setDolarOficialVariacion(state, valor) {
-    state.dolarOficialVariacion = valor;
-    localStorage.setItem('dolarOficialVariacion', valor);
+    state.dolarOficialVariacion = valor[0];
+    state.dolarOficialUpOrDown = valor[1];
+    state.dolarOficialColor = valor[2];
+    localStorage.setItem('dolarOficialVariacion', valor[0]);
+    localStorage.setItem('dolarOficialUpOrDown', valor[1]);
+    localStorage.setItem('dolarOficialColor', valor[2]);
   },
   setEuroOficialVariacion(state, valor) {
-    state.euroOficialVariacion = valor;
-    localStorage.setItem('euroOficialVariacion', valor);
+    state.euroOficialVariacion = valor[0];
+    state.euroOficialUpOrDown = valor[1];
+    state.euroOficialColor = valor[2];
+    localStorage.setItem('euroOficialVariacion', valor[0]);
+    localStorage.setItem('euroOficialUpOrDown', valor[1]);
+    localStorage.setItem('euroOficialColor', valor[2]);
   },
   setDolarParaleloVariacion(state, valor) {
-    state.dolarParaleloVariacion = valor;
-    localStorage.setItem('dolarParaleloVariacion', valor);
+    state.dolarParaleloVariacion = valor[0];
+    state.dolarParaleloUpOrDown = valor[1];
+    state.dolarParaleloColor = valor[2];
+    localStorage.setItem('dolarParaleloVariacion', valor[0]);
+    localStorage.setItem('dolarParaleloUpOrDown', valor[1]);
+    localStorage.setItem('dolarParaleloColor', valor[2]);
   },
   setEuroParaleloVariacion(state, valor) {
-    state.euroParaleloVariacion = valor;
-    localStorage.setItem('euroParaleloVariacion', valor);
+    state.euroParaleloVariacion = valor[0];
+    state.euroParaleloUpOrDown = valor[1];
+    state.euroParaleloColor = valor[2];
+    localStorage.setItem('euroParaleloVariacion', valor[0]);
+    localStorage.setItem('euroParaleloUpOrDown', valor[1]);
+    localStorage.setItem('euroParaleloColor', valor[2]);
   },
   setDolarMonitorVariacion(state, valor) {
-    state.monitorDolarVariacion = valor;
-    localStorage.setItem('monitorDolarVariacion', valor);
+    state.monitorDolarVariacion = valor[0];
+    state.monitorDolarUpOrDown = valor[1];
+    state.monitorDolarColor = valor[2];
+    localStorage.setItem('monitorDolarVariacion', valor[0]);
+    localStorage.setItem('monitorDolarUpOrDown', valor[1]);
+    localStorage.setItem('monitorDolarColor', valor[2]);
   },
 }
 
