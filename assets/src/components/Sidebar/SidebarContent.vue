@@ -28,7 +28,7 @@
 				</template>
 			</ul>
 		</nav>
-		<div class="idb-server-progress p-30">
+		<!-- <div class="idb-server-progress p-30">
 			<div class="progress-wrap mb-30">
 				<h5 class="text-white">{{$t('message.todaySales')}}</h5>
 				<b-progress :value="30" :max="50" class="mb-15" variant="warning" height="5px"></b-progress>
@@ -39,7 +39,7 @@
 				<b-progress :value="70" :max="100" class="mb-15" height="5px" variant="danger"></b-progress>
 				<p class="fs-12">78% {{$t('message.ofTheMonth')}}</p>
 			</div>
-		</div>
+		</div> -->
 	</vue-perfect-scrollbar>
 </template>
 

@@ -1,91 +1,92 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
 // components
-import Full from 'Container/Full'
+import Full from 'Container/Full';
 
 // inicio
 import Dashboard from 'Pages/dashboard/DashboardCIF';
+import Petroleo from 'Pages/currencies/Petroleo';
 
 // dashboard views
-import DashboardOne from 'Pages/dashboard/DashboardOne'
-import DashboardTwo from 'Pages/dashboard/DashboardTwo'
-import CRM from 'Pages/dashboard/CRM'
-import Crypto from 'Pages/dashboard/Crypto'
+import DashboardOne from 'Pages/dashboard/DashboardOne';
+import DashboardTwo from 'Pages/dashboard/DashboardTwo';
+import CRM from 'Pages/dashboard/CRM';
+import Crypto from 'Pages/dashboard/Crypto';
 
 
 //CRM
-import Projects from 'Pages/crm/Projects'
-import ProjectDetails from 'Pages/crm/ProjectDetails'
-import Reports from 'Pages/crm/Reports'
-import Clients from 'Pages/crm/Clients'
+import Projects from 'Pages/crm/Projects';
+import ProjectDetails from 'Pages/crm/ProjectDetails';
+import Reports from 'Pages/crm/Reports';
+import Clients from 'Pages/crm/Clients';
 
 //Crypto
-import MarketCap from 'Pages/crypto/MarketCap'
-import Wallet from 'Pages/crypto/Wallet'
-import Trade from 'Pages/crypto/Trade'
+import MarketCap from 'Pages/crypto/MarketCap';
+import Wallet from 'Pages/crypto/Wallet';
+import Trade from 'Pages/crypto/Trade';
 
 // ui elements views
-import Buttons from 'Pages/ui-elements/Buttons'
-import ProgressBar from 'Pages/ui-elements/ProgressBar'
-import Tabs from 'Pages/ui-elements/Tabs'
-import Accordions from 'Pages/ui-elements/Accordions'
-import Pagination from 'Pages/ui-elements/Pagination'
-import Tooltip from 'Pages/ui-elements/Tooltip'
-import Badges from 'Pages/ui-elements/Badges'
-import Cards from 'Pages/ui-elements/Cards'
-import Alerts from 'Pages/ui-elements/Alerts'
-import Carousel from 'Pages/ui-elements/Carousel'
+import Buttons from 'Pages/ui-elements/Buttons';
+import ProgressBar from 'Pages/ui-elements/ProgressBar';
+import Tabs from 'Pages/ui-elements/Tabs';
+import Accordions from 'Pages/ui-elements/Accordions';
+import Pagination from 'Pages/ui-elements/Pagination';
+import Tooltip from 'Pages/ui-elements/Tooltip';
+import Badges from 'Pages/ui-elements/Badges';
+import Cards from 'Pages/ui-elements/Cards';
+import Alerts from 'Pages/ui-elements/Alerts';
+import Carousel from 'Pages/ui-elements/Carousel';
 
 // editors views
-import QuillEditor from 'Pages/editor/QuillEditor'
-import WYSIWYG from 'Pages/editor/WYSIWYG'
+import QuillEditor from 'Pages/editor/QuillEditor';
+import WYSIWYG from 'Pages/editor/WYSIWYG';
 
 // drag and drop views
-import Vuedraggable from 'Pages/drag-drop/Vuedraggable'
-import Vue2Dragula from 'Pages/drag-drop/Vue2Dragula'
-import VueDraggableResizable from 'Pages/drag-drop/VueDraggableResizable'
+import Vuedraggable from 'Pages/drag-drop/Vuedraggable';
+import Vue2Dragula from 'Pages/drag-drop/Vue2Dragula';
+import VueDraggableResizable from 'Pages/drag-drop/VueDraggableResizable';
 
 // icons views
-import Themify from 'Pages/icons/Themify'
-import Material from 'Pages/icons/Material'
-import FontAwesome from 'Pages/icons/FontAwesome'
+import Themify from 'Pages/icons/Themify';
+import Material from 'Pages/icons/Material';
+import FontAwesome from 'Pages/icons/FontAwesome';
 
 // charts views
-import VueChartjs from 'Pages/charts/VueChartjs'
-// import VueEcharts from 'Pages/charts/VueEcharts'
+import VueChartjs from 'Pages/charts/VueChartjs';
+// import VueEcharts from 'Pages/charts/VueEcharts';
 
 // maps views
-// import GoogleMaps from 'Pages/maps/GoogleMaps'
-import LeafletMaps from 'Pages/maps/LeafletMaps'
+// import GoogleMaps from 'Pages/maps/GoogleMaps';
+import LeafletMaps from 'Pages/maps/LeafletMaps';
 
 // tables views
-import BasicTable from 'Pages/tables/Basic'
-import ResponsiveTable from 'Pages/tables/Responsive'
+import BasicTable from 'Pages/tables/Basic';
+import ResponsiveTable from 'Pages/tables/Responsive';
 
 // pages views
-import Gallery from 'Pages/pages/Gallery'
-import Pricing from 'Pages/pages/Pricing'
-import Blank from 'Pages/pages/Blank'
+import Gallery from 'Pages/pages/Gallery';
+import Pricing from 'Pages/pages/Pricing';
+import Blank from 'Pages/pages/Blank';
 
 // users views
-import UserProfile from 'Pages/users/UserProfile'
-import UsersList from 'Pages/users/UsersList'
+import UserProfile from 'Pages/users/UserProfile';
+import UsersList from 'Pages/users/UsersList';
 
 // session views
-import Login from 'Pages/session/Login'
-import SignUp from 'Pages/session/SignUp'
-import LockScreen from 'Pages/session/LockScreen'
-import ForgotPassword from 'Pages/session/ForgotPassword'
+import Login from 'Pages/session/Login';
+import SignUp from 'Pages/session/SignUp';
+import LockScreen from 'Pages/session/LockScreen';
+import ForgotPassword from 'Pages/session/ForgotPassword';
 
 // features views
-import ImageCropper from 'Pages/features/ImageCropper'
-import VideoPlayer from 'Pages/features/VideoPlayer'
-import Dropzone from 'Pages/features/Dropzone'
+import ImageCropper from 'Pages/features/ImageCropper';
+import VideoPlayer from 'Pages/features/VideoPlayer';
+import Dropzone from 'Pages/features/Dropzone';
 
-import Auth0CallBack from 'Components/Auth0Callback/Auth0Callback'
+import Auth0CallBack from 'Components/Auth0Callback/Auth0Callback';
 
-Vue.use(Router)
+Vue.use(Router);
 
 // define your routes here
 export default new Router({
@@ -104,6 +105,16 @@ export default new Router({
 						requiresAuth: true,
 						title: 'Dashboard',
 						breadcrumb: 'Tablero / Central de Inteligencia Financiera'
+					}
+				},
+				{
+					name: "Monedas",
+					path: '/currencies/petroleo',
+					component: Petroleo,
+					meta: {
+						requiresAuth: true,
+						title: "Petroleo",
+						breadcrumb: 'Monedas / Petroleo'
 					}
 				},
 				{
@@ -555,4 +566,4 @@ export default new Router({
 			component: ForgotPassword
 		}
 	]
-})
+});

@@ -8,9 +8,31 @@ export default {
 				{
 					"path": "/dashboard/dashboard-v1",
 					"menu_title": "C I F"
-				}
+				},
 			]
 		},
+		{
+			"menu_title": "Monedas",
+			"menu_icon": "zmdi zmdi-chart-donut",
+			"active": false,
+			"child_routes": [
+				// {
+				// 	"route_name": "Mercado Oficial",
+				// 	"path": "/currencies/mercado-oficial",
+				// 	"menu_title": "Mercado Oficial"
+				// },
+				// {
+				// 	"route_name": "Mercado Paralelo",
+				// 	"path": "/currencies/mercado-paralelo",
+				// 	"menu_title": "Mercado Paralelo"
+				// },
+				{
+					"route_name": "Monedas",
+					"path": "/currencies/petroleo",
+					"menu_title": "Petroleo"
+				},
+			]
+		}
 		// {
 		// 	"menu_title": "message.dashboard",
 		// 	"menu_icon": "zmdi zmdi-view-dashboard",
@@ -86,7 +108,7 @@ export default {
 		// 		}
 		// 	]
 		// },
-		
+
 		// {
 		// 	"menu_title": "message.uiElements",
 		// 	"menu_icon": "zmdi zmdi-view-carousel",
@@ -309,4 +331,4 @@ export default {
 		// 	]
 		// }
 	]
-}
+};

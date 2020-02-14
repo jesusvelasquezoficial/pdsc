@@ -6,8 +6,8 @@ import CountUp from 'Components/CountUp/CountUp';
 import PageTitleBar from "Components/PageTitleBar/PageTitleBar";
 import AppCard from 'Components/AppCard/AppCard';
 import StatsCard from 'Components/StatsCard/StatsCard';
-import StatsCardV2 from "Components/StatsCardV2/StatsCardV2"
-import SocialStatsCard from 'Components/SocialStatsCard/SocialStatsCard';
+import StatsCardV2 from "Components/StatsCardV2/StatsCardV2";
+// import SocialStatsCard from 'Components/SocialStatsCard/SocialStatsCard';
 import AppSectionLoader from 'Components/AppSectionLoader/AppSectionLoader';
 import CryptoSlider from "Components/Widgets/CryptoSlider";
 import IndicadoresTasas from "Components/Widgets/IndicadoresTasas";
@@ -15,6 +15,9 @@ import Calendario from "Components/Widgets/Calendario";
 import GraphMercadoOficial from "Components/Widgets/GraphMercadoOficial";
 import TablasMercados from 'Components/Widgets/TablasMercados';
 import DeleteConfirmationDialog from 'Components/DeleteConfirmationDialog/DeleteConfirmationDialog';
+import GraphPetroleo from 'Components/Graph/GraphPetroleo';
+import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
+
 // import TasasSlider from "Components/Widgets/TasasSlider";
 const GlobalComponents = {
 	install(Vue) {
@@ -22,7 +25,7 @@ const GlobalComponents = {
 		Vue.component('appCard', AppCard);
 		Vue.component('statsCard', StatsCard);
 		Vue.component('statsCardV2', StatsCardV2);
-		Vue.component('socialStatsCard', SocialStatsCard);
+		// Vue.component('socialStatsCard', SocialStatsCard);
 		Vue.component('vuePerfectScrollbar', VuePerfectScrollbar);
 		Vue.component('pageTitleBar', PageTitleBar);
 		Vue.component('datePicker', Datepicker);
@@ -35,7 +38,9 @@ const GlobalComponents = {
 		Vue.component('calendario', Calendario);
 		Vue.component('graphMercadoOficial', GraphMercadoOficial);
 		Vue.component('TablasMercados', TablasMercados);
+		Vue.component('GraphPetroleo', GraphPetroleo);
+		Vue.component('FadeLoader', FadeLoader);
 		// Vue.component('tasasSlider', TasasSlider);
 	}
-}
-export default GlobalComponents
+};
+export default GlobalComponents;

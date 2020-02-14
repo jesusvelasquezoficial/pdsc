@@ -20,16 +20,16 @@ import wysiwyg from "vue-wysiwyg";
 import Notifications from "vue-notification";
 import velocity from "velocity-animate";
 import VueBreadcrumbs from "vue2-breadcrumbs";
-import VueQuillEditor from "vue-quill-editor";
+// import VueQuillEditor from "vue-quill-editor";
 import { Vue2Dragula } from "vue2-dragula";
-import VueVideoPlayer from "vue-video-player";
+// import VueVideoPlayer from "vue-video-player";
 import fullscreen from "vue-fullscreen";
 import Croppa from "vue-croppa";
-import VueTour from 'vue-tour';
+// import VueTour from 'vue-tour';
 import VueI18n from "vue-i18n";
 import Vuelidate from "vuelidate";
 import VuePaginate from 'vue-paginate';
-import VCalendar from 'v-calendar/lib/components/calendar.umd';
+// import VCalendar from 'v-calendar/lib/components/calendar.umd';
 // import * as VueGoogleMaps from "vue2-google-maps";
 // Scripts Template
 // navigation guards before each
@@ -42,12 +42,12 @@ router.beforeEach((to, from, next) => {
         next({
           path: "/session/login",
           query: { redirect: to.fullPath }
-        })
+        });
       } else {
-        next()
+        next();
       }
     } else {
-      next() // make sure to always call next()!
+      next(); // make sure to always call next()!
    }
 });
 // navigation guard after each
@@ -66,25 +66,25 @@ Vue.use(VueSweetAlert);
 Vue.use(wysiwyg, {});
 Vue.use(Notifications, { velocity });
 Vue.use(VueBreadcrumbs);
-Vue.use(VueQuillEditor);
+// Vue.use(VueQuillEditor);
 Vue.use(Vue2Dragula);
 Vue.use(VuePaginate);
-Vue.use(VueVideoPlayer);
+// Vue.use(VueVideoPlayer);
 Vue.use(Croppa);
-Vue.use(VueTour);
+// Vue.use(VueTour);
 Vue.use(VueI18n);
 Vue.use(fullscreen);
 Vue.use(Vuelidate);
 Vue.use(MaterialIcons);
 Vue.use(FontAwesome);
 Vue.use(GlobalComponents);
-Vue.use(VCalendar, {
-  screens: {
-    tablet: '576px',
-    laptop: '992px',
-    desktop: '1200px',
-  }                // ...other defaults
-});
+// Vue.use(VCalendar, {
+//   screens: {
+//     tablet: '576px',
+//     laptop: '992px',
+//     desktop: '1200px',
+//   }                // ...other defaults
+// });
 // Vue.use(VueGoogleMaps, {
 //   load: {
 //     key: 'AIzaSyBtdO5k6CRntAMJCF-H5uZjTCoSGX95cdk'
@@ -94,7 +94,7 @@ Vue.use(VCalendar, {
 const i18n = new VueI18n({
 	locale: store.getters.selectedLocale.locale, // set locale
   messages // set locale messages
-})
+});
 // Init Vue App
 export default new Vue({
   // Root Element

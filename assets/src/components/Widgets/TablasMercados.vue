@@ -3,10 +3,10 @@
     <b-row>
       <!-- DOLAR -->
       <b-col sm="12" md="6" class="mb-4">
-        <app-card heading="Dolar Informacion Diaria" :headingMenu="true">
+        <app-card v-if="loadedTablaDolar" heading="Dolar Informacion Diaria" :headingMenu="true">
           <div class="table-responsive mb-0">
             <div class="unseen">
-              <b-table class="table table-hover table-bordered table-striped"
+              <b-table v-if="loadedTablaDolar" class="table table-hover table-bordered table-striped"
                 id="tablaDolar"
                 :items="dataTablaDolar"
                 :per-page="paginacionDolarPorPagina"
@@ -24,13 +24,16 @@
             </b-pagination>
           </div>
         </app-card>
+        <div v-else class="d-flex justify-content-center py-5 mb-5">
+          <fade-loader :loading="!loadedTablaDolar" color="DarkOrange" size="32px"></fade-loader>
+        </div>
       </b-col>
       <!-- EURO -->
       <b-col sm="12" md="6" class="mb-4">
-        <app-card heading="Euro Informacion Diaria" :headingMenu="true">
+        <app-card v-if="loadedTablaEuro" heading="Euro Informacion Diaria" :headingMenu="true">
           <div class="table-responsive mb-0">
             <div class="unseen">
-              <b-table class="table table-hover table-bordered table-striped"
+              <b-table v-if="loadedTablaEuro" class="table table-hover table-bordered table-striped"
                 id="tablaEuro"
                 :items="dataTablaEuro"
                 :per-page="paginacionEuroPorPagina"
@@ -47,13 +50,16 @@
             <b-pagination aria-controls="tablaEuro" pills align="center" :total-rows="paginacionEuroTotal" v-model="paginacionEuroPagina2" :per-page="paginacionEuroPorPagina">
             </b-pagination>
           </div>
-        </app-card>        
+        </app-card>    
+        <div v-else class="d-flex justify-content-center py-5 mb-5">
+          <fade-loader :loading="!loadedTablaEuro" color="DarkOrange" size="32px"></fade-loader>
+        </div>    
       </b-col>
     </b-row>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -61,6 +67,7 @@ export default {
     }
   },
   computed: {
+    ...mapState('tasas',['loadedTablaDolar','loadedTablaEuro',]),
     ...mapGetters('tasas', 
     [
       'paginacionDolarPagina',

@@ -2,7 +2,7 @@
   <div id='graph'>
     <b-row>
       <b-col sm="12" md="6" class="mb-4">
-      <app-card heading="Dolar Oficial y Paralelo" :headingMenu="true">
+      <app-card v-if="loadedGraphMercadoOficial" heading="Dolar Oficial y Paralelo" :headingMenu="true">
         <!-- Precios del dia -->
         <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
           <div class="col-md-4" style="border-left: solid 5px #252F5D;">
@@ -22,29 +22,30 @@
         <div class="mb-1 ml-4 d-flex justify-content-start align-items-center">
           <span style="color:#666666;">Zoom</span>
           <div class="col-sm-8 col-md-10 col-lg-7">
-            <b-input-group>
-              <b-button @click="sD7D" small outline color="gray" class="p-0">7d</b-button>
-              <b-button @click="sD2S" small outline color="gray" class="p-0">2s</b-button>
-              <b-button @click="sD30D" small outline color="gray" class="p-0">1m</b-button>
-              <b-button @click="resertScaleDolar" small outline color="gray" class="p-0">3m</b-button>
-              <b-button @click="resertScaleDolar" small outline color="gray" class="p-0">1y</b-button>
-              <!-- <b-button @click="resertScaleDolar" small outline color="gray" class="p-0">YTD</b-button> -->
-              <b-button @click="resertScaleDolar" small outline color="gray" class="p-0">ALL</b-button>
-            </b-input-group>
+            <b-button @click="sD7D" size="sm" variant="outline-ligth">7d</b-button>
+            <b-button @click="sD2S" size="sm" variant="outline-ligth">2s</b-button>
+            <b-button @click="sD30D" size="sm" variant="outline-ligth">1m</b-button>
+            <b-button @click="resertScaleDolar" size="sm" variant="outline-ligth">3m</b-button>
+            <b-button @click="resertScaleDolar" size="sm" variant="outline-ligth">1y</b-button>
+            <!-- <b-button @click="resertScaleDolar" size="sm" variant="outline-ligth">YTD</b-button> -->
+            <b-button @click="resertScaleDolar" size="sm" variant="outline-ligth">ALL</b-button>
           </div>
         </div>
         <!-- Graficos de linea -->
         <line-chart
-          id="mercadoDolar"
+          v-if="loadedGraphMercadoOficial" 
           ref="mercadoDolar"
           :chartData="dataDolar"
           :options="optionsDolar"
           :styles="styles"
         ></line-chart>
       </app-card>
+       <div v-else class="d-flex justify-content-center py-5 mb-5">
+        <fade-loader :loading="!loadedGraphMercadoOficial" color="DarkOrange" size="32px"></fade-loader>
+      </div>
     </b-col>
     <b-col sm="12" md="6" class="mb-4">
-      <app-card heading="Euro Oficial y Paralelo" :headingMenu="true">
+      <app-card v-if="loadedGraphMercadoParalelo" heading="Euro Oficial y Paralelo" :headingMenu="true">
         <!-- Precio del Dia -->
         <div class="mb-3 ml-4 d-flex justify-content-start align-items-center">
           <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
@@ -62,26 +63,27 @@
           <span class="pr-2" style="color:#666666;">Zoom</span>
           <!-- </b-col> -->
           <div class="col-sm-8 col-md-10 col-lg-7">
-            <b-input-group>
-              <b-button @click="sE7D" small outline color="gray" class="p-0">7d</b-button>
-              <b-button @click="sE2S" small outline color="gray" class="p-0">2s</b-button>
-              <b-button @click="sE30D" small outline color="gray" class="p-0">1m</b-button>
-              <b-button @click="resertScaleEuro" small outline color="gray" class="p-0">3m</b-button>
-              <b-button @click="resertScaleEuro" small outline color="gray" class="p-0">1y</b-button>
-              <!-- <f7-button @click="resertScaleEuro" small outline color="gray" class="p-0">YTD</f7-button> -->
-              <b-button @click="resertScaleEuro" small outline color="gray" class="p-0">ALL</b-button>
-            </b-input-group>
+            <b-button @click="sE7D" size="sm" variant="outline-ligth">7d</b-button>
+            <b-button @click="sE2S" size="sm" variant="outline-ligth">2s</b-button>
+            <b-button @click="sE30D" size="sm" variant="outline-ligth">1m</b-button>
+            <b-button @click="resertScaleEuro" size="sm" variant="outline-ligth">3m</b-button>
+            <b-button @click="resertScaleEuro" size="sm" variant="outline-ligth">1y</b-button>
+            <!-- <f7-button @click="resertScaleEuro" size="sm" variant="outline-ligth">YTD</f7-button> -->
+            <b-button @click="resertScaleEuro" size="sm" variant="outline-ligth">ALL</b-button>
           </div>
         </div>
         <!-- Graficos de linea -->
         <line-chart
-          id="mercadoEuro"
+          v-if="loadedGraphMercadoParalelo" 
           ref="mercadoEuro"
           :chartData="dataEuro"
           :options="optionsEuro"
           :styles="styles"
         ></line-chart>
       </app-card>
+      <div v-else class="d-flex justify-content-center py-5 mb-5">
+        <fade-loader :loading="!loadedGraphMercadoParalelo" color="DarkOrange" size="32px"></fade-loader>
+      </div>
     </b-col>
     </b-row>
   </div>
@@ -97,12 +99,18 @@ export default {
     return {
       horaDF: null,
       width: 100,
-      height: 500,
+      height: 75,
       
     }
   },
   computed: {
     ...mapState('tasas',[
+      'minEuroX',
+      'maxEuroX',
+      'minEuroY',
+      'maxEuroY',
+      'loadedGraphMercadoOficial',
+      'loadedGraphMercadoParalelo',
       'precioDolarBCV',
       'precioDolarToday',
       'precioDolarMonitor',
@@ -111,15 +119,92 @@ export default {
     ]),
     ...mapGetters('tasas', [
       'dataDolar',
-      'dataEuro',
-      'optionsEuro'
+      'dataEuro'
     ]),
     styles() {
       return {
         width: `${this.width}%`,
-        height: `${this.height}px`,
+        height: `${this.height}vh`,
         position: "relative"
       };
+    },
+    optionsEuro() {
+      return {
+        // showLines: false, // disable for all datasets
+        responsive: true,
+        maintainAspectRatio: false,
+        // aspectRatio: 2,
+        // plugins: [ChartDataLabels],
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                min: this.minEuroX,
+                max: this.maxEuroX
+              }
+            }
+          ],
+          yAxes: [
+            {
+              ticks: {
+                min: this.minEuroY,
+                max: this.maxEuroY
+                // stepSize: 20000
+                // callback: function(value, index, values) {
+                //   // return "BsS " + value;
+                //   return value;
+                // }
+              }
+            }
+          ]
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+          align: "center",
+          labels: {
+            boxWidth: 10,
+            fontSize: 12,
+            fontStyle: "normal",
+            fontColor: "#666",
+            usePointStyle: true
+          }
+        },
+        layout: {
+          padding: {
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        },
+        animation: {
+          duration: 0 // general animation time
+        },
+        tooltips: {
+          mode: "index", //point, nearest, dataset, x, y, interpolate
+          intersect: false,
+          // titleFontFamily
+          // titleFontColor: '#fff',
+          titleFontSize: 12,
+          titleAlign: "center",
+          titleSpacing: 2,
+          titleMarginBottom: 6,
+          // bodyFontFamily
+          //footerFontFamily
+          xPadding: 6,
+          yPadding: 6,
+          caretPadding: 2,
+          caretSize: 5,
+          cornerRadius: 6,
+          // multiKeyBackground: '#fff',
+          borderColor: "rgba(0, 0, 0, 1)",
+          borderWidth: 0,
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          position: "nearest"
+          // axis: 'y'
+        }
+      }
     },
     optionsDolar() {
       return {
@@ -198,7 +283,6 @@ export default {
     ...mapActions('tasas', [
       'loadDataOficial',
       'loadDataParalelo',
-      'loadDataDolarMonitor',
       'sE7D',
       'sE2S',
       'sE30D',
@@ -209,10 +293,9 @@ export default {
       'resertScaleEuro',
     ])
   },
-  mounted() {
+  created() {
     this.loadDataOficial();
     this.loadDataParalelo();
-    this.loadDataDolarMonitor();
   },
 }
 </script>

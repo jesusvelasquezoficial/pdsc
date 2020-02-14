@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<app-card class="ticker-slider grid-b-space" style="height:78;">
-			<slick  v-if="loaded" :options="slickOptions">
+		<app-card v-if="loadedTasasSlider" class="ticker-slider grid-b-space" style="height:78;">
+			<slick :options="slickOptions">
 				<div class="ticker-item-wrap px-3" v-for="(item,index) in getData" :key="index">
 					<div class="d-flex align-items-center justify-content-between">
 						<div class="price-content">
@@ -21,23 +21,20 @@
 					</div>
 				</div>
 			</slick>
-			<div v-else class="d-flex justify-content-center">
-				<fade-loader :loading="!loaded" color="DarkOrange" size="32px"></fade-loader>
-			</div>
 		</app-card>
-		
+		<div v-else class="d-flex justify-content-center py-5 mb-5">
+			<fade-loader :loading="!loadedTasasSlider" color="DarkOrange" size="32px"></fade-loader>
+		</div>
 	</div>
 </template>
 
 <script>
 	import Slick from "vue-slick";
-	import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
   import Auth from "@/assets/auth";
 	import { mapState, mapGetters, mapActions } from 'vuex';
 	export default {
 		components: {
 			Slick,
-			FadeLoader
 		},
 		data() {
 			return {
@@ -152,9 +149,7 @@
 			};
 		},
     computed: {
-			...mapState({
-				loaded: state => state.tasas.loaded,
-			}),
+			...mapState('tasas',['loadedTasasSlider']),
 			...mapGetters('tasas', ['getData'])
 		},
 		methods: {

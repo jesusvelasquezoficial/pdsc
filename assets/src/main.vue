@@ -1,26 +1,26 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <tour></tour>
+    <!-- <tour></tour> -->
 		<notifications group="loggedIn" position="top right" animation-type="velocity"/>
   </div>
 </template>
 <script>
   import { mapGetters } from "vuex";
-  import Tour from "Components/Tour/Tour";
+  // import Tour from "Components/Tour/Tour";
   import AppConfig from "Constants/AppConfig";
   export default {
     components: {
-        Tour
+        // Tour
     },
     mounted() {
       setTimeout(() => {
           this.loading = false;
-          setTimeout(() => {
-            if (AppConfig.enableUserTour) {
-              this.$tours["vuelyTour"].start();
-            }
-          }, 1000);
+          // setTimeout(() => {
+          //   if (AppConfig.enableUserTour) {
+          //     this.$tours["vuelyTour"].start();
+          //   }
+          // }, 1000);
         }, 2000);
     },
     data() {

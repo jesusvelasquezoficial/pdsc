@@ -16,7 +16,7 @@
 								<router-view></router-view>
 							</transition>
 						</div><!-- inner container closed -->
-						<app-customizer></app-customizer>
+						<!-- <app-customizer></app-customizer> -->
 					</div><!-- base container closed -->
 				</div><!-- Main Content closed -->
 			</div>
@@ -89,8 +89,6 @@
 		},
 		beforeUpdate() {
 			this.toggleSidebar();
-			this.$store.dispatch('tasas/sE7D');
-			this.$store.dispatch('tasas/sD7D');
 		},
 		methods: {
 			closeSidebar() {

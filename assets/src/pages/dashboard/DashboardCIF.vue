@@ -15,12 +15,21 @@
 	</div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 	export default {
 		name: "dashboard",
 		data() {
 			return {
 				
 			}
+		},
+		methods: {
+			...mapActions('tasas', ['loadDataPetroleo','loadDataOficial','loadDataParalelo'])
+		},
+		created() {
+			this.loadDataPetroleo();
+			this.loadDataOficial();
+    	this.loadDataParalelo();
 		},
 	};
 </script>
