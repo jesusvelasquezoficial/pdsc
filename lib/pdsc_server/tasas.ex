@@ -418,4 +418,292 @@ defmodule PdscServer.Tasas do
   def change_oil(%Oil{} = oil) do
     Oil.changeset(oil, %{})
   end
+
+  alias PdscServer.Tasas.Gold
+
+  @doc """
+  Returns the list of gold.
+
+  ## Examples
+
+      iex> list_gold()
+      [%Gold{}, ...]
+
+  """
+  def list_gold do
+    Repo.all(Gold)
+  end
+
+  @doc """
+  Gets a single gold.
+
+  Raises `Ecto.NoResultsError` if the Gold does not exist.
+
+  ## Examples
+
+      iex> get_gold!(123)
+      %Gold{}
+
+      iex> get_gold!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_gold!(id), do: Repo.get!(Gold, id)
+
+  @doc """
+  Creates a gold.
+
+  ## Examples
+
+      iex> create_gold(%{field: value})
+      {:ok, %Gold{}}
+
+      iex> create_gold(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_gold(attrs \\ %{}) do
+    %Gold{}
+    |> Gold.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a gold.
+
+  ## Examples
+
+      iex> update_gold(gold, %{field: new_value})
+      {:ok, %Gold{}}
+
+      iex> update_gold(gold, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_gold(%Gold{} = gold, attrs) do
+    gold
+    |> Gold.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Gold.
+
+  ## Examples
+
+      iex> delete_gold(gold)
+      {:ok, %Gold{}}
+
+      iex> delete_gold(gold)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_gold(%Gold{} = gold) do
+    Repo.delete(gold)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking gold changes.
+
+  ## Examples
+
+      iex> change_gold(gold)
+      %Ecto.Changeset{source: %Gold{}}
+
+  """
+  def change_gold(%Gold{} = gold) do
+    Gold.changeset(gold, %{})
+  end
+
+  alias PdscServer.Tasas.Bitcoin
+
+  @doc """
+  Returns the list of bitcoin.
+
+  ## Examples
+
+      iex> list_bitcoin()
+      [%Bitcoin{}, ...]
+
+  """
+  def list_bitcoin do
+    Repo.all(Bitcoin)
+  end
+
+  @doc """
+  Gets a single bitcoin.
+
+  Raises `Ecto.NoResultsError` if the Bitcoin does not exist.
+
+  ## Examples
+
+      iex> get_bitcoin!(123)
+      %Bitcoin{}
+
+      iex> get_bitcoin!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_bitcoin!(id), do: Repo.get!(Bitcoin, id)
+
+  @doc """
+  Creates a bitcoin.
+
+  ## Examples
+
+      iex> create_bitcoin(%{field: value})
+      {:ok, %Bitcoin{}}
+
+      iex> create_bitcoin(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_bitcoin(attrs \\ %{}) do
+    %Bitcoin{}
+    |> Bitcoin.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a bitcoin.
+
+  ## Examples
+
+      iex> update_bitcoin(bitcoin, %{field: new_value})
+      {:ok, %Bitcoin{}}
+
+      iex> update_bitcoin(bitcoin, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_bitcoin(%Bitcoin{} = bitcoin, attrs) do
+    bitcoin
+    |> Bitcoin.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Bitcoin.
+
+  ## Examples
+
+      iex> delete_bitcoin(bitcoin)
+      {:ok, %Bitcoin{}}
+
+      iex> delete_bitcoin(bitcoin)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_bitcoin(%Bitcoin{} = bitcoin) do
+    Repo.delete(bitcoin)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking bitcoin changes.
+
+  ## Examples
+
+      iex> change_bitcoin(bitcoin)
+      %Ecto.Changeset{source: %Bitcoin{}}
+
+  """
+  def change_bitcoin(%Bitcoin{} = bitcoin) do
+    Bitcoin.changeset(bitcoin, %{})
+  end
+
+  alias PdscServer.Tasas.Petro
+
+  @doc """
+  Returns the list of petro.
+
+  ## Examples
+
+      iex> list_petro()
+      [%Petro{}, ...]
+
+  """
+  def list_petro do
+    Repo.all(Petro)
+  end
+
+  @doc """
+  Gets a single petro.
+
+  Raises `Ecto.NoResultsError` if the Petro does not exist.
+
+  ## Examples
+
+      iex> get_petro!(123)
+      %Petro{}
+
+      iex> get_petro!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_petro!(id), do: Repo.get!(Petro, id)
+
+  @doc """
+  Creates a petro.
+
+  ## Examples
+
+      iex> create_petro(%{field: value})
+      {:ok, %Petro{}}
+
+      iex> create_petro(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_petro(attrs \\ %{}) do
+    %Petro{}
+    |> Petro.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a petro.
+
+  ## Examples
+
+      iex> update_petro(petro, %{field: new_value})
+      {:ok, %Petro{}}
+
+      iex> update_petro(petro, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_petro(%Petro{} = petro, attrs) do
+    petro
+    |> Petro.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Petro.
+
+  ## Examples
+
+      iex> delete_petro(petro)
+      {:ok, %Petro{}}
+
+      iex> delete_petro(petro)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_petro(%Petro{} = petro) do
+    Repo.delete(petro)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking petro changes.
+
+  ## Examples
+
+      iex> change_petro(petro)
+      %Ecto.Changeset{source: %Petro{}}
+
+  """
+  def change_petro(%Petro{} = petro) do
+    Petro.changeset(petro, %{})
+  end
 end

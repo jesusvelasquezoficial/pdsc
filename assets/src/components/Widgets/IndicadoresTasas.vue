@@ -25,74 +25,12 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<line-chart-shadow :dataSet="minMapPetroleo" :lineTension="0.4" :dataLabels="fechaMinMapPetroleo"
+								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="90"
+								:style="{height: '55px', width:'70px', position: 'relative'}"></mini-chart>
+								<!-- <line-chart-shadow :dataSet="minMapPetroleo" :lineTension="0.4" :dataLabels="fechaMinMapPetroleo"
 									:style="{height: '25px', width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
-								</line-chart-shadow>
-							</div>
-						</div>
-					</app-card>
-				</div>
-				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
-					<app-card>
-						<div class="d-flex align-items-center justify-content-between">
-							<div class="d-block">
-								<div class="layout justify-content-between">
-									<div class="align-items-center d-flex mb-1">
-										<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
-											<i :class="icon" title="BCN"></i>
-										</div> -->
-										<div class="inline-block">
-											<p class="mb-0">Oro</p>
-										</div>
-									</div>
-								</div>
-								<slot><h4 class="m-0 p-0"><b>$ {{oro}}</b></h4></slot>
-								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div class="text-success">
-										<i class="zmdi">&nbsp;</i>
-										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
-									</div>
-									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
-								</div>
-							</div>
-							<div class="d-inline-block">
-								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
-									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
-									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
-								</line-chart-shadow>
-							</div>
-						</div>
-					</app-card>
-				</div>
-				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
-					<app-card>
-						<div class="d-flex align-items-center justify-content-between">
-							<div class="d-block">
-								<div class="layout justify-content-between">
-									<div class="align-items-center d-flex mb-1">
-										<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
-											<i :class="icon" title="BCN"></i>
-										</div> -->
-										<div class="inline-block">
-											<p class="mb-0">Petro</p>
-										</div>
-									</div>
-								</div>
-								<slot><h4 class="m-0 p-0"><b>BsS {{petro}}</b></h4></slot>
-								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div class="text-danger">
-										<i class="zmdi">&nbsp;</i>
-										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
-									</div>
-									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
-								</div>
-							</div>
-							<div class="d-inline-block hidden-md-up">
-								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
-									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
-									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
-								</line-chart-shadow>
+								</line-chart-shadow> -->
 							</div>
 						</div>
 					</app-card>
@@ -121,7 +59,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
+								<line-chart-shadow :dataSet="[3.25,-1.25,5.12,-2.17,-0.6]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
 								</line-chart-shadow>
@@ -153,6 +91,68 @@
 							</div>
 						</div>
 						<div class="d-inline-block">
+								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
+									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
+									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
+								</line-chart-shadow>
+							</div>
+						</div>
+					</app-card>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
+					<app-card>
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="d-block">
+								<div class="layout justify-content-between">
+									<div class="align-items-center d-flex mb-1">
+										<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
+											<i :class="icon" title="BCN"></i>
+										</div> -->
+										<div class="inline-block">
+											<p class="mb-0">Oro</p>
+										</div>
+									</div>
+								</div>
+								<slot><h4 class="m-0 p-0"><b>$ {{oro}}</b></h4></slot>
+								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
+									<div class="text-success">
+										<i class="zmdi">&nbsp;</i>
+										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
+									</div>
+									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
+								</div>
+							</div>
+							<div class="d-inline-block">
+								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="28"
+								:style="{height: '55px', width:'70px', position: 'relative'}"></mini-chart>
+							</div>
+						</div>
+					</app-card>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
+					<app-card>
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="d-block">
+								<div class="layout justify-content-between">
+									<div class="align-items-center d-flex mb-1">
+										<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
+											<i :class="icon" title="BCN"></i>
+										</div> -->
+										<div class="inline-block">
+											<p class="mb-0">Petro</p>
+										</div>
+									</div>
+								</div>
+								<slot><h4 class="m-0 p-0"><b>BsS {{petro}}</b></h4></slot>
+								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
+									<div class="text-danger">
+										<i class="zmdi">&nbsp;</i>
+										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
+									</div>
+									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
+								</div>
+							</div>
+							<div class="d-inline-block hidden-md-up">
 								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
@@ -201,12 +201,14 @@
 <script>
   import StatsCardV7 from "Components/StatsCardV7/StatsCardV7";
   import LineChartShadow from "Components/Charts/LineChartShadow";
+  import MiniChart from "Components/Charts/MiniChart";
 	import ChartConfig from "Constants/ChartConfig";
 	import { mapState } from 'vuex'
   export default {
 		components: {
 			StatsCardV7,
 			LineChartShadow,
+			MiniChart
 		},
     data() {
       return {
@@ -267,6 +269,8 @@
 			...mapState('tasas', [
 				'dataPetroleo',
 				'petroleoFecha',
+				'dataOro',
+				'oroFecha',
 				'precioOil',
 				'petroleoVariacion',
 				'petroleoUpOrDown',
@@ -286,9 +290,55 @@
 					return data;
 				}
 			},
+			dataMiniChartPetroleo(){
+				var data = [];
+				var precios = this.dataPetroleo + '';
+				var array = precios.split(',');
+				console.log("datos:", array);
+				var indexBase = array.length - 7;
+				console.log("Indice base:",indexBase);
+				var precioBase = array[indexBase];
+				console.log("Precio base:",precioBase);
+				for (let index = indexBase; index < array.length; index++) {
+					const precio = array[index];
+					console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
+					var v = ((precio - precioBase) / precioBase) * 100;
+					console.log(v.toFixed(2));
+					data.push(Number(v.toFixed(2)))
+				}
+				console.log("Mini data:", data);
+				return data;
+			},
+			dataMiniChartOro(){
+				var data = [];
+				var precios = this.dataOro + '';
+				var array = precios.split(',');
+				console.log("datos:", array);
+				var indexBase = array.length - 7;
+				console.log("Indice base:",indexBase);
+				var precioBase = array[indexBase];
+				console.log("Precio base:",precioBase);
+				for (let index = indexBase; index < array.length; index++) {
+					const precio = array[index];
+					console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
+					var v = ((precio - precioBase) / precioBase) * 100;
+					console.log(v.toFixed(2));
+					data.push(Number(v.toFixed(2)))
+				}
+				console.log("Mini data:", data);
+				return data;
+			},
 			fechaMinMapPetroleo(){
 				if (this.petroleoFecha != null || this.petroleoFecha != undefined) {
 					var fech = this.petroleoFecha + '';
+					var array = fech.split(',')
+					var fecha = array.slice(array.length - 7, array.length);
+					return fecha;
+				}
+			},
+			fechaMinMapOro(){
+				if (this.oroFecha != null || this.oroFecha != undefined) {
+					var fech = this.oroFecha + '';
 					var array = fech.split(',')
 					var fecha = array.slice(array.length - 7, array.length);
 					return fecha;

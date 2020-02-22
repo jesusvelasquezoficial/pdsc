@@ -256,4 +256,187 @@ defmodule PdscServer.TasasTest do
       assert %Ecto.Changeset{} = Tasas.change_oil(oil)
     end
   end
+
+  describe "gold" do
+    alias PdscServer.Tasas.Gold
+
+    @valid_attrs %{dolar: "some dolar", fecha: "some fecha"}
+    @update_attrs %{dolar: "some updated dolar", fecha: "some updated fecha"}
+    @invalid_attrs %{dolar: nil, fecha: nil}
+
+    def gold_fixture(attrs \\ %{}) do
+      {:ok, gold} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Tasas.create_gold()
+
+      gold
+    end
+
+    test "list_gold/0 returns all gold" do
+      gold = gold_fixture()
+      assert Tasas.list_gold() == [gold]
+    end
+
+    test "get_gold!/1 returns the gold with given id" do
+      gold = gold_fixture()
+      assert Tasas.get_gold!(gold.id) == gold
+    end
+
+    test "create_gold/1 with valid data creates a gold" do
+      assert {:ok, %Gold{} = gold} = Tasas.create_gold(@valid_attrs)
+      assert gold.dolar == "some dolar"
+      assert gold.fecha == "some fecha"
+    end
+
+    test "create_gold/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Tasas.create_gold(@invalid_attrs)
+    end
+
+    test "update_gold/2 with valid data updates the gold" do
+      gold = gold_fixture()
+      assert {:ok, %Gold{} = gold} = Tasas.update_gold(gold, @update_attrs)
+      assert gold.dolar == "some updated dolar"
+      assert gold.fecha == "some updated fecha"
+    end
+
+    test "update_gold/2 with invalid data returns error changeset" do
+      gold = gold_fixture()
+      assert {:error, %Ecto.Changeset{}} = Tasas.update_gold(gold, @invalid_attrs)
+      assert gold == Tasas.get_gold!(gold.id)
+    end
+
+    test "delete_gold/1 deletes the gold" do
+      gold = gold_fixture()
+      assert {:ok, %Gold{}} = Tasas.delete_gold(gold)
+      assert_raise Ecto.NoResultsError, fn -> Tasas.get_gold!(gold.id) end
+    end
+
+    test "change_gold/1 returns a gold changeset" do
+      gold = gold_fixture()
+      assert %Ecto.Changeset{} = Tasas.change_gold(gold)
+    end
+  end
+
+  describe "bitcoin" do
+    alias PdscServer.Tasas.Bitcoin
+
+    @valid_attrs %{dolar: "some dolar", fecha: "some fecha"}
+    @update_attrs %{dolar: "some updated dolar", fecha: "some updated fecha"}
+    @invalid_attrs %{dolar: nil, fecha: nil}
+
+    def bitcoin_fixture(attrs \\ %{}) do
+      {:ok, bitcoin} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Tasas.create_bitcoin()
+
+      bitcoin
+    end
+
+    test "list_bitcoin/0 returns all bitcoin" do
+      bitcoin = bitcoin_fixture()
+      assert Tasas.list_bitcoin() == [bitcoin]
+    end
+
+    test "get_bitcoin!/1 returns the bitcoin with given id" do
+      bitcoin = bitcoin_fixture()
+      assert Tasas.get_bitcoin!(bitcoin.id) == bitcoin
+    end
+
+    test "create_bitcoin/1 with valid data creates a bitcoin" do
+      assert {:ok, %Bitcoin{} = bitcoin} = Tasas.create_bitcoin(@valid_attrs)
+      assert bitcoin.dolar == "some dolar"
+      assert bitcoin.fecha == "some fecha"
+    end
+
+    test "create_bitcoin/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Tasas.create_bitcoin(@invalid_attrs)
+    end
+
+    test "update_bitcoin/2 with valid data updates the bitcoin" do
+      bitcoin = bitcoin_fixture()
+      assert {:ok, %Bitcoin{} = bitcoin} = Tasas.update_bitcoin(bitcoin, @update_attrs)
+      assert bitcoin.dolar == "some updated dolar"
+      assert bitcoin.fecha == "some updated fecha"
+    end
+
+    test "update_bitcoin/2 with invalid data returns error changeset" do
+      bitcoin = bitcoin_fixture()
+      assert {:error, %Ecto.Changeset{}} = Tasas.update_bitcoin(bitcoin, @invalid_attrs)
+      assert bitcoin == Tasas.get_bitcoin!(bitcoin.id)
+    end
+
+    test "delete_bitcoin/1 deletes the bitcoin" do
+      bitcoin = bitcoin_fixture()
+      assert {:ok, %Bitcoin{}} = Tasas.delete_bitcoin(bitcoin)
+      assert_raise Ecto.NoResultsError, fn -> Tasas.get_bitcoin!(bitcoin.id) end
+    end
+
+    test "change_bitcoin/1 returns a bitcoin changeset" do
+      bitcoin = bitcoin_fixture()
+      assert %Ecto.Changeset{} = Tasas.change_bitcoin(bitcoin)
+    end
+  end
+
+  describe "petro" do
+    alias PdscServer.Tasas.Petro
+
+    @valid_attrs %{bolivares: "some bolivares", fecha: "some fecha"}
+    @update_attrs %{bolivares: "some updated bolivares", fecha: "some updated fecha"}
+    @invalid_attrs %{bolivares: nil, fecha: nil}
+
+    def petro_fixture(attrs \\ %{}) do
+      {:ok, petro} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Tasas.create_petro()
+
+      petro
+    end
+
+    test "list_petro/0 returns all petro" do
+      petro = petro_fixture()
+      assert Tasas.list_petro() == [petro]
+    end
+
+    test "get_petro!/1 returns the petro with given id" do
+      petro = petro_fixture()
+      assert Tasas.get_petro!(petro.id) == petro
+    end
+
+    test "create_petro/1 with valid data creates a petro" do
+      assert {:ok, %Petro{} = petro} = Tasas.create_petro(@valid_attrs)
+      assert petro.bolivares == "some bolivares"
+      assert petro.fecha == "some fecha"
+    end
+
+    test "create_petro/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Tasas.create_petro(@invalid_attrs)
+    end
+
+    test "update_petro/2 with valid data updates the petro" do
+      petro = petro_fixture()
+      assert {:ok, %Petro{} = petro} = Tasas.update_petro(petro, @update_attrs)
+      assert petro.bolivares == "some updated bolivares"
+      assert petro.fecha == "some updated fecha"
+    end
+
+    test "update_petro/2 with invalid data returns error changeset" do
+      petro = petro_fixture()
+      assert {:error, %Ecto.Changeset{}} = Tasas.update_petro(petro, @invalid_attrs)
+      assert petro == Tasas.get_petro!(petro.id)
+    end
+
+    test "delete_petro/1 deletes the petro" do
+      petro = petro_fixture()
+      assert {:ok, %Petro{}} = Tasas.delete_petro(petro)
+      assert_raise Ecto.NoResultsError, fn -> Tasas.get_petro!(petro.id) end
+    end
+
+    test "change_petro/1 returns a petro changeset" do
+      petro = petro_fixture()
+      assert %Ecto.Changeset{} = Tasas.change_petro(petro)
+    end
+  end
 end

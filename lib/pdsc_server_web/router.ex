@@ -41,6 +41,9 @@ defmodule PdscServerWeb.Router do
     resources "/dtd", DtdController
     resources "/dm", DmController
     resources "/oil", OilController
+    resources "/gold", GoldController
+    resources "/btc", BitcoinController
+    resources "/ptr", PetroController
 
     # resources "/users", UserController, except: [:new, :edit]
   end

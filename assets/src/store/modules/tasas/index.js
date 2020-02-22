@@ -19,6 +19,7 @@ const state = {
   loadedGraphMercadoOficial: false,
   loadedGraphMercadoParalelo: false,
   loadedGraphPetroleo: false,
+  loadedGraphGold: false,
   loadedTablaDolar: false,
   loadedTablaEuro: false,
   dolarOficial: localStorage.getItem('dolarOficial') || "cargando...",
@@ -85,6 +86,7 @@ const state = {
   precioEuroOficial: localStorage.getItem('precioEuroOficial') || "cargando...",
   precioEuroParalelo: localStorage.getItem('precioEuroParalelo') || 'cargando...',
   precioOil: localStorage.getItem('precioOil') || 'cargando...',
+  precioOro: localStorage.getItem('precioOro') || 'cargando...',
 
   dataDolarOficial: localStorage.getItem('dataDolarOficial') || "cargando...",
   dataDolarToday: localStorage.getItem('dataDolarToday') || 'cargando...',
@@ -92,6 +94,7 @@ const state = {
   dataEuroOficial: localStorage.getItem('dataEuroOficial') || "cargando...",
   dataEuroParalelo: localStorage.getItem('dataEuroParalelo') || 'cargando...',
   dataPetroleo: localStorage.getItem('dataPetroleo') || [],
+  dataOro: localStorage.getItem('dataOro') || [],
 
   tablaDolar: localStorage.getItem('tablaDolar') || [],
   tablaEuro: localStorage.getItem('tablaEuro') || [],
@@ -120,10 +123,15 @@ const state = {
   minPP2S: localStorage.getItem('minPP2S') || 'cargando...',
   minPP30D: localStorage.getItem('minPP30D') || 'cargando...',
 
+  minPG7D: localStorage.getItem('minPG7D') || 'cargando...',
+  minPG2S: localStorage.getItem('minPG2S') || 'cargando...',
+  minPG30D: localStorage.getItem('minPG30D') || 'cargando...',
+  
   fecha: localStorage.getItem('fecha') || [],
   euroFecha: localStorage.getItem('euroFecha') || [],
   dolarFecha: localStorage.getItem('dolarFecha') || [],
-  petroleoFecha: localStorage.getItem('dolarFecha') || [],
+  petroleoFecha: localStorage.getItem('petroleoFecha') || [],
+  oroFecha: localStorage.getItem('oroFecha') || [],
 
   minEuroX: localStorage.getItem('minEuroX') || 0,
   maxEuroX: localStorage.getItem('maxEuroX') || 0,
@@ -139,7 +147,7 @@ const state = {
   maxPetroleoX: localStorage.getItem('maxPetroleoX') || 0,
   minPetroleoY: localStorage.getItem('minPetroleoY') || 0,
   maxPetroleoY: localStorage.getItem('maxPetroleoY') || 0,
-
+  
   baseMinEuroX: localStorage.getItem('baseMinEuroX') || 0,
   baseMinEuroY: localStorage.getItem('baseMinEuroY') || 0,
 
@@ -148,7 +156,13 @@ const state = {
 
   baseMinPetroleoX: localStorage.getItem('baseMinPetroleoX') || 0,
   baseMinPetroleoY: localStorage.getItem('baseMinPetroleoY') || 0,
-
+  
+  baseMinGoldX: localStorage.getItem('baseMinGoldX') || 0,
+  baseMinGoldY: localStorage.getItem('baseMinGoldY') || 0,
+  minGoldX: localStorage.getItem('minGoldX') || 0,
+  maxGoldX: localStorage.getItem('maxGoldX') || 0,
+  minGoldY: localStorage.getItem('minGoldY') || 0,
+  maxGoldY: localStorage.getItem('maxGoldY') || 0,
 };
 
 const getters = {
@@ -211,20 +225,20 @@ const getters = {
         "color": `${state.oroColor}`,
       },
       {
-        "coin1": "Petro",
-        "coin2": "",
-        "price": `BsS ${state.petro}`,
-        "market_cap": `${state.petroVariacion}%`,
-        "icon": `${state.petroUpOrDown}`,
-        "color": `${state.petroColor}`,
-      },
-      {
         "coin1": "Bitcoin",
         "coin2": "",
         "price": `$ ${state.bitcoin}`,
         "market_cap": `${state.bitcoinVariacion}%`,
         "icon": `${state.bitcoinUpOrDown}`,
         "color": `${state.bitcoinColor}`,
+      },
+      {
+        "coin1": "Petro",
+        "coin2": "",
+        "price": `BsS ${state.petro}`,
+        "market_cap": `${state.petroVariacion}%`,
+        "icon": `${state.petroUpOrDown}`,
+        "color": `${state.petroColor}`,
       },
       {
         "coin1": "S&P 500",
@@ -344,6 +358,28 @@ const getters = {
           pointHoverBackgroundColor: "Black",
           pointRadius: 1,
           data: state.dataPetroleo
+        },
+      ]
+    };
+  },
+  dataOro: (state) => {
+    return {
+      type: "line",
+      labels: state.oroFecha,
+      datasets: [
+        {
+          // showLine: false, // disable for a single dataset
+          label: "Oro",
+          borderWidth: 2, //3
+          hoverBorderWidth: 3, //3
+          borderColor: "Orange",
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          pointBorderColor: "Orange",
+          pointBackgroundColor: "Orange",
+          pointHoverBorderColor: "Orange",
+          pointHoverBackgroundColor: "Orange",
+          pointRadius: 1,
+          data: state.dataOro
         },
       ]
     };
@@ -473,6 +509,7 @@ const actions = {
     }).catch(err => console.log(err));
      Axios.get('http://pdsc.phoenixplus.net:8000/getTasasPTR').then(res => {
       let data = res.data;
+      console.log("PETRO:",data);
        context.commit('setPetro', data.bolivar[0]);
     }).catch(err => console.log(err));
      Axios.get('http://pdsc.phoenixplus.net:8000/getTasasBTC').then(res => {
@@ -480,7 +517,9 @@ const actions = {
        context.commit('setBitcoin', data.bitcoin[0]);
     }).catch(err => console.log(err));
      Axios.get('http://pdsc.phoenixplus.net:8000/getTasasSP500').then(res => {
-      let data = res.data;
+       console.log(res);
+       let data = res.data;
+       console.log("S&P500:",data);
        context.commit('setSp500', data.sp500[0]);
     }).catch(err => console.log(err));
      Axios.get('http://pdsc.phoenixplus.net:8000/getTasasNASDAQ').then(res => {
@@ -678,6 +717,46 @@ const actions = {
     });
     await context.commit('loadedGraphPetroleo');
   },
+  async loadDataOro(context){
+    await Axios.get("http://localhost:4000/api/gold").then(async res => {
+      let gold = res.data.data;
+      var fechaGold = [];
+      var dolarGold = [];
+      await gold.forEach((e, i) => {
+        var f = moment(e.fecha).format("L");
+        fechaGold[i] = f;
+        var o = e.dolar.replace(".", "");
+        dolarGold[i] = parseFloat(o.replace(",", "."));
+        // var gold_params = {
+        //   fecha: e.fecha,
+        //   dolar: e.dolar
+        // }
+        // Axios.post("http://pdsc.phoenixplus.net:4000/api/gold", {gold: gold_params}).then(res => {
+        //   console.log(res.data.data);
+        // }).catch(err => console.log(err));
+      });
+      context.commit('setDataGold', dolarGold);
+      var a = dolarGold[dolarGold.length - 2];
+      var b = dolarGold[dolarGold.length - 1];
+      var v = ((b - a) / a) * 100;
+      var c = sube0baja(v);
+      c.unshift(v.toFixed(2));
+      context.commit('setGoldVariacion', c);
+      context.commit('setPrecioGold', dolarGold[dolarGold.length - 1]);
+      context.commit('minPG7D', parseFloat(gold[gold.length - 7].dolar.replace(".", "").replace(",", ".")) - (parseFloat(gold[gold.length - 7].dolar.replace(".", "").replace(",", ".")) * 6) / 100);
+      context.commit('minPG2S', parseFloat(gold[gold.length - 15].dolar.replace(".", "").replace(",", ".")) - (parseFloat(gold[gold.length - 15].dolar.replace(".", "").replace(",", ".")) * 8) / 100);
+      context.commit('minPG30D', parseFloat(gold[gold.length - 30].dolar.replace(".", "").replace(",", ".")) - (parseFloat(gold[gold.length - 30].dolar.replace(".", "").replace(",", ".")) * 7) / 100);
+      context.commit('oroFecha', fechaGold);
+      context.commit('baseMinGoldX', moment(gold[0].fecha).format("L")); // this.minDolarX;
+      context.commit('minGoldX', fechaGold[fechaGold.length - 7]);
+      context.commit('maxGoldX', moment(gold[gold.length - 1].fecha).format("L"));
+      context.commit('baseMinGoldY', Math.min(...dolarGold) - (Math.min(...dolarGold) * 5) / 100);// this.minDolarY;
+      context.commit('minGoldY', parseFloat(gold[gold.length - 7].dolar.replace(".", "").replace(",", ".")) - (parseFloat(gold[gold.length - 7].dolar.replace(".", "").replace(",", ".")) * 5) / 100);
+      context.commit('maxGoldY', Math.max(...dolarGold) + (Math.max(...dolarGold) * 4) / 100);
+
+    });
+    await context.commit('loadedGraphGold');
+  },
   async loadDataTablaDolar(context) {
     await Axios.get("http://pdsc.phoenixplus.net:4000/api/bcvDesc").then(async res => {
       var data = res.data.data;
@@ -797,6 +876,22 @@ const actions = {
   resertScalePetroleo(context) {
     context.commit('minPetroleoX', state.baseMinPetroleoX);
     context.commit('minPetroleoY', state.baseMinPetroleoY);
+  },
+  sG7D(context) {
+    context.commit('minGoldX', state.f7D);
+    context.commit('minGoldY', state.minPG7D);
+  },
+  sG2S(context) {
+    context.commit('minGoldX', state.f2S);
+    context.commit('minGoldY', state.minPG2S);
+  },
+  sG30D(context) {
+    context.commit('minGoldX', state.f30D);
+    context.commit('minGoldY', state.minPG30D);
+  },
+  resertScaleGold(context) {
+    context.commit('minGoldX', state.baseMinGoldX);
+    context.commit('minGoldY', state.baseMinGoldY);
   },
 };
 
@@ -1127,7 +1222,65 @@ const mutations = {
   loadedTablaEuro(state){
     state.loadedTablaEuro = true;
   },
-  
+  setDataGold(state, valor){
+    state.dataOro = valor;
+    localStorage.setItem('dataOro', valor);
+  },
+  setGoldVariacion(state, valor){
+    state.oroVariacion = valor[0];
+    state.oroUpOrDown = valor[1];
+    state.oroColor = valor[2];
+    localStorage.setItem('oroVariacion', valor[0]);
+    localStorage.setItem('oroUpOrDown', valor[1]);
+    localStorage.setItem('oroColor', valor[2]);
+  },
+  setPrecioGold(state, valor){
+    state.precioOro = valor;
+    localStorage.setItem('precioOro', valor);
+  },
+  minPG7D(state, valor){
+    state.minPG7D = valor;
+    localStorage.setItem('minPG7D', valor);
+  },
+  minPG2S(state, valor){
+    state.minPG2S = valor;
+    localStorage.setItem('minPG2S', valor);
+  },
+  minPG30D(state, valor){
+    state.minPG30D = valor;
+    localStorage.setItem('minPG30D', valor);
+  },
+  oroFecha(state, valor){
+    state.oroFecha = valor;
+    localStorage.setItem('oroFecha', valor);
+  },
+  baseMinGoldX(state, valor){
+    state.baseMinGoldX = valor;
+    localStorage.setItem('baseMinGoldX', valor);
+  },
+  minGoldX(state, valor){
+    state.minGoldX = valor;
+    localStorage.setItem('minGoldX', valor);
+  },
+  maxGoldX(state, valor){
+    state.maxGoldX = valor;
+    localStorage.setItem('maxGoldX', valor);
+  },
+  baseMinGoldY(state, valor){
+    state.baseMinGoldY = valor;
+    localStorage.setItem('baseMinGoldY', valor);
+  },
+  minGoldY(state, valor){
+    state.minGoldY = valor;
+    localStorage.setItem('minGoldY', valor);
+  },
+  maxGoldY(state, valor){
+    state.maxGoldY = valor;
+    localStorage.setItem('maxGoldY', valor);
+  },
+  loadedGraphGold(state){
+    state.loadedGraphGold = true;
+  },
   
 };
 

@@ -6,7 +6,8 @@ import Full from 'Container/Full';
 
 // inicio
 import Dashboard from 'Pages/dashboard/DashboardCIF';
-import Petroleo from 'Pages/currencies/Petroleo';
+import Petroleo from 'Pages/materia-prima/Petroleo';
+import Oro from 'Pages/materia-prima/Oro';
 
 // dashboard views
 import DashboardOne from 'Pages/dashboard/DashboardOne';
@@ -108,13 +109,23 @@ export default new Router({
 					}
 				},
 				{
-					name: "Monedas",
-					path: '/currencies/petroleo',
+					name: "Materia Prima",
+					path: '/materia-prima/petroleo',
 					component: Petroleo,
 					meta: {
 						requiresAuth: true,
 						title: "Petroleo",
-						breadcrumb: 'Monedas / Petroleo'
+						breadcrumb: 'Materia Prima / Petroleo'
+					}
+				},
+				{
+					name: "Materia Prima",
+					path: '/materia-prima/oro',
+					component: Oro,
+					meta: {
+						requiresAuth: true,
+						title: "Oro",
+						breadcrumb: 'Materia Prima / Oro'
 					}
 				},
 				{

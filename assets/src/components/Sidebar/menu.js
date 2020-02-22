@@ -12,24 +12,80 @@ export default {
 			]
 		},
 		{
-			"menu_title": "Monedas",
+			"menu_title": "Materia Prima",
 			"menu_icon": "zmdi zmdi-chart-donut",
 			"active": false,
 			"child_routes": [
 				// {
 				// 	"route_name": "Mercado Oficial",
-				// 	"path": "/currencies/mercado-oficial",
+				// 	"path": "/materia-prima/mercado-oficial",
 				// 	"menu_title": "Mercado Oficial"
 				// },
 				// {
 				// 	"route_name": "Mercado Paralelo",
-				// 	"path": "/currencies/mercado-paralelo",
+				// 	"path": "/materia-prima/mercado-paralelo",
 				// 	"menu_title": "Mercado Paralelo"
 				// },
 				{
-					"route_name": "Monedas",
-					"path": "/currencies/petroleo",
+					"route_name": "Materia Prima",
+					"path": "/materia-prima/petroleo",
 					"menu_title": "Petroleo"
+				},
+				{
+					"route_name": "Materia Prima",
+					"path": "/materia-prima/oro",
+					"menu_title": "Oro"
+				},
+			]
+		},
+		{
+			"menu_title": "Criptomonedas",
+			"menu_icon": "zmdi zmdi-chart-donut",
+			"active": false,
+			"child_routes": [
+				{
+					"route_name": "Criptomonedas",
+					"path": "/criptomonedas/bitcoin",
+					"menu_title": "Bitcoin"
+				},
+				{
+					"route_name": "Criptomonedas",
+					"path": "/criptomonedas/petro",
+					"menu_title": "Petro"
+				},
+			]
+		},
+		{
+			"menu_title": "Bolas de Valores",
+			"menu_icon": "zmdi zmdi-chart-donut",
+			"active": false,
+			"child_routes": [
+				{
+					"route_name": "Bolas de Valores",
+					"path": "/bolas-valores/sp500",
+					"menu_title": "S&P 500"
+				},
+				{
+					"route_name": "Bolas de Valores",
+					"path": "/bolas-valores/nasdaq",
+					"menu_title": "Nasdaq"
+				},
+			]
+		},
+		{
+			"menu_title": "Forex",
+			"menu_icon": "zmdi zmdi-chart-donut",
+			"active": false,
+			"child_routes": [
+				{
+					"route_name": "Forex",
+					"path": "/forex/dolar",
+					"menu_title": "Dolar"
+				},
+				{
+					"route_name": "Forex",
+					"path": "/forex/euro",
+					"menu_title": "Euro"
 				},
 			]
 		}
