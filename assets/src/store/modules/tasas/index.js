@@ -687,13 +687,15 @@ const actions = {
         fechaOil[i] = f;
         var o = e.dolar.replace(".", "");
         dolarOil[i] = parseFloat(o.replace(",", "."));
-        // var oil_params = {
-        //   fecha: e.fecha,
-        //   dolar: e.dolar
-        // }
-        // Axios.post("http://pdsc.phoenixplus.net:4000/api/oil", {oil: oil_params}).then(res => {
-        //   console.log(res.data.data);
-        // }).catch(err => console.log(err));
+        var oil_params = {
+          fecha: e.fecha,
+          dolar: e.dolar
+        }
+        // await setTimeout(async () => {
+        //   await Axios.post("http://pdsc.phoenixplus.net:4000/api/oil", {oil: oil_params}).then(res => {
+        //     console.log(res.data.data);
+        //   }).catch(err => console.log(err));
+        // }, i * 10000);
       });
       context.commit('setDataPetroleo', dolarOil);
       var a = dolarOil[dolarOil.length - 2];
@@ -718,7 +720,7 @@ const actions = {
     await context.commit('loadedGraphPetroleo');
   },
   async loadDataOro(context){
-    await Axios.get("http://localhost:4000/api/gold").then(async res => {
+    await Axios.get("http://pdsc.phoenixplus.net:4000/api/gold").then(async res => {
       let gold = res.data.data;
       var fechaGold = [];
       var dolarGold = [];
@@ -727,13 +729,10 @@ const actions = {
         fechaGold[i] = f;
         var o = e.dolar.replace(".", "");
         dolarGold[i] = parseFloat(o.replace(",", "."));
-        // var gold_params = {
-        //   fecha: e.fecha,
-        //   dolar: e.dolar
-        // }
-        // Axios.post("http://pdsc.phoenixplus.net:4000/api/gold", {gold: gold_params}).then(res => {
-        //   console.log(res.data.data);
-        // }).catch(err => console.log(err));
+        var gold_params = {
+          fecha: e.fecha,
+          dolar: e.dolar
+        }
       });
       context.commit('setDataGold', dolarGold);
       var a = dolarGold[dolarGold.length - 2];
