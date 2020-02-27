@@ -24,12 +24,13 @@ import { mapActions } from 'vuex';
 			}
 		},
 		methods: {
-			...mapActions('tasas', ['loadDataPetroleo','loadDataOficial','loadDataParalelo'])
+			...mapActions('tasas', ['loadDataPetroleo','loadDataOficial','loadDataParalelo', 'loadDataOro'])
 		},
 		created() {
 			this.loadDataPetroleo();
 			this.loadDataOficial();
     	this.loadDataParalelo();
+    	this.loadDataOro();
 		},
 	};
 </script>

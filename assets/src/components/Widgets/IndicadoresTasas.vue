@@ -25,8 +25,8 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="55"
-								:style="{height: '55px', width:'70px', position: 'relative'}"></mini-chart>
+								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="1"
+								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 								<!-- <line-chart-shadow :dataSet="minMapPetroleo" :lineTension="0.4" :dataLabels="fechaMinMapPetroleo"
 									:style="{height: '25px', width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
@@ -113,18 +113,18 @@
 										</div>
 									</div>
 								</div>
-								<slot><h4 class="m-0 p-0"><b>$ {{oro}}</b></h4></slot>
+								<slot><h4 class="m-0 p-0"><b>$ {{precioOro}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div class="text-success">
-										<i class="zmdi">&nbsp;</i>
+									<div :class="oroColor">
+										<i :class="[oroUpOrDown, 'mr-1']"></i>{{oroVariacion}}%
 										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="28"
-								:style="{height: '55px', width:'70px', position: 'relative'}"></mini-chart>
+								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="77"
+								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
 					</app-card>
@@ -275,6 +275,10 @@
 				'petroleoVariacion',
 				'petroleoUpOrDown',
 				'petroleoColor',
+				'precioOro',
+				'oroVariacion',
+				'oroUpOrDown',
+				'oroColor',
 				'oro',
 				'petro',
 				'bitcoin',
