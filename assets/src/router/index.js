@@ -6,8 +6,14 @@ import Full from 'Container/Full';
 
 // inicio
 import Dashboard from 'Pages/dashboard/DashboardCIF';
+import Dolar from 'Pages/forex/Dolar';
+import Euro from 'Pages/forex/Euro';
 import Petroleo from 'Pages/materia-prima/Petroleo';
 import Oro from 'Pages/materia-prima/Oro';
+import Bitcoin from 'Pages/criptomonedas/Bitcoin';
+import Petro from 'Pages/criptomonedas/Petro';
+import Sp500 from 'Pages/bolsas-valores/Sp500';
+import Nasdaq from 'Pages/bolsas-valores/Nasdaq';
 
 // dashboard views
 import DashboardOne from 'Pages/dashboard/DashboardOne';
@@ -109,6 +115,26 @@ export default new Router({
 					}
 				},
 				{
+					name: 'Forex',
+					path: '/forex/dolar',
+					component: Dolar,
+					meta:{
+						requiresAuth: true,
+						title: 'Dolar',
+						breadcrumb: 'Forex / Dolar'
+					}
+				},
+				{
+					name: 'Forex',
+					path: '/forex/euro',
+					component: Euro,
+					meta:{
+						requiresAuth: true,
+						title: 'Euro',
+						breadcrumb: 'Forex / Euro'
+					}
+				},
+				{
 					name: "Materia Prima",
 					path: '/materia-prima/petroleo',
 					component: Petroleo,
@@ -126,6 +152,46 @@ export default new Router({
 						requiresAuth: true,
 						title: "Oro",
 						breadcrumb: 'Materia Prima / Oro'
+					}
+				},
+				{
+					name: 'Criptomonedas',
+					path: '/criptomonedas/bitcoin',
+					component: Bitcoin,
+					meta:{
+						requiresAuth: true,
+						title: 'Bitcoin',
+						breadcrumb: 'Criptomonedas / Bitcoin'
+					}
+				},
+				{
+					name: 'Criptomonedas',
+					path: '/criptomonedas/petro',
+					component: Petro,
+					meta:{
+						requiresAuth: true,
+						title: 'Petro',
+						breadcrumb: 'Criptomonedas / Petro'
+					}
+				},
+				{
+					name: 'Bolsas de Valores',
+					path: '/bolsas-valores/sp500',
+					component: Sp500,
+					meta:{
+						requiresAuth: true,
+						title: 'S&P 500',
+						breadcrumb: 'Bolsas de Valores / S&P 500'
+					}
+				},
+				{
+					name: 'Bolsas de Valores',
+					path: '/bolsas-valores/nasdaq',
+					component: Nasdaq,
+					meta:{
+						requiresAuth: true,
+						title: 'Nasdaq',
+						breadcrumb: 'Bolsas de Valores / Nasdaq'
 					}
 				},
 				{

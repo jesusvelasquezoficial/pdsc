@@ -54,6 +54,9 @@
 					</b-dropdown-item>
 				</b-nav-item-dropdown>
 				<language-provider></language-provider>
+				<div class="d-flex justify-content-center align-item-center pl-lg-0 pl-3">
+					<span>{{hora}}</span>
+				</div>
 				<b-nav-item @click="toggleRightSidebar" class="customizer">
 					<i class="zmdi zmdi-tune"></i>
 				</b-nav-item>
@@ -80,6 +83,7 @@
 	export default {
 		data: function () {
 			return {
+				hora: null,
 				quickLinks: [
 					{
 						title: "Dashboard 2",
@@ -187,6 +191,32 @@
 			MobileSearchForm
 		},
 		methods: {
+			realtime: function() {
+				let t = new Date();
+				let h = t.getHours();
+				let m = t.getMinutes();
+				let s = t.getSeconds();
+				m = setFormato(m);
+				s = setFormato(s);
+				function setFormato(i) {
+					if (i < 10) {
+						i = "0" + i;
+					}
+					return i;
+				}
+				function formatAMPM(date) {
+					var hours = date.getHours();
+					var minutes = date.getMinutes();
+					var ampm = hours >= 12 ? 'PM' : 'AM';
+					hours = hours % 12;
+					hours = hours ? hours : 12; // the hour '0' should be '12'
+					minutes = minutes < 10 ? '0'+minutes : minutes;
+					var strTime = hours + ':' + minutes + ' ' + ampm;
+					return strTime;
+				}
+				// this.hora = h + ":" + m // + ":" + s 
+				this.hora = formatAMPM(t);
+			},
 			// method to right Sidebar event
 			toggleRightSidebar() {
 				this.$store.dispatch('toggleRightSidebar');
@@ -206,7 +236,12 @@
 					this.$store.dispatch('collapsedSidebar')
 				}
 			},
-		}
+		},
+		mounted() {
+			setInterval(() => {
+				this.realtime()
+			}, 1000);
+		},
 	};
 </script>
 <style>

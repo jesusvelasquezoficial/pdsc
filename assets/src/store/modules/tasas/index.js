@@ -15,6 +15,7 @@ function sube0baja(params) {
 }
 
 const state = {
+  // Flag Spinner Loader
   loadedTasasSlider: false,
   loadedGraphMercadoOficial: false,
   loadedGraphMercadoParalelo: false,
@@ -22,64 +23,58 @@ const state = {
   loadedGraphGold: false,
   loadedTablaDolar: false,
   loadedTablaEuro: false,
+
+  // Precios Tasas
   dolarOficial: localStorage.getItem('dolarOficial') || "cargando...",
   dolarParalelo: localStorage.getItem('dolarParalelo') || "cargando...",
   monitorDolar: localStorage.getItem('monitorDolar') || "cargando...",
   euroOficial: localStorage.getItem('euroOficial') || "cargando...",
   euroParalelo: localStorage.getItem('euroParalelo') || "cargando...",
 
+  // Porcentaje de Variacion | Icono (↑ o ↓) | Color (Green o Red)
   dolarOficialVariacion: localStorage.getItem('dolarOficialVariacion') || "0.0",
   dolarOficialUpOrDown: localStorage.getItem('dolarOficialUpOrDown') || "",
   dolarOficialColor: localStorage.getItem('dolarOficialColor') || "",
-
   dolarParaleloVariacion: localStorage.getItem('dolarParaleloVariacion') || "0.0",
   dolarParaleloUpOrDown: localStorage.getItem('dolarParaleloUpOrDown') || "",
   dolarParaleloColor: localStorage.getItem('dolarParaleloColor') || "",
-
   monitorDolarVariacion: localStorage.getItem('monitorDolarVariacion') || "0.0",
   monitorDolarUpOrDown: localStorage.getItem('monitorDolarUpOrDown') || "",
   monitorDolarColor: localStorage.getItem('monitorDolarColor') || "",
-
   euroOficialVariacion: localStorage.getItem('euroOficialVariacion') || "0.0",
   euroOficialUpOrDown: localStorage.getItem('euroOficialUpOrDown') || "",
   euroOficialColor: localStorage.getItem('euroOficialColor') || "",
-
   euroParaleloVariacion: localStorage.getItem('euroParaleloVariacion') || "0.0",
   euroParaleloUpOrDown: localStorage.getItem('euroParaleloUpOrDown') || "",
   euroParaleloColor: localStorage.getItem('euroParaleloColor') || "",
-
   petroleoVariacion: localStorage.getItem('petroleoVariacion') || "0.0",
   petroleoUpOrDown: localStorage.getItem('petroleoUpOrDown') || "",
   petroleoColor: localStorage.getItem('petroleoColor') || "",
-
   oroVariacion: localStorage.getItem('oroVariacion') || "0.0",
   oroUpOrDown: localStorage.getItem('oroUpOrDown') || "",
   oroColor: localStorage.getItem('oroColor') || "",
-
   petroVariacion: localStorage.getItem('petroVariacion') || "0.0",
   petroUpOrDown: localStorage.getItem('petroUpOrDown') || "",
   petroColor: localStorage.getItem('petroColor') || "",
-
   bitcoinVariacion: localStorage.getItem('bitcoinVariacion') || "0.0",
   bitcoinUpOrDown: localStorage.getItem('bitcoinUpOrDown') || "",
   bitcoinColor: localStorage.getItem('bitcoinColor') || "",
-
   sp500Variacion: localStorage.getItem('sp500Variacion') || "0.0",
   sp500UpOrDown: localStorage.getItem('sp500UpOrDown') || "",
   sp500Color: localStorage.getItem('sp500Color') || "",
-
   nasdaqVariacion: localStorage.getItem('nasdaqVariacion') || "0.0",
   nasdaqUpOrDown: localStorage.getItem('nasdaqUpOrDown') || "",
   nasdaqColor: localStorage.getItem('nasdaqColor') || "",
 
-
+  // Precio Tasas
   petroleo: localStorage.getItem('petroleo') || "cargando...",
   oro: localStorage.getItem('oro') || "cargando...",
   petro: localStorage.getItem('petro') || "cargando...",
   bitcoin: localStorage.getItem('bitcoin') || "cargando...",
   sp500: localStorage.getItem('sp500') || "cargando...",
   nasdaq: localStorage.getItem('nasdaq') || "cargando...",
-
+  
+  // Precio Tasas
   precioDolarBCV: localStorage.getItem('precioDolarBCV') || "cargando...",
   precioDolarToday: localStorage.getItem('precioDolarToday') || 'cargando...',
   precioDolarMonitor: localStorage.getItem('precioDolarMonitor') || 'cargando...',
@@ -88,6 +83,7 @@ const state = {
   precioOil: localStorage.getItem('precioOil') || 'cargando...',
   precioOro: localStorage.getItem('precioOro') || 'cargando...',
 
+  // All Data Tasas DB
   dataDolarOficial: localStorage.getItem('dataDolarOficial') || "cargando...",
   dataDolarToday: localStorage.getItem('dataDolarToday') || 'cargando...',
   dataDolarMonitor: localStorage.getItem('dataDolarMonitor') || 'cargando...',
@@ -95,74 +91,79 @@ const state = {
   dataEuroParalelo: localStorage.getItem('dataEuroParalelo') || 'cargando...',
   dataPetroleo: localStorage.getItem('dataPetroleo') || [],
   dataOro: localStorage.getItem('dataOro') || [],
-
+  
+  // Data Tablas
   tablaDolar: localStorage.getItem('tablaDolar') || [],
   tablaEuro: localStorage.getItem('tablaEuro') || [],
-  paginacionEuroTotal: localStorage.getItem('pagEuroTotal') || 0,
-  paginacionEuroPaginas: localStorage.getItem('pagEuroPaginas') || 0,
-  paginacionEuroPorPagina: 7,
-  paginacionEuroPagina: localStorage.getItem('pagEuroPagina') || 1,
+  // Parametros para Paginar las Tablas
   paginacionDolarTotal: localStorage.getItem('pagDolarTotal') || 0,
   paginacionDolarPaginas: localStorage.getItem('pagDolarPaginas') || 0,
   paginacionDolarPorPagina: 7,
   paginacionDolarPagina: localStorage.getItem('pagDolarPagina') || 1,
+  paginacionEuroTotal: localStorage.getItem('pagEuroTotal') || 0,
+  paginacionEuroPaginas: localStorage.getItem('pagEuroPaginas') || 0,
+  paginacionEuroPorPagina: 7,
+  paginacionEuroPagina: localStorage.getItem('pagEuroPagina') || 1,
 
+  // Fechas para Scalar el Graph
   f7D: localStorage.getItem('f7D') || 'cargando...',
   f2S: localStorage.getItem('f2S') || 'cargando...',
   f30D: localStorage.getItem('f30D') || 'cargando...',
 
-  minPE7D: localStorage.getItem('minPE7D') || 'cargando...',
-  minPE2S: localStorage.getItem('minPE2S') || 'cargando...',
-  minPE30D: localStorage.getItem('minPE30D') || 'cargando...',
-
+  // Minimo Precio por Scala de Graph
   minPD7D: localStorage.getItem('minPD7D') || 'cargando...',
   minPD2S: localStorage.getItem('minPD2S') || 'cargando...',
   minPD30D: localStorage.getItem('minPD30D') || 'cargando...',
-  
+  minPE7D: localStorage.getItem('minPE7D') || 'cargando...',
+  minPE2S: localStorage.getItem('minPE2S') || 'cargando...',
+  minPE30D: localStorage.getItem('minPE30D') || 'cargando...',
   minPP7D: localStorage.getItem('minPP7D') || 'cargando...',
   minPP2S: localStorage.getItem('minPP2S') || 'cargando...',
   minPP30D: localStorage.getItem('minPP30D') || 'cargando...',
-
   minPG7D: localStorage.getItem('minPG7D') || 'cargando...',
   minPG2S: localStorage.getItem('minPG2S') || 'cargando...',
   minPG30D: localStorage.getItem('minPG30D') || 'cargando...',
   
+  // Fecha Generica
   fecha: localStorage.getItem('fecha') || [],
-  euroFecha: localStorage.getItem('euroFecha') || [],
+  // Fechas por Tasas
   dolarFecha: localStorage.getItem('dolarFecha') || [],
+  euroFecha: localStorage.getItem('euroFecha') || [],
   petroleoFecha: localStorage.getItem('petroleoFecha') || [],
   oroFecha: localStorage.getItem('oroFecha') || [],
-
-  minEuroX: localStorage.getItem('minEuroX') || 0,
-  maxEuroX: localStorage.getItem('maxEuroX') || 0,
-  minEuroY: localStorage.getItem('minEuroY') || 0,
-  maxEuroY: localStorage.getItem('maxEuroY') || 0,
-
+  
+  // Valor minimo mas bajo del eje X
   minDolarX: localStorage.getItem('minDolarX') || 0,
-  maxDolarX: localStorage.getItem('maxDolarX') || 0,
-  minDolarY: localStorage.getItem('minDolarY') || 0,
-  maxDolarY: localStorage.getItem('maxDolarY') || 0,
-  
+  minEuroX: localStorage.getItem('minEuroX') || 0,
   minPetroleoX: localStorage.getItem('minPetroleoX') || 0,
-  maxPetroleoX: localStorage.getItem('maxPetroleoX') || 0,
-  minPetroleoY: localStorage.getItem('minPetroleoY') || 0,
-  maxPetroleoY: localStorage.getItem('maxPetroleoY') || 0,
-  
-  baseMinEuroX: localStorage.getItem('baseMinEuroX') || 0,
-  baseMinEuroY: localStorage.getItem('baseMinEuroY') || 0,
-
-  baseMinDolarX: localStorage.getItem('baseMinDolarX') || 0,
-  baseMinDolarY: localStorage.getItem('baseMinDolarY') || 0,
-
-  baseMinPetroleoX: localStorage.getItem('baseMinPetroleoX') || 0,
-  baseMinPetroleoY: localStorage.getItem('baseMinPetroleoY') || 0,
-  
-  baseMinGoldX: localStorage.getItem('baseMinGoldX') || 0,
-  baseMinGoldY: localStorage.getItem('baseMinGoldY') || 0,
   minGoldX: localStorage.getItem('minGoldX') || 0,
-  maxGoldX: localStorage.getItem('maxGoldX') || 0,
+  //Valor minimo mas bajo del eje Y
+  minDolarY: localStorage.getItem('minDolarY') || 0,
+  minEuroY: localStorage.getItem('minEuroY') || 0,
+  minPetroleoY: localStorage.getItem('minPetroleoY') || 0,
   minGoldY: localStorage.getItem('minGoldY') || 0,
+
+  // Valor maximo mas alto del eje x
+  maxDolarX: localStorage.getItem('maxDolarX') || 0,
+  maxEuroX: localStorage.getItem('maxEuroX') || 0,
+  maxPetroleoX: localStorage.getItem('maxPetroleoX') || 0,
+  maxGoldX: localStorage.getItem('maxGoldX') || 0,
+  // Valor maximo mas alto del eje Y
+  maxDolarY: localStorage.getItem('maxDolarY') || 0,
+  maxEuroY: localStorage.getItem('maxEuroY') || 0,
+  maxPetroleoY: localStorage.getItem('maxPetroleoY') || 0,
   maxGoldY: localStorage.getItem('maxGoldY') || 0,
+  
+  // Base valor min del eje X
+  baseMinDolarX: localStorage.getItem('baseMinDolarX') || 0,
+  baseMinEuroX: localStorage.getItem('baseMinEuroX') || 0,
+  baseMinPetroleoX: localStorage.getItem('baseMinPetroleoX') || 0,
+  baseMinGoldX: localStorage.getItem('baseMinGoldX') || 0,
+  // Base valor min del eje Y
+  baseMinEuroY: localStorage.getItem('baseMinEuroY') || 0,
+  baseMinDolarY: localStorage.getItem('baseMinDolarY') || 0,
+  baseMinPetroleoY: localStorage.getItem('baseMinPetroleoY') || 0,
+  baseMinGoldY: localStorage.getItem('baseMinGoldY') || 0,
 };
 
 const getters = {

@@ -12,6 +12,23 @@ export default {
 			]
 		},
 		{
+			"menu_title": "Forex",
+			"menu_icon": "zmdi zmdi-chart-donut",
+			"active": false,
+			"child_routes": [
+				{
+					"route_name": "Forex",
+					"path": "/forex/dolar",
+					"menu_title": "Dolar"
+				},
+				{
+					"route_name": "Forex",
+					"path": "/forex/euro",
+					"menu_title": "Euro"
+				},
+			]
+		},
+		{
 			"menu_title": "Materia Prima",
 			"menu_icon": "zmdi zmdi-chart-donut",
 			"active": false,
@@ -56,36 +73,19 @@ export default {
 			]
 		},
 		{
-			"menu_title": "Bolas de Valores",
+			"menu_title": "Bolsas de Valores",
 			"menu_icon": "zmdi zmdi-chart-donut",
 			"active": false,
 			"child_routes": [
 				{
-					"route_name": "Bolas de Valores",
-					"path": "/bolas-valores/sp500",
+					"route_name": "Bolsas de Valores",
+					"path": "/bolsas-valores/sp500",
 					"menu_title": "S&P 500"
 				},
 				{
-					"route_name": "Bolas de Valores",
-					"path": "/bolas-valores/nasdaq",
+					"route_name": "Bolsas de Valores",
+					"path": "/bolsas-valores/nasdaq",
 					"menu_title": "Nasdaq"
-				},
-			]
-		},
-		{
-			"menu_title": "Forex",
-			"menu_icon": "zmdi zmdi-chart-donut",
-			"active": false,
-			"child_routes": [
-				{
-					"route_name": "Forex",
-					"path": "/forex/dolar",
-					"menu_title": "Dolar"
-				},
-				{
-					"route_name": "Forex",
-					"path": "/forex/euro",
-					"menu_title": "Euro"
 				},
 			]
 		}

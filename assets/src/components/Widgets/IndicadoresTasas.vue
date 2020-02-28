@@ -123,7 +123,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="77"
+								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="50"
 								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
