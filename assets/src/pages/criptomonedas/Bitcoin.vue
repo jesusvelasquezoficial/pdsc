@@ -1,10 +1,10 @@
 <template>
-  <div id="Bitcoin">
+  <div id="bitcoin">
     <page-title-bar></page-title-bar>
 		<crypto-slider></crypto-slider>
     <b-row>
       <b-col>
-        <h1>Page Bitcoin</h1>
+        <graph-bitcoin></graph-bitcoin>
       </b-col>
     </b-row>
   </div>

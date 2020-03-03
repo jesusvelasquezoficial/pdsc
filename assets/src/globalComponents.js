@@ -17,6 +17,8 @@ import TablasMercados from 'Components/Widgets/TablasMercados';
 import DeleteConfirmationDialog from 'Components/DeleteConfirmationDialog/DeleteConfirmationDialog';
 import GraphPetroleo from 'Components/Graph/GraphPetroleo';
 import GraphOro from 'Components/Graph/GraphOro';
+import GraphPetro from 'Components/Graph/GraphPetro';
+import GraphBitcoin from 'Components/Graph/GraphBitcoin';
 import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
 
 // import TasasSlider from "Components/Widgets/TasasSlider";
@@ -41,6 +43,8 @@ const GlobalComponents = {
 		Vue.component('TablasMercados', TablasMercados);
 		Vue.component('GraphPetroleo', GraphPetroleo);
 		Vue.component('GraphOro', GraphOro);
+		Vue.component('GraphPetro', GraphPetro);
+		Vue.component('GraphBitcoin', GraphBitcoin);
 		Vue.component('FadeLoader', FadeLoader);
 		// Vue.component('tasasSlider', TasasSlider);
 	}

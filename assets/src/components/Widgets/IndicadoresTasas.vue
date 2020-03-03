@@ -45,24 +45,21 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<p class="mb-0">Bitcoin</p>
+											<router-link to="/criptomonedas/bitcoin" class="mb-0 text-link">Bitcoin</router-link>
 										</div>
 									</div>
 								</div>
-								<slot><h4 class="m-0 p-0"><b>$ {{bitcoin}}</b></h4></slot>
+								<slot><h4 class="m-0 p-0"><b>$ {{precioBitcoin}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div class="text-success">
-										<i class="zmdi">&nbsp;</i>
-										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
+									<div :class="bitcoinColor">
+										<i :class="[bitcoinUpOrDown, 'mr-1']"></i>{{bitcoinVariacion}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<line-chart-shadow :dataSet="[3.25,-1.25,5.12,-2.17,-0.6]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
-									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
-									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
-								</line-chart-shadow>
+								<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="26"
+								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
 					</app-card>
@@ -123,7 +120,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="50"
+								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="34"
 								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
@@ -143,20 +140,18 @@
 										</div>
 									</div>
 								</div>
-								<slot><h4 class="m-0 p-0"><b>BsS {{petro}}</b></h4></slot>
+								<slot><h4 class="m-0 p-0 d-lg-none" ><b>Bs {{precioPetro}}</b></h4></slot>
+								<slot><h4 class="m-0 p-0 d-sm-none d-lg-block" style="font-size:11px"><b>Bs {{precioPetro}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div class="text-danger">
-										<i class="zmdi">&nbsp;</i>
-										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
+									<div :class="petroColor">
+										<i :class="[petroUpOrDown, 'mr-1']"></i>{{petroVariacion}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
-							<div class="d-inline-block hidden-md-up">
-								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
-									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
-									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
-								</line-chart-shadow>
+							<div class="d-inline-block">
+								<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="120"
+								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
 					</app-card>
@@ -279,9 +274,18 @@
 				'oroVariacion',
 				'oroUpOrDown',
 				'oroColor',
-				'oro',
-				'petro',
-				'bitcoin',
+				'petroFecha',
+				'dataPetro',
+				'precioPetro',
+				'petroVariacion',
+				'petroUpOrDown',
+				'petroColor',
+				'bitcoinFecha',
+				'dataBitcoin',
+				'precioBitcoin',
+				'bitcoinVariacion',
+				'bitcoinUpOrDown',
+				'bitcoinColor',
 				'sp500',
 				'nasdaq'
 			]),
@@ -347,7 +351,61 @@
 					var fecha = array.slice(array.length - 7, array.length);
 					return fecha;
 				}
-			}
+			},
+			dataMiniChartPetro(){
+				var data = [];
+				var precios = this.dataPetro + '';
+				var array = precios.split(',');
+				console.log("datos:", array);
+				var indexBase = array.length - 7;
+				console.log("Indice base:",indexBase);
+				var precioBase = array[indexBase];
+				console.log("Precio base:",precioBase);
+				for (let index = indexBase; index < array.length; index++) {
+					const precio = array[index];
+					console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
+					var v = ((precio - precioBase) / precioBase) * 100;
+					console.log(v.toFixed(2));
+					data.push(Number(v.toFixed(2)))
+				}
+				console.log("Mini data:", data);
+				return data;
+			},
+			fechaMinMapPetro(){
+				if (this.petroFecha != null || this.petroFecha != undefined) {
+					var fech = this.petroFecha + '';
+					var array = fech.split(',')
+					var fecha = array.slice(array.length - 7, array.length);
+					return fecha;
+				}
+			},
+			dataMiniChartBitcoin(){
+				var data = [];
+				var precios = this.dataBitcoin + '';
+				var array = precios.split(',');
+				console.log("datos:", array);
+				var indexBase = array.length - 7;
+				console.log("Indice base:",indexBase);
+				var precioBase = array[indexBase];
+				console.log("Precio base:",precioBase);
+				for (let index = indexBase; index < array.length; index++) {
+					const precio = array[index];
+					console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
+					var v = ((precio - precioBase) / precioBase) * 100;
+					console.log(v.toFixed(2));
+					data.push(Number(v.toFixed(2)))
+				}
+				console.log("Mini data:", data);
+				return data;
+			},
+			fechaMinMapBitcoin(){
+				if (this.bitcoinFecha != null || this.bitcoinFecha != undefined) {
+					var fech = this.bitcoinFecha + '';
+					var array = fech.split(',')
+					var fecha = array.slice(array.length - 7, array.length);
+					return fecha;
+				}
+			},
 		},
   }
 </script>
