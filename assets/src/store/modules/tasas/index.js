@@ -200,6 +200,7 @@ const getters = {
   getData: (state) => {
     return [
       {
+        "url": "/forex/dolar",
         "coin1": "Dolar Oficial",
         "coin2": "",
         "price": `$ ${state.dolarOficial}`,
@@ -208,6 +209,7 @@ const getters = {
         "color": `${state.dolarOficialColor}`,
       },
       {
+        "url": "/forex/dolar",
         "coin1": "Dolar Today",
         "coin2": "",
         "price": `$ ${state.dolarParalelo}`,
@@ -216,6 +218,7 @@ const getters = {
         "color": `${state.dolarParaleloColor}`,
       },
       {
+        "url": "/forex/dolar",
         "coin1": "Monitor Dolar",
         "coin2": "",
         "price": `$ ${state.monitorDolar}`,
@@ -224,6 +227,7 @@ const getters = {
         "color": `${state.monitorDolarColor}`,
       },
       {
+        "url": "/forex/euro",
         "coin1": "Euro Oficial",
         "coin2": "",
         "price": `€ ${state.euroOficial}`,
@@ -232,6 +236,7 @@ const getters = {
         "color": `${state.euroOficialColor}`,
       },
       {
+        "url": "/forex/euro",
         "coin1": "Euro Paralelo",
         "coin2": "",
         "price": `€ ${state.euroParalelo}`,
@@ -240,6 +245,7 @@ const getters = {
         "color": `${state.euroParaleloColor}`,
       },
       {
+        "url": "/materia-prima/petroleo",
         "coin1": "Petroleo",
         "coin2": "",
         "price": `$ ${state.precioOil}`,
@@ -248,6 +254,7 @@ const getters = {
         "color": `${state.petroleoColor}`,
       },
       {
+        "url": "/materia-prima/oro",
         "coin1": "Oro",
         "coin2": "",
         "price": `$ ${state.oro}`,
@@ -256,6 +263,7 @@ const getters = {
         "color": `${state.oroColor}`,
       },
       {
+        "url": "/criptomonedas/bitcoin",
         "coin1": "Bitcoin",
         "coin2": "",
         "price": `$ ${state.bitcoin}`,
@@ -264,6 +272,7 @@ const getters = {
         "color": `${state.bitcoinColor}`,
       },
       {
+        "url": "/criptomonedas/petro",
         "coin1": "Petro",
         "coin2": "",
         "price": `BsS ${state.petro}`,
@@ -272,20 +281,30 @@ const getters = {
         "color": `${state.petroColor}`,
       },
       {
+        "url": "/bolsas-valores/sp500",
         "coin1": "S&P 500",
         "coin2": "",
-        "price": `$ ${state.sp500}`,
-        "market_cap": `${state.sp500Variacion}%`,
-        "icon": `${state.sp500UpOrDown}`,
-        "color": `${state.sp500Color}`,
+        // "price": `$ ${state.sp500}`,
+        // "market_cap": `${state.sp500Variacion}%`,
+        // "icon": `${state.sp500UpOrDown}`,
+        // "color": `${state.sp500Color}`,
+        "price": `Mantenimiento`,
+        "market_cap": ``,
+        "icon": ``,
+        "color": ``,
       },
       {
+        "url": "/bolsas-valores/nasdaq",
         "coin1": "Nasdaq",
         "coin2": "",
-        "price": `$ ${state.nasdaq}`,
-        "market_cap": `${state.nasdaqVariacion}%`,
-        "icon": `${state.nasdaqUpOrDown}`,
-        "color": `${state.nasdaqColor}`,
+        // "price": `$ ${state.nasdaq}`,
+        // "market_cap": `${state.nasdaqVariacion}%`,
+        // "icon": `${state.nasdaqUpOrDown}`,
+        // "color": `${state.nasdaqColor}`,
+        "price": `Mantenimiento`,
+        "market_cap": ``,
+        "icon": ``,
+        "color": ``,
       }
     ];
   },
@@ -920,11 +939,23 @@ const actions = {
       var data = res.data.data;
       var tabla = [];
       await data.forEach((valor, index) => {
+        // valor.dolar = valor.dolar.split('.').join("");
+        // valor.dolar = parseFloat(valor.dolar.replace(',', '.'));
+        // console.log(valor.dolar, valor.id, index);
+        // var u = valor.dolar;
+        // var a = data[index + 1].dolar.split('.').join("");
+        // a = parseFloat(a.replace(',', '.'));
+        // console.log(u + " - " + a + " / " + a + " * " + "100");
+        // var v = ((u - a) / a) * 100;
+        // console.log(v);
+        // var c = sube0baja(v);
+        // c.unshift(v.toFixed(2));      
+        // console.log(c);
         tabla[index] = {
           fecha: moment(valor.fecha).format("L"),
           dolarOficial: valor.dolar,
           dolarToday: [],
-          dolarMonitor: []
+          dolarMonitor: [],
         };
       });
       await Axios.get("http://pdsc.phoenixplus.net:4000/api/dtdDesc").then(async res2 => {

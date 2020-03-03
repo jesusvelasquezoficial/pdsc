@@ -1,14 +1,24 @@
 <template>
 	<div>
 		<app-card v-if="loadedTasasSlider" class="ticker-slider grid-b-space" style="height:78;">
-			<slick :options="slickOptions">
+			<slick ref="slick" :options="slickOptions"
+				@breakpoint="handleBreakpoint"
+				@destroy="handleDestroy"
+				@edge="handleEdge"
+				@init="handleInit"
+				@reInit="handleReInit"
+				@swipe="handleSwipe"
+				@lazyLoaded="handleLazyLoaded"
+				@lazyLoadError="handleLazeLoadError">
 				<div class="ticker-item-wrap px-3" v-for="(item,index) in getData" :key="index">
-					<div class="d-flex align-items-center justify-content-between">
+					<div class="d-flex align-items-center justify-content-between"  @click="pause">
 						<div class="price-content">
-							<span class="d-inline-block">{{ item.coin1 }}</span>
+							<span class="d-inline-block">
+								<router-link :to="item.url" class="text-primary">{{ item.coin1 }}</router-link>
+							</span>
 							<!-- <span class="d-inline-block ml-1 mr-1">/</span> -->
 							<span class="d-inline-block">{{ item.coin2 }}</span>
-							<div class="fw-bold mt-2">
+							<div class="fw-bold mt-1">
 								{{ item.price }}
 							</div>
 							<span>{{ item.volume }}</span>
@@ -38,15 +48,19 @@
 		},
 		data() {
 			return {
+				pausa: false,
 				slickOptions: {
-					speed: 5000,
+					adaptiveHeight: true,
+					speed: 300,
 					autoplay: true,
-					autoplaySpeed: 0,
-					arrows: false,
-					cssEase: 'linear',
+					autoplaySpeed: 3000,
+					arrows: true,
+					centerMode: true,
 					slidesToShow: 1,
 					slidesToScroll: 1,
 					variableWidth: true,
+					mobileFirst: true,
+					// cssEase: 'linear',
         },
 				cryptoSliderData: [
 					{
@@ -153,12 +167,241 @@
 			...mapGetters('tasas', ['getData'])
 		},
 		methods: {
-			...mapActions('tasas', ['loadTasasSlider'])
+			...mapActions('tasas', ['loadTasasSlider']),
+			pause(){
+				if (this.pausa) {
+					console.log(this.pausa);
+					this.pausa = !this.pausa;
+					this.$refs.slick.play();
+				}else{
+					console.log(this.pausa);
+					this.pausa = !this.pausa;
+					this.$refs.slick.pause();
+				}
+			},
+			next() {
+				this.$refs.slick.next();
+			},
+
+			prev() {
+				this.$refs.slick.prev();
+			},
+			reInit() {
+					this.$refs.slick.play();
+            // Helpful if you have to deal with v-for to update dynamic lists
+            this.$nextTick(() => {
+                this.$refs.slick.reSlick();
+            });
+        },
+        // Events listeners
+        // handleAfterChange(event, slick, currentSlide) {
+        //     console.log('handleAfterChange', event, slick, currentSlide);
+        // },
+        // handleBeforeChange(event, slick, currentSlide, nextSlide) {
+        //     console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);
+        // },
+        handleBreakpoint(event, slick, breakpoint) {
+            console.log('handleBreakpoint', event, slick, breakpoint);
+        },
+        handleDestroy(event, slick) {
+            console.log('handleDestroy', event, slick);
+        },
+        handleEdge(event, slick, direction) {
+            console.log('handleEdge', event, slick, direction);
+        },
+        handleInit(event, slick) {
+					console.log('handleInit', event, slick);
+        },
+        handleReInit(event, slick) {
+					console.log('handleReInit', event, slick);
+					this.$refs.slick.play();
+        },
+        // handleSetPosition(event, slick) {
+        //     console.log('handleSetPosition', event, slick);
+        // },
+        handleSwipe(event, slick, direction) {
+            console.log('handleSwipe', event, slick, direction);
+        },
+        handleLazyLoaded(event, slick, image, imageSource) {
+            console.log('handleLazyLoaded', event, slick, image, imageSource);
+        },
+        handleLazeLoadError(event, slick, image, imageSource) {
+            console.log('handleLazeLoadError', event, slick, image, imageSource);
+        },
 		},
 		created() {
 			this.loadTasasSlider();
 		},
 	};
 </script>
-<style scoped>
+<style>
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  line-height: 0;
+
+  position: absolute;
+  top: 50%;
+
+  display: block;
+
+  width: 50px;
+  height: 20px;
+  padding: 0;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+
+  cursor: pointer;
+
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  color: transparent;
+  outline: none;
+  background: transparent;
+}
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+  opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: 0.25;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+
+  opacity: 0.75;
+  color: white;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  left: -31px;
+}
+[dir='rtl'] .slick-prev {
+  right: -31px;
+  left: auto;
+}
+.slick-prev:before {
+  /* content: '←'; */
+  content: '<';
+}
+[dir='rtl'] .slick-prev:before {
+  /* content: '→'; */
+  content: '>';
+}
+
+.slick-next {
+  right: -31px;
+}
+[dir='rtl'] .slick-next {
+  right: auto;
+  left: -31px;
+}
+.slick-next:before {
+  /* content: '→'; */
+  content: '>';
+}
+[dir='rtl'] .slick-next:before {
+  /* content: '←'; */
+  content: '<';
+}
+
+/* Dots */
+.slick-dotted.slick-slider {
+  margin-bottom: 30px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -25px;
+
+  display: block;
+
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+
+  text-align: center;
+}
+.slick-dots li {
+  position: relative;
+
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+
+  cursor: pointer;
+}
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+
+  display: block;
+
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+
+  cursor: pointer;
+
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+  outline: none;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before {
+  opacity: 1;
+}
+.slick-dots li button:before {
+  font-family: 'slick';
+  font-size: 6px;
+  line-height: 20px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 20px;
+  height: 20px;
+
+  content: '•';
+  text-align: center;
+
+  opacity: 0.25;
+  color: black;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  color: black;
+}
 </style>

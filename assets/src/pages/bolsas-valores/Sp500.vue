@@ -3,8 +3,9 @@
     <page-title-bar></page-title-bar>
 		<crypto-slider></crypto-slider>
     <b-row>
-      <b-col>
-        <h1>Page S&amp;P 500</h1>
+      <b-col class="text-center">
+        <img src="Static/img/mantenimiento.png" width="auto" height="auto" alt="user" class="img-fluid rounded-circle ml-3"/> 
+        <h1>Estamos en Mantenimiento</h1>
       </b-col>
     </b-row>
   </div>

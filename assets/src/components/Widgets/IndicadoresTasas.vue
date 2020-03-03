@@ -12,20 +12,20 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<p class="mb-0">Petroleo</p>
+											<router-link to="/materia-prima/petroleo" class="mb-0 text-primary"><b>Petroleo</b></router-link>
 										</div>
 									</div>
 								</div>
 								<slot class=""><h4 class="m-0 p-0"><b>$ {{precioOil}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="petroleoColor">
+									<div :class="petroleoColor" style="font-size:12px;">
 										<i :class="[petroleoUpOrDown, 'mr-1']"></i>{{petroleoVariacion}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="1"
+								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="27"
 								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 								<!-- <line-chart-shadow :dataSet="minMapPetroleo" :lineTension="0.4" :dataLabels="fechaMinMapPetroleo"
 									:style="{height: '25px', width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
@@ -45,20 +45,20 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/criptomonedas/bitcoin" class="mb-0 text-link">Bitcoin</router-link>
+											<router-link to="/criptomonedas/bitcoin" class="mb-0 text-primary"><b>Bitcoin</b></router-link>
 										</div>
 									</div>
 								</div>
 								<slot><h4 class="m-0 p-0"><b>$ {{precioBitcoin}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="bitcoinColor">
+									<div :class="bitcoinColor" style="font-size:12px;">
 										<i :class="[bitcoinUpOrDown, 'mr-1']"></i>{{bitcoinVariacion}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="26"
+								<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="33"
 								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
@@ -74,13 +74,14 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<p class="mb-0">S&P 500</p>
+										<router-link to="/bolsas-valores/sp500" class="mb-0 text-primary"><b>S&P 500</b></router-link>
 									</div>
 								</div>
 							</div>
-							<slot><h4 class="m-0 p-0"><b>$ {{sp500}}</b></h4></slot>
+							<slot><h5 class="m-0 p-0"><b>Mantenimiento</b></h5></slot>
+							<!-- <slot><h4 class="m-0 p-0"><b>$ {{sp500}}</b></h4></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-								<div class="text-danger">
+								<div class="text-danger" style="font-size:20px;">
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
@@ -88,10 +89,11 @@
 							</div>
 						</div>
 						<div class="d-inline-block">
-								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
+								<img src="Static/img/mantenimiento.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10"/> 
+								<!-- <line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
-								</line-chart-shadow>
+								</line-chart-shadow> -->
 							</div>
 						</div>
 					</app-card>
@@ -106,13 +108,14 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<p class="mb-0">Oro</p>
+											<router-link to="/materia-prima/oro" class="mb-0 text-primary"><b>Oro</b></router-link>
+											<!-- <p class="mb-0 text-primary">Oro</p> -->
 										</div>
 									</div>
 								</div>
 								<slot><h4 class="m-0 p-0"><b>$ {{precioOro}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="oroColor">
+									<div :class="oroColor" style="font-size:12px;">
 										<i :class="[oroUpOrDown, 'mr-1']"></i>{{oroVariacion}}%
 										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
@@ -120,7 +123,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="34"
+								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="120"
 								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
@@ -136,14 +139,14 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<p class="mb-0">Petro</p>
+											<router-link to="/criptomonedas/petro" class="mb-0 text-primary"><b>Petro</b></router-link>
 										</div>
 									</div>
 								</div>
 								<slot><h4 class="m-0 p-0 d-lg-none" ><b>Bs {{precioPetro}}</b></h4></slot>
 								<slot><h4 class="m-0 p-0 d-sm-none d-lg-block" style="font-size:11px"><b>Bs {{precioPetro}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="petroColor">
+									<div :class="petroColor" style="font-size:12px;">
 										<i :class="[petroUpOrDown, 'mr-1']"></i>{{petroVariacion}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
@@ -166,13 +169,14 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<p class="mb-0">Nasdaq</p>
+										<router-link to="/bolsas-valores/nasdaq" class="mb-0 text-primary"><b>Nasdaq</b></router-link>
 									</div>
 								</div>
 							</div>
-							<slot><h4 class="m-0 p-0"><b>$ {{nasdaq}}</b></h4></slot>
+							<slot><h5 class="m-0 p-0"><b>Mantenimiento</b></h5></slot>
+							<!-- <slot><h4 class="m-0 p-0"><b>$ {{nasdaq}}</b></h4></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-								<div class="text-success">
+								<div class="text-success" style="font-size:20px;">
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
@@ -180,10 +184,11 @@
 							</div>
 						</div>
 						<div class="d-inline-block">
-								<line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
+								<img src="Static/img/mantenimiento.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10"/> 
+								<!-- <line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
-								</line-chart-shadow>
+								</line-chart-shadow> -->
 							</div>
 						</div>
 					</app-card>
@@ -294,7 +299,7 @@
 					var precios = this.dataPetroleo + '';
 					var array = precios.split(',');
 					array = array.map(Number);
-					var data = array.slice(array.length - 7, array.length);
+					var data = array.slice(array.length - 21, array.length);
 					return data;
 				}
 			},
@@ -303,7 +308,7 @@
 				var precios = this.dataPetroleo + '';
 				var array = precios.split(',');
 				console.log("datos:", array);
-				var indexBase = array.length - 7;
+				var indexBase = array.length - 21;
 				console.log("Indice base:",indexBase);
 				var precioBase = array[indexBase];
 				console.log("Precio base:",precioBase);
@@ -322,7 +327,7 @@
 				var precios = this.dataOro + '';
 				var array = precios.split(',');
 				console.log("datos:", array);
-				var indexBase = array.length - 7;
+				var indexBase = array.length - 21;
 				console.log("Indice base:",indexBase);
 				var precioBase = array[indexBase];
 				console.log("Precio base:",precioBase);
@@ -340,7 +345,7 @@
 				if (this.petroleoFecha != null || this.petroleoFecha != undefined) {
 					var fech = this.petroleoFecha + '';
 					var array = fech.split(',')
-					var fecha = array.slice(array.length - 7, array.length);
+					var fecha = array.slice(array.length - 21, array.length);
 					return fecha;
 				}
 			},
@@ -348,7 +353,7 @@
 				if (this.oroFecha != null || this.oroFecha != undefined) {
 					var fech = this.oroFecha + '';
 					var array = fech.split(',')
-					var fecha = array.slice(array.length - 7, array.length);
+					var fecha = array.slice(array.length - 21, array.length);
 					return fecha;
 				}
 			},
@@ -357,7 +362,7 @@
 				var precios = this.dataPetro + '';
 				var array = precios.split(',');
 				console.log("datos:", array);
-				var indexBase = array.length - 7;
+				var indexBase = array.length - 21;
 				console.log("Indice base:",indexBase);
 				var precioBase = array[indexBase];
 				console.log("Precio base:",precioBase);
@@ -375,7 +380,7 @@
 				if (this.petroFecha != null || this.petroFecha != undefined) {
 					var fech = this.petroFecha + '';
 					var array = fech.split(',')
-					var fecha = array.slice(array.length - 7, array.length);
+					var fecha = array.slice(array.length - 21, array.length);
 					return fecha;
 				}
 			},
@@ -384,7 +389,7 @@
 				var precios = this.dataBitcoin + '';
 				var array = precios.split(',');
 				console.log("datos:", array);
-				var indexBase = array.length - 7;
+				var indexBase = array.length - 21;
 				console.log("Indice base:",indexBase);
 				var precioBase = array[indexBase];
 				console.log("Precio base:",precioBase);
@@ -402,7 +407,7 @@
 				if (this.bitcoinFecha != null || this.bitcoinFecha != undefined) {
 					var fech = this.bitcoinFecha + '';
 					var array = fech.split(',')
-					var fecha = array.slice(array.length - 7, array.length);
+					var fecha = array.slice(array.length - 21, array.length);
 					return fecha;
 				}
 			},
