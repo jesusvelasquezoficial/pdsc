@@ -93,6 +93,8 @@ color: $gray-900;
 @include text-emphasis-variant('.text-danger', $danger);
 @include text-emphasis-variant('.text-primary', $primary);
 @include text-emphasis-variant('.text-info', $info);
+@include text-emphasis-variant('.text-up', $up);
+@include text-emphasis-variant('.text-down', $down);
 .custom-p-lh{
   p{
     line-height:1.5;

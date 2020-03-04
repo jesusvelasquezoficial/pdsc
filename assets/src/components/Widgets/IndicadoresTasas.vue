@@ -12,7 +12,7 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/materia-prima/petroleo" class="mb-0 text-primary"><b>Petroleo</b></router-link>
+											<router-link to="/materia-prima/petroleo" class="mb-0" style="color:#0081f2;"><b>Petroleo</b></router-link>
 										</div>
 									</div>
 								</div>
@@ -45,7 +45,7 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/criptomonedas/bitcoin" class="mb-0 text-primary"><b>Bitcoin</b></router-link>
+											<router-link to="/criptomonedas/bitcoin" class="mb-0" style="color:#0081f2;"><b>Bitcoin</b></router-link>
 										</div>
 									</div>
 								</div>
@@ -58,7 +58,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="33"
+								<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="1"
 								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
@@ -74,14 +74,14 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<router-link to="/bolsas-valores/sp500" class="mb-0 text-primary"><b>S&P 500</b></router-link>
+										<router-link to="/bolsas-valores/sp500" class="mb-0" style="color:#0081f2;"><b>S&P 500</b></router-link>
 									</div>
 								</div>
 							</div>
-							<slot><h5 class="m-0 p-0"><b>Mantenimiento</b></h5></slot>
+							<slot><h6 class="m-0 p-0"><b>En construcción</b></h6></slot>
 							<!-- <slot><h4 class="m-0 p-0"><b>$ {{sp500}}</b></h4></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-								<div class="text-danger" style="font-size:20px;">
+								<div class="text-danger" style="font-size:22px;">
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
@@ -108,8 +108,8 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/materia-prima/oro" class="mb-0 text-primary"><b>Oro</b></router-link>
-											<!-- <p class="mb-0 text-primary">Oro</p> -->
+											<router-link to="/materia-prima/oro" class="mb-0" style="color:#0081f2;"><b>Oro</b></router-link>
+											<!-- <p class="mb-0" style="color:#0081f2;">Oro</p> -->
 										</div>
 									</div>
 								</div>
@@ -139,12 +139,12 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/criptomonedas/petro" class="mb-0 text-primary"><b>Petro</b></router-link>
+											<router-link to="/criptomonedas/petro" class="mb-0" style="color:#0081f2;"><b>Petro</b></router-link>
 										</div>
 									</div>
 								</div>
-								<slot><h4 class="m-0 p-0 d-lg-none" ><b>Bs {{precioPetro}}</b></h4></slot>
-								<slot><h4 class="m-0 p-0 d-sm-none d-lg-block" style="font-size:11px"><b>Bs {{precioPetro}}</b></h4></slot>
+								<slot><h4 class="m-0 p-0 d-sm-block d-lg-none" ><b>Bs {{precioPetro}}</b></h4></slot>
+								<slot><h4 class="m-0 p-0 d-none d-lg-block" style="font-size:11px"><b>Bs {{precioPetro}}</b></h4></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div :class="petroColor" style="font-size:12px;">
 										<i :class="[petroUpOrDown, 'mr-1']"></i>{{petroVariacion}}%
@@ -153,7 +153,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="120"
+								<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="67"
 								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
@@ -169,14 +169,14 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<router-link to="/bolsas-valores/nasdaq" class="mb-0 text-primary"><b>Nasdaq</b></router-link>
+										<router-link to="/bolsas-valores/nasdaq" class="mb-0" style="color:#0081f2;"><b>Nasdaq</b></router-link>
 									</div>
 								</div>
 							</div>
-							<slot><h5 class="m-0 p-0"><b>Mantenimiento</b></h5></slot>
+							<slot><h6 class="m-0 p-0"><b>En construcción</b></h6></slot>
 							<!-- <slot><h4 class="m-0 p-0"><b>$ {{nasdaq}}</b></h4></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-								<div class="text-success" style="font-size:20px;">
+								<div class="text-success" style="font-size:22px;">
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
@@ -307,38 +307,38 @@
 				var data = [];
 				var precios = this.dataPetroleo + '';
 				var array = precios.split(',');
-				console.log("datos:", array);
+				// console.log("datos:", array);
 				var indexBase = array.length - 21;
-				console.log("Indice base:",indexBase);
+				// console.log("Indice base:",indexBase);
 				var precioBase = array[indexBase];
-				console.log("Precio base:",precioBase);
+				// console.log("Precio base:",precioBase);
 				for (let index = indexBase; index < array.length; index++) {
 					const precio = array[index];
-					console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
+					// console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
 					var v = ((precio - precioBase) / precioBase) * 100;
-					console.log(v.toFixed(2));
+					// console.log(v.toFixed(2));
 					data.push(Number(v.toFixed(2)))
 				}
-				console.log("Mini data:", data);
+				// console.log("Mini data:", data);
 				return data;
 			},
 			dataMiniChartOro(){
 				var data = [];
 				var precios = this.dataOro + '';
 				var array = precios.split(',');
-				console.log("datos:", array);
+				// console.log("datos:", array);
 				var indexBase = array.length - 21;
-				console.log("Indice base:",indexBase);
+				// console.log("Indice base:",indexBase);
 				var precioBase = array[indexBase];
-				console.log("Precio base:",precioBase);
+				// console.log("Precio base:",precioBase);
 				for (let index = indexBase; index < array.length; index++) {
 					const precio = array[index];
-					console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
+					// console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
 					var v = ((precio - precioBase) / precioBase) * 100;
-					console.log(v.toFixed(2));
+					// console.log(v.toFixed(2));
 					data.push(Number(v.toFixed(2)))
 				}
-				console.log("Mini data:", data);
+				// console.log("Mini data:", data);
 				return data;
 			},
 			fechaMinMapPetroleo(){
@@ -361,19 +361,19 @@
 				var data = [];
 				var precios = this.dataPetro + '';
 				var array = precios.split(',');
-				console.log("datos:", array);
+				// console.log("datos:", array);
 				var indexBase = array.length - 21;
-				console.log("Indice base:",indexBase);
+				// console.log("Indice base:",indexBase);
 				var precioBase = array[indexBase];
-				console.log("Precio base:",precioBase);
+				// console.log("Precio base:",precioBase);
 				for (let index = indexBase; index < array.length; index++) {
 					const precio = array[index];
-					console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
+					// console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
 					var v = ((precio - precioBase) / precioBase) * 100;
-					console.log(v.toFixed(2));
+					// console.log(v.toFixed(2));
 					data.push(Number(v.toFixed(2)))
 				}
-				console.log("Mini data:", data);
+				// console.log("Mini data:", data);
 				return data;
 			},
 			fechaMinMapPetro(){
@@ -388,19 +388,19 @@
 				var data = [];
 				var precios = this.dataBitcoin + '';
 				var array = precios.split(',');
-				console.log("datos:", array);
+				// console.log("datos:", array);
 				var indexBase = array.length - 21;
-				console.log("Indice base:",indexBase);
+				// console.log("Indice base:",indexBase);
 				var precioBase = array[indexBase];
-				console.log("Precio base:",precioBase);
+				// console.log("Precio base:",precioBase);
 				for (let index = indexBase; index < array.length; index++) {
 					const precio = array[index];
-					console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
+					// console.log(precio + " - " + precioBase + " / " + precioBase + " * " + "100");
 					var v = ((precio - precioBase) / precioBase) * 100;
-					console.log(v.toFixed(2));
+					// console.log(v.toFixed(2));
 					data.push(Number(v.toFixed(2)))
 				}
-				console.log("Mini data:", data);
+				// console.log("Mini data:", data);
 				return data;
 			},
 			fechaMinMapBitcoin(){

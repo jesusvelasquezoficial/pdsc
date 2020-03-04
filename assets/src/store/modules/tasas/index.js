@@ -6,14 +6,43 @@ import moment from "moment";
 function sube0baja(params) {
   var flag = Math.sign(params);
   if (flag > 0) {
-    return ['zmdi zmdi-long-arrow-up', 'text-green'];
+    return ['zmdi zmdi-long-arrow-up', 'text-up'];
   } else if (flag < 0) {
-    return ['zmdi zmdi-long-arrow-down', 'text-danger'];
+    return ['zmdi zmdi-long-arrow-down', 'text-down'];
   } else {
     return ['fas fa-equals font-sm', 'text-white'];
   }
 }
-
+function pctjDolar(data, valor, index) {
+  var a = valor.dolar;
+  var b = data[index + 1] == undefined ? data[index].dolar : data[index + 1].dolar;
+  a = a.split('.').join('').replace(',', '.');
+  b = b.split('.').join('').replace(',', '.');
+  var pctj = ((a - b) / b) * 100;
+  pctj = pctj.toFixed(2);
+  var result = sube0baja(pctj);
+  result.unshift(pctj);
+  // console.log(a);
+  // console.log(b);
+  // console.log(valor.id, pctj);
+  // console.log(result);
+  return result;
+}
+function pctjEuro(data, valor, index) {
+  var a = valor.euro;
+  var b = data[index + 1] == undefined ? data[index].euro : data[index + 1].euro;
+  a = a.split('.').join('').replace(',', '.');
+  b = b.split('.').join('').replace(',', '.');
+  var pctj = ((a - b) / b) * 100;
+  pctj = pctj.toFixed(2);
+  var result = sube0baja(pctj);
+  result.unshift(pctj);
+  // console.log(a);
+  // console.log(b);
+  // console.log(valor.id, pctj);
+  // console.log(result);
+  return result;
+}
 const state = {
   // Flag Spinner Loader
   loadedTasasSlider: false,
@@ -57,7 +86,7 @@ const state = {
   petroVariacion: localStorage.getItem('petroVariacion') || "0.0",
   petroUpOrDown: localStorage.getItem('petroUpOrDown') || "",
   petroColor: localStorage.getItem('petroColor') || "",
-  
+
   sp500Variacion: localStorage.getItem('sp500Variacion') || "0.0",
   sp500UpOrDown: localStorage.getItem('sp500UpOrDown') || "",
   sp500Color: localStorage.getItem('sp500Color') || "",
@@ -72,7 +101,7 @@ const state = {
   bitcoin: localStorage.getItem('bitcoin') || "cargando...",
   sp500: localStorage.getItem('sp500') || "cargando...",
   nasdaq: localStorage.getItem('nasdaq') || "cargando...",
-  
+
   // Precio Tasas
   precioDolarBCV: localStorage.getItem('precioDolarBCV') || "cargando...",
   precioDolarToday: localStorage.getItem('precioDolarToday') || 'cargando...',
@@ -93,7 +122,7 @@ const state = {
   dataPetroleo: localStorage.getItem('dataPetroleo') || [],
   dataOro: localStorage.getItem('dataOro') || [],
   dataPetro: localStorage.getItem('dataPetro') || [],
-  
+
   // Data Tablas
   tablaDolar: localStorage.getItem('tablaDolar') || [],
   tablaEuro: localStorage.getItem('tablaEuro') || [],
@@ -128,7 +157,7 @@ const state = {
   minPPtr7D: localStorage.getItem('minPPtr7D') || 'cargando...',
   minPPtr2S: localStorage.getItem('minPPtr2S') || 'cargando...',
   minPPtr30D: localStorage.getItem('minPPtr30D') || 'cargando...',
-  
+
   // Fecha Generica
   fecha: localStorage.getItem('fecha') || [],
   // Fechas por Tasas
@@ -137,7 +166,7 @@ const state = {
   petroleoFecha: localStorage.getItem('petroleoFecha') || [],
   oroFecha: localStorage.getItem('oroFecha') || [],
   petroFecha: localStorage.getItem('petroFecha') || [],
-  
+
   // Valor minimo mas bajo del eje X
   minDolarX: localStorage.getItem('minDolarX') || 0,
   minEuroX: localStorage.getItem('minEuroX') || 0,
@@ -150,7 +179,7 @@ const state = {
   minPetroleoY: localStorage.getItem('minPetroleoY') || 0,
   minGoldY: localStorage.getItem('minGoldY') || 0,
   minPetroY: localStorage.getItem('minPetroY') || 0,
-  
+
   // Valor maximo mas alto del eje x
   maxDolarX: localStorage.getItem('maxDolarX') || 0,
   maxEuroX: localStorage.getItem('maxEuroX') || 0,
@@ -163,7 +192,7 @@ const state = {
   maxPetroleoY: localStorage.getItem('maxPetroleoY') || 0,
   maxGoldY: localStorage.getItem('maxGoldY') || 0,
   maxPetroY: localStorage.getItem('maxPetroY') || 0,
-  
+
   // Base valor min del eje X
   baseMinDolarX: localStorage.getItem('baseMinDolarX') || 0,
   baseMinEuroX: localStorage.getItem('baseMinEuroX') || 0,
@@ -288,7 +317,7 @@ const getters = {
         // "market_cap": `${state.sp500Variacion}%`,
         // "icon": `${state.sp500UpOrDown}`,
         // "color": `${state.sp500Color}`,
-        "price": `Mantenimiento`,
+        "price": `En construcción`,
         "market_cap": ``,
         "icon": ``,
         "color": ``,
@@ -301,7 +330,7 @@ const getters = {
         // "market_cap": `${state.nasdaqVariacion}%`,
         // "icon": `${state.nasdaqUpOrDown}`,
         // "color": `${state.nasdaqColor}`,
-        "price": `Mantenimiento`,
+        "price": `En construcción`,
         "market_cap": ``,
         "icon": ``,
         "color": ``,
@@ -378,12 +407,12 @@ const getters = {
           label: "Euro Paralelo",
           borderWidth: 2,
           hoverBorderWidth: 3,
-          borderColor: "Darkred",
+          borderColor: "#4E0003",
           backgroundColor: "rgba(0, 0, 0, 0)",
-          pointBorderColor: "Darkred",
-          pointBackgroundColor: "Darkred",
-          pointHoverBorderColor: "Darkred",
-          pointHoverBackgroundColor: "Darkred",
+          pointBorderColor: "#4E0003",
+          pointBackgroundColor: "#4E0003",
+          pointHoverBorderColor: "#4E0003",
+          pointHoverBackgroundColor: "#4E0003",
           pointRadius: 1,
           data: state.dataEuroParalelo
         }
@@ -580,45 +609,45 @@ const actions = {
   async loadTasasSlider(context) {
     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasBCV').then(res => {
       let data = res.data;
-       context.commit('setDolarOficial', data.Dolar[0]);
-       context.commit('setEuroOficial', data.Euro[0]);
+      context.commit('setDolarOficial', data.Dolar[0]);
+      context.commit('setEuroOficial', data.Euro[0]);
     }).catch(err => console.log(err));
-     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasDTD').then(res => {
+    Axios.get('http://pdsc.phoenixplus.net:8000/getTasasDTD').then(res => {
       let data = res.data;
-       context.commit('setDolarParalelo', data.dolar[0]);
-       context.commit('setEuroParalelo', data.euro[0]);
+      context.commit('setDolarParalelo', data.dolar[0]);
+      context.commit('setEuroParalelo', data.euro[0]);
     }).catch(err => console.log(err));
-     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasDM').then(res => {
+    Axios.get('http://pdsc.phoenixplus.net:8000/getTasasDM').then(res => {
       let data = res.data;
       // console.log(data);
-       context.commit('setMonitorDolar', data.dolar[0]);
+      context.commit('setMonitorDolar', data.dolar[0]);
     }).catch(err => console.log(err));
-     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasOIL').then(res => {
+    Axios.get('http://pdsc.phoenixplus.net:8000/getTasasOIL').then(res => {
       let data = res.data;
-       context.commit('setOil', data.petroleo[0]);
+      context.commit('setOil', data.petroleo[0]);
     }).catch(err => console.log(err));
-     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasORO').then(res => {
+    Axios.get('http://pdsc.phoenixplus.net:8000/getTasasORO').then(res => {
       let data = res.data;
-       context.commit('setOro', data.oro[0]);
+      context.commit('setOro', data.oro[0]);
     }).catch(err => console.log(err));
-     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasPTR').then(res => {
+    Axios.get('http://pdsc.phoenixplus.net:8000/getTasasPTR').then(res => {
       let data = res.data;
-      console.log("PETRO:",data);
-       context.commit('setPetro', data.bolivar[0]);
+      console.log("PETRO:", data);
+      context.commit('setPetro', data.bolivar[0]);
     }).catch(err => console.log(err));
-     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasBTC').then(res => {
+    Axios.get('http://pdsc.phoenixplus.net:8000/getTasasBTC').then(res => {
       let data = res.data;
-       context.commit('setBitcoin', data.bitcoin[0]);
+      context.commit('setBitcoin', data.bitcoin[0]);
     }).catch(err => console.log(err));
-     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasSP500').then(res => {
-       console.log(res);
-       let data = res.data;
-       console.log("S&P500:",data);
-       context.commit('setSp500', data.sp500[0]);
-    }).catch(err => console.log(err));
-     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasNASDAQ').then(res => {
+    Axios.get('http://pdsc.phoenixplus.net:8000/getTasasSP500').then(res => {
+      console.log(res);
       let data = res.data;
-       context.commit('setNasdaq', data.nasdaq[0]);
+      console.log("S&P500:", data);
+      context.commit('setSp500', data.sp500[0]);
+    }).catch(err => console.log(err));
+    Axios.get('http://pdsc.phoenixplus.net:8000/getTasasNASDAQ').then(res => {
+      let data = res.data;
+      context.commit('setNasdaq', data.nasdaq[0]);
     }).catch(err => console.log(err));
     await context.commit('loadedTasasSlider');
   },
@@ -771,7 +800,7 @@ const actions = {
     });
     await context.commit('loadedGraphMercadoParalelo');
   },
-  async loadDataPetroleo(context){
+  async loadDataPetroleo(context) {
     await Axios.get("http://pdsc.phoenixplus.net:4000/api/oil").then(async res => {
       let oil = res.data.data;
       var fechaOil = [];
@@ -813,7 +842,7 @@ const actions = {
     });
     await context.commit('loadedGraphPetroleo');
   },
-  async loadDataOro(context){
+  async loadDataOro(context) {
     await Axios.get("http://pdsc.phoenixplus.net:4000/api/gold").then(async res => {
       let gold = res.data.data;
       var fechaGold = [];
@@ -850,7 +879,7 @@ const actions = {
     });
     await context.commit('loadedGraphGold');
   },
-  async loadDataPetro(context){
+  async loadDataPetro(context) {
     await Axios.get("http://pdsc.phoenixplus.net:4000/api/ptr").then(async res => {
       let ptr = res.data.data;
       var fechaPtr = [];
@@ -892,7 +921,7 @@ const actions = {
     });
     await context.commit('loadedGraphPetro');
   },
-  async loadDataBitcoin(context){
+  async loadDataBitcoin(context) {
     await Axios.get("http://pdsc.phoenixplus.net:4000/api/btc").then(async res => {
       let btc = res.data.data;
       var fechaBtc = [];
@@ -939,37 +968,33 @@ const actions = {
       var data = res.data.data;
       var tabla = [];
       await data.forEach((valor, index) => {
-        // valor.dolar = valor.dolar.split('.').join("");
-        // valor.dolar = parseFloat(valor.dolar.replace(',', '.'));
-        // console.log(valor.dolar, valor.id, index);
-        // var u = valor.dolar;
-        // var a = data[index + 1].dolar.split('.').join("");
-        // a = parseFloat(a.replace(',', '.'));
-        // console.log(u + " - " + a + " / " + a + " * " + "100");
-        // var v = ((u - a) / a) * 100;
-        // console.log(v);
-        // var c = sube0baja(v);
-        // c.unshift(v.toFixed(2));      
-        // console.log(c);
+        var result = pctjDolar(data, valor, index);
         tabla[index] = {
           fecha: moment(valor.fecha).format("L"),
           dolarOficial: valor.dolar,
+          VAR: result,
           dolarToday: [],
+          VAR2: [],
           dolarMonitor: [],
+          VAR3: [],
         };
       });
       await Axios.get("http://pdsc.phoenixplus.net:4000/api/dtdDesc").then(async res2 => {
         var data = res2.data.data;
         await data.forEach((valor, index) => {
           if (tabla[index] != undefined) {
+            var result = pctjDolar(data, valor, index);
             tabla[index].dolarToday = valor.dolar;
+            tabla[index].VAR2 = result;
           }
         });
         Axios.get("http://pdsc.phoenixplus.net:4000/api/dmDesc").then(async res3 => {
           var data = res3.data.data;
           await data.forEach((valor, index) => {
             if (tabla[index] != undefined) {
+              var result = pctjDolar(data, valor, index);
               tabla[index].dolarMonitor = valor.dolar;
+              tabla[index].VAR3 = result;
             }
             context.commit('setTablaDolar', JSON.stringify(tabla));
           });
@@ -987,10 +1012,13 @@ const actions = {
       var data = res.data.data;
       var tabla = [];
       await data.forEach((valor, index) => {
+        var result = pctjEuro(data, valor, index);
         tabla[index] = {
           fecha: moment(valor.fecha).format("L"),
           euroOficial: valor.euro,
-          euroParalelo: null
+          VAR: result,
+          euroParalelo: null,
+          VAR2: [],
         };
       });
       return tabla;
@@ -1000,7 +1028,9 @@ const actions = {
           var data = res.data.data;
           await data.forEach((valor, index) => {
             if (tabla[index] != undefined) {
+              var result = pctjEuro(data, valor, index);
               tabla[index].euroParalelo = valor.euro;
+              tabla[index].VAR2 = result;
             }
             context.commit('setTablaEuro', JSON.stringify(tabla));
           });
@@ -1372,11 +1402,11 @@ const mutations = {
     localStorage.setItem('monitorDolarUpOrDown', valor[1]);
     localStorage.setItem('monitorDolarColor', valor[2]);
   },
-  setDataPetroleo(state, valor){
+  setDataPetroleo(state, valor) {
     state.dataPetroleo = valor;
     localStorage.setItem('dataPetroleo', valor);
   },
-  setPetroleoVariacion(state, valor){
+  setPetroleoVariacion(state, valor) {
     state.petroleoVariacion = valor[0];
     state.petroleoUpOrDown = valor[1];
     state.petroleoColor = valor[2];
@@ -1384,70 +1414,70 @@ const mutations = {
     localStorage.setItem('petroleoUpOrDown', valor[1]);
     localStorage.setItem('petroleoColor', valor[2]);
   },
-  setPrecioOil(state, valor){
+  setPrecioOil(state, valor) {
     state.precioOil = valor.toLocaleString("de-DE");
     localStorage.setItem('precioOil', valor);
   },
-  minPP7D(state, valor){
+  minPP7D(state, valor) {
     state.minPP7D = valor;
     localStorage.setItem('minPP7D', valor);
   },
-  minPP2S(state, valor){
+  minPP2S(state, valor) {
     state.minPP2S = valor;
     localStorage.setItem('minPP2S', valor);
   },
-  minPP30D(state, valor){
+  minPP30D(state, valor) {
     state.minPP30D = valor;
     localStorage.setItem('minPP30D', valor);
   },
-  petroleoFecha(state, valor){
+  petroleoFecha(state, valor) {
     state.petroleoFecha = valor;
     localStorage.setItem('petroleoFecha', valor);
   },
-  baseMinPetroleoX(state, valor){
+  baseMinPetroleoX(state, valor) {
     state.baseMinPetroleoX = valor;
     localStorage.setItem('baseMinPetroleoX', valor);
   },
-  minPetroleoX(state, valor){
+  minPetroleoX(state, valor) {
     state.minPetroleoX = valor;
     localStorage.setItem('minPetroleoX', valor);
   },
-  maxPetroleoX(state, valor){
+  maxPetroleoX(state, valor) {
     state.maxPetroleoX = valor;
     localStorage.setItem('maxPetroleoX', valor);
   },
-  baseMinPetroleoY(state, valor){
+  baseMinPetroleoY(state, valor) {
     state.baseMinPetroleoY = valor;
     localStorage.setItem('baseMinPetroleoY', valor);
   },
-  minPetroleoY(state, valor){
+  minPetroleoY(state, valor) {
     state.minPetroleoY = valor;
     localStorage.setItem('minPetroleoY', valor);
   },
-  maxPetroleoY(state, valor){
+  maxPetroleoY(state, valor) {
     state.maxPetroleoY = valor;
     localStorage.setItem('maxPetroleoY', valor);
   },
-  loadedGraphPetroleo(state){
+  loadedGraphPetroleo(state) {
     state.loadedGraphPetroleo = true;
   },
-  loadedGraphMercadoOficial(state){
+  loadedGraphMercadoOficial(state) {
     state.loadedGraphMercadoOficial = true;
   },
-  loadedGraphMercadoParalelo(state){
+  loadedGraphMercadoParalelo(state) {
     state.loadedGraphMercadoParalelo = true;
   },
-  loadedTablaDolar(state){
+  loadedTablaDolar(state) {
     state.loadedTablaDolar = true;
   },
-  loadedTablaEuro(state){
+  loadedTablaEuro(state) {
     state.loadedTablaEuro = true;
   },
-  setDataGold(state, valor){
+  setDataGold(state, valor) {
     state.dataOro = valor;
     localStorage.setItem('dataOro', valor);
   },
-  setGoldVariacion(state, valor){
+  setGoldVariacion(state, valor) {
     state.oroVariacion = valor[0];
     state.oroUpOrDown = valor[1];
     state.oroColor = valor[2];
@@ -1455,58 +1485,58 @@ const mutations = {
     localStorage.setItem('oroUpOrDown', valor[1]);
     localStorage.setItem('oroColor', valor[2]);
   },
-  setPrecioGold(state, valor){
+  setPrecioGold(state, valor) {
     state.precioOro = valor.toLocaleString("de-DE");
     localStorage.setItem('precioOro', valor);
   },
-  minPG7D(state, valor){
+  minPG7D(state, valor) {
     state.minPG7D = valor;
     localStorage.setItem('minPG7D', valor);
   },
-  minPG2S(state, valor){
+  minPG2S(state, valor) {
     state.minPG2S = valor;
     localStorage.setItem('minPG2S', valor);
   },
-  minPG30D(state, valor){
+  minPG30D(state, valor) {
     state.minPG30D = valor;
     localStorage.setItem('minPG30D', valor);
   },
-  oroFecha(state, valor){
+  oroFecha(state, valor) {
     state.oroFecha = valor;
     localStorage.setItem('oroFecha', valor);
   },
-  baseMinGoldX(state, valor){
+  baseMinGoldX(state, valor) {
     state.baseMinGoldX = valor;
     localStorage.setItem('baseMinGoldX', valor);
   },
-  minGoldX(state, valor){
+  minGoldX(state, valor) {
     state.minGoldX = valor;
     localStorage.setItem('minGoldX', valor);
   },
-  maxGoldX(state, valor){
+  maxGoldX(state, valor) {
     state.maxGoldX = valor;
     localStorage.setItem('maxGoldX', valor);
   },
-  baseMinGoldY(state, valor){
+  baseMinGoldY(state, valor) {
     state.baseMinGoldY = valor;
     localStorage.setItem('baseMinGoldY', valor);
   },
-  minGoldY(state, valor){
+  minGoldY(state, valor) {
     state.minGoldY = valor;
     localStorage.setItem('minGoldY', valor);
   },
-  maxGoldY(state, valor){
+  maxGoldY(state, valor) {
     state.maxGoldY = valor;
     localStorage.setItem('maxGoldY', valor);
   },
-  loadedGraphGold(state){
+  loadedGraphGold(state) {
     state.loadedGraphGold = true;
   },
-  setDataPetro(state, valor){
+  setDataPetro(state, valor) {
     state.dataPetro = valor;
     localStorage.setItem('dataPetro', valor);
   },
-  setPetroVariacion(state, valor){
+  setPetroVariacion(state, valor) {
     state.petroVariacion = valor[0];
     state.petroUpOrDown = valor[1];
     state.petroColor = valor[2];
@@ -1514,58 +1544,58 @@ const mutations = {
     localStorage.setItem('petroUpOrDown', valor[1]);
     localStorage.setItem('petroColor', valor[2]);
   },
-  setPrecioPetro(state, valor){
+  setPrecioPetro(state, valor) {
     state.precioPetro = valor.toLocaleString("de-DE");
     localStorage.setItem('precioPetro', valor);
   },
-  minPPtr7D(state, valor){
+  minPPtr7D(state, valor) {
     state.minPPtr7D = valor;
     localStorage.setItem('minPPtr7D', valor);
   },
-  minPPtr2S(state, valor){
+  minPPtr2S(state, valor) {
     state.minPPtr2S = valor;
     localStorage.setItem('minPPtr2S', valor);
   },
-  minPPtr30D(state, valor){
+  minPPtr30D(state, valor) {
     state.minPPtr30D = valor;
     localStorage.setItem('minPPtr30D', valor);
   },
-  petroFecha(state, valor){
+  petroFecha(state, valor) {
     state.petroFecha = valor;
     localStorage.setItem('petroFecha', valor);
   },
-  baseMinPetroX(state, valor){
+  baseMinPetroX(state, valor) {
     state.baseMinPetroX = valor;
     localStorage.setItem('baseMinPetroX', valor);
   },
-  minPetroX(state, valor){
+  minPetroX(state, valor) {
     state.minPetroX = valor;
     localStorage.setItem('minPetroX', valor);
   },
-  maxPetroX(state, valor){
+  maxPetroX(state, valor) {
     state.maxPetroX = valor;
     localStorage.setItem('maxPetroX', valor);
   },
-  baseMinPetroY(state, valor){
+  baseMinPetroY(state, valor) {
     state.baseMinPetroY = valor;
     localStorage.setItem('baseMinPetroY', valor);
   },
-  minPetroY(state, valor){
+  minPetroY(state, valor) {
     state.minPetroY = valor;
     localStorage.setItem('minPetroY', valor);
   },
-  maxPetroY(state, valor){
+  maxPetroY(state, valor) {
     state.maxPetroY = valor;
     localStorage.setItem('maxPetroY', valor);
   },
-  loadedGraphPetro(state){
+  loadedGraphPetro(state) {
     state.loadedGraphPetro = true;
   },
-  setDataBitcoin(state, valor){
+  setDataBitcoin(state, valor) {
     state.dataBitcoin = valor;
     localStorage.setItem('dataBitcoin', valor);
   },
-  setBitcoinVariacion(state, valor){
+  setBitcoinVariacion(state, valor) {
     state.bitcoinVariacion = valor[0];
     state.bitcoinUpOrDown = valor[1];
     state.bitcoinColor = valor[2];
@@ -1573,51 +1603,51 @@ const mutations = {
     localStorage.setItem('bitcoinUpOrDown', valor[1]);
     localStorage.setItem('bitcoinColor', valor[2]);
   },
-  setPrecioBitcoin(state, valor){
+  setPrecioBitcoin(state, valor) {
     state.precioBitcoin = valor.toLocaleString("de-DE");
     localStorage.setItem('precioBitcoin', valor);
   },
-  minPBtc7D(state, valor){
+  minPBtc7D(state, valor) {
     state.minPBtc7D = valor;
     localStorage.setItem('minPBtc7D', valor);
   },
-  minPBtc2S(state, valor){
+  minPBtc2S(state, valor) {
     state.minPBtc2S = valor;
     localStorage.setItem('minPBtc2S', valor);
   },
-  minPBtc30D(state, valor){
+  minPBtc30D(state, valor) {
     state.minPBtc30D = valor;
     localStorage.setItem('minPBtc30D', valor);
   },
-  bitcoinFecha(state, valor){
+  bitcoinFecha(state, valor) {
     state.bitcoinFecha = valor;
     localStorage.setItem('bitcoinFecha', valor);
   },
-  baseMinBitcoinX(state, valor){
+  baseMinBitcoinX(state, valor) {
     state.baseMinBitcoinX = valor;
     localStorage.setItem('baseMinBitcoinX', valor);
   },
-  minBitcoinX(state, valor){
+  minBitcoinX(state, valor) {
     state.minBitcoinX = valor;
     localStorage.setItem('minBitcoinX', valor);
   },
-  maxBitcoinX(state, valor){
+  maxBitcoinX(state, valor) {
     state.maxBitcoinX = valor;
     localStorage.setItem('maxBitcoinX', valor);
   },
-  baseMinBitcoinY(state, valor){
+  baseMinBitcoinY(state, valor) {
     state.baseMinBitcoinY = valor;
     localStorage.setItem('baseMinBitcoinY', valor);
   },
-  minBitcoinY(state, valor){
+  minBitcoinY(state, valor) {
     state.minBitcoinY = valor;
     localStorage.setItem('minBitcoinY', valor);
   },
-  maxBitcoinY(state, valor){
+  maxBitcoinY(state, valor) {
     state.maxBitcoinY = valor;
     localStorage.setItem('maxBitcoinY', valor);
   },
-  loadedGraphBitcoin(state){
+  loadedGraphBitcoin(state) {
     state.loadedGraphBitcoin = true;
   },
 };

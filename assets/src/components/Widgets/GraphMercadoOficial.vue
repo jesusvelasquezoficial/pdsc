@@ -8,14 +8,23 @@
           <div class="col-md-4" style="border-left: solid 5px #252F5D;">
             <p class="p-0 m-0" style="font-size:.7rem">Dolar Oficial</p>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarBCV}}</h3>
+             <div :class="dolarOficialColor" style="font-size:10px;">
+              <i :class="[dolarOficialUpOrDown, 'mr-1']"></i>{{dolarOficialVariacion}}%
+            </div>
           </div>
           <div class="col-md-4" style="border-left: solid 5px Green;">
             <p class="p-0 m-0" style="font-size:.7rem">Dolar Today</p>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarToday}}</h3>
+            <div :class="dolarParaleloColor" style="font-size:10px;">
+              <i :class="[dolarParaleloUpOrDown, 'mr-1']"></i>{{dolarParaleloVariacion}}%
+            </div>
           </div>
           <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
             <p class="p-0 m-0" style="font-size:.7rem">Dolar Monitor</p>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarMonitor}}</h3>
+            <div :class="monitorDolarColor" style="font-size:10px;">
+              <i :class="[monitorDolarUpOrDown, 'mr-1']"></i>{{monitorDolarVariacion}}%
+            </div>
           </div>
         </div>
         <!-- Botones Escala de Tiempo -->
@@ -51,10 +60,16 @@
           <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
             <p class="p-0 m-0" style="font-size:.7rem">Euro Oficial</p>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroOficial}}</h3>
+            <div :class="euroOficialColor" style="font-size:10px;">
+              <i :class="[euroOficialUpOrDown, 'mr-1']"></i>{{euroOficialVariacion}}%
+            </div>
           </div>
-          <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Darkred;">
+          <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px #4E0003;">
             <p class="p-0 m-0" style="font-size:.7rem">Euro Paralelo</p>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroParalelo}}</h3>
+             <div :class="euroParaleloColor" style="font-size:10px;">
+              <i :class="[euroParaleloUpOrDown, 'mr-1']"></i>{{euroParaleloVariacion}}%
+            </div>
           </div>
         </div>
         <!-- Botones Escala de Tiempo -->
@@ -115,7 +130,22 @@ export default {
       'precioDolarToday',
       'precioDolarMonitor',
       'precioEuroParalelo',
-      'precioEuroOficial'
+      'precioEuroOficial',
+      'dolarOficialVariacion',
+      'dolarOficialUpOrDown',
+      'dolarOficialColor',
+      'dolarParaleloVariacion',
+      'dolarParaleloUpOrDown',
+      'dolarParaleloColor',
+      'monitorDolarVariacion',
+      'monitorDolarUpOrDown',
+      'monitorDolarColor',
+      'euroOficialVariacion',
+      'euroOficialUpOrDown',
+      'euroOficialColor',
+      'euroParaleloVariacion',
+      'euroParaleloUpOrDown',
+      'euroParaleloColor',
     ]),
     ...mapGetters('tasas', [
       'dataDolar',

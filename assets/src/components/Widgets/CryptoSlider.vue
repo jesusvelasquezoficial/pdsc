@@ -14,7 +14,7 @@
 					<div class="d-flex align-items-center justify-content-between"  @click="pause">
 						<div class="price-content">
 							<span class="d-inline-block">
-								<router-link :to="item.url" class="text-primary">{{ item.coin1 }}</router-link>
+								<router-link :to="item.url"><b style="color:#0081f2;">{{ item.coin1 }}</b></router-link>
 							</span>
 							<!-- <span class="d-inline-block ml-1 mr-1">/</span> -->
 							<span class="d-inline-block">{{ item.coin2 }}</span>
@@ -51,16 +51,16 @@
 				pausa: false,
 				slickOptions: {
 					adaptiveHeight: true,
-					speed: 300,
+					speed: 3000,
 					autoplay: true,
-					autoplaySpeed: 3000,
+					autoplaySpeed: 0,
 					arrows: true,
 					centerMode: true,
 					slidesToShow: 1,
 					slidesToScroll: 1,
 					variableWidth: true,
 					mobileFirst: true,
-					// cssEase: 'linear',
+					cssEase: 'linear',
         },
 				cryptoSliderData: [
 					{
@@ -170,11 +170,9 @@
 			...mapActions('tasas', ['loadTasasSlider']),
 			pause(){
 				if (this.pausa) {
-					console.log(this.pausa);
 					this.pausa = !this.pausa;
 					this.$refs.slick.play();
 				}else{
-					console.log(this.pausa);
 					this.pausa = !this.pausa;
 					this.$refs.slick.pause();
 				}

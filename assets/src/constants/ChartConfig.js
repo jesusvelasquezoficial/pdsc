@@ -10,7 +10,10 @@ export default {
       'info': '#00D0BD',
       'white': '#fff',
       'lightGrey': '#E8ECEE',
-      'dark': '#000000'
+      'dark': '#000000',
+      "up": '#093',
+      "down": '#ff333a',
+
    },
    lineChartAxesColor: '#E9ECEF',
    legendFontColor: '#AAAEB3', // only works on react chart js 2

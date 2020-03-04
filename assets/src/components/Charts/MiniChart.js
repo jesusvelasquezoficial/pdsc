@@ -53,10 +53,10 @@ export default {
       this.colorFondo = this.$refs.canvas.getContext('2d').createLinearGradient(0,0,0,this.$refs.canvas.height);
       this.colorLinea = this.$refs.canvas.getContext('2d').createLinearGradient(0,0,0,this.$refs.canvas.height);
     }
-    this.colorFondo.addColorStop(0, hexToRgbA(ChartConfig.color.success, 0.3));
-    this.colorFondo.addColorStop(0.45, hexToRgbA(ChartConfig.color.success, 0.3));
-    this.colorFondo.addColorStop(0.65, hexToRgbA(ChartConfig.color.danger, 0.3));
-    this.colorFondo.addColorStop(1, hexToRgbA(ChartConfig.color.danger, 0.3));
+    this.colorFondo.addColorStop(0, hexToRgbA(ChartConfig.color.up, 0.3));
+    this.colorFondo.addColorStop(0.45, hexToRgbA(ChartConfig.color.up, 0.3));
+    this.colorFondo.addColorStop(0.65, hexToRgbA(ChartConfig.color.down, 0.3));
+    this.colorFondo.addColorStop(1, hexToRgbA(ChartConfig.color.down, 0.3));
     this.colorLinea.addColorStop(0, '#00FF00');
     this.colorLinea.addColorStop(0.45, '#00FF00');
     this.colorLinea.addColorStop(0.65, '#FF0000');
