@@ -16,17 +16,17 @@
 										</div>
 									</div>
 								</div>
-								<slot class=""><h4 class="m-0 p-0"><b>$ {{precioOil}}</b></h4></slot>
+								<slot class=""><h5 class="m-0 p-0"><b>$ {{precioOil}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="petroleoColor" style="font-size:12px;">
-										<i :class="[petroleoUpOrDown, 'mr-1']"></i>{{petroleoVariacion}}%
+									<div :class="pctjPetroleo[2]" style="font-size:12px;">
+										<i :class="[pctjPetroleo[1], 'mr-1']"></i>{{pctjPetroleo[0]}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
 								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="27"
-								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
+								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 								<!-- <line-chart-shadow :dataSet="minMapPetroleo" :lineTension="0.4" :dataLabels="fechaMinMapPetroleo"
 									:style="{height: '25px', width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
@@ -49,17 +49,17 @@
 										</div>
 									</div>
 								</div>
-								<slot><h4 class="m-0 p-0"><b>$ {{precioBitcoin}}</b></h4></slot>
+								<slot><h5 class="m-0 p-0"><b>$ {{precioBitcoin}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="bitcoinColor" style="font-size:12px;">
-										<i :class="[bitcoinUpOrDown, 'mr-1']"></i>{{bitcoinVariacion}}%
+									<div :class="pctjBtc[2]" style="font-size:12px;">
+										<i :class="[pctjBtc[1], 'mr-1']"></i>{{pctjBtc[0]}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
 								<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="1"
-								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
+								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
 					</app-card>
@@ -79,7 +79,7 @@
 								</div>
 							</div>
 							<slot><h6 class="m-0 p-0"><b>En construcción</b></h6></slot>
-							<!-- <slot><h4 class="m-0 p-0"><b>$ {{sp500}}</b></h4></slot> -->
+							<!-- <slot><h5 class="m-0 p-0"><b>$ {{sp500}}</b></h5></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 								<div class="text-danger" style="font-size:22px;">
 									<i class="zmdi">&nbsp;</i>
@@ -113,10 +113,10 @@
 										</div>
 									</div>
 								</div>
-								<slot><h4 class="m-0 p-0"><b>$ {{precioOro}}</b></h4></slot>
+								<slot><h5 class="m-0 p-0"><b>$ {{precioOro}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="oroColor" style="font-size:12px;">
-										<i :class="[oroUpOrDown, 'mr-1']"></i>{{oroVariacion}}%
+									<div :class="pctjOro[2]" style="font-size:12px;">
+										<i :class="[pctjOro[1], 'mr-1']"></i>{{pctjOro[0]}}%
 										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
@@ -124,7 +124,7 @@
 							</div>
 							<div class="d-inline-block">
 								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="120"
-								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
+								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
 					</app-card>
@@ -143,18 +143,18 @@
 										</div>
 									</div>
 								</div>
-								<slot><h4 class="m-0 p-0 d-sm-block d-lg-none" ><b>Bs {{precioPetro}}</b></h4></slot>
-								<slot><h4 class="m-0 p-0 d-none d-lg-block" style="font-size:11px"><b>Bs {{precioPetro}}</b></h4></slot>
+								<slot><h5 class="m-0 p-0 d-sm-block d-lg-none" ><b>Bs {{precioPetro}}</b></h5></slot>
+								<slot><h5 class="m-0 p-0 d-none d-lg-block" style="font-size:11px"><b>Bs {{precioPetro}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="petroColor" style="font-size:12px;">
-										<i :class="[petroUpOrDown, 'mr-1']"></i>{{petroVariacion}}%
+									<div :class="pctjPtr[2]" style="font-size:12px;">
+										<i :class="[pctjPtr[1], 'mr-1']"></i>{{pctjPtr[0]}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
 								<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="67"
-								:style="{height: '65px', width:'90px', position: 'relative'}"></mini-chart>
+								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
 					</app-card>
@@ -174,7 +174,7 @@
 								</div>
 							</div>
 							<slot><h6 class="m-0 p-0"><b>En construcción</b></h6></slot>
-							<!-- <slot><h4 class="m-0 p-0"><b>$ {{nasdaq}}</b></h4></slot> -->
+							<!-- <slot><h5 class="m-0 p-0"><b>$ {{nasdaq}}</b></h5></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 								<div class="text-success" style="font-size:22px;">
 									<i class="zmdi">&nbsp;</i>
@@ -204,6 +204,18 @@
   import MiniChart from "Components/Charts/MiniChart";
 	import ChartConfig from "Constants/ChartConfig";
 	import { mapState } from 'vuex'
+
+	function sube0baja(params) {
+		var flag = Math.sign(params);
+		if (flag > 0) {
+			return ['zmdi zmdi-long-arrow-up', 'text-up'];
+		} else if (flag < 0) {
+			return ['zmdi zmdi-long-arrow-down', 'text-down'];
+		} else {
+			return ['fas fa-equals font-sm', 'text-white'];
+		}
+	}
+
   export default {
 		components: {
 			StatsCardV7,
@@ -212,7 +224,11 @@
 		},
     data() {
       return {
-        ChartConfig,
+				ChartConfig,
+				pctjPetroleo: [],
+				pctjOro: [],
+				pctjBtc: [],
+				pctjPtr: [],
 				bitcoin2: {
 					icon: "cc BTC text-primary",
 					name: "Bitcoin",
@@ -272,25 +288,13 @@
 				'dataOro',
 				'oroFecha',
 				'precioOil',
-				'petroleoVariacion',
-				'petroleoUpOrDown',
-				'petroleoColor',
 				'precioOro',
-				'oroVariacion',
-				'oroUpOrDown',
-				'oroColor',
 				'petroFecha',
 				'dataPetro',
 				'precioPetro',
-				'petroVariacion',
-				'petroUpOrDown',
-				'petroColor',
 				'bitcoinFecha',
 				'dataBitcoin',
 				'precioBitcoin',
-				'bitcoinVariacion',
-				'bitcoinUpOrDown',
-				'bitcoinColor',
 				'sp500',
 				'nasdaq'
 			]),
@@ -319,6 +323,9 @@
 					// console.log(v.toFixed(2));
 					data.push(Number(v.toFixed(2)))
 				}
+				var result = sube0baja(data[20]);
+				result.unshift(data[20]);
+				this.pctjPetroleo = result;
 				// console.log("Mini data:", data);
 				return data;
 			},
@@ -338,6 +345,9 @@
 					// console.log(v.toFixed(2));
 					data.push(Number(v.toFixed(2)))
 				}
+					var result = sube0baja(data[20]);
+					result.unshift(data[20]);
+					this.pctjOro = result;
 				// console.log("Mini data:", data);
 				return data;
 			},
@@ -373,6 +383,10 @@
 					// console.log(v.toFixed(2));
 					data.push(Number(v.toFixed(2)))
 				}
+					var result = sube0baja(data[20]);
+					result.unshift(data[20]);
+					this.pctjPtr = result;
+
 				// console.log("Mini data:", data);
 				return data;
 			},
@@ -400,6 +414,9 @@
 					// console.log(v.toFixed(2));
 					data.push(Number(v.toFixed(2)))
 				}
+					var result = sube0baja(data[20]);
+					result.unshift(data[20]);
+					this.pctjBtc = result;
 				// console.log("Mini data:", data);
 				return data;
 			},

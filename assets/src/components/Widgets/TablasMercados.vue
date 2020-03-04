@@ -20,15 +20,24 @@
                   <i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%
                 </div>
               </template>
+               <template v-slot:head(VAR)="data">
+                <span class="d-flex justify-content-center align-items-center">% <span class="ml-1" style="font-size:10px;"> (24h)</span></span>
+              </template>
               <template v-slot:cell(VAR2)="data">
                 <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]" style="font-size:12px;">
                   <i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%
                 </div>
               </template>
+              <template v-slot:head(VAR2)="data">
+                <span class="d-flex justify-content-center align-items-center">% <span class="ml-1" style="font-size:10px;"> (24h)</span></span>
+              </template>
               <template v-slot:cell(VAR3)="data">
                 <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]" style="font-size:12px;">
                   <i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%
                 </div>
+              </template>
+              <template v-slot:head(VAR3)="data">
+                <span class="d-flex justify-content-center align-items-center">% <span class="ml-1" style="font-size:10px;"> (24h)</span></span>
               </template>
               </b-table>
             </div>
@@ -62,10 +71,16 @@
                   <i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%
                 </div>
               </template>
+               <template v-slot:head(VAR)="data">
+                <span class="d-flex justify-content-center align-items-center">% <span class="ml-1" style="font-size:10px;"> (24h)</span></span>
+              </template>
               <template v-slot:cell(VAR2)="data">
                 <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]" style="font-size:12px;">
                   <i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%
                 </div>
+              </template>
+               <template v-slot:head(VAR2)="data">
+                <span class="d-flex justify-content-center align-items-center">% <span class="ml-1" style="font-size:10px;"> (24h)</span></span>
               </template>
               </b-table>
             </div>

@@ -6,21 +6,22 @@
         <!-- Precios del dia -->
         <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
           <div class="col-md-4" style="border-left: solid 5px #252F5D;">
-            <p class="p-0 m-0" style="font-size:.7rem">Dolar Oficial</p>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Dolar Oficial</router-link>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarBCV}}</h3>
              <div :class="dolarOficialColor" style="font-size:10px;">
               <i :class="[dolarOficialUpOrDown, 'mr-1']"></i>{{dolarOficialVariacion}}%
             </div>
           </div>
           <div class="col-md-4" style="border-left: solid 5px Green;">
-            <p class="p-0 m-0" style="font-size:.7rem">Dolar Today</p>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Dolar Today</router-link>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarToday}}</h3>
             <div :class="dolarParaleloColor" style="font-size:10px;">
               <i :class="[dolarParaleloUpOrDown, 'mr-1']"></i>{{dolarParaleloVariacion}}%
             </div>
           </div>
           <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
-            <p class="p-0 m-0" style="font-size:.7rem">Dolar Monitor</p>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Dolar Monitor</router-link>
+            <!-- <p class="p-0 m-0" style="font-size:.7rem">Dolar Monitor</p> -->
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarMonitor}}</h3>
             <div :class="monitorDolarColor" style="font-size:10px;">
               <i :class="[monitorDolarUpOrDown, 'mr-1']"></i>{{monitorDolarVariacion}}%
@@ -58,14 +59,14 @@
         <!-- Precio del Dia -->
         <div class="mb-3 ml-4 d-flex justify-content-start align-items-center">
           <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
-            <p class="p-0 m-0" style="font-size:.7rem">Euro Oficial</p>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Euro Oficial</router-link>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroOficial}}</h3>
             <div :class="euroOficialColor" style="font-size:10px;">
               <i :class="[euroOficialUpOrDown, 'mr-1']"></i>{{euroOficialVariacion}}%
             </div>
           </div>
           <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px #4E0003;">
-            <p class="p-0 m-0" style="font-size:.7rem">Euro Paralelo</p>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Euro Paralelo</router-link>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroParalelo}}</h3>
              <div :class="euroParaleloColor" style="font-size:10px;">
               <i :class="[euroParaleloUpOrDown, 'mr-1']"></i>{{euroParaleloVariacion}}%
@@ -212,7 +213,7 @@ export default {
           duration: 0 // general animation time
         },
         tooltips: {
-          mode: "index", //point, nearest, dataset, x, y, interpolate
+          mode: "point", //index, nearest, dataset, x, y, interpolate
           intersect: false,
           // titleFontFamily
           // titleFontColor: '#fff',
@@ -290,7 +291,7 @@ export default {
           duration: 0 // general animation time
         },
         tooltips: {
-          mode: "index", //point, nearest, dataset, x, y, interpolate
+          mode: "point", //index, nearest, dataset, x, y, interpolate
           intersect: false,
           titleFontSize: 12,
           titleAlign: "center",
