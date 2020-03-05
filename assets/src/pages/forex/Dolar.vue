@@ -2,20 +2,32 @@
   <div id="Dolar">
     <page-title-bar></page-title-bar>
 		<crypto-slider></crypto-slider>
-    <b-row>
-      <b-col class="text-center">
-        <img src="Static/img/mantenimiento.png" width="auto" height="auto" alt="dolar" class="img-fluid rounded-circle ml-3"/> 
-        <h1>En construcción</h1>
+    <b-row class="grid-b-space">
+      <b-col>
+        <graph-dolar></graph-dolar>
+      </b-col>
+    </b-row>
+    <b-row class="grid-b-space">
+      <b-col>
+        <table-dolar></table-dolar>
       </b-col>
     </b-row>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
       
     }
+  },
+  methods: {
+    ...mapActions('tasas', ['loadDataParalelo','loadDataOficial'])
+  },
+  created() {
+    this.loadDataOficial();
+    this.loadDataParalelo();
   },
 }
 </script>

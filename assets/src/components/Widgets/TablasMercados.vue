@@ -2,7 +2,7 @@
   <div id="tablasmercados">
     <b-row>
       <!-- DOLAR -->
-      <b-col sm="12" md="6" class="mb-4">
+      <b-col sm="12" md="6" class="grid-b-space">
         <app-card v-if="loadedTablaDolar" heading="Dolar Informacion Diaria" :headingMenu="true">
           <div class="table-responsive mb-0">
             <div class="unseen">
@@ -53,7 +53,7 @@
         </div>
       </b-col>
       <!-- EURO -->
-      <b-col sm="12" md="6" class="mb-4">
+      <b-col sm="12" md="6" class="grid-b-space">
         <app-card v-if="loadedTablaEuro" heading="Euro Informacion Diaria" :headingMenu="true">
           <div class="table-responsive mb-0">
             <div class="unseen">

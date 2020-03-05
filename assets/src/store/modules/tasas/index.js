@@ -223,6 +223,14 @@ const state = {
   baseMinBitcoinX: localStorage.getItem('baseMinBitcoinX') || 0,
   baseMinBitcoinY: localStorage.getItem('baseMinBitcoinY') || 0,
 
+  // TABLA Y PAGINACION PETROLEO
+  loadedTablaPetroleo: false,
+  tablaPetroleo: localStorage.getItem('tablaPetroleo') || [],
+  paginacionPetroleoTotal: localStorage.getItem('pagPetroleoTotal') || 0,
+  paginacionPetroleoPaginas: localStorage.getItem('pagPetroleoPaginas') || 0,
+  paginacionPetroleoPorPagina: 7,
+  paginacionPetroleoPagina: localStorage.getItem('pagPetroleoPagina') || 1,
+
 };
 
 const getters = {
@@ -602,6 +610,19 @@ const getters = {
   },
   paginacionDolarPagina: (state) => {
     return state.paginacionDolarPagina;
+  },
+   // GET TABLA Y PAGINACION PETROLEO 
+  dataTablaPetroleo: (state) => {
+    return JSON.parse(state.tablaPetroleo);
+  },
+  paginacionPetroleoTotal: (state) => {
+    return state.paginacionPetroleoTotal;
+  },
+  paginacionPetroleoPorPagina: (state) => {
+    return state.paginacionPetroleoPorPagina;
+  },
+  paginacionPetroleoPagina: (state) => {
+    return state.paginacionPetroleoPagina;
   },
 };
 
@@ -1143,6 +1164,30 @@ const actions = {
   resertScaleBitcoin(context) {
     context.commit('minBitcoinX', state.baseMinBitcoinX);
     context.commit('minBitcoinY', state.baseMinBitcoinY);
+  },
+  async loadDataTablaPetroleo(context) {
+    await Axios.get("http://pdsc.phoenixplus.net:4000/api/oil").then(async res => {
+      var data = res.data.data;
+      data = data.reverse();
+      var tabla = [];
+      await data.forEach((valor, index) => {
+        var result = pctjPetroleo(data, valor, index);
+        tabla[index] = {
+          fecha: moment(valor.fecha).format("L"),
+          petroleo: valor.dolar,
+          VAR: result,
+        };
+      });
+      var totalPag = Object.keys(tabla).length;
+      context.commit('setPagPetroleoTotal', totalPag);
+      var pages = Math.ceil(Object.keys(tabla).length / state.paginacionPetroleoPorPagina);
+      context.commit('setPagPetroleoPaginas', pages);
+    });
+    await context.commit('loadedTablaPetroleo');
+  },
+
+  paginacionPetroleoPagina(context, payload) {
+    context.commit('setPagPetroleoPagina', payload);
   },
 };
 

@@ -19,6 +19,11 @@ import GraphPetroleo from 'Components/Graph/GraphPetroleo';
 import GraphOro from 'Components/Graph/GraphOro';
 import GraphPetro from 'Components/Graph/GraphPetro';
 import GraphBitcoin from 'Components/Graph/GraphBitcoin';
+import GraphDolar from 'Components/Graph/GraphDolar';
+import TableDolar from 'Components/Table/TableDolar';
+import GraphEuro from 'Components/Graph/GraphEuro';
+import TableEuro from 'Components/Table/TableEuro';
+
 import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
 
 // import TasasSlider from "Components/Widgets/TasasSlider";
@@ -45,6 +50,10 @@ const GlobalComponents = {
 		Vue.component('GraphOro', GraphOro);
 		Vue.component('GraphPetro', GraphPetro);
 		Vue.component('GraphBitcoin', GraphBitcoin);
+		Vue.component('GraphDolar', GraphDolar);
+		Vue.component('TableDolar', TableDolar);
+		Vue.component('GraphEuro', GraphEuro);
+		Vue.component('TableEuro', TableEuro);
 		Vue.component('FadeLoader', FadeLoader);
 		// Vue.component('tasasSlider', TasasSlider);
 	}
