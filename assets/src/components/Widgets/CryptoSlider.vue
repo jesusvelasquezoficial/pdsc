@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<app-card v-if="loadedTasasSlider" class="ticker-slider grid-b-space" style="height:78;">
-			<slick ref="slick" :options="slickOptions"
+			<slick class="slick" ref="slick" :options="slickOptions"
 				@breakpoint="handleBreakpoint"
 				@destroy="handleDestroy"
 				@edge="handleEdge"
@@ -11,7 +11,7 @@
 				@lazyLoaded="handleLazyLoaded"
 				@lazyLoadError="handleLazeLoadError">
 				<div class="ticker-item-wrap px-3" v-for="(item,index) in getData" :key="index">
-					<div class="d-flex align-items-center justify-content-between"  @click="pause">
+					<div class="d-flex align-items-center justify-content-between" @click="pause()">
 						<div class="price-content">
 							<span class="d-inline-block">
 								<router-link :to="item.url"><b style="color:#0081f2;">{{ item.coin1 }}</b></router-link>
@@ -50,13 +50,13 @@
 			return {
 				pausa: false,
 				slickOptions: {
-					adaptiveHeight: true,
+					// adaptiveHeight: true,
 					speed: 3000,
 					autoplay: true,
 					autoplaySpeed: 0,
 					arrows: true,
 					centerMode: true,
-					slidesToShow: 1,
+					slidesToShow: 3,
 					slidesToScroll: 1,
 					variableWidth: true,
 					mobileFirst: true,
@@ -171,10 +171,14 @@
 			pause(){
 				if (this.pausa) {
 					this.pausa = !this.pausa;
-					this.$refs.slick.play();
+					$('.slick').slick('slickPlay');
+
+					// this.$refs.slick.play();
 				}else{
 					this.pausa = !this.pausa;
-					this.$refs.slick.pause();
+					$('.slick').slick('slickPause');
+
+					// this.$refs.slick.pause();
 				}
 			},
 			next() {

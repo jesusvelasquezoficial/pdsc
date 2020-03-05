@@ -6,24 +6,24 @@
         <!-- Precios del dia -->
         <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
           <div class="col-md-4" style="border-left: solid 5px #252F5D;">
-            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Dolar Oficial</router-link>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Dolar Oficial</b></router-link>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarBCV}}</h3>
-             <div :class="dolarOficialColor" style="font-size:10px;">
+             <div :class="dolarOficialColor == 'text-white' ? 'text-black' : dolarOficialColor" style="font-size:10px;">
               <i :class="[dolarOficialUpOrDown, 'mr-1']"></i>{{dolarOficialVariacion}}%
             </div>
           </div>
           <div class="col-md-4" style="border-left: solid 5px Green;">
-            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Dolar Today</router-link>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Dolar Today</b></router-link>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarToday}}</h3>
-            <div :class="dolarParaleloColor" style="font-size:10px;">
+            <div :class="dolarParaleloColor == 'text-white' ? 'text-black' : dolarParaleloColor" style="font-size:10px;">
               <i :class="[dolarParaleloUpOrDown, 'mr-1']"></i>{{dolarParaleloVariacion}}%
             </div>
           </div>
           <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
-            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Dolar Monitor</router-link>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Dolar Monitor</b></router-link>
             <!-- <p class="p-0 m-0" style="font-size:.7rem">Dolar Monitor</p> -->
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioDolarMonitor}}</h3>
-            <div :class="monitorDolarColor" style="font-size:10px;">
+            <div :class="monitorDolarColor == 'text-white' ? 'text-black' : monitorDolarColor" style="font-size:10px;">
               <i :class="[monitorDolarUpOrDown, 'mr-1']"></i>{{monitorDolarVariacion}}%
             </div>
           </div>
@@ -59,16 +59,16 @@
         <!-- Precio del Dia -->
         <div class="mb-3 ml-4 d-flex justify-content-start align-items-center">
           <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
-            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Euro Oficial</router-link>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Euro Oficial</b></router-link>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroOficial}}</h3>
-            <div :class="euroOficialColor" style="font-size:10px;">
+            <div :class="euroOficialColor == 'text-white' ? 'text-black' : euroOficialColor" style="font-size:10px;">
               <i :class="[euroOficialUpOrDown, 'mr-1']"></i>{{euroOficialVariacion}}%
             </div>
           </div>
           <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px #4E0003;">
-            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;">Euro Paralelo</router-link>
+            <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Euro Paralelo</b></router-link>
             <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioEuroParalelo}}</h3>
-             <div :class="euroParaleloColor" style="font-size:10px;">
+             <div :class="euroParaleloColor == 'text-white' ? 'text-black' : euroParaleloColor" style="font-size:10px;">
               <i :class="[euroParaleloUpOrDown, 'mr-1']"></i>{{euroParaleloVariacion}}%
             </div>
           </div>
