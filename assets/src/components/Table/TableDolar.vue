@@ -7,34 +7,44 @@
           :items="dataTablaDolar"
           :per-page="paginacionDolarPorPagina"
           :current-page="paginacionDolarPagina"
-          :thead-class="['bg-primary', 'text-white']"  
+          :thead-class="['bg-oscuro', 'text-white']" 
+          :no-border-collapse="true"
           small
         >
         <template v-slot:table-caption>Total de Registros: {{paginacionDolarTotal}}</template>
-        <template v-slot:cell(VAR)="data">
-          <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]" style="font-size:12px;">
-            <i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%
-          </div>
-        </template>
+          <template v-slot:head()="data">
+            <small>{{ data.label }}</small>
+          </template>
+          <template v-slot:cell()="data">
+            <small>$ {{ data.value }}</small>
+          </template>
+           <template v-slot:cell(fecha)="data">
+            <small>{{ data.value }}</small>
+          </template>
+          <template v-slot:cell(VAR)="data">
+            <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]">
+              <small><i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%</small>
+            </div>
+          </template>
           <template v-slot:head(VAR)="data">
-          <span class="d-flex justify-content-center align-items-center">% <span class="ml-1" style="font-size:10px;"> (24h)</span></span>
-        </template>
-        <template v-slot:cell(VAR2)="data">
-          <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]" style="font-size:12px;">
-            <i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%
-          </div>
-        </template>
-        <template v-slot:head(VAR2)="data">
-          <span class="d-flex justify-content-center align-items-center">% <span class="ml-1" style="font-size:10px;"> (24h)</span></span>
-        </template>
-        <template v-slot:cell(VAR3)="data">
-          <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]" style="font-size:12px;">
-            <i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%
-          </div>
-        </template>
-        <template v-slot:head(VAR3)="data">
-          <span class="d-flex justify-content-center align-items-center">% <span class="ml-1" style="font-size:10px;"> (24h)</span></span>
-        </template>
+            <small class="ml-1 d-flex align-items-center">% (24h)</small>
+          </template>
+          <template v-slot:cell(VAR2)="data">
+            <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]">
+              <small><i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%</small>
+            </div>
+          </template>
+          <template v-slot:head(VAR2)="data">
+            <small class="ml-1 d-flex align-items-center">% (24h)</small>
+          </template>
+          <template v-slot:cell(VAR3)="data">
+            <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]">
+              <small><i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%</small>
+            </div>
+          </template>
+          <template v-slot:head(VAR3)="data">
+            <small class="ml-1 d-flex align-items-center">% (24h)</small>
+          </template>
         </b-table>
       </div>
     </div>
@@ -80,3 +90,12 @@ export default {
   },
 }
 </script>
+<style>
+  .bg-oscuro{
+    background-color: #464d69;
+    border:0px !important;
+  }
+  .table thead tr th {
+    border: #585E78 1px solid;
+  }
+</style>

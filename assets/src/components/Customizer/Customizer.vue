@@ -1,6 +1,6 @@
 <template>
 	<div class="idb-customizer" :class="{ 'customizer-out': customizerIn } ">
-		<a class="customizer-toggle gradient-primary faa-parent animated-hover" href="javascript:;"
+		<a class="d-none customizer-toggle gradient-primary faa-parent animated-hover" href="javascript:;"
 			@click="toggleCustomizer">
 			<i aria-hidden="true" class="fa fa-wrench faa-slow faa-wrench spin-icon"></i>
 		</a>

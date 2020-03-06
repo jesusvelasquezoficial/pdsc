@@ -57,7 +57,10 @@
 				<div class="d-flex justify-content-center align-item-center pl-lg-0 pl-3">
 					<span>{{hora}}</span>
 				</div>
-				<b-nav-item @click="toggleRightSidebar" class="customizer">
+				<!-- <b-nav-item @click="toggleRightSidebar" class="customizer">
+					<i class="zmdi zmdi-tune"></i>
+				</b-nav-item> -->
+				<b-nav-item	@click="toggleCustomizer">
 					<i class="zmdi zmdi-tune"></i>
 				</b-nav-item>
 			</b-navbar-nav>
@@ -191,6 +194,9 @@
 			MobileSearchForm
 		},
 		methods: {
+			toggleCustomizer() {
+				this.$store.dispatch('toggleCustomizer');
+			},
 			realtime: function() {
 				let t = new Date();
 				let h = t.getHours();

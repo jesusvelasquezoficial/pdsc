@@ -16,7 +16,7 @@
 								<router-view></router-view>
 							</transition>
 						</div><!-- inner container closed -->
-						<!-- <app-customizer></app-customizer> -->
+						<app-customizer></app-customizer>
 					</div><!-- base container closed -->
 				</div><!-- Main Content closed -->
 			</div>

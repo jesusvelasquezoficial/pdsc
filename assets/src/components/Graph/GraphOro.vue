@@ -3,22 +3,25 @@
     <app-card heading="Oro" :headingMenu="true" v-if="loadedGraphGold">
       <!-- Precios del dia -->
       <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
-        <div class="col-md-4" style="border-left: solid 5px #252F5D;">
-          <p class="p-0 m-0" style="font-size:.7rem">Oro</p>
-          <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioOro}}</h3>
+        <div class="col-md-4" style="border-left: solid 5px Orange;">
+          <router-link to="/materia-prima/oro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Oro</b></router-link>
+          <h5 class="p-0 m-0" style="font-size:1.2rem"><b>$ {{precioOro}}</b></h5>
+          <div :class="oroColor == 'text-white' ? 'text-black' : oroColor" style="font-size:10px;">
+            <i :class="[oroUpOrDown, 'mr-1']"></i>{{oroVariacion}}%
+          </div>
         </div>
       </div>
       <!-- Botones Escala de Tiempo -->
       <div class="mb-1 ml-4 d-flex justify-content-start align-items-center">
-        <span style="color:#666666;">Zoom</span>
+        <span style="color:#666666;"><small>Zoom</small></span>
         <div class="col-sm-8 col-md-10 col-lg-7">
-          <b-button @click="sG7D" size="sm" variant="outline-ligth">7d</b-button>
-          <b-button @click="sG2S" size="sm" variant="outline-ligth">2s</b-button>
-          <b-button @click="sG30D" size="sm" variant="outline-ligth">1m</b-button>
-          <b-button @click="resertScaleGold" size="sm" variant="outline-ligth">3m</b-button>
-          <b-button @click="resertScaleGold" size="sm" variant="outline-ligth">1y</b-button>
+          <b-button @click="sG7D" size="sm" variant="outline-ligth"><small>7d</small></b-button>
+          <b-button @click="sG2S" size="sm" variant="outline-ligth"><small>2s</small></b-button>
+          <b-button @click="sG30D" size="sm" variant="outline-ligth"><small>1m</small></b-button>
+          <b-button @click="resertScaleGold" size="sm" variant="outline-ligth"><small>3m</small></b-button>
+          <b-button @click="resertScaleGold" size="sm" variant="outline-ligth"><small>1y</small></b-button>
           <!-- <b-button @click="resertScaleGold" size="sm" variant="outline-ligth">YTD</b-button> -->
-          <b-button @click="resertScaleGold" size="sm" variant="outline-ligth">ALL</b-button>
+          <b-button @click="resertScaleGold" size="sm" variant="outline-ligth"><small>ALL</small></b-button>
         </div>
       </div>
       <!-- Graficos de linea -->
@@ -53,6 +56,9 @@ export default {
     ...mapState('tasas',[
       'loadedGraphGold',
       'precioOro',
+      'oroVariacion',
+      'oroUpOrDown',
+      'oroColor',
     ]),
     ...mapGetters('tasas', [
       'dataOro',

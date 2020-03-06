@@ -312,7 +312,7 @@ const getters = {
         "url": "/criptomonedas/petro",
         "coin1": "Petro",
         "coin2": "",
-        "price": `BsS ${state.petro}`,
+        "price": `Bs ${state.petro}`,
         "market_cap": `${state.petroVariacion}%`,
         "icon": `${state.petroUpOrDown}`,
         "color": `${state.petroColor}`,
@@ -1169,15 +1169,18 @@ const actions = {
     await Axios.get("http://pdsc.phoenixplus.net:4000/api/oil").then(async res => {
       var data = res.data.data;
       data = data.reverse();
+      console.log(data);
       var tabla = [];
       await data.forEach((valor, index) => {
-        var result = pctjPetroleo(data, valor, index);
+        var result = pctjDolar(data, valor, index);
         tabla[index] = {
           fecha: moment(valor.fecha).format("L"),
           petroleo: valor.dolar,
           VAR: result,
         };
+        context.commit('setTablaPetroleo', JSON.stringify(tabla));
       });
+      console.log(tabla);
       var totalPag = Object.keys(tabla).length;
       context.commit('setPagPetroleoTotal', totalPag);
       var pages = Math.ceil(Object.keys(tabla).length / state.paginacionPetroleoPorPagina);
@@ -1185,7 +1188,6 @@ const actions = {
     });
     await context.commit('loadedTablaPetroleo');
   },
-
   paginacionPetroleoPagina(context, payload) {
     context.commit('setPagPetroleoPagina', payload);
   },
@@ -1694,6 +1696,25 @@ const mutations = {
   },
   loadedGraphBitcoin(state) {
     state.loadedGraphBitcoin = true;
+  },
+  setTablaPetroleo(state, valor) {
+    state.tablaPetroleo = valor;
+    localStorage.setItem('tablaPetroleo', valor);
+  },
+  setPagPetroleoPagina(state, valor) {
+    state.paginacionPetroleoPagina = valor;
+    localStorage.setItem('pagPetroleoPagina', valor);
+  },
+  setPagPetroleoTotal(state, valor) {
+    state.paginacionPetroleoTotal = valor;
+    localStorage.setItem('pagPetroleoTotal', valor);
+  },
+  setPagPetroleoPaginas(state, valor) {
+    state.paginacionPetroleoPaginas = valor;
+    localStorage.setItem('pagPetroleoPaginas', valor);
+  },
+  loadedTablaPetroleo(state) {
+    state.loadedTablaPetroleo = true;
   },
 };
 

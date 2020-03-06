@@ -1,38 +1,39 @@
 <template>
-  <div>
-    <app-card heading="Petroleo de Venezuela" :headingMenu="true" v-if="loadedGraphPetroleo">
-      <!-- Precios del dia -->
-      <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
-        <div class="col-md-4" style="border-left: solid 5px #252F5D;">
-          <p class="p-0 m-0" style="font-size:.7rem">Petroleo</p>
-          <h3 class="p-0 m-0" style="font-size:1.2rem">{{precioOil}}</h3>
+  <app-card v-if="loadedGraphPetroleo" heading="Petroleo de Venezuela" :headingMenu="true">
+    <!-- Precios del dia -->
+    <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
+      <div class="col-md-4" style="border-left: solid 5px #000;">
+        <router-link to="/materia-prima/petroleo"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Petroleo</b></router-link>
+        <h5 class="p-0 m-0" style="font-size:1.2rem"><b>$ {{precioOil}}</b></h5>
+        <div :class="petroleoColor == 'text-white' ? 'text-black' : petroleoColor" style="font-size:10px;">
+          <i :class="[petroleoUpOrDown, 'mr-1']"></i>{{petroleoVariacion}}%
         </div>
       </div>
-      <!-- Botones Escala de Tiempo -->
-      <div class="mb-1 ml-4 d-flex justify-content-start align-items-center">
-        <span style="color:#666666;">Zoom</span>
-        <div class="col-sm-8 col-md-10 col-lg-7">
-          <b-button @click="sP7D" size="sm" variant="outline-ligth">7d</b-button>
-          <b-button @click="sP2S" size="sm" variant="outline-ligth">2s</b-button>
-          <b-button @click="sP30D" size="sm" variant="outline-ligth">1m</b-button>
-          <b-button @click="resertScalePetroleo" size="sm" variant="outline-ligth">3m</b-button>
-          <b-button @click="resertScalePetroleo" size="sm" variant="outline-ligth">1y</b-button>
-          <!-- <b-button @click="resertScalePetroleo" size="sm" variant="outline-ligth">YTD</b-button> -->
-          <b-button @click="resertScalePetroleo" size="sm" variant="outline-ligth">ALL</b-button>
-        </div>
-      </div>
-      <!-- Graficos de linea -->
-      <line-chart
-        id="monedaPetroleo"
-        ref="monedaPetroleo"
-        :chartData="dataPetroleo"
-        :options="optionsPetroleo"
-        :styles="styles"
-      ></line-chart>
-    </app-card>
-    <div v-else class="d-flex justify-content-center py-5 mb-5">
-      <fade-loader :loading="!loadedGraphPetroleo" color="DarkOrange" size="32px"></fade-loader>
     </div>
+    <!-- Botones Escala de Tiempo -->
+    <div class="mb-1 ml-4 d-flex justify-content-start align-items-center">
+      <span style="color:#666666;"><small>Zoom</small></span>
+      <div class="col-sm-8 col-md-10 col-lg-7">
+        <b-button @click="sP7D" size="sm" variant="outline-ligth"><small>7d</small></b-button>
+        <b-button @click="sP2S" size="sm" variant="outline-ligth"><small>2s</small></b-button>
+        <b-button @click="sP30D" size="sm" variant="outline-ligth"><small>1m</small></b-button>
+        <b-button @click="resertScalePetroleo" size="sm" variant="outline-ligth"><small>3m</small></b-button>
+        <b-button @click="resertScalePetroleo" size="sm" variant="outline-ligth"><small>1y</small></b-button>
+        <!-- <b-button @click="resertScalePetroleo" size="sm" variant="outline-ligth">YTD</b-button> -->
+        <b-button @click="resertScalePetroleo" size="sm" variant="outline-ligth"><small>ALL</small></b-button>
+      </div>
+    </div>
+    <!-- Graficos de linea -->
+    <line-chart
+      id="monedaPetroleo"
+      ref="monedaPetroleo"
+      :chartData="dataPetroleo"
+      :options="optionsPetroleo"
+      :styles="styles"
+    ></line-chart>
+  </app-card>
+  <div v-else class="d-flex justify-content-center py-5 mb-5">
+    <fade-loader :loading="!loadedGraphPetroleo" color="DarkOrange" size="32px"></fade-loader>
   </div>
 </template>
 <script>
@@ -53,6 +54,9 @@ export default {
     ...mapState('tasas',[
       'loadedGraphPetroleo',
       'precioOil',
+      'petroleoVariacion',
+      'petroleoUpOrDown',
+      'petroleoColor',
     ]),
     ...mapGetters('tasas', [
       'dataPetroleo',

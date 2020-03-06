@@ -10,7 +10,7 @@
 				<calendario></calendario>
 			</b-col>
 		</b-row>
-		<graph-mercado-oficial></graph-mercado-oficial>
+		<graph-mercados></graph-mercados>
 		<tablas-mercados></tablas-mercados>
 	</div>
 </template>
@@ -25,9 +25,9 @@ import { mapActions } from 'vuex';
 		},
 		methods: {
 			...mapActions('tasas', [
-				'loadDataPetroleo',
 				'loadDataOficial',
 				'loadDataParalelo',
+				'loadDataPetroleo',
 				'loadDataOro',
 				'loadDataPetro',
 				'loadDataBitcoin'])
