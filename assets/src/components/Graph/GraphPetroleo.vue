@@ -4,7 +4,7 @@
     <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
       <div class="col-md-4" style="border-left: solid 5px #000;">
         <router-link to="/materia-prima/petroleo"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Petroleo</b></router-link>
-        <h5 class="p-0 m-0" style="font-size:1.2rem"><b>$ {{precioOil}}</b></h5>
+        <h5 class="p-0 m-0" style="font-size:1.2rem"><b>$ {{precioPetroleo}}</b></h5>
         <div :class="petroleoColor == 'text-white' ? 'text-black' : petroleoColor" style="font-size:10px;">
           <i :class="[petroleoUpOrDown, 'mr-1']"></i>{{petroleoVariacion}}%
         </div>
@@ -53,7 +53,7 @@ export default {
   computed: {
     ...mapState('tasas',[
       'loadedGraphPetroleo',
-      'precioOil',
+      'precioPetroleo',
       'petroleoVariacion',
       'petroleoUpOrDown',
       'petroleoColor',

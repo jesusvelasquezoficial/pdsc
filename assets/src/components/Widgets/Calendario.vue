@@ -1,6 +1,6 @@
 <template>
   <div id="calendario">
-      <div class="col-md-12 mb-sm-4 grid-b-space">
+      <div class="col-md-12 mb-sm-4 grid-b-space-indicadores">
         <calendar :attributes='attrsCalendar' :disabled-dates='ddCalendar'  :masks="{ weekdays: 'WW' }" class='m-0 p-0' style="height:239px;" is-expanded/>
       </div>
   </div>

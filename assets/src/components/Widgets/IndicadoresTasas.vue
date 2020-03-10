@@ -1,8 +1,8 @@
 <template>
   <div id='indicadores'>
 		<div class="col-md-12">
-			<div class="row">
-				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
+			<div class="row grid-b-space">
+				<div class="col-12 col-md-4 col-lg-3 grid-b-space-indicadores">
 					<app-card>
 						<div class="d-flex align-items-center justify-content-between">
 							<div class="d-block">
@@ -12,13 +12,13 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/materia-prima/petroleo" class="mb-0" style="color:#0081f2;"><b>Petroleo</b></router-link>
+											<router-link to="/materia-prima/petroleo" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Petroleo</b></router-link>
 										</div>
 									</div>
 								</div>
-								<slot class=""><h5 class="m-0 p-0"><b>$ {{precioOil}}</b></h5></slot>
+								<slot class=""><h5 class="m-0 p-0" style="font-size:.7em;"><b>$ {{precioPetroleo}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="pctjPetroleo[2]" style="font-size:12px;">
+									<div :class="pctjPetroleo[2]" style="font-size:.57em;">
 										<i :class="[pctjPetroleo[1], 'mr-1']"></i>{{pctjPetroleo[0]}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
@@ -35,7 +35,7 @@
 						</div>
 					</app-card>
 				</div>
-				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
+				<div class="col-12 col-md-4 col-lg-3 grid-b-space-indicadores">
 					<app-card>
 						<div class="d-flex align-items-center justify-content-between">
 							<div class="d-block">
@@ -45,26 +45,62 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/criptomonedas/bitcoin" class="mb-0" style="color:#0081f2;"><b>Bitcoin</b></router-link>
+											<router-link to="/criptomonedas/bitcoin" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Bitcoin</b></router-link>
 										</div>
 									</div>
 								</div>
-								<slot><h5 class="m-0 p-0"><b>$ {{precioBitcoin}}</b></h5></slot>
+								<slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{precioBitcoin}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="pctjBtc[2]" style="font-size:12px;">
+									<div :class="pctjBtc[2]" style="font-size:.57em;">
 										<i :class="[pctjBtc[1], 'mr-1']"></i>{{pctjBtc[0]}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="1"
+								<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="33"
 								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
 					</app-card>
 				</div>
-				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
+				<!-- ////////////////////////////////////////////// -->
+				<div class="col-12 col-md-4 col-lg-3 grid-b-space-indicadores">
+					<app-card>
+						<div class="d-flex align-items-center justify-content-between">
+						<div class="d-block"> 
+							<div class="layout justify-content-between">
+								<div class="d-flex align-items-center mb-1">
+									<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
+										<i :class="icon" title="BCN"></i>
+									</div> -->
+									<div class="inline-block">
+										<router-link to="/forex/eur-usd" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>EUR/USD</b></router-link>
+									</div>
+								</div>
+							</div>
+							<slot><h6 class="m-0 p-0"  style="font-size:.7em;"><b>En construcción</b></h6></slot>
+							<!-- <slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{nasdaq}}</b></h5></slot> -->
+							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
+								<div class="text-success" style="font-size:22px;">
+									<i class="zmdi">&nbsp;</i>
+									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
+								</div>
+								<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
+							</div>
+						</div>
+						<div class="d-inline-block">
+								<img src="Static/img/mantenimiento.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10"/> 
+								<!-- <line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
+									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
+									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
+								</line-chart-shadow> -->
+							</div>
+						</div>
+					</app-card>
+				</div>
+				<!-- ////////////////////////////////////////////// -->
+				<div class="col-12 col-md-4 col-lg-3 grid-b-space-indicadores">
 					<app-card>
 						<div class="d-flex align-items-center justify-content-between">
 						<div class="d-block">
@@ -74,12 +110,12 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<router-link to="/bolsas-valores/sp500" class="mb-0" style="color:#0081f2;"><b>S&P 500</b></router-link>
+										<router-link to="/bolsas-valores/sp500" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>S&P 500</b></router-link>
 									</div>
 								</div>
 							</div>
-							<slot><h6 class="m-0 p-0"><b>En construcción</b></h6></slot>
-							<!-- <slot><h5 class="m-0 p-0"><b>$ {{sp500}}</b></h5></slot> -->
+							<slot><h6 class="m-0 p-0"  style="font-size:.7em;"><b>En construcción</b></h6></slot>
+							<!-- <slot><h4 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{sp500}}</b></h4></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 								<div class="text-danger" style="font-size:22px;">
 									<i class="zmdi">&nbsp;</i>
@@ -98,7 +134,7 @@
 						</div>
 					</app-card>
 				</div>
-				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
+				<div class="col-12 col-md-4 col-lg-3 grid-b-space-indicadores">
 					<app-card>
 						<div class="d-flex align-items-center justify-content-between">
 							<div class="d-block">
@@ -108,14 +144,14 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/materia-prima/oro" class="mb-0" style="color:#0081f2;"><b>Oro</b></router-link>
-											<!-- <p class="mb-0" style="color:#0081f2;">Oro</p> -->
+											<router-link to="/materia-prima/oro" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Oro</b></router-link>
+											<!-- <p class="mb-0" style="color:#0081f2; font-size:.7em;" >Oro</p> -->
 										</div>
 									</div>
 								</div>
-								<slot><h5 class="m-0 p-0"><b>$ {{precioOro}}</b></h5></slot>
+								<slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{precioOro}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="pctjOro[2]" style="font-size:12px;">
+									<div :class="pctjOro[2]" style="font-size:.57em;">
 										<i :class="[pctjOro[1], 'mr-1']"></i>{{pctjOro[0]}}%
 										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
@@ -129,7 +165,7 @@
 						</div>
 					</app-card>
 				</div>
-				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
+				<div class="col-12 col-md-4 col-lg-3 grid-b-space-indicadores">
 					<app-card>
 						<div class="d-flex align-items-center justify-content-between">
 							<div class="d-block">
@@ -139,27 +175,28 @@
 											<i :class="icon" title="BCN"></i>
 										</div> -->
 										<div class="inline-block">
-											<router-link to="/criptomonedas/petro" class="mb-0" style="color:#0081f2;"><b>Petro</b></router-link>
+											<router-link to="/criptomonedas/petro" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Petro</b></router-link>
 										</div>
 									</div>
 								</div>
-								<slot><h5 class="m-0 p-0 d-sm-block d-lg-none" ><b>Bs {{precioPetro}}</b></h5></slot>
-								<slot><h5 class="m-0 p-0 d-none d-lg-block" style="font-size:11px"><b>Bs {{precioPetro}}</b></h5></slot>
+								<slot><h5 class="m-0 p-0 d-sm-block d-lg-none" style="font-size:.7em;"><b>Bs {{precioPetro}}</b></h5></slot>
+								<slot><h5 class="m-0 p-0 d-none d-lg-block" style="font-size:.7em;"><b>Bs {{precioPetro}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-									<div :class="pctjPtr[2]" style="font-size:12px;">
+									<div :class="pctjPtr[2]" style="font-size:.57em;">
 										<i :class="[pctjPtr[1], 'mr-1']"></i>{{pctjPtr[0]}}%
 									</div>
 									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="65"
+								<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="33"
 								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
 					</app-card>
 				</div>
-				<div class="col-12 col-md-6 col-lg-4 grid-b-space">
+				<!-- ////////////////////////////////////////////// -->
+				<div class="col-12 col-md-4 col-lg-3 grid-b-space-indicadores">
 					<app-card>
 						<div class="d-flex align-items-center justify-content-between">
 						<div class="d-block"> 
@@ -169,12 +206,47 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<router-link to="/bolsas-valores/nasdaq" class="mb-0" style="color:#0081f2;"><b>Nasdaq</b></router-link>
+										<router-link to="/forex/usd-jpy" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>USD/JPY</b></router-link>
 									</div>
 								</div>
 							</div>
-							<slot><h6 class="m-0 p-0"><b>En construcción</b></h6></slot>
-							<!-- <slot><h5 class="m-0 p-0"><b>$ {{nasdaq}}</b></h5></slot> -->
+							<slot><h6 class="m-0 p-0"  style="font-size:.7em;"><b>En construcción</b></h6></slot>
+							<!-- <slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{nasdaq}}</b></h5></slot> -->
+							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
+								<div class="text-success" style="font-size:22px;">
+									<i class="zmdi">&nbsp;</i>
+									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
+								</div>
+								<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
+							</div>
+						</div>
+						<div class="d-inline-block">
+								<img src="Static/img/mantenimiento.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10"/> 
+								<!-- <line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
+									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
+									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
+								</line-chart-shadow> -->
+							</div>
+						</div>
+					</app-card>
+				</div>
+				<!-- ////////////////////////////////////////////// -->
+				<div class="col-12 col-md-4 col-lg-3 grid-b-space-indicadores">
+					<app-card>
+						<div class="d-flex align-items-center justify-content-between">
+						<div class="d-block"> 
+							<div class="layout justify-content-between">
+								<div class="align-items-center d-flex mb-1">
+									<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
+										<i :class="icon" title="BCN"></i>
+									</div> -->
+									<div class="inline-block">
+										<router-link to="/bolsas-valores/nasdaq" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Nasdaq</b></router-link>
+									</div>
+								</div>
+							</div>
+							<slot><h6 class="m-0 p-0"  style="font-size:.7em;"><b>En construcción</b></h6></slot>
+							<!-- <slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{nasdaq}}</b></h5></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 								<div class="text-success" style="font-size:22px;">
 									<i class="zmdi">&nbsp;</i>
@@ -196,7 +268,7 @@
 			</div>
 				<!-- <fade-loader :loading="!indicadoresLoaded" color="DarkOrange" size="32px"></fade-loader> -->
 		</div>
-  </div>
+  </div> 
 </template>
 <script>
   import StatsCardV7 from "Components/StatsCardV7/StatsCardV7";
@@ -287,7 +359,7 @@
 				'petroleoFecha',
 				'dataOro',
 				'oroFecha',
-				'precioOil',
+				'precioPetroleo',
 				'precioOro',
 				'petroFecha',
 				'dataPetro',
@@ -431,3 +503,13 @@
 		},
   }
 </script>
+<style>
+	.idb-block-content{
+		padding: .70rem !important;
+	}
+	.col-12{
+		padding: .5rem !important;
+	}
+	.grid-b-space-indicadores{
+	}
+</style>

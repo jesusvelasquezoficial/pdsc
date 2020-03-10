@@ -48,7 +48,6 @@ const state = {
   loadedTasasSlider: false,
   loadedGraphMercadoOficial: false,
   loadedGraphMercadoParalelo: false,
-  loadedGraphPetroleo: false,
   loadedGraphGold: false,
   loadedGraphPetro: false,
   loadedTablaDolar: false,
@@ -77,9 +76,6 @@ const state = {
   euroParaleloVariacion: localStorage.getItem('euroParaleloVariacion') || "0.0",
   euroParaleloUpOrDown: localStorage.getItem('euroParaleloUpOrDown') || "",
   euroParaleloColor: localStorage.getItem('euroParaleloColor') || "",
-  petroleoVariacion: localStorage.getItem('petroleoVariacion') || "0.0",
-  petroleoUpOrDown: localStorage.getItem('petroleoUpOrDown') || "",
-  petroleoColor: localStorage.getItem('petroleoColor') || "",
   oroVariacion: localStorage.getItem('oroVariacion') || "0.0",
   oroUpOrDown: localStorage.getItem('oroUpOrDown') || "",
   oroColor: localStorage.getItem('oroColor') || "",
@@ -95,7 +91,6 @@ const state = {
   nasdaqColor: localStorage.getItem('nasdaqColor') || "",
 
   // Precio Tasas
-  petroleo: localStorage.getItem('petroleo') || "cargando...",
   oro: localStorage.getItem('oro') || "cargando...",
   petro: localStorage.getItem('petro') || "cargando...",
   bitcoin: localStorage.getItem('bitcoin') || "cargando...",
@@ -108,7 +103,6 @@ const state = {
   precioDolarMonitor: localStorage.getItem('precioDolarMonitor') || 'cargando...',
   precioEuroOficial: localStorage.getItem('precioEuroOficial') || "cargando...",
   precioEuroParalelo: localStorage.getItem('precioEuroParalelo') || 'cargando...',
-  precioOil: localStorage.getItem('precioOil') || 'cargando...',
   precioOro: localStorage.getItem('precioOro') || 'cargando...',
   precioPetro: localStorage.getItem('precioPetro') || 'cargando...',
 
@@ -119,7 +113,6 @@ const state = {
   dataDolarMonitor: localStorage.getItem('dataDolarMonitor') || 'cargando...',
   dataEuroOficial: localStorage.getItem('dataEuroOficial') || "cargando...",
   dataEuroParalelo: localStorage.getItem('dataEuroParalelo') || 'cargando...',
-  dataPetroleo: localStorage.getItem('dataPetroleo') || [],
   dataOro: localStorage.getItem('dataOro') || [],
   dataPetro: localStorage.getItem('dataPetro') || [],
 
@@ -148,9 +141,6 @@ const state = {
   minPE7D: localStorage.getItem('minPE7D') || 'cargando...',
   minPE2S: localStorage.getItem('minPE2S') || 'cargando...',
   minPE30D: localStorage.getItem('minPE30D') || 'cargando...',
-  minPP7D: localStorage.getItem('minPP7D') || 'cargando...',
-  minPP2S: localStorage.getItem('minPP2S') || 'cargando...',
-  minPP30D: localStorage.getItem('minPP30D') || 'cargando...',
   minPG7D: localStorage.getItem('minPG7D') || 'cargando...',
   minPG2S: localStorage.getItem('minPG2S') || 'cargando...',
   minPG30D: localStorage.getItem('minPG30D') || 'cargando...',
@@ -163,46 +153,39 @@ const state = {
   // Fechas por Tasas
   dolarFecha: localStorage.getItem('dolarFecha') || [],
   euroFecha: localStorage.getItem('euroFecha') || [],
-  petroleoFecha: localStorage.getItem('petroleoFecha') || [],
   oroFecha: localStorage.getItem('oroFecha') || [],
   petroFecha: localStorage.getItem('petroFecha') || [],
 
   // Valor minimo mas bajo del eje X
   minDolarX: localStorage.getItem('minDolarX') || 0,
   minEuroX: localStorage.getItem('minEuroX') || 0,
-  minPetroleoX: localStorage.getItem('minPetroleoX') || 0,
   minGoldX: localStorage.getItem('minGoldX') || 0,
   minPetroX: localStorage.getItem('minPetroX') || 0,
   //Valor minimo mas bajo del eje Y
   minDolarY: localStorage.getItem('minDolarY') || 0,
   minEuroY: localStorage.getItem('minEuroY') || 0,
-  minPetroleoY: localStorage.getItem('minPetroleoY') || 0,
   minGoldY: localStorage.getItem('minGoldY') || 0,
   minPetroY: localStorage.getItem('minPetroY') || 0,
 
   // Valor maximo mas alto del eje x
   maxDolarX: localStorage.getItem('maxDolarX') || 0,
   maxEuroX: localStorage.getItem('maxEuroX') || 0,
-  maxPetroleoX: localStorage.getItem('maxPetroleoX') || 0,
   maxGoldX: localStorage.getItem('maxGoldX') || 0,
   maxPetroX: localStorage.getItem('maxPetroX') || 0,
   // Valor maximo mas alto del eje Y
   maxDolarY: localStorage.getItem('maxDolarY') || 0,
   maxEuroY: localStorage.getItem('maxEuroY') || 0,
-  maxPetroleoY: localStorage.getItem('maxPetroleoY') || 0,
   maxGoldY: localStorage.getItem('maxGoldY') || 0,
   maxPetroY: localStorage.getItem('maxPetroY') || 0,
 
   // Base valor min del eje X
   baseMinDolarX: localStorage.getItem('baseMinDolarX') || 0,
   baseMinEuroX: localStorage.getItem('baseMinEuroX') || 0,
-  baseMinPetroleoX: localStorage.getItem('baseMinPetroleoX') || 0,
   baseMinGoldX: localStorage.getItem('baseMinGoldX') || 0,
   baseMinPetroX: localStorage.getItem('baseMinPetroX') || 0,
   // Base valor min del eje Y
   baseMinEuroY: localStorage.getItem('baseMinEuroY') || 0,
   baseMinDolarY: localStorage.getItem('baseMinDolarY') || 0,
-  baseMinPetroleoY: localStorage.getItem('baseMinPetroleoY') || 0,
   baseMinGoldY: localStorage.getItem('baseMinGoldY') || 0,
   baseMinPetroY: localStorage.getItem('baseMinPetroY') || 0,
 
@@ -223,7 +206,24 @@ const state = {
   baseMinBitcoinX: localStorage.getItem('baseMinBitcoinX') || 0,
   baseMinBitcoinY: localStorage.getItem('baseMinBitcoinY') || 0,
 
-  // TABLA Y PAGINACION PETROLEO
+  // LOADED, DATA, TABLA Y PAGINACION DEL PETROLEO
+  loadedGraphPetroleo: false,
+  petroleoFecha: localStorage.getItem('petroleoFecha') || [],
+  dataPetroleo: localStorage.getItem('dataPetroleo') || [],
+  petroleo: localStorage.getItem('petroleo') || "cargando...",
+  precioPetroleo: localStorage.getItem('precioPetroleo') || 'cargando...',
+  petroleoVariacion: localStorage.getItem('petroleoVariacion') || "0.0",
+  petroleoUpOrDown: localStorage.getItem('petroleoUpOrDown') || "",
+  petroleoColor: localStorage.getItem('petroleoColor') || "",
+  baseMinPetroleoX: localStorage.getItem('baseMinPetroleoX') || 0,
+  baseMinPetroleoY: localStorage.getItem('baseMinPetroleoY') || 0,
+  minPP7D: localStorage.getItem('minPP7D') || 'cargando...',
+  minPP2S: localStorage.getItem('minPP2S') || 'cargando...',
+  minPP30D: localStorage.getItem('minPP30D') || 'cargando...',
+  minPetroleoX: localStorage.getItem('minPetroleoX') || 0,
+  minPetroleoY: localStorage.getItem('minPetroleoY') || 0,
+  maxPetroleoX: localStorage.getItem('maxPetroleoX') || 0,
+  maxPetroleoY: localStorage.getItem('maxPetroleoY') || 0,
   loadedTablaPetroleo: false,
   tablaPetroleo: localStorage.getItem('tablaPetroleo') || [],
   paginacionPetroleoTotal: localStorage.getItem('pagPetroleoTotal') || 0,
@@ -285,7 +285,7 @@ const getters = {
         "url": "/materia-prima/petroleo",
         "coin1": "Petroleo",
         "coin2": "",
-        "price": `$ ${state.precioOil}`,
+        "price": `$ ${state.precioPetroleo}`,
         "market_cap": `${state.petroleoVariacion}%`,
         "icon": `${state.petroleoUpOrDown}`,
         "color": `${state.petroleoColor}`,
@@ -645,7 +645,7 @@ const actions = {
     }).catch(err => console.log(err));
     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasOIL').then(res => {
       let data = res.data;
-      context.commit('setOil', data.petroleo[0]);
+      context.commit('setPetroleo', data.petroleo[0]);
     }).catch(err => console.log(err));
     Axios.get('http://pdsc.phoenixplus.net:8000/getTasasORO').then(res => {
       let data = res.data;
@@ -823,42 +823,100 @@ const actions = {
   },
   async loadDataPetroleo(context) {
     await Axios.get("http://pdsc.phoenixplus.net:4000/api/oil").then(async res => {
-      let oil = res.data.data;
-      var fechaOil = [];
-      var dolarOil = [];
-      await oil.forEach((e, i) => {
-        var f = moment(e.fecha).format("L");
-        fechaOil[i] = f;
-        var o = e.dolar.replace(".", "");
-        dolarOil[i] = parseFloat(o.replace(",", "."));
-        var oil_params = {
-          fecha: e.fecha,
-          dolar: e.dolar
-        }
+      // Capturamos la data
+      let data = res.data.data;
+      // Parametros de tipo Array
+      let fecha = [];
+      let precio = [];
+      // Recorremos los datos
+      await data.forEach((e, i )=> {
+        // Damos formato a la fecha y 
+        fecha[i] = moment(e.fecha).format("L");
+        // Damos formato al precio y 
+        precio[i] = parseFloat(e.dolar.replace(".", "").replace(",", "."));
+
+        // var oil_params = {
+        //   fecha: e.fecha,
+        //   dolar: e.dolar
+        // }
         // await setTimeout(async () => {
         //   await Axios.post("http://pdsc.phoenixplus.net:4000/api/oil", {oil: oil_params}).then(res => {
         //     console.log(res.data.data);
         //   }).catch(err => console.log(err));
         // }, i * 10000);
+
       });
-      context.commit('setDataPetroleo', dolarOil);
-      var a = dolarOil[dolarOil.length - 2];
-      var b = dolarOil[dolarOil.length - 1];
-      var v = ((b - a) / a) * 100;
-      var c = sube0baja(v);
-      c.unshift(v.toFixed(2));
-      context.commit('setPetroleoVariacion', c);
-      context.commit('setPrecioOil', dolarOil[dolarOil.length - 1]);
-      context.commit('minPP7D', parseFloat(oil[oil.length - 7].dolar.replace(".", "").replace(",", ".")) - (parseFloat(oil[oil.length - 7].dolar.replace(".", "").replace(",", ".")) * 18) / 100);
-      context.commit('minPP2S', parseFloat(oil[oil.length - 15].dolar.replace(".", "").replace(",", ".")) - (parseFloat(oil[oil.length - 15].dolar.replace(".", "").replace(",", ".")) * 20) / 100);
-      context.commit('minPP30D', parseFloat(oil[oil.length - 30].dolar.replace(".", "").replace(",", ".")) - (parseFloat(oil[oil.length - 30].dolar.replace(".", "").replace(",", ".")) * 20) / 100);
-      context.commit('petroleoFecha', fechaOil);
-      context.commit('baseMinPetroleoX', moment(oil[0].fecha).format("L")); // this.minDolarX;
-      context.commit('minPetroleoX', fechaOil[fechaOil.length - 7]);
-      context.commit('maxPetroleoX', moment(oil[oil.length - 1].fecha).format("L"));
-      context.commit('baseMinPetroleoY', Math.min(...dolarOil) - (Math.min(...dolarOil) * 25) / 100);// this.minDolarY;
-      context.commit('minPetroleoY', parseFloat(oil[oil.length - 7].dolar.replace(".", "").replace(",", ".")) - (parseFloat(oil[oil.length - 7].dolar.replace(".", "").replace(",", ".")) * 25) / 100);
-      context.commit('maxPetroleoY', Math.max(...dolarOil) + (Math.max(...dolarOil) * 4) / 100);
+      // Almacenamos un Arreglo de Precio 
+      context.commit('setDataPetroleo', precio);
+      // Calculamos el % de Variacion 24H
+      let a = precio[precio.length - 2];
+      let b = precio[precio.length - 1];
+      let v = ((b - a) / a) * 100;
+      let var_24H = sube0baja(v);
+      var_24H.unshift(v.toFixed(2));
+      // Almacenamos el % de Variacion 24h 
+      context.commit('setPetroleoVariacion', var_24H);
+      // fecha Min y Max de Data
+      let fecha_min = moment(data[0].fecha).format("L");
+      let fecha_max = moment(data[data.length - 1].fecha).format("L");
+      // Base Min y Max de Fecha
+      let base_min_x = fecha_min;
+      let base_max_x = fecha_max;
+      // Almacenamos las Base Min y Max de X
+      context.commit('baseMinPetroleoX', base_min_x); // this.minDolarX;
+      context.commit('maxPetroleoX', base_max_x);
+      // Precio Min y Max de Data
+      let precio_min = Math.min(...precio);
+      let precio_max = Math.max(...precio);
+      // Base Min y Max de Precio
+      let base_min_y = (precio_min * 95) / 100;
+      let base_max_y = (precio_max * 105) / 100;
+      // Almacenamos las Base Min y Max de Y 
+      context.commit('baseMinPetroleoY', base_min_y);// this.minDolarY;
+      context.commit('maxPetroleoY', base_max_y);
+      // Precio Actual
+      let precio_actual = precio[precio.length - 1];
+      // Almacenamos el Precio Actual 
+      context.commit('setPrecioPetroleo', precio_actual);
+      // Arrego de Data de 7D
+      let array7D = precio.slice(-7);
+      // Precio Min y Max de 7D 
+      let precio_min_7D = Math.min(...array7D);
+      let precio_max_7D = Math.max(...array7D);
+      // Base Min y Max de 7D
+      let base_min_y_7D = (precio_min_7D * 95) / 100;
+      let base_max_y_7D = (precio_max_7D * 105) / 100;
+      // Almacenamos Base Min y Max de 7D 
+      context.commit('minPP7D', base_min_y_7D);
+      // FALTA EL MAXIMO 
+      
+      // Arrego de Data de 2S
+      let array2S = precio.slice(-15);
+      // Precio Min y Max de 2S 
+      let precio_min_2S = Math.min(...array2S);
+      let precio_max_2S = Math.max(...array2S);
+      // Base Min y Max de 2S
+      let base_min_y_2S = (precio_min_2S * 95) / 100;
+      let base_max_y_2S = (precio_max_2S * 105) / 100;
+      // Almacenamos Base Min y Max de 2S 
+      context.commit('minPP2S', base_min_y_2S);
+      // FALTA EL MAXIMO 
+
+      // Arrego de Data de 30D
+      let array30D = precio.slice(-30);
+      // Precio Min y Max de 30D 
+      let precio_min_30D = Math.min(...array30D);
+      let precio_max_30D = Math.max(...array30D);
+      // Base Min y Max de 30D
+      let base_min_y_30D = (precio_min_30D * 95) / 100;
+      let base_max_y_30D = (precio_max_30D * 105) / 100;
+      // Almacenamos Base Min y Max de 30D 
+      context.commit('minPP30D', base_min_y_30D);
+      // Almacenamos la Fecha
+      context.commit('petroleoFecha', fecha);
+      // Base predeterminada 
+      context.commit('minPetroleoX', fecha[fecha.length -7]); // modificar esto
+      context.commit('minPetroleoY', base_min_y);
 
     });
     await context.commit('loadedGraphPetroleo');
@@ -1246,7 +1304,7 @@ const mutations = {
     state.paginacionEuroPaginas = valor;
     localStorage.setItem('pagEuroPaginas', valor);
   },
-  setOil(state, valor) {
+  setPetroleo(state, valor) {
     state.petroleo = valor;
     localStorage.setItem('petroleo', valor);
   },
@@ -1461,9 +1519,9 @@ const mutations = {
     localStorage.setItem('petroleoUpOrDown', valor[1]);
     localStorage.setItem('petroleoColor', valor[2]);
   },
-  setPrecioOil(state, valor) {
-    state.precioOil = valor.toLocaleString("de-DE");
-    localStorage.setItem('precioOil', valor);
+  setPrecioPetroleo(state, valor) {
+    state.precioPetroleo = valor.toLocaleString("de-DE");
+    localStorage.setItem('precioPetroleo', valor);
   },
   minPP7D(state, valor) {
     state.minPP7D = valor;
