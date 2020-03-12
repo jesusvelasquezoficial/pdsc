@@ -7,7 +7,7 @@
           <router-link to="/criptomonedas/petro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Petro</b></router-link>
           <h5 class="p-0 m-0" style="font-size:1.2rem"><b>Bs {{precioPetro}}</b></h5>
           <div :class="petroColor == 'text-white' ? 'text-black' : petroColor" style="font-size:10px;">
-            <i :class="[petroUpOrDown, 'mr-1']"></i>{{petroVariacion}}%
+            <i :class="[petroUpOrDown, petroColor == 'text-white' ? 'text-black' : petroColor, 'mr-1']"></i>{{petroVariacion}}%
           </div>
         </div>
       </div>

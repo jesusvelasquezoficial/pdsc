@@ -9,7 +9,7 @@ import StatsCard from 'Components/StatsCard/StatsCard';
 import StatsCardV2 from "Components/StatsCardV2/StatsCardV2";
 // import SocialStatsCard from 'Components/SocialStatsCard/SocialStatsCard';
 import AppSectionLoader from 'Components/AppSectionLoader/AppSectionLoader';
-import CryptoSlider from "Components/Widgets/CryptoSlider";
+import CryptoSlider from "Components/Widgets/CryptoSlider2";
 import IndicadoresTasas from "Components/Widgets/IndicadoresTasas";
 import Calendario from "Components/Widgets/Calendario";
 import GraphMercados from "Components/Widgets/GraphMercados";
@@ -26,6 +26,7 @@ import TableEuro from 'Components/Table/TableEuro';
 import TablePetroleo from 'Components/Table/TablePetroleo';
 import GraphGeneral from 'Components/Graph/GraphGeneral';
 import InfiniteSlideBar from 'vue-infinite-slide-bar'
+import MarqueeText from 'vue-marquee-text-component';
 import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
 
 // import TasasSlider from "Components/Widgets/TasasSlider";
@@ -60,6 +61,7 @@ const GlobalComponents = {
 		Vue.component('GraphGeneral', GraphGeneral);
 		Vue.component('FadeLoader', FadeLoader);
 		Vue.component('InfiniteSlideBar', InfiniteSlideBar);
+		Vue.component('MarqueeText', MarqueeText);
 		// Vue.component('tasasSlider', TasasSlider);
 	}
 };

@@ -6,14 +6,14 @@
         <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Dolar Oficial</b></router-link>
         <h5 class="p-0 m-0"><b>$ {{precioDolarBCV}}</b></h5>
           <div :class="dolarOficialColor == 'text-white' ? 'text-black' : dolarOficialColor" style="font-size:10px;">
-          <i :class="[dolarOficialUpOrDown, 'mr-1']"></i>{{dolarOficialVariacion}}%
+          <i :class="[dolarOficialUpOrDown, dolarOficialColor == 'text-white' ? 'text-black' : dolarOficialColor, 'mr-1']"></i>{{dolarOficialVariacion}}%
         </div>
       </div>
       <div class="col-md-4" style="border-left: solid 5px Green;">
         <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Dolar Today</b></router-link>
         <h5 class="p-0 m-0"><b>$ {{precioDolarToday}}</b></h5>
         <div :class="dolarParaleloColor == 'text-white' ? 'text-black' : dolarParaleloColor" style="font-size:10px;">
-          <i :class="[dolarParaleloUpOrDown, 'mr-1']"></i>{{dolarParaleloVariacion}}%
+          <i :class="[dolarParaleloUpOrDown, dolarParaleloColor == 'text-white' ? 'text-black' : dolarParaleloColor, 'mr-1']"></i>{{dolarParaleloVariacion}}%
         </div>
       </div>
       <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
@@ -21,7 +21,7 @@
         <!-- <p class="p-0 m-0" style="font-size:.7rem">Dolar Monitor</p> -->
         <h5 class="p-0 m-0"><b>$ {{precioDolarMonitor}}</b></h5>
         <div :class="monitorDolarColor == 'text-white' ? 'text-black' : monitorDolarColor" style="font-size:10px;">
-          <i :class="[monitorDolarUpOrDown, 'mr-1']"></i>{{monitorDolarVariacion}}%
+          <i :class="[monitorDolarUpOrDown, monitorDolarColor == 'text-white' ? 'text-black' : monitorDolarColor, 'mr-1']"></i>{{monitorDolarVariacion}}%
         </div>
       </div>
     </div>

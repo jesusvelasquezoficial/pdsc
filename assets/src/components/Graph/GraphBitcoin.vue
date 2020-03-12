@@ -7,7 +7,7 @@
           <router-link to="/criptomonedas/bitcoin"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Bitcoin</b></router-link>
           <h5 class="p-0 m-0" style="font-size:1.2rem"><b>$ {{precioBitcoin}}</b></h5>
           <div :class="bitcoinColor == 'text-white' ? 'text-black' : bitcoinColor" style="font-size:10px;">
-            <i :class="[bitcoinUpOrDown, 'mr-1']"></i>{{bitcoinVariacion}}%
+            <i :class="[bitcoinUpOrDown, bitcoinColor == 'text-white' ? 'text-black' : bitcoinColor, 'mr-1']"></i>{{bitcoinVariacion}}%
           </div>
         </div>
       </div>

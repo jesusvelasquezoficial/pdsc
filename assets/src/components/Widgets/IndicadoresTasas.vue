@@ -8,29 +8,21 @@
 							<div class="d-block">
 								<div class="layout justify-content-between">
 									<div class="align-items-center d-flex mb-1">
-										<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
-											<i :class="icon" title="BCN"></i>
-										</div> -->
 										<div class="inline-block">
-											<router-link to="/materia-prima/petroleo" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Petroleo</b></router-link>
+											<router-link to="/materia-prima/petroleo" class="mb-0" style="font-size:.7em;"><b style="color:#0081f2;">Petroleo</b></router-link>
 										</div>
 									</div>
 								</div>
 								<slot class=""><h5 class="m-0 p-0" style="font-size:.7em;"><b>$ {{precioPetroleo}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div :class="pctjPetroleo[2]" style="font-size:.57em;">
-										<i :class="[pctjPetroleo[1], 'mr-1']"></i>{{pctjPetroleo[0]}}%
+										<i :class="[pctjPetroleo[1], pctjPetroleo[2], 'mr-1']"></i>{{pctjPetroleo[0]}}%
 									</div>
-									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
 								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="1"
 								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
-								<!-- <line-chart-shadow :dataSet="minMapPetroleo" :lineTension="0.4" :dataLabels="fechaMinMapPetroleo"
-									:style="{height: '25px', width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
-									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
-								</line-chart-shadow> -->
 							</div>
 						</div>
 					</app-card>
@@ -41,20 +33,16 @@
 							<div class="d-block">
 								<div class="layout justify-content-between">
 									<div class="align-items-center d-flex mb-1">
-										<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
-											<i :class="icon" title="BCN"></i>
-										</div> -->
 										<div class="inline-block">
-											<router-link to="/criptomonedas/bitcoin" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Bitcoin</b></router-link>
+											<router-link to="/criptomonedas/bitcoin" class="mb-0" style="font-size:.7em;"><b style="color:#0081f2;">Bitcoin</b></router-link>
 										</div>
 									</div>
 								</div>
 								<slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{precioBitcoin}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div :class="pctjBtc[2]" style="font-size:.57em;">
-										<i :class="[pctjBtc[1], 'mr-1']"></i>{{pctjBtc[0]}}%
+										<i :class="[pctjBtc[1], pctjBtc[2], 'mr-1']"></i>{{pctjBtc[0]}}%
 									</div>
-									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
@@ -75,7 +63,7 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<router-link to="/forex/eur-usd" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>EUR/USD</b></router-link>
+										<router-link to="/forex/eur-usd" class="mb-0" style="font-size:.7em;"><b style="color:#0081f2;">EUR/USD</b></router-link>
 									</div>
 								</div>
 							</div>
@@ -86,11 +74,10 @@
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
-								<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 							</div>
 						</div>
 						<div class="d-inline-block">
-								<img src="Static/img/mantenimiento.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10"/> 
+								<img src="Static/img/mantenimiento.png" width="66" height="66" alt="user" class="img-fluid rounded-circle mb-3"/> 
 								<!-- <line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
@@ -110,7 +97,7 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<router-link to="/bolsas-valores/sp500" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>S&P 500</b></router-link>
+										<router-link to="/bolsas-valores/sp500" class="mb-0" style="font-size:.7em;"><b style="color:#0081f2;">S&P 500</b></router-link>
 									</div>
 								</div>
 							</div>
@@ -121,11 +108,10 @@
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
-								<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 							</div>
 						</div>
 						<div class="d-inline-block">
-								<img src="Static/img/mantenimiento.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10"/> 
+								<img src="Static/img/mantenimiento.png" width="66" height="66" alt="user" class="img-fluid rounded-circle mb-3"/> 
 								<!-- <line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
@@ -140,22 +126,18 @@
 							<div class="d-block">
 								<div class="layout justify-content-between">
 									<div class="align-items-center d-flex mb-1">
-										<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
-											<i :class="icon" title="BCN"></i>
-										</div> -->
 										<div class="inline-block">
-											<router-link to="/materia-prima/oro" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Oro</b></router-link>
-											<!-- <p class="mb-0" style="color:#0081f2; font-size:.7em;" >Oro</p> -->
+											<router-link to="/materia-prima/oro" class="mb-0" style="font-size:.7em;"><b style="color:#0081f2;">Oro</b></router-link>
+											<!-- <p class="mb-0" style="font-size:.7em;">Oro</p> -->
 										</div>
 									</div>
 								</div>
 								<slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{precioOro}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div :class="pctjOro[2]" style="font-size:.57em;">
-										<i :class="[pctjOro[1], 'mr-1']"></i>{{pctjOro[0]}}%
+										<i :class="[pctjOro[1], pctjOro[2], 'mr-1']"></i>{{pctjOro[0]}}%
 										<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 									</div>
-									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
@@ -171,11 +153,8 @@
 							<div class="d-block">
 								<div class="layout justify-content-between">
 									<div class="align-items-center d-flex mb-1">
-										<!-- <div class="crypto-icon-wrap inline-block mr-3 font-2x">
-											<i :class="icon" title="BCN"></i>
-										</div> -->
 										<div class="inline-block">
-											<router-link to="/criptomonedas/petro" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Petro</b></router-link>
+											<router-link to="/criptomonedas/petro" class="mb-0" style="font-size:.7em;"><b style="color:#0081f2;">Petro</b></router-link>
 										</div>
 									</div>
 								</div>
@@ -183,9 +162,8 @@
 								<slot><h5 class="m-0 p-0 d-none d-lg-block" style="font-size:.7em;"><b>Bs {{precioPetro}}</b></h5></slot>
 								<div class="chart-info d-flex align-items-center justify-content-between pt-1">
 									<div :class="pctjPtr[2]" style="font-size:.57em;">
-										<i :class="[pctjPtr[1], 'mr-1']"></i>{{pctjPtr[0]}}%
+										<i :class="[pctjPtr[1], pctjPtr[2], 'mr-1']"></i>{{pctjPtr[0]}}%
 									</div>
-									<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 								</div>
 							</div>
 							<div class="d-inline-block">
@@ -206,7 +184,7 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<router-link to="/forex/usd-jpy" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>USD/JPY</b></router-link>
+										<router-link to="/forex/usd-jpy" class="mb-0" style="font-size:.7em;"><b style="color:#0081f2;">USD/JPY</b></router-link>
 									</div>
 								</div>
 							</div>
@@ -217,11 +195,10 @@
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
-								<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 							</div>
 						</div>
 						<div class="d-inline-block">
-								<img src="Static/img/mantenimiento.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10"/> 
+								<img src="Static/img/mantenimiento.png" width="66" height="66" alt="user" class="img-fluid rounded-circle mb-3"/> 
 								<!-- <line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">
@@ -241,7 +218,7 @@
 										<i :class="icon" title="BCN"></i>
 									</div> -->
 									<div class="inline-block">
-										<router-link to="/bolsas-valores/nasdaq" class="mb-0" style="color:#0081f2; font-size:.7em;" ><b>Nasdaq</b></router-link>
+										<router-link to="/bolsas-valores/nasdaq" class="mb-0" style="font-size:.7em;"><b style="color:#0081f2;">Nasdaq</b></router-link>
 									</div>
 								</div>
 							</div>
@@ -252,11 +229,10 @@
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
-								<!-- <div class="fs-14 bg-grey rounded p-1 px-2 d-inline-block">last 4 days</div> -->
 							</div>
 						</div>
 						<div class="d-inline-block">
-								<img src="Static/img/mantenimiento.png" width="60" height="60" alt="user" class="img-fluid rounded-circle mb-10"/> 
+								<img src="Static/img/mantenimiento.png" width="66" height="66" alt="user" class="img-fluid rounded-circle mb-3"/> 
 								<!-- <line-chart-shadow :dataSet="[1,30,10,42,3]" :lineTension="0.4" :dataLabels="['a','b','c','d','e']"
 									:style="{height: '25px',width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
 									:enableShadow="true" :borderColor="ChartConfig.color.dark" :shadowColor="ChartConfig.shadowColor">

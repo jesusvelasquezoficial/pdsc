@@ -7,7 +7,7 @@
           <router-link to="/materia-prima/oro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Oro</b></router-link>
           <h5 class="p-0 m-0" style="font-size:1.2rem"><b>$ {{precioOro}}</b></h5>
           <div :class="oroColor == 'text-white' ? 'text-black' : oroColor" style="font-size:10px;">
-            <i :class="[oroUpOrDown, 'mr-1']"></i>{{oroVariacion}}%
+            <i :class="[oroUpOrDown, oroColor == 'text-white' ? 'text-black' : oroColor, 'mr-1']"></i>{{oroVariacion}}%
           </div>
         </div>
       </div>

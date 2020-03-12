@@ -1,21 +1,28 @@
 <template>
 		<app-card v-if="true" class="ticker-slider grid-b-space" >
-		 <infinite-slide-bar>
-      <div class="items">
-        <div v-for="coin in coins" :key="coin.key" class="d-flex justify-content-bettwen align-items-center">
-          <div class="pt-2 mr-2">
-            <img :src="'Static/img/' + coin.key + '.jpg'" width="12px">
-          </div>
-          <div class="">
-            <div class="text-bold">{{coin.name}}</div>
-            <div>
-              {{coin.price}}
-              <span :class="{ 'text-up': coin.change > 0, 'text-down': coin.change < 0 }">({{coin.change}}%)</span>
+      <infinite-slide-bar :paused="true">
+        <div class="items">
+          <div class="ticker-item-wrap" v-for="(item,index) in getData" :key="index">
+            <div class="d-flex align-items-center justify-content-between pl-3 mr-4">
+              <div class="price-content">
+                <span class="d-inline-block">
+                  <router-link :to="item.url"><b style="color:#0081f2;">{{ item.coin1 }}</b></router-link>
+                </span>
+                <span class="d-inline-block">{{ item.coin2 }}</span>
+                <div class="fw-bold mt-1">
+                  {{ item.price }}
+                </div>
+                <span>{{ item.volume }}</span>
+              </div>
+              <div>
+                <span :class="item.color" class="fw-bold d-flex align-items-center">
+                  <i :class="[item.icon, item.color]" class="mr-2 font-lg"></i>{{ item.market_cap }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </infinite-slide-bar>
+      </infinite-slide-bar>
 		</app-card>
 		<div v-else class="d-flex justify-content-center py-5 mb-5">
 			<fade-loader :loading="!true" color="DarkOrange" size="32px"></fade-loader>
@@ -29,6 +36,7 @@
 		},
 		data() {
 			return {
+        pausa: false,
         coins:[
           {
             key: 1,
@@ -52,13 +60,16 @@
 			};
 		},
     computed: {
-
+      ...mapGetters('tasas', ['getData']),
     },
 		methods: {
-
+      ...mapActions('tasas', ['loadTasasSlider']),
+      pausar(){
+        this.pausa  = !this.pausa;  
+      }
     },
     mounted() {
-     
+      this.loadTasasSlider();
     },
 		created() {
 
@@ -66,44 +77,9 @@
 	};
 </script>
 <style>
- .items { display: flex; justify-content: space-around; } 
-.marquee {
-  
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  white-space: nowrap;
-  overflow: hidden;
-  /* border: 1px solid #F00; */
-  /* background: GhostWhite; */
-  color: #fff;
-  font-size: 20px;
-}
-
-.marquee span {
-  position: relative;
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 5s linear infinite;
-  cursor: pointer;
-}
-
-.marquee span:hover {
-  -moz-animation-play-state: paused;
-  -webkit-animation-play-state: paused;
-  animation-play-state: paused;
-}
-
-
-/* Make it move */
-
-@keyframes marquee {
-  0% {
-    transform: translate(0, 0)
-  }
-  100% {
-    transform: translate(-100%, 0)
-  }
-}
+ .items { 
+   display: flex; 
+   justify-content: space-around; 
+   border-left: 2px solid rgba(228,231,239,0.4);
+   }
 </style>

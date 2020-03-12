@@ -12,7 +12,7 @@ const state = {
 	selectedLocale: languages[5],				               // selected locale
 	customizer: false,							               // customizer
 	boxLayout: false,			  	                           // box layout
-	darkMode: false,
+	darkMode: true,
 	rtlLayout: false,					                        // dark mode
 	themeColor,                                           // sidebar filters
 	sidebarSelectedFilter: themeColor[0],    				   // theme color

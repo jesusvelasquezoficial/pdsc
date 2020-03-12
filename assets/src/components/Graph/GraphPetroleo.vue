@@ -6,7 +6,7 @@
         <router-link to="/materia-prima/petroleo"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Petroleo</b></router-link>
         <h5 class="p-0 m-0" style="font-size:1.2rem"><b>$ {{precioPetroleo}}</b></h5>
         <div :class="petroleoColor == 'text-white' ? 'text-black' : petroleoColor" style="font-size:10px;">
-          <i :class="[petroleoUpOrDown, 'mr-1']"></i>{{petroleoVariacion}}%
+          <i :class="[petroleoUpOrDown, petroleoColor == 'text-white' ? 'text-black' : petroleoColor, 'mr-1']"></i>{{petroleoVariacion}}%
         </div>
       </div>
     </div>
