@@ -1,5 +1,5 @@
 <template>
-		<app-card v-if="loadedTasasSlider" class="ticker-slider grid-b-space" style="height:78;">
+		<app-card v-if="loadedTasasSlider" class="ticker-slider grid-b-space" style="height:4rem;">
 			<slick class="slick" ref="slick" :options="slickOptions"
 				@breakpoint="handleBreakpoint"
 				@destroy="handleDestroy"

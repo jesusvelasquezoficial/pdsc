@@ -9,7 +9,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = (env, options) => ({
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
+      new UglifyJsPlugin({ cache: true, parallel: false, sourceMap: false }),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
