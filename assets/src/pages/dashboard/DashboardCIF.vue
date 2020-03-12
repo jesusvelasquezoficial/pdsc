@@ -10,6 +10,11 @@
 				<calendario></calendario>
 			</b-col>
 		</b-row>
+		<!-- <b-row>
+			<b-col sm="12" class="mb-4">
+				<graph-general></graph-general>
+			</b-col>
+		</b-row> -->
 		<graph-mercados></graph-mercados>
 		<tablas-mercados></tablas-mercados>
 	</div>

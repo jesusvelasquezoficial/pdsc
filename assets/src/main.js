@@ -13,7 +13,6 @@ import router from "./router";
 import GlobalComponents from "./globalComponents";
 import "./lib/adminifyScripts";
 import "./lib/adminifycss";
-
 import VueSweetAlert from "vue-sweetalert";
 import Nprogress from "nprogress";
 import wysiwyg from "vue-wysiwyg";

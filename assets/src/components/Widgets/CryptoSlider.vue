@@ -1,5 +1,4 @@
 <template>
-	<div>
 		<app-card v-if="loadedTasasSlider" class="ticker-slider grid-b-space" style="height:78;">
 			<slick class="slick" ref="slick" :options="slickOptions"
 				@breakpoint="handleBreakpoint"
@@ -10,8 +9,8 @@
 				@swipe="handleSwipe"
 				@lazyLoaded="handleLazyLoaded"
 				@lazyLoadError="handleLazeLoadError">
-				<div class="ticker-item-wrap px-3" v-for="(item,index) in getData" :key="index">
-					<div class="d-flex align-items-center justify-content-between" @click="pause()">
+				<div @click="pause()" class="ticker-item-wrap px-3" v-for="(item,index) in getData" :key="index">
+					<div class="d-flex align-items-center justify-content-between">
 						<div class="price-content">
 							<span class="d-inline-block">
 								<router-link :to="item.url"><b style="color:#0081f2;">{{ item.coin1 }}</b></router-link>
@@ -35,7 +34,6 @@
 		<div v-else class="d-flex justify-content-center py-5 mb-5">
 			<fade-loader :loading="!loadedTasasSlider" color="DarkOrange" size="32px"></fade-loader>
 		</div>
-	</div>
 </template>
 
 <script>
@@ -54,8 +52,8 @@
 					speed: 3000,
 					autoplay: true,
 					autoplaySpeed: 0,
-					arrows: true,
-					centerMode: true,
+					arrows: false,
+					// centerMode: true,
 					slidesToShow: 3,
 					slidesToScroll: 1,
 					variableWidth: true,
@@ -164,7 +162,8 @@
 		},
     computed: {
 			...mapState('tasas',['loadedTasasSlider']),
-			...mapGetters('tasas', ['getData'])
+			...mapGetters('tasas', ['getData']),
+			
 		},
 		methods: {
 			...mapActions('tasas', ['loadTasasSlider']),

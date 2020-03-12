@@ -24,7 +24,8 @@ import TableDolar from 'Components/Table/TableDolar';
 import GraphEuro from 'Components/Graph/GraphEuro';
 import TableEuro from 'Components/Table/TableEuro';
 import TablePetroleo from 'Components/Table/TablePetroleo';
-
+import GraphGeneral from 'Components/Graph/GraphGeneral';
+import InfiniteSlideBar from 'vue-infinite-slide-bar'
 import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
 
 // import TasasSlider from "Components/Widgets/TasasSlider";
@@ -56,7 +57,9 @@ const GlobalComponents = {
 		Vue.component('GraphEuro', GraphEuro);
 		Vue.component('TableEuro', TableEuro);
 		Vue.component('TablePetroleo', TablePetroleo);
+		Vue.component('GraphGeneral', GraphGeneral);
 		Vue.component('FadeLoader', FadeLoader);
+		Vue.component('InfiniteSlideBar', InfiniteSlideBar);
 		// Vue.component('tasasSlider', TasasSlider);
 	}
 };

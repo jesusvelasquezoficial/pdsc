@@ -345,6 +345,93 @@ const getters = {
       }
     ];
   },
+  dataGraphGeneral: (state) => {
+    return {
+      type: "line",
+      labels: state.dolarFecha,
+      datasets: [
+        {
+          label: "Dolar Oficial BCV",
+          borderColor: "#252F5D",
+          borderWidth: 2,
+          hoverBorderWidth: 3,
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          pointBorderColor: "#252F5D",
+          pointBackgroundColor: "#252F5D",
+          pointHoverBorderColor: "#252F5D",
+          pointHoverBackgroundColor: "#252F5D",
+          pointRadius: 1,
+          data: state.dataDolarOficial
+        },
+        {
+          label: "Dolar Today",
+          borderColor: "Green",
+          borderWidth: 2,
+          hoverBorderWidth: 3,
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          pointBorderColor: "Green",
+          pointBackgroundColor: "Green",
+          pointHoverBorderColor: "Green",
+          pointHoverBackgroundColor: "Green",
+          pointRadius: 1,
+          data: state.dataDolarToday
+        },
+        {
+          label: "Monitor Dolar",
+          borderColor: "DarkOrange",
+          borderWidth: 2,
+          hoverBorderWidth: 3,
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          pointBorderColor: "DarkOrange",
+          pointBackgroundColor: "DarkOrange",
+          pointHoverBorderColor: "DarkOrange",
+          pointHoverBackgroundColor: "DarkOrange",
+          pointRadius: 1,
+          data: state.dataDolarMonitor
+        },
+        {
+          label: "Petroleo",
+          borderWidth: 2, //3
+          hoverBorderWidth: 3, //3
+          borderColor: "Black",
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          pointBorderColor: "Black",
+          pointBackgroundColor: "Black",
+          pointHoverBorderColor: "Black",
+          pointHoverBackgroundColor: "Black",
+          pointRadius: 1,
+          data: state.dataPetroleo
+        },
+        {
+          label: "Oro",
+          borderWidth: 2, //3
+          hoverBorderWidth: 3, //3
+          borderColor: "Orange",
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          pointBorderColor: "Orange",
+          pointBackgroundColor: "Orange",
+          pointHoverBorderColor: "Orange",
+          pointHoverBackgroundColor: "Orange",
+          pointRadius: 1,
+          data: state.dataOro
+        },
+        {
+          // showLine: false, // disable for a single dataset
+          label: "Bitcoin",
+          borderWidth: 2, //3
+          hoverBorderWidth: 3, //3
+          borderColor: "Orange",
+          backgroundColor: "rgba(0, 0, 0, 0)",
+          pointBorderColor: "Orange",
+          pointBackgroundColor: "Orange",
+          pointHoverBorderColor: "Orange",
+          pointHoverBackgroundColor: "Orange",
+          pointRadius: 1,
+          data: state.dataBitcoin
+        },
+      ]
+    };
+  },
   dataDolar: (state) => {
     return {
       type: "line",

@@ -25,7 +25,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="33"
+								<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="1"
 								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 								<!-- <line-chart-shadow :dataSet="minMapPetroleo" :lineTension="0.4" :dataLabels="fechaMinMapPetroleo"
 									:style="{height: '25px', width:'70px', position: 'relative'}" :borderWidth=3 :enableGradient="false"
@@ -82,7 +82,7 @@
 							<slot><h6 class="m-0 p-0"  style="font-size:.7em;"><b>En construcción</b></h6></slot>
 							<!-- <slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{nasdaq}}</b></h5></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-								<div class="text-success" style="font-size:22px;">
+								<div class="text-success" style="font-size:.57em;">
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
@@ -117,7 +117,7 @@
 							<slot><h6 class="m-0 p-0"  style="font-size:.7em;"><b>En construcción</b></h6></slot>
 							<!-- <slot><h4 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{sp500}}</b></h4></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-								<div class="text-danger" style="font-size:22px;">
+								<div class="text-danger" style="font-size:.57em;">
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
@@ -159,7 +159,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="74"
+								<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="50"
 								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
@@ -189,7 +189,7 @@
 								</div>
 							</div>
 							<div class="d-inline-block">
-								<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="33"
+								<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="26"
 								:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 							</div>
 						</div>
@@ -213,7 +213,7 @@
 							<slot><h6 class="m-0 p-0"  style="font-size:.7em;"><b>En construcción</b></h6></slot>
 							<!-- <slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{nasdaq}}</b></h5></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-								<div class="text-success" style="font-size:22px;">
+								<div class="text-success" style="font-size:.57em;">
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
@@ -248,7 +248,7 @@
 							<slot><h6 class="m-0 p-0"  style="font-size:.7em;"><b>En construcción</b></h6></slot>
 							<!-- <slot><h5 class="m-0 p-0"  style="font-size:.7em;"><b>$ {{nasdaq}}</b></h5></slot> -->
 							<div class="chart-info d-flex align-items-center justify-content-between pt-1">
-								<div class="text-success" style="font-size:22px;">
+								<div class="text-success" style="font-size:.57em;">
 									<i class="zmdi">&nbsp;</i>
 									<!-- <i class="zmdi zmdi-long-arrow-up mr-2"></i>0.0% -->
 								</div>
