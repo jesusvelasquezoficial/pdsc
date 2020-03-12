@@ -66,6 +66,7 @@
 	};
 </script>
 <style>
+ .items { display: flex; justify-content: space-around; } 
 .marquee {
   
   width: 100%;
