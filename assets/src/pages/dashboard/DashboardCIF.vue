@@ -3,10 +3,10 @@
 		<page-title-bar></page-title-bar>
 		<crypto-slider></crypto-slider>
 		<b-row>
-			<b-col sm="12" md='9' style="padding:0rem .5rem;">
+			<b-col sm="12" md='9'>
 				<indicadores-tasas></indicadores-tasas>
 			</b-col>
-			<b-col sm="12" md='3' class="p-0">
+			<b-col sm="12" md='3' class="m-0 p-0">
 				<calendario></calendario>
 			</b-col>
 		</b-row>

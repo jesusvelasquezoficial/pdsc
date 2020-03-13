@@ -1,7 +1,7 @@
 <template>
 		<app-card v-if="true" class="ticker-slider grid-b-space" >
       <marquee-text :paused="paused" :duration="30">
-         <div class="items" @mouseenter="pausar" @click="pausar">
+         <div class="items" @mouseover="paused = !paused" @mouseleave="paused = !paused" @click="pausar">
           <div class="ticker-item-wrap" v-for="(item,index) in getData" :key="index">
             <div class="d-flex align-items-center justify-content-between pl-3 mr-4">
               <div class="price-content">

@@ -1,5 +1,6 @@
 <template>
-	<app-card customClasses="page-title rounded-0">
+	<!-- rounded-0 -->
+	<app-card customClasses="page-title">
 		<h5 class="text-capitalize mb-0" v-if="$route.name == 'Project Details'">{{$t(pageBreadcrumbs)}} / {{$route.params.id}} </h5>
 		<h5 v-else class="text-capitalize mb-0">{{$t(pageBreadcrumbs)}}</h5>
 	</app-card>
