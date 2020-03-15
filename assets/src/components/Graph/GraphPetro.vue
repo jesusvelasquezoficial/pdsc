@@ -15,13 +15,13 @@
       <div class="mb-1 ml-4 d-flex justify-content-start align-items-center">
         <span style="color:#666666;"><small>Zoom</small></span>
         <div class="col-sm-8 col-md-10 col-lg-7">
-          <b-button @click="sPtr7D" size="sm" variant="outline-ligth"><small>7d</small></b-button>
-          <b-button @click="sPtr2S" size="sm" variant="outline-ligth"><small>2s</small></b-button>
-          <b-button @click="sPtr30D" size="sm" variant="outline-ligth"><small>1m</small></b-button>
-          <b-button @click="resertScalePetro" size="sm" variant="outline-ligth"><small>3m</small></b-button>
-          <b-button @click="resertScalePetro" size="sm" variant="outline-ligth"><small>1y</small></b-button>
-          <!-- <b-button @click="resertScalePetro" size="sm" variant="outline-ligth">YTD</b-button> -->
-          <b-button @click="resertScalePetro" size="sm" variant="outline-ligth"><small>ALL</small></b-button>
+          <b-button @click="sPtr7D" size="sm" variant="outline-dark"><small>7d</small></b-button>
+          <b-button @click="sPtr2S" size="sm" variant="outline-dark"><small>2s</small></b-button>
+          <b-button @click="sPtr30D" size="sm" variant="outline-dark"><small>1m</small></b-button>
+          <b-button @click="resertScalePetro" size="sm" variant="outline-dark"><small>3m</small></b-button>
+          <b-button @click="resertScalePetro" size="sm" variant="outline-dark"><small>1y</small></b-button>
+          <!-- <b-button @click="resertScalePetro" size="sm" variant="outline-dark">YTD</b-button> -->
+          <b-button @click="resertScalePetro" size="sm" variant="outline-dark"><small>ALL</small></b-button>
         </div>
       </div>
       <!-- Graficos de linea -->

@@ -21,7 +21,7 @@
   <div id="calendario" class="mx-3">
 		<b-row class="grid-b-space">
       <b-col md="12" class="p-md-0">
-        <calendar :attributes='attrsCalendar' :disabled-dates='ddCalendar'  :masks="{ weekdays: 'WW' }" class='m-0 p-0' style="width:0px; height:239px;" is-expanded/>
+        <calendar :attributes='attrsCalendar' :disabled-dates='ddCalendar' isDark color="gray" :masks="{ weekdays: 'WW' }" class='mt-md-2 m-0 p-0' style="width:0px; height:217px;" is-expanded/>
       </b-col>
     </b-row>
   </div>
@@ -94,4 +94,39 @@ export default {
   /* .fondoCalendario{
     background-color: rgba(0,0,0,0.5) !important;
   } */
+  .vc-container{
+    /* background: #6d6d6d; */
+    /* color: #fff; */
+    border-color: #424242;
+  }
+  .vc-header{
+    padding: 0px !important;
+    /* color: #fff; */
+  }
+  .vc-title{
+    /* color: #fff; */
+  }
+  .vc-title-wrapper{
+    margin-top: .0rem;
+    /* background: #424242; */
+    /* color: #fff; */
+  }
+  .vc-flex{
+    background: #424242;
+  }
+  .vc-bg-gray-900{
+    background: #424242;
+  }
+  .vc-arrows-container{
+    padding-top: .1rem;
+    padding-bottom: .0rem;
+    /* background: #424242; */
+    /* color: #fff; */
+  }
+  .vc-svg-icon{
+    background: #424242;
+  }
+  .vc-grid-container .vc-weeks{
+    padding: .0rem;
+  }
 </style>

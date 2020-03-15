@@ -22,16 +22,16 @@
           <small>{{ data.value }}</small>
         </template>
         <template v-slot:cell(VAR)="data">
-          <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]">
-            <small><i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%</small>
+          <div>
+            <small :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]"><i :class="[data.value[1], data.value[2],  'mr-1']"></i>{{data.value[0]}}%</small>
           </div>
         </template>
           <template v-slot:head(VAR)="data">
             <small class="ml-1 d-flex align-items-center">% (24h)</small>
         </template>
         <template v-slot:cell(VAR2)="data">
-          <div :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]">
-            <small><i :class="[data.value[1], 'mr-1']"></i>{{data.value[0]}}%</small>
+          <div>
+            <small :class="data.value[2] == 'text-white' ? 'text-black' : data.value[2]"><i :class="[data.value[1], data.value[2], 'mr-1']"></i>{{data.value[0]}}%</small>
           </div>
         </template>
           <template v-slot:head(VAR2)="data">

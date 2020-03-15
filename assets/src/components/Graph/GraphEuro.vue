@@ -4,14 +4,14 @@
     <div class="mb-3 ml-4 d-flex justify-content-start align-items-center">
       <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
         <router-link to="/forex/euro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Euro Oficial</b></router-link>
-        <h5 class="p-0 m-0"><b>$ {{precioEuroOficial}}</b></h5>
+        <h6 class="p-0 m-0"><b>$ {{precioEuroOficial}}</b></h6>
         <div :class="euroOficialColor == 'text-white' ? 'text-black' : euroOficialColor" style="font-size:10px;">
           <i :class="[euroOficialUpOrDown, euroOficialColor == 'text-white' ? 'text-black' : euroOficialColor, 'mr-1']"></i>{{euroOficialVariacion}}%
         </div>
       </div>
       <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px #4E0003;">
         <router-link to="/forex/euro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Euro Paralelo</b></router-link>
-        <h5 class="p-0 m-0"><b>$ {{precioEuroParalelo}}</b></h5>
+        <h6 class="p-0 m-0"><b>$ {{precioEuroParalelo}}</b></h6>
           <div :class="euroParaleloColor == 'text-white' ? 'text-black' : euroParaleloColor" style="font-size:10px;">
           <i :class="[euroParaleloUpOrDown, euroParaleloColor == 'text-white' ? 'text-black' : euroParaleloColor, 'mr-1']"></i>{{euroParaleloVariacion}}%
         </div>
@@ -23,13 +23,13 @@
       <span class="pr-2" style="color:#666666;"><small>Zoom</small></span>
       <!-- </b-col> -->
       <div class="col-sm-8 col-md-10 col-lg-7">
-        <b-button @click="sE7D" size="sm" variant="outline-ligth"><small>7d</small></b-button>
-        <b-button @click="sE2S" size="sm" variant="outline-ligth"><small>2s</small></b-button>
-        <b-button @click="sE30D" size="sm" variant="outline-ligth"><small>1m</small></b-button>
-        <b-button @click="resertScaleEuro" size="sm" variant="outline-ligth"><small>3m</small></b-button>
-        <b-button @click="resertScaleEuro" size="sm" variant="outline-ligth"><small>1y</small></b-button>
-        <!-- <f7-button @click="resertScaleEuro" size="sm" variant="outline-ligth">YTD</f7-button> -->
-        <b-button @click="resertScaleEuro" size="sm" variant="outline-ligth"><small>ALL</small></b-button>
+        <b-button @click="sE7D" size="sm" variant="outline-dark"><small>7d</small></b-button>
+        <b-button @click="sE2S" size="sm" variant="outline-dark"><small>2s</small></b-button>
+        <b-button @click="sE30D" size="sm" variant="outline-dark"><small>1m</small></b-button>
+        <b-button @click="resertScaleEuro" size="sm" variant="outline-dark"><small>3m</small></b-button>
+        <b-button @click="resertScaleEuro" size="sm" variant="outline-dark"><small>1y</small></b-button>
+        <!-- <f7-button @click="resertScaleEuro" size="sm" variant="outline-dark">YTD</f7-button> -->
+        <b-button @click="resertScaleEuro" size="sm" variant="outline-dark"><small>ALL</small></b-button>
       </div>
     </div>
     <!-- Graficos de linea -->
