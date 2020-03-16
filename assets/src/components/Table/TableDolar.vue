@@ -50,7 +50,10 @@
     </div>
     <!-- table responsive closed -->
     <div class="mb-20">
-      <b-pagination aria-controls="tablaDolar" pills align="center" :total-rows="paginacionDolarTotal" v-model="paginacionDolarPagina2" :per-page="paginacionDolarPorPagina">
+      <b-pagination aria-controls="tablaDolar" :page-class="['text-ligth','text-success']" pills align="center" :total-rows="paginacionDolarTotal" v-model="paginacionDolarPagina2" :per-page="paginacionDolarPorPagina">
+        <template v-slot:aria-label="{ page, active }">
+        <b class="bg-dark">{{ page }}</b>
+      </template>
       </b-pagination>
     </div>
   </app-card>
@@ -97,5 +100,8 @@ export default {
   }
   .table thead tr th {
     border: #585E78 1px solid;
+  }
+  .page-link{
+    background-color: #464d69 !important;
   }
 </style>

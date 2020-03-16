@@ -101,6 +101,7 @@ export default {
           xAxes: [
             {
               ticks: {
+                fontColor: "#CCC",
                 min: this.$store.state.tasas.minDolarX,
                 max: this.$store.state.tasas.maxDolarX,
               }
@@ -109,6 +110,7 @@ export default {
           yAxes: [
             {
               ticks: {
+                fontColor: "#CCC",
                 min: this.$store.state.tasas.minDolarY,
                 max: this.$store.state.tasas.maxDolarY,
                 // stepSize: 20000

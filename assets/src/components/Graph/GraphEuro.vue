@@ -3,14 +3,14 @@
     <!-- Precio del Dia -->
     <div class="mb-3 ml-4 d-flex justify-content-start align-items-center">
       <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px Red;">
-        <router-link to="/forex/euro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Euro Oficial</b></router-link>
+        <router-link to="/forex/euro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b style="color:#0081f2;">Euro Oficial</b></router-link>
         <h6 class="p-0 m-0"><b>$ {{precioEuroOficial}}</b></h6>
         <div :class="euroOficialColor == 'text-white' ? 'text-black' : euroOficialColor" style="font-size:10px;">
           <i :class="[euroOficialUpOrDown, euroOficialColor == 'text-white' ? 'text-black' : euroOficialColor, 'mr-1']"></i>{{euroOficialVariacion}}%
         </div>
       </div>
       <div class="col-4 col-sm-5 col-md-4" style="border-left: solid 5px #4E0003;">
-        <router-link to="/forex/euro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Euro Paralelo</b></router-link>
+        <router-link to="/forex/euro"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b style="color:#0081f2;">Euro Paralelo</b></router-link>
         <h6 class="p-0 m-0"><b>$ {{precioEuroParalelo}}</b></h6>
           <div :class="euroParaleloColor == 'text-white' ? 'text-black' : euroParaleloColor" style="font-size:10px;">
           <i :class="[euroParaleloUpOrDown, euroParaleloColor == 'text-white' ? 'text-black' : euroParaleloColor, 'mr-1']"></i>{{euroParaleloVariacion}}%
@@ -95,6 +95,7 @@ export default {
           xAxes: [
             {
               ticks: {
+                fontColor: "#CCC",
                 min: this.minEuroX,
                 max: this.maxEuroX
               }
@@ -103,6 +104,7 @@ export default {
           yAxes: [
             {
               ticks: {
+                fontColor: "#CCC",
                 min: this.minEuroY,
                 max: this.maxEuroY
                 // stepSize: 20000
