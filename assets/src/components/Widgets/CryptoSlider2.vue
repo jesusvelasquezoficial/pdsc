@@ -1,5 +1,5 @@
 <template>
-		<app-card v-if="true" class="ticker-slider grid-b-space" >
+		<app-card v-if="loadTasasSlider" class="ticker-slider grid-b-space" >
       <marquee-text :paused="paused" :duration="30">
          <div class="items" @mouseover="paused = !paused" @mouseleave="paused = !paused" @click="pausar">
           <div class="ticker-item-wrap" v-for="(item,index) in getData" :key="index">
@@ -25,7 +25,7 @@
       </marquee-text>
 		</app-card>
 		<div v-else class="d-flex justify-content-center py-5 mb-5">
-			<fade-loader :loading="!true" color="DarkOrange" size="32px"></fade-loader>
+			<fade-loader :loading="!loadTasasSlider" color="DarkOrange" size="32px"></fade-loader>
 		</div>
 </template>
 <script>

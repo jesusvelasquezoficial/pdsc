@@ -400,7 +400,7 @@ const getters = {
           pointHoverBorderColor: "Black",
           pointHoverBackgroundColor: "Black",
           pointRadius: 1,
-          data: state.dataPetroleo
+          data: state.datosPetroleo
         },
         {
           label: "Oro",

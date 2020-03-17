@@ -1,58 +1,51 @@
 <template>
-  <app-card v-if="loadedGraphMercadoOficial" heading="Dolar Oficial y Paralelo" :headingMenu="true">
-    <!-- Precios del dia -->
-    <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
-      <div class="col-md-4" style="border-left: solid 5px #252F5D;">
-        <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Dolar Oficial</b></router-link>
-        <h5 class="p-0 m-0"><b>$ {{precioDolarBCV}}</b></h5>
-          <div :class="dolarOficialColor == 'text-white' ? 'text-black' : dolarOficialColor" style="font-size:10px;">
-          <i :class="[dolarOficialUpOrDown, dolarOficialColor == 'text-white' ? 'text-black' : dolarOficialColor, 'mr-1']"></i>{{dolarOficialVariacion}}%
+  <app-card v-if="true" :heading="cardTitulo" :headingMenu="cardMenu">
+    <!-- Indicadores -->
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <!-- Indicador -->
+        <div class="col-4 col-sm-3 col-md-2 p-2" v-for="(indicador, index) in indicadores" :key="index">
+          <!-- Color -->
+          <div class="float-left h-100 mr-2" :style="`border: solid 3px ${indicador.color}`"></div>
+          <!-- Nombre y Url -->
+          <router-link :to="indicador.url" style="font-size:.8em;">
+            <b style="color:#0081f2;">{{indicador.nombre}}</b>
+          </router-link>
+          <!-- Precio -->
+          <h6 class="p-0 m-0">
+            <b>$ {{indicador.precio}}</b>
+          </h6>
+          <!-- Variacion -->
+          <div :class="indicador.variacion.color" class="d-flex align-items-center" style="font-size:.7em;">
+            <i :class="[indicador.variacion.icono, 'mr-1']"></i>
+            {{indicador.variacion.porcentaje}}%
+          </div>
         </div>
       </div>
-      <div class="col-md-4" style="border-left: solid 5px Green;">
-        <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Dolar Today</b></router-link>
-        <h5 class="p-0 m-0"><b>$ {{precioDolarToday}}</b></h5>
-        <div :class="dolarParaleloColor == 'text-white' ? 'text-black' : dolarParaleloColor" style="font-size:10px;">
-          <i :class="[dolarParaleloUpOrDown, dolarParaleloColor == 'text-white' ? 'text-black' : dolarParaleloColor, 'mr-1']"></i>{{dolarParaleloVariacion}}%
-        </div>
-      </div>
-      <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
-        <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem; color:#0081f2;"><b>Dolar Monitor</b></router-link>
-        <!-- <p class="p-0 m-0" style="font-size:.7rem">Dolar Monitor</p> -->
-        <h5 class="p-0 m-0"><b>$ {{precioDolarMonitor}}</b></h5>
-        <div :class="monitorDolarColor == 'text-white' ? 'text-black' : monitorDolarColor" style="font-size:10px;">
-          <i :class="[monitorDolarUpOrDown, monitorDolarColor == 'text-white' ? 'text-black' : monitorDolarColor, 'mr-1']"></i>{{monitorDolarVariacion}}%
+      <!-- Barra de Escala -->
+      <div class="row mb-2">
+        <div class="d-flex align-items-center">
+          <small style="color: #666;">Zoom</small>
+          <div class="col p-2">
+            <b-button size="sm" variant="outline"><small>7d</small></b-button>
+            <b-button size="sm" variant="outline"><small>2s</small></b-button>
+            <b-button size="sm" variant="outline"><small>1m</small></b-button>
+            <b-button size="sm" variant="outline"><small>3m</small></b-button>
+            <b-button size="sm" variant="outline"><small>1y</small></b-button>
+            <b-button size="sm" variant="outline"><small>ALL</small></b-button>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Botones Escala de Tiempo -->
-    <div class="mb-1 ml-4 d-flex justify-content-start align-items-center">
-      <span style="color:#666666;"><small>Zoom</small></span>
-      <div class="col-sm-8 col-md-10 col-lg-7">
-        <b-button @click="sD7D" size="sm" variant="outline-ligth"><small>7d</small></b-button>
-        <b-button @click="sD2S" size="sm" variant="outline-ligth"><small>2s</small></b-button>
-        <b-button @click="sD30D" size="sm" variant="outline-ligth"><small>1m</small></b-button>
-        <b-button @click="resertScaleDolar" size="sm" variant="outline-ligth"><small>3m</small></b-button>
-        <b-button @click="resertScaleDolar" size="sm" variant="outline-ligth"><small>1y</small></b-button>
-        <!-- <b-button @click="resertScaleDolar" size="sm" variant="outline-ligth">YTD</b-button> -->
-        <b-button @click="resertScaleDolar" size="sm" variant="outline-ligth"><small>ALL</small></b-button>
-      </div>
-    </div>
-    <!-- Graficos de linea -->
-    <line-chart
-      v-if="loadedGraphMercadoOficial" 
-      ref="mercadoDolar"
-      :chartData="dataGraphGeneral"
-      :options="optionsDolar"
-      :styles="styles"
-    ></line-chart>
+    <!-- Grafico -->
+    <line-chart v-if="true" ref="referencia" :chartData="data" :options="options" :styles="styles"></line-chart>
   </app-card>
+  <!-- loader -->
   <div v-else class="d-flex justify-content-center py-5 mb-5">
-    <fade-loader :loading="!loadedGraphMercadoOficial" color="DarkOrange" size="32px"></fade-loader>
+    <fade-loader :loading="!true" color="DarkOrange" size="32px"></fade-loader>
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
 import LineChart from "Components/Charts/MyLineChart.js";
 export default {
   components:{
@@ -60,63 +53,110 @@ export default {
   },
   data() {
     return {
+      cardMenu: true,
+      cardTitulo:'Card Titulo',
+      indicadores: [
+        {
+          color: '#252F5D', 
+          precio: '12.345,67',
+          nombre: 'Nombre',
+          url: '/forex/dolar',
+          variacion: {
+            color: '',
+            icono: 'fas fa-equals font-sm',
+            porcentaje: '0.00',
+          },
+        },
+        {
+          color: 'Green', 
+          precio: '34.567,89',
+          nombre: 'Nombre2',
+          url: '',
+          variacion: {
+            color: '',
+            icono: 'fas fa-equals font-sm',
+            porcentaje: '0.00',
+          },
+        },
+      ],
+      variacion: [
+        {
+          porcentaje: '',
+          color: '',
+          icono: '',
+        },
+      ],
+      datos: [10,30,100,60,20,40,30,70,60,90],
+      datos2: [15,20,50,70,40,20,70,30,40,80],
+      fechas: [
+        '2020-03-01',
+        '2020-03-02',
+        '2020-03-03',
+        '2020-03-04',
+        '2020-03-05',
+        '2020-03-06',
+        '2020-03-07',
+        '2020-03-08',
+        '2020-03-09',
+        '2020-03-10'
+      ],
       width: 100,
       height: 75,
     }
   },
   computed: {
-    ...mapState('tasas',[
-      'loadedGraphMercadoOficial',
-      'precioDolarBCV',
-      'precioDolarToday',
-      'precioDolarMonitor',
-      'dolarOficialVariacion',
-      'dolarOficialUpOrDown',
-      'dolarOficialColor',
-      'dolarParaleloVariacion',
-      'dolarParaleloUpOrDown',
-      'dolarParaleloColor',
-      'monitorDolarVariacion',
-      'monitorDolarUpOrDown',
-      'monitorDolarColor',
-    ]),
-    ...mapGetters('tasas', [
-      'dataGraphGeneral',
-    ]),
-    styles() {
+    data(){
       return {
-        width: `${this.width}%`,
-        height: `${this.height}vh`,
-        position: "relative"
-      };
+        type: "line",
+        labels: this.fechas,
+        datasets: [
+          {
+            label: this.indicadores[0].nombre,
+            borderColor: "black",
+            borderWidth: 2,
+            hoverBorderWidth: 3,
+            backgroundColor: "rgba(0, 0, 0, 0)",
+            pointBorderColor: "black",
+            pointBackgroundColor: "black",
+            pointHoverBorderColor: "black",
+            pointHoverBackgroundColor: "black",
+            pointRadius: 1,
+            data: this.datos
+          },
+          {
+            label: this.indicadores[1].nombre,
+            borderColor: "black",
+            borderWidth: 2,
+            hoverBorderWidth: 3,
+            backgroundColor: "rgba(0, 0, 0, 0)",
+            pointBorderColor: "black",
+            pointBackgroundColor: "black",
+            pointHoverBorderColor: "black",
+            pointHoverBackgroundColor: "black",
+            pointRadius: 1,
+            data: this.datos2
+          }
+        ] 
+      }
     },
-    optionsDolar() {
+    options(){
       return {
-        // showLines: false, // disable for all datasets
         responsive: true,
         maintainAspectRatio: false,
-        // aspectRatio: 2,
-        // plugins: [ChartDataLabels],
         scales: {
           xAxes: [
             {
               ticks: {
-                min: this.$store.state.tasas.minDolarX,
-                max: this.$store.state.tasas.maxDolarX,
+                min: this.fechas[0],
+                max: this.fechas[this.fechas.length],
               }
             }
           ],
           yAxes: [
             {
               ticks: {
-                beginAtZero: true,
-                // min: this.$store.state.tasas.minDolarY,
-                // max: this.$store.state.tasas.maxDolarY,
-                // stepSize: 20000
-                // callback: function(value, index, values) {
-                //   // return "BsS " + value;
-                //   return value;
-                // }
+                min: this.datos[0],
+                max: this.datos[this.datos.length],
               }
             }
           ]
@@ -161,26 +201,15 @@ export default {
           backgroundColor: "rgba(0, 0, 0, 0.6)",
           position: "nearest"
         }
-      };
-    }
-  },
-  methods: {
-    ...mapActions('tasas', [
-      'loadDataOficial',
-      'loadDataPetroleo',
-      'loadDataOro',
-      'loadDataBitcoin',
-      'sD7D',
-      'sD2S',
-      'sD30D',
-      'resertScaleDolar',
-    ])
-  },
-  created() {
-    this.loadDataOficial();
-    this.loadDataPetroleo();
-    this.loadDataOro();
-    this.loadDataBitcoin();
+      }
+    },
+    styles(){
+      return  {
+        width: `${this.width}%`,
+        height: `${this.height}vh`,
+        position: "relative"
+      }
+    },
   },
 }
 </script>
