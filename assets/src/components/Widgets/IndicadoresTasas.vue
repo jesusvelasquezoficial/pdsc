@@ -20,7 +20,7 @@
 							</div>
 						</div>
 						<div class="d-inline-block">
-							<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="1"
+							<mini-chart :dataSet="dataMiniChartPetroleo" :labels="fechaMinMapPetroleo" :height="26"
 							:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 						</div>
 					</div>
@@ -45,7 +45,7 @@
 							</div>
 						</div>
 						<div class="d-inline-block">
-							<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="1"
+							<mini-chart :dataSet="dataMiniChartBitcoin" :labels="fechaMinMapBitcoin" :height="26"
 							:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 						</div>
 					</div>
@@ -138,7 +138,7 @@
 							</div>
 						</div>
 						<div class="d-inline-block">
-							<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="27"
+							<mini-chart :dataSet="dataMiniChartOro" :labels="fechaMinMapOro" :height="26"
 							:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 						</div>
 					</div>
@@ -164,7 +164,7 @@
 							</div>
 						</div>
 						<div class="d-inline-block">
-							<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="26"
+							<mini-chart :dataSet="dataMiniChartPetro" :labels="fechaMinMapPetro" :height="32"
 							:style="{height: '65px', width:'100px', position: 'relative'}"></mini-chart>
 						</div>
 					</div>

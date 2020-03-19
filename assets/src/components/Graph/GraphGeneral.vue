@@ -1,12 +1,12 @@
 <template>
-  <app-card v-if="true" :heading="cardTitulo" :headingMenu="cardMenu">
+  <app-card v-if="loaded" :heading="cardTitulo" :headingMenu="cardMenu">
     <!-- Indicadores -->
     <div class="container-fluid">
       <div class="row mb-2">
         <!-- Indicador -->
         <div class="col-4 col-sm-3 col-md-2 p-2" v-for="(indicador, index) in indicadores" :key="index">
           <!-- Color -->
-          <div class="float-left h-100 mr-2" :style="`border: solid 3px ${indicador.color}`"></div>
+          <div class="float-left mr-2" :style="`height: 2.7em !important; border: solid 3px ${indicador.color}`"></div>
           <!-- Nombre y Url -->
           <router-link :to="indicador.url" style="font-size:.8em;">
             <b style="color:#0081f2;">{{indicador.nombre}}</b>
@@ -17,7 +17,7 @@
           </h6>
           <!-- Variacion -->
           <div :class="indicador.variacion.color" class="d-flex align-items-center" style="font-size:.7em;">
-            <i :class="[indicador.variacion.icono, 'mr-1']"></i>
+            <i :class="[indicador.variacion.color, indicador.variacion.icono, 'mr-1']"></i>
             {{indicador.variacion.porcentaje}}%
           </div>
         </div>
@@ -27,34 +27,69 @@
         <div class="d-flex align-items-center">
           <small style="color: #666;">Zoom</small>
           <div class="col p-2">
-            <b-button size="sm" variant="outline"><small>7d</small></b-button>
-            <b-button size="sm" variant="outline"><small>2s</small></b-button>
-            <b-button size="sm" variant="outline"><small>1m</small></b-button>
-            <b-button size="sm" variant="outline"><small>3m</small></b-button>
-            <b-button size="sm" variant="outline"><small>1y</small></b-button>
-            <b-button size="sm" variant="outline"><small>ALL</small></b-button>
+            <b-button @click="escalarDatos(-7)" size="sm" variant="outline-dark"><small>7d</small></b-button>
+            <b-button @click="escalarDatos(-14)" size="sm" variant="outline-dark"><small>2s</small></b-button>
+            <b-button @click="escalarDatos(-31)" size="sm" variant="outline-dark"><small>1m</small></b-button>
+            <b-button @click="escalarDatos(-92)" size="sm" variant="outline-dark"><small>3m</small></b-button>
+            <b-button @click="escalarDatos(-365)" size="sm" variant="outline-dark"><small>1y</small></b-button>
+            <b-button @click="escalarDatos" size="sm" variant="outline-dark"><small>ALL</small></b-button>
           </div>
         </div>
       </div>
     </div>
     <!-- Grafico -->
-    <line-chart v-if="true" ref="referencia" :chartData="data" :options="options" :styles="styles"></line-chart>
+    <line-chart v-if="loaded" ref="referencia" :chartData="data" :options="options" :styles="styles"></line-chart>
   </app-card>
   <!-- loader -->
   <div v-else class="d-flex justify-content-center py-5 mb-5">
-    <fade-loader :loading="!true" color="DarkOrange" size="32px"></fade-loader>
+    <fade-loader :loading="!loaded" color="DarkOrange" size="32px"></fade-loader>
   </div>
 </template>
 <script>
+import Axios from 'axios';
+import moment from "moment";
 import LineChart from "Components/Charts/MyLineChart.js";
+// Funcion que devuelve un Array con 
+// 1- Color, 2- Icon
+function sube0baja(numero) {
+  var flag = Math.sign(numero);
+  if (flag > 0) {
+    return ['text-up', 'zmdi zmdi-long-arrow-up'];
+  } else if (flag < 0) {
+    return ['text-down', 'zmdi zmdi-long-arrow-down'];
+  } else {
+    return ['text-white', 'fas fa-equals font-sm'];
+  }
+}
+// Funcion que Calcula el Porcentaje del Dolar
+// Devuelve un Array
+function pctjDolar(data, datos, index) {
+  var precio = datos.dolar;
+  var precioAnterior = data[index - 1] == undefined ? data[index].dolar : data[index - 1].dolar;
+  precio = precio.split('.').join('').replace(',', '.');
+  precioAnterior = precioAnterior.split('.').join('').replace(',', '.');
+  console.log(precio);
+  console.log(precioAnterior);
+  var pctj = ((precio - precioAnterior) / precioAnterior) * 100;
+  pctj = pctj.toFixed(2);
+  console.log(pctj);
+  var result = sube0baja(pctj);
+  result.unshift(pctj);
+  // console.log(a);
+  // console.log(b);
+  // console.log(datos.id, pctj);
+  // console.log(result);
+  return result;
+}
 export default {
   components:{
     LineChart,
   },
   data() {
     return {
+      loaded: false,
       cardMenu: true,
-      cardTitulo:'Card Titulo',
+      cardTitulo:'Grafico General del Dolar',
       indicadores: [
         {
           color: '#252F5D', 
@@ -66,28 +101,21 @@ export default {
             icono: 'fas fa-equals font-sm',
             porcentaje: '0.00',
           },
-        },
-        {
-          color: 'Green', 
-          precio: '34.567,89',
-          nombre: 'Nombre2',
-          url: '',
-          variacion: {
-            color: '',
-            icono: 'fas fa-equals font-sm',
-            porcentaje: '0.00',
-          },
-        },
+        }
       ],
       variacion: [
         {
-          porcentaje: '',
           color: '',
           icono: '',
+          porcentaje: '',
         },
       ],
+      base:{
+        fechas:[],
+        datos:[]
+      },
       datos: [10,30,100,60,20,40,30,70,60,90],
-      datos2: [15,20,50,70,40,20,70,30,40,80],
+      datosPctj: [],
       fechas: [
         '2020-03-01',
         '2020-03-02',
@@ -100,6 +128,16 @@ export default {
         '2020-03-09',
         '2020-03-10'
       ],
+      escala: {
+        x:{
+          min: '2020-03-01',
+          max: '2020-03-10'
+        },
+        y:{
+          min: 0,
+          max: 110
+        }
+      },
       width: 100,
       height: 75,
     }
@@ -121,20 +159,7 @@ export default {
             pointHoverBorderColor: "black",
             pointHoverBackgroundColor: "black",
             pointRadius: 1,
-            data: this.datos
-          },
-          {
-            label: this.indicadores[1].nombre,
-            borderColor: "black",
-            borderWidth: 2,
-            hoverBorderWidth: 3,
-            backgroundColor: "rgba(0, 0, 0, 0)",
-            pointBorderColor: "black",
-            pointBackgroundColor: "black",
-            pointHoverBorderColor: "black",
-            pointHoverBackgroundColor: "black",
-            pointRadius: 1,
-            data: this.datos2
+            data: this.datosPctj
           }
         ] 
       }
@@ -147,16 +172,16 @@ export default {
           xAxes: [
             {
               ticks: {
-                min: this.fechas[0],
-                max: this.fechas[this.fechas.length],
+                min: this.escala.x.min,
+                max: this.escala.x.max,
               }
             }
           ],
           yAxes: [
             {
               ticks: {
-                min: this.datos[0],
-                max: this.datos[this.datos.length],
+                min: this.escala.y.min,
+                max: this.escala.y.max,
               }
             }
           ]
@@ -210,6 +235,75 @@ export default {
         position: "relative"
       }
     },
+  },
+  methods: {
+    async cargarDatos(){
+      await Axios.get('http://pdsc.phoenixplus.net:4000/api/oil').then(res => {
+        let data = res.data.data;
+        let fechas = [];
+        let precios = [];
+        let preciosPctj = [];
+        data.forEach((datos, index) => {
+          let fecha = moment(datos.fecha).format("L");
+          fechas[index] = fecha;
+          let precio = parseFloat(datos.dolar.replace(".", "").replace(",", "."));
+          precios[index] = precio;
+          let porcentajeDolar = pctjDolar(data,datos,index);
+          preciosPctj[index] = parseFloat(porcentajeDolar[0]);
+        });
+        // indicador
+        this.cargarIndicador('Petroleo', precios);
+        // this.escalarMinMax(fechas, precios);
+        this.escalarMinMax(fechas, preciosPctj);
+        this.base.fechas = fechas;
+        this.base.datos = preciosPctj;
+        this.escalarDatos(-31);
+        this.fechas = fechas;
+        this.datos = precios;
+        this.datosPctj = preciosPctj;
+        this.loaded = true;
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    cargarIndicador(nombre, precios){
+       let indicador = {
+          color: 'Black', 
+          nombre: 'Nombre',
+          precio: '12.345,67',
+          url: '/forex/dolar',
+          variacion: {
+            color: '',
+            icono: 'fas fa-equals font-sm',
+            porcentaje: '0.00',
+          },
+        };
+        let precio = precios[precios.length - 1];
+        let precioAnterio = precios[precios.length - 2];
+        let porcentaje = (((precio - precioAnterio) / precioAnterio) * 100).toFixed(2);
+        let colorIcon = sube0baja(porcentaje);
+        indicador.nombre = nombre;
+        indicador.precio = precio.toLocaleString("de-DE");
+        indicador.variacion.porcentaje = porcentaje;
+        indicador.variacion.color = colorIcon[0];
+        indicador.variacion.icono = colorIcon[1];
+        this.indicadores.pop();
+        this.indicadores.push(indicador);
+    },
+    escalarMinMax(fechas, precios){
+      this.escala.x.min = moment(fechas[0]).format('L');
+      this.escala.x.max = moment(fechas[fechas.length]).format('L');
+      this.escala.y.min = (Math.min(...precios) * 103) / 100;
+      this.escala.y.max = (Math.max(...precios) * 103) / 100;
+    },
+    escalarDatos(nEscala){
+        this.fechas = this.base.fechas.slice(nEscala);
+        this.datosPctj = this.base.datos.slice(nEscala);
+        this.escalarMinMax(this.fechas, this.datosPctj);  
+    },
+  },
+  created() {
+    this.cargarDatos();
   },
 }
 </script>
