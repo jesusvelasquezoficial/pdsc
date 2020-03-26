@@ -153,5 +153,9 @@ export default {
   created() {
     this.loadDataPetroleo();
   },
+  mounted() {
+    console.log(this.graficoGeneral);
+    
+  },
 }
 </script>

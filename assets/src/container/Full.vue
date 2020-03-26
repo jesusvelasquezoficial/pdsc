@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="Full">
 		<div class="app-container" :class="{ 'collapsed-sidebar': sidebarCollapse }">
 			<div class="app-content"
 				:class="{ 'rtl-layout': rtlLayout, 'box-layout': toggleBoxLayout, 'dark-mode': darkModeEvent, 'red': getThemeColor==='red', 'green': getThemeColor==='green', 'orange': getThemeColor==='orange', '': getThemeColor==='default' }">
@@ -47,15 +47,15 @@
 
 		},
 		mounted() {
-			this.toggleSidebar()
+			this.toggleSidebar();
 			// setTimeout(() => {
-		  //     this.loading = false;
+		      // this.loading = false;
 		  //     setTimeout(() => {
 		  //       if (AppConfig.enableUserTour) {
 		  //         this.$tours["vuelyTour"].start();
 		  //       }
 		  //     }, 1000);
-		  //   }, 2000);
+		    // }, 2000);
 		},
 		computed: {
 			...mapGetters([

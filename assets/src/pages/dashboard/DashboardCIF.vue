@@ -1,7 +1,9 @@
 <template>
 	<div id="dashboard">
+		<!-- migas de pan -->
 		<page-title-bar></page-title-bar>
-		<crypto-slider></crypto-slider>
+		<!-- slider -->
+		<slider-tasas></slider-tasas>
 		<b-row>
 			<b-col sm="12" md='9'>
 				<indicadores-tasas></indicadores-tasas>
@@ -29,21 +31,27 @@ import { mapActions } from 'vuex';
 			}
 		},
 		methods: {
+      ...mapActions('datos', ['fetchAllTasas']),
 			...mapActions('tasas', [
 				'loadDataOficial',
 				'loadDataParalelo',
 				'loadDataPetroleo',
 				'loadDataOro',
 				'loadDataPetro',
-				'loadDataBitcoin'])
-		},
+        'loadDataBitcoin',
+        'loadDataTablaDolar',
+        'loadDataTablaEuro'])
+    },
 		created() {
-			this.loadDataOficial();
+      this.loadDataOficial();
     	this.loadDataParalelo();
 			this.loadDataPetroleo();
     	this.loadDataOro();
     	this.loadDataPetro();
-    	this.loadDataBitcoin();
+      this.loadDataBitcoin();
+      this.loadDataTablaEuro();
+      this.loadDataTablaDolar();
+      this.fetchAllTasas();
 		},
 	};
 </script>

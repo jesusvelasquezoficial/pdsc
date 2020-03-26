@@ -50,10 +50,7 @@
     },
     mounted() {
       this.loadTasasSlider();
-    },
-		created() {
-
-    },
+    }
 	};
 </script>
 <style>

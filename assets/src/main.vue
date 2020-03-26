@@ -6,7 +6,6 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from "vuex";
   // import Tour from "Components/Tour/Tour";
   import AppConfig from "Constants/AppConfig";
   export default {

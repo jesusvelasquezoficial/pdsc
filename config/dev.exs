@@ -24,7 +24,7 @@ config :pdsc_server, PdscServerWeb.Endpoint,
     node: [
       "node_modules/webpack/bin/webpack.js",
       "--mode",
-      "production",
+      "development",
       "--watch", "--colors", "--progress",
       cd: Path.expand("../assets", __DIR__)
     ],

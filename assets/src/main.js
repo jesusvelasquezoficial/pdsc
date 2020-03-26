@@ -33,34 +33,34 @@ import VuePaginate from 'vue-paginate';
 // Scripts Template
 // navigation guards before each
 router.beforeEach((to, from, next) => {
-	Nprogress.start();
-  	if (to.matched.some(record => record.meta.requiresAuth)) {
-      // this route requires auth, check if logged in
-      // if not, redirect to login page.
-      if (localStorage.getItem('user') === null) {
-        next({
-          path: "/session/login",
-          query: { redirect: to.fullPath }
-        });
-      } else {
-        next();
-      }
+    Nprogress.start();
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        // this route requires auth, check if logged in
+        // if not, redirect to login page.
+        if (localStorage.getItem('user') === null) {
+            next({
+                path: "/session/login",
+                query: { redirect: to.fullPath }
+            });
+        } else {
+            next();
+        }
     } else {
-      next(); // make sure to always call next()!
-   }
+        next(); // make sure to always call next()!
+    }
 });
 // navigation guard after each
 router.afterEach((to, from) => {
-  Nprogress.done();
-  setTimeout(() => {
-    const contentWrapper = document.querySelector(".base-container");
-    if (contentWrapper !== null) {
-      contentWrapper.scrollTop = 0;
-    }
-  }, 200);
+    Nprogress.done();
+    setTimeout(() => {
+        const contentWrapper = document.querySelector(".base-container");
+        if (contentWrapper !== null) {
+            contentWrapper.scrollTop = 0;
+        }
+    }, 5000);
 });
 Vue.use(BootstrapVue);
-Vue.use(Axios, VueAxios);
+Vue.use(VueAxios, Axios);
 Vue.use(VueSweetAlert);
 Vue.use(wysiwyg, {});
 Vue.use(Notifications, { velocity });
@@ -91,18 +91,18 @@ Vue.use(GlobalComponents);
 // });
 // Create VueI18n instance with options
 const i18n = new VueI18n({
-	locale: store.getters.selectedLocale.locale, // set locale
-  messages // set locale messages
+    locale: store.getters.selectedLocale.locale, // set locale
+    messages // set locale messages
 });
 // Init Vue App
 export default new Vue({
-  // Root Element
-  el: '#app',
-  store,
-  i18n,
-	router,
-  render: h => h('app'),
-  components: {
-    app
-  },
+    // Root Element
+    el: '#app',
+    store,
+    i18n,
+    router,
+    render: h => h('app'),
+    components: {
+        app
+    },
 }).$mount('#app');

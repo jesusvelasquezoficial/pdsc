@@ -1,7 +1,8 @@
 <template>
   <div id="Dolar">
     <page-title-bar></page-title-bar>
-		<crypto-slider></crypto-slider>
+		<slider-tasas></slider-tasas>
+		<!-- <crypto-slider></crypto-slider> -->
     <b-row class="grid-b-space">
       <b-col>
         <graph-dolar></graph-dolar>

@@ -1,4 +1,5 @@
 <template>
+<div>
   <app-card v-if="loadedTablaEuro" heading="Euro Informacion Diaria" :headingMenu="true">
     <div class="table-responsive mb-0">
       <div class="unseen">
@@ -48,7 +49,8 @@
   </app-card>    
   <div v-else class="d-flex justify-content-center py-5 mb-5">
     <fade-loader :loading="!loadedTablaEuro" color="DarkOrange" size="32px"></fade-loader>
-  </div>   
+  </div>
+  </div> 
 </template>
 <script>
 import { mapState, mapGetters } from 'vuex';
@@ -77,7 +79,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('tasas/loadDataTablaEuro');
+    // this.$store.dispatch('tasas/loadDataTablaEuro');
     this.$store.dispatch('tasas/paginacionEuroPagina', 1);
   },
 }
