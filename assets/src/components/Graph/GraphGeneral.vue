@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       cardMenu: true,
-      cardTitulo:'Grafico General del Dolar',
+      cardTitulo:'Grafico de Variacion Financiera',
       fechasBase: [],
       datosBase:[],
       datos: [10,30,100,60,20,40,30,70,60,90],

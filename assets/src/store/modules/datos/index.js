@@ -40,7 +40,7 @@ export default {
         loaded_grafico_general: false,
         tasas: JSON.parse(localStorage.getItem(STORAGE_KEY + 'tasas')) || [],
         // indicadores: [],
-        configMiniMap: [0, 0, 0, 26, 26, 26, 26], // Bcv - Dtd - dm - oil - oro - btc - ptr
+        configMiniMap: [0, 0, 0, 1, 26, 1, 26], // Bcv - Dtd - dm - oil - oro - btc - ptr
     },
     mutations: {
         ADD_TASA: (state, tasa) => {
@@ -226,10 +226,11 @@ export default {
                 }
             }
         },
-        async fetchAllTasas({
-            commit,
-            dispatch
-        }) {
+        async fetchAllTasas({ commit, dispatch }) {
+            if (localStorage.getItem(STORAGE_KEY + 'tasas') != undefined) {
+                console.log('entro');
+                localStorage.setItem(STORAGE_KEY + 'tasas', JSON.stringify(''));
+            }
             await dispatch('fetchTasas', 'bcv');
             await dispatch('fetchTasas', 'dtd');
             await dispatch('fetchTasas', 'dm');
