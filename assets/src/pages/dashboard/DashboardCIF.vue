@@ -12,11 +12,14 @@
 				<calendario></calendario>
 			</b-col>
 		</b-row>
-		<b-row>
-			<b-col sm="12" class="mb-4">
-				<graph-general></graph-general>
-			</b-col>
-		</b-row>
+    <b-row>
+      <b-col md="6" class="grid-b-space">
+        <graph-var-forex></graph-var-forex>
+      </b-col>
+      <b-col md="6" class="grid-b-space">
+        <graph-var-materia-y-crypto></graph-var-materia-y-crypto>
+      </b-col>
+    </b-row>
 		<graph-mercados></graph-mercados>
 		<tablas-mercados></tablas-mercados>
 	</div>

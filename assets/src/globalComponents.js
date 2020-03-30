@@ -26,7 +26,9 @@ import GraphEuro from 'Components/Graph/GraphEuro';
 import TableEuro from 'Components/Table/TableEuro';
 import TablePetroleo from 'Components/Table/TablePetroleo';
 import GraphGeneral from 'Components/Graph/GraphGeneral';
-import InfiniteSlideBar from 'vue-infinite-slide-bar'
+import GraphVarForex from 'Components/Graph/GraphVarForex';
+import GraphVarMateriaYCrypto from 'Components/Graph/GraphVarMateriaYCrypto';
+import InfiniteSlideBar from 'vue-infinite-slide-bar';
 import MarqueeText from 'vue-marquee-text-component';
 import { FadeLoader } from "vue-spinner/dist/vue-spinner.min.js";
 
@@ -61,6 +63,8 @@ const GlobalComponents = {
         Vue.component('TableEuro', TableEuro);
         Vue.component('TablePetroleo', TablePetroleo);
         Vue.component('GraphGeneral', GraphGeneral);
+        Vue.component('GraphVarForex', GraphVarForex);
+        Vue.component('GraphVarMateriaYCrypto', GraphVarMateriaYCrypto);
         Vue.component('FadeLoader', FadeLoader);
         Vue.component('InfiniteSlideBar', InfiniteSlideBar);
         Vue.component('MarqueeText', MarqueeText);

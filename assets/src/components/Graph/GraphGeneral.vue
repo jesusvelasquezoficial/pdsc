@@ -223,7 +223,7 @@ export default {
       this.escalarMinMax(this.fechas, this.datos);  
     },
   },
-  created() {
+  mounted() {
   this.cargarDatos();
   this.escalarMinMax();
   this.escalarDatos(-31);

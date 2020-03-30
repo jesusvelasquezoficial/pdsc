@@ -30,6 +30,20 @@ function pctjBolivares(data, datos, index) {
     pctj = parseFloat(pctj).toFixed(2);
     return pctj;
 };
+
+function pctjVarDolar(data) {
+    let variaciones = [];
+    let variacion = 0.00;
+    data.forEach(dato => {
+        if (Math.sign(dato)) {
+            variacion = variacion + parseFloat(dato);
+        } else {
+            variacion = variacion - parseFloat(dato);
+        }
+        variaciones.push(parseFloat(variacion).toFixed(2));
+    });
+    return variaciones;
+}
 const API = 'http://pdsc.phoenixplus.net:4000/api/';
 const STORAGE_KEY = "PHX";
 export default {
@@ -368,5 +382,99 @@ export default {
             });
             return indicadores;
         },
+        indicadoresVariacionForex(state) {
+            let iDolar = [];
+            let iEuro = [];
+            state.tasas.forEach(tasa => {
+                if (tasa.nombre == 'Bcv') {
+                    iDolar.push({
+                        nombre: 'Dolar Oficial',
+                        url: tasa.url,
+                        color: tasa.color,
+                        precio: tasa.precio.dolar,
+                        variacion: tasa.variacion.dolar,
+                        fechas: state.tasas[0].fechas,
+                        datos: pctjVarDolar(tasa.variaciones.dolar)
+                    })
+                    iEuro.push({
+                        nombre: 'Euro Oficial',
+                        url: tasa.url,
+                        color: 'red',
+                        precio: tasa.precio.euro,
+                        variacion: tasa.variacion.euro,
+                        fechas: state.tasas[0].fechas,
+                        datos: pctjVarDolar(tasa.variaciones.euro)
+                    })
+                } else if (tasa.nombre == 'Dtd') {
+                    iDolar.push({
+                        nombre: 'Dolar Paralelo',
+                        url: tasa.url,
+                        color: tasa.color,
+                        precio: tasa.precio.dolar,
+                        variacion: tasa.variacion.dolar,
+                        fechas: state.tasas[0].fechas,
+                        datos: pctjVarDolar(tasa.variaciones.dolar)
+                    })
+                    iEuro.push({
+                        nombre: 'Euro Paralelo',
+                        url: tasa.url,
+                        color: 'darkred',
+                        precio: tasa.precio.euro,
+                        variacion: tasa.variacion.euro,
+                        fechas: state.tasas[0].fechas,
+                        datos: pctjVarDolar(tasa.variaciones.euro)
+                    })
+                } else if (tasa.nombre == 'Dolar Monitor') {
+                    iDolar.push({
+                        nombre: tasa.nombre,
+                        url: tasa.url,
+                        color: tasa.color,
+                        precio: tasa.precio.dolar,
+                        variacion: tasa.variacion.dolar,
+                        fechas: state.tasas[0].fechas,
+                        datos: pctjVarDolar(tasa.variaciones.dolar)
+                    })
+                }
+            });
+            return [...iDolar, ...iEuro];
+        },
+        indicadoresVariacionMateriaYCrypto(state) {
+            let iMP = [];
+            let iCrypto = [];
+            state.tasas.forEach(tasa => {
+                if (tasa.nombre == 'Petroleo') {
+                    iMP.push({
+                        nombre: tasa.nombre,
+                        url: tasa.url,
+                        color: tasa.color,
+                        precio: tasa.precio.dolar,
+                        variacion: tasa.variacion.dolar,
+                        fechas: state.tasas[0].fechas,
+                        datos: pctjVarDolar(tasa.variaciones.dolar)
+                    })
+                } else if (tasa.nombre == 'Oro') {
+                    iMP.push({
+                        nombre: tasa.nombre,
+                        url: tasa.url,
+                        color: tasa.color,
+                        precio: tasa.precio.dolar,
+                        variacion: tasa.variacion.dolar,
+                        fechas: state.tasas[0].fechas,
+                        datos: pctjVarDolar(tasa.variaciones.dolar)
+                    })
+                } else if (tasa.nombre == 'Bitcoin') {
+                    iCrypto.push({
+                        nombre: tasa.nombre,
+                        url: tasa.url,
+                        color: tasa.color,
+                        precio: tasa.precio.dolar,
+                        variacion: tasa.variacion.dolar,
+                        fechas: state.tasas[0].fechas,
+                        datos: pctjVarDolar(tasa.variaciones.dolar)
+                    })
+                }
+            });
+            return [...iMP, ...iCrypto];
+        }
     }
 }
