@@ -14,7 +14,7 @@
             </router-link>
             <!-- Precio -->
             <h6 class="p-0 m-0">
-              <b>$ {{indicador.precio}}</b>
+              <b>Bs {{indicador.precio}}</b>
             </h6>
             <!-- Variacion -->
             <div :class="[indicador.variacion > 0 ? 'text-up' : '', indicador.variacion == 0 ? 'text-white' : '', indicador.variacion < 0 ? 'text-down' : '']" class="d-flex align-items-center" style="font-size:.7em;">

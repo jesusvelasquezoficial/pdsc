@@ -54,7 +54,7 @@ export default {
         loaded_grafico_general: false,
         tasas: JSON.parse(localStorage.getItem(STORAGE_KEY + 'tasas')) || [],
         // indicadores: [],
-        configMiniMap: [0, 0, 0, 1, 26, 1, 26], // Bcv - Dtd - dm - oil - oro - btc - ptr
+        configMiniMap: [0, 0, 0, 33, 73, 71, 71], // Bcv - Dtd - dm - oil - oro - btc - ptr
     },
     mutations: {
         ADD_TASA: (state, tasa) => {
@@ -266,26 +266,26 @@ export default {
                     dataDolar.push({
                         nombre: 'Dolar Oficial',
                         url: tasa.url,
-                        precio: `$ ${tasa.precio.dolar}`,
+                        precio: `Bs ${tasa.precio.dolar}`,
                         variacion: tasa.variacion.dolar,
                     });
                     dataEuro.push({
                         nombre: 'Euro Oficial',
                         url: tasa.url,
-                        precio: `€ ${tasa.precio.euro}`,
+                        precio: `Bs ${tasa.precio.euro}`,
                         variacion: tasa.variacion.euro,
                     });
                 } else if (tasa.nombre == "Dtd") {
                     dataDolar.push({
                         nombre: 'Dolar Paralelo',
                         url: tasa.url,
-                        precio: `$ ${tasa.precio.dolar}`,
+                        precio: `Bs ${tasa.precio.dolar}`,
                         variacion: tasa.variacion.dolar,
                     });
                     dataEuro.push({
                         nombre: 'Euro Paralelo',
                         url: tasa.url,
-                        precio: `€ ${tasa.precio.euro}`,
+                        precio: `Bs ${tasa.precio.euro}`,
                         variacion: tasa.variacion.euro,
                     });
                 } else if (tasa.nombre == "Petro") {
@@ -300,7 +300,7 @@ export default {
                         dataDolar.push({
                             nombre: tasa.nombre,
                             url: tasa.url,
-                            precio: `$ ${tasa.precio.dolar}`,
+                            precio: `Bs ${tasa.precio.dolar}`,
                             variacion: tasa.variacion.dolar,
                         });
                     } else {

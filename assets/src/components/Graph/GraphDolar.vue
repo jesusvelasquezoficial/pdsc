@@ -4,14 +4,14 @@
     <div class="mb-3 ml-4 d-flex justify-content-between align-items-center">
       <div class="col-md-4" style="border-left: solid 5px #252F5D;">
         <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem;"><b style="color:#0081f2;">Dolar Oficial</b></router-link>
-        <h6 class="p-0 m-0"><b>$ {{precioDolarBCV}}</b></h6>
+        <h6 class="p-0 m-0"><b>Bs {{precioDolarBCV}}</b></h6>
           <div :class="dolarOficialColor == 'text-white' ? 'text-black' : dolarOficialColor" style="font-size:10px;">
           <i :class="[dolarOficialUpOrDown, dolarOficialColor == 'text-white' ? 'text-black' : dolarOficialColor, 'mr-1']"></i>{{dolarOficialVariacion}}%
         </div>
       </div>
       <div class="col-md-4" style="border-left: solid 5px Green;">
         <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem;"><b style="color:#0081f2;">Dolar Today</b></router-link>
-        <h6 class="p-0 m-0"><b>$ {{precioDolarToday}}</b></h6>
+        <h6 class="p-0 m-0"><b>Bs {{precioDolarToday}}</b></h6>
         <div :class="dolarParaleloColor == 'text-white' ? 'text-black' : dolarParaleloColor" style="font-size:10px;">
           <i :class="[dolarParaleloUpOrDown, dolarParaleloColor == 'text-white' ? 'text-black' : dolarParaleloColor, 'mr-1']"></i>{{dolarParaleloVariacion}}%
         </div>
@@ -19,7 +19,7 @@
       <div class="col-md-4" style="border-left: solid 5px DarkOrange;">
         <router-link to="/forex/dolar"  class="p-0 m-0" style="font-size:.7rem;"><b style="color:#0081f2;">Dolar Monitor</b></router-link>
         <!-- <p class="p-0 m-0" style="font-size:.7rem">Dolar Monitor</p> -->
-        <h6 class="p-0 m-0"><b>$ {{precioDolarMonitor}}</b></h6>
+        <h6 class="p-0 m-0"><b>Bs {{precioDolarMonitor}}</b></h6>
         <div :class="monitorDolarColor == 'text-white' ? 'text-black' : monitorDolarColor" style="font-size:10px;">
           <i :class="[monitorDolarUpOrDown, monitorDolarColor == 'text-white' ? 'text-black' : monitorDolarColor, 'mr-1']"></i>{{monitorDolarVariacion}}%
         </div>

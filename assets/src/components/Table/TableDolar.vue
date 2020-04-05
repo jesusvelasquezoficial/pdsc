@@ -17,7 +17,7 @@
             <small>{{ data.label }}</small>
           </template>
           <template v-slot:cell()="data">
-            <small>$ {{ data.value }}</small>
+            <small>Bs {{ data.value }}</small>
           </template>
            <template v-slot:cell(fecha)="data">
             <small>{{ data.value }}</small>
